@@ -5,10 +5,13 @@ Pkg.instantiate
 using SimpleSDMLayers
 using CSV
 using DataFrames
-using HTTP
+using DBFtables
 
 # Get list of species
-species = DataFrame(CSV.File("data/raw/pcbi.1002321.s004.csv", comment="%"));
+paper = DataFrame(CSV.File("data/raw/pcbi.1002321.s004.csv", comment="%"));
+iucn = DataFrame(DBFTables.Table("data/raw/rangemaps/MAMMALS_TERRESTRIAL_ONLY.dbf"));
+
+species = filter(:binomial => in(paper.species), iucn)
 
 # Prepare the layer according to the IUCN limits
 struct IUCNRange <: SimpleSDMLayers.SimpleSDMSource end
