@@ -24,9 +24,9 @@ ispath("./data/raw/rasters") || mkpath("./data/raw/rasters")
 ranges = Dict{String,SimpleSDMPredictor}()
 for sp in species[:,2]
     @info sp
-    fname = joinpath("rasters", replace(sp, " " => "_")*".tif")
+    fname = joinpath(".", "data", "raw", "rasters", replace(sp, " " => "_")*".tif")
     if !isfile(fname)
-        query = `gdal_rasterize -l "MAMMALS_TERRESTRIAL_ONLY" -a presence rangemaps/MAMMALS_TERRESTRIAL_ONLY.shp $(fname) -where "binomial LIKE '$(sp)'" -ts 560, 280`
+        query = `gdal_rasterize -l "MAMMALS_TERRESTRIAL_ONLY" -a presence ./data/raw/rangemaps/MAMMALS_TERRESTRIAL_ONLY.shp $(fname) -where "binomial LIKE '$(sp)'" -ts 560, 280`
         run(query)
     end
     mp = SimpleSDMLayers.raster(SimpleSDMResponse, IUCNRange(), fname)
