@@ -29,7 +29,7 @@ Threads.@threads for i in 1:length(speciespool)
             run(query)
             mp = convert(Float64, geotiff(SimpleSDMResponse, fname; bounding_box...))
             replace!(mp, zero(eltype(mp)) => nothing)
-            geotiff(fname, broadcast(v -> isnothing(v) ? v : one(eltype(mp)), mp))
+            geotiff(broadcast(v -> isnothing(v) ? v : one(eltype(mp)), mp), fname)
             mp = nothing
             GC.gc()
             valid_names[i] = true
