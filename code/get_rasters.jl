@@ -29,7 +29,7 @@ Threads.@threads for i in 1:length(speciespool)
             run(query)
             mp = convert(Float64, geotiff(SimpleSDMResponse, fname; bounding_box...))
             replace!(mp, zero(eltype(mp)) => nothing)
-            geotiff(fname, broadcast(v -> isnothing(v) ? v : one(eltype(mp)), mp))
+            geotiff(broadcast(v -> isnothing(v) ? v : one(eltype(mp)), mp), fname)
             mp = nothing
             GC.gc()
             valid_names[i] = true
@@ -52,6 +52,7 @@ ranges = [geotiff(SimpleSDMPredictor, joinpath("rasters", f)) for f in readdir("
 # geotiff("stack.tif", ranges)
 
 # Map the richness
+include("shapefile.jl")
 richness = mosaic(sum, ranges)
 plot(; frame=:box, xlim=extrema(longitudes(richness)), ylim=extrema(latitudes(richness)), dpi=500)
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
