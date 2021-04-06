@@ -638,9 +638,11 @@ version = "1.0.2"
 
 [[SimpleSDMLayers]]
 deps = ["ArchGDAL", "HTTP", "RecipesBase", "Requires", "Statistics", "ZipFile"]
-git-tree-sha1 = "488d4294f3112ea550896a0a2b8d3a11d5b1dac8"
+git-tree-sha1 = "032d4d5dbd4d3eb68ee456141e4b41bc062b5a91"
+repo-rev = "master"
+repo-url = "https://github.com/EcoJulia/SimpleSDMLayers.jl.git"
 uuid = "2c645270-77db-11e9-22c3-0f302a89c64c"
-version = "0.4.8"
+version = "0.4.10"
 
 [[Sockets]]
 uuid = "6462fe0b-24de-5631-8697-dd941f90decc"
