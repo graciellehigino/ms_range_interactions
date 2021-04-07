@@ -8,9 +8,9 @@ version = "3.2.0"
 
 [[ArchGDAL]]
 deps = ["Dates", "DiskArrays", "GDAL", "GeoFormatTypes", "GeoInterface", "Tables"]
-git-tree-sha1 = "c5196140e54514a869d012332f3ab0b02ad2b337"
+git-tree-sha1 = "ac9a3bdf0b1cc5bd276c530b645194bf57373ecf"
 uuid = "c9ce4bd3-c3d5-55b8-8973-c0e20141b8c3"
-version = "0.5.3"
+version = "0.6.0"
 
 [[ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -637,12 +637,12 @@ uuid = "992d4aef-0814-514b-bc4d-f2e9a6c4116f"
 version = "1.0.2"
 
 [[SimpleSDMLayers]]
-deps = ["ArchGDAL", "HTTP", "RecipesBase", "Requires", "Statistics", "ZipFile"]
-git-tree-sha1 = "032d4d5dbd4d3eb68ee456141e4b41bc062b5a91"
-repo-rev = "master"
+deps = ["ArchGDAL", "Downloads", "RecipesBase", "Requires", "Statistics", "ZipFile"]
+git-tree-sha1 = "ba9537bdb0e836e83ba1f142f97b1d9ca1cd6c43"
+repo-rev = "v0.5.0"
 repo-url = "https://github.com/EcoJulia/SimpleSDMLayers.jl.git"
 uuid = "2c645270-77db-11e9-22c3-0f302a89c64c"
-version = "0.4.10"
+version = "0.5.0"
 
 [[Sockets]]
 uuid = "6462fe0b-24de-5631-8697-dd941f90decc"
