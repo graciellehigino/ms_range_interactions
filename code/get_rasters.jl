@@ -1,6 +1,8 @@
 using SimpleSDMLayers
 using Plots
 using Shapefile
+using CSV
+using DataFrames
 
 # I store my IUCN data in the same location, so adapt this to where your files are
 const IUCNPATH = expanduser(joinpath("~", ".data", "iucn"))
@@ -41,7 +43,11 @@ Threads.@threads for i in 1:length(speciespool)
     end
 end
 
+# Get names of species with valid files
 mammals = speciespool[findall(valid_names)]
+
+# Export names
+CSV.write(joinpath("data", "mammals.csv"), DataFrame(mammals = mammals), header = false)
 
 # Get all the ranges as an array
 ranges = [geotiff(SimpleSDMPredictor, joinpath("rasters", f)) for f in readdir("rasters")]
