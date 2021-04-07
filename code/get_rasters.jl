@@ -29,7 +29,7 @@ Threads.@threads for i in 1:length(speciespool)
             run(query)
             mp = convert(Float64, geotiff(SimpleSDMResponse, fname; bounding_box...))
             replace!(mp, zero(eltype(mp)) => nothing)
-            geotiff(broadcast(v -> isnothing(v) ? v : one(eltype(mp)), mp), fname)
+            geotiff(fname, broadcast(v -> isnothing(v) ? v : one(eltype(mp)), mp))
             mp = nothing
             GC.gc()
             valid_names[i] = true
@@ -47,9 +47,7 @@ mammals = speciespool[findall(valid_names)]
 ranges = [geotiff(SimpleSDMPredictor, joinpath("rasters", f)) for f in readdir("rasters")]
 
 # Save everything as a stack, order like the hosts array
-# Requires SimpleSDMLayers v0.5.0, in development on branch tp/rasterdl
-# Right now this script uses v0.4.10 from master
-# geotiff("stack.tif", ranges)
+geotiff("stack.tif", ranges)
 
 # Map the richness
 include("shapefile.jl")
@@ -62,5 +60,5 @@ yaxis!("Latitude")
 savefig("richness.png")
 
 # Get the individual ranges back (and remove the NaN)
-# Also requires v0.5.0
-# r = [replace(geotiff(SimpleSDMPredictor, "stack.tif", i), NaN=>nothing) for i in eachindex(mammals)]
+r = [replace(geotiff(SimpleSDMPredictor, "stack.tif", i), NaN=>nothing) for i in eachindex(mammals)]
+
