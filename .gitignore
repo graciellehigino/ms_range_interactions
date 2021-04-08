@@ -5,3 +5,7 @@ references.json
 affiliations.json
 .vscode
 /data/raw
+rasters/
+shapefiles/
+stack.tif
+assets/
