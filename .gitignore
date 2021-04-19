@@ -1,4 +1,3 @@
-Manifest.toml
 dist/
 *.log
 *synctex*
