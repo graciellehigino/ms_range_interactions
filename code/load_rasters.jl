@@ -24,7 +24,7 @@ richness = mosaic(sum, ranges)
 plot(; frame=:box, xlim=extrema(longitudes(richness)), ylim=extrema(latitudes(richness)), dpi=500)
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(richness, frame=:box, c=:turku, clim=(1, maximum(richness)))
-xaxis!("Latitude")
+xaxis!("Longitude")
 yaxis!("Latitude")
 savefig("richness.png")
 

@@ -8,6 +8,8 @@ using SparseArrays
 sp = CSV.read(joinpath("data", "species_code.csv"), DataFrame)
 lk = CSV.read(joinpath("data", "links_code.csv"), DataFrame)
 
+sp.species = replace.(sp.species, " " => "_")
+
 # Number of species and of interactions in the metaweb
 S = nrow(sp)
 L = nrow(lk)
@@ -23,8 +25,3 @@ vals = ones(Bool, L)
 M = sparse(rows, cols, vals, S, S)
 M = UnipartiteNetwork(Matrix(M), sp.species)
 
-# Verify that the matrix was built correctly
-species(M)
-interactions(M)
-links(M)
-richness(M)
