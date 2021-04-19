@@ -19,7 +19,7 @@ mammals = readlines(joinpath("data", "mammals.csv"))
 ranges = [replace(geotiff(SimpleSDMPredictor, "stack.tif", i), NaN=>nothing) for i in eachindex(mammals)]
 
 # Map the richness
-include("code/shapefile.jl")
+include("shapefile.jl")
 richness = mosaic(sum, ranges)
 plot(; frame=:box, xlim=extrema(longitudes(richness)), ylim=extrema(latitudes(richness)), dpi=500)
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)

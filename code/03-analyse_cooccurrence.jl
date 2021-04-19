@@ -1,5 +1,6 @@
 include("code/load_rasters.jl")
 
+using Combinatoric
 
 # Get the list of mammals
 mammals = readlines(joinpath("data", "mammals.csv"))
