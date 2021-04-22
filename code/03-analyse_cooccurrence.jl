@@ -1,4 +1,4 @@
-include("code/load_rasters.jl")
+include("load_rasters.jl")
 
 using Combinatoric
 
