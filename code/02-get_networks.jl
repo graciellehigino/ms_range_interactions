@@ -37,7 +37,7 @@ M = UnipartiteNetwork(Matrix(M), sp.species)
 # Get list of plants and mammals (carnivores and herbivores)
 plants = sp.species[sp.type .== "plant"]
 mammals = sp.species[sp.type .!== "plant"]
-hervivores = sp.species[sp.type .== "herbivore"]
+herbivores = sp.species[sp.type .== "herbivore"]
 carnivores = sp.species[sp.type .== "carnivore"]
 
 
@@ -63,7 +63,7 @@ function remove_carnivores(sp_list)
 
     # Which species are herbivores and carnivores
     carni = in(carnivores).(sp_list)
-    herbi = in(hervivores).(sp_list)
+    herbi = in(herbivores).(sp_list)
   
     carn = sp_list[carni]
     herb = sp_list[herbi]
