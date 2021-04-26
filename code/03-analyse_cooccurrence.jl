@@ -101,5 +101,6 @@ function Bbeta(A::String, B::String)
     return Bb
 end
 
+# Hopefully this works... but who knows!!
 cooccurrence.abeta = Abeta(cooccurrence.spA, cooccurrence.spB)
 cooccurrence.bbeta = Bbeta(cooccurrence.spA, cooccurrence.spB)
