@@ -76,6 +76,31 @@ cooccurrence.P = are_interacting.(cooccurrence.spA, cooccurrence.spB)
 
 #glm(@formula(P ~ nbAB), cooccurrence, Bernoulli(), LogitLink()) # Not significant
 
+# Ruggiero beta-diversity calculations (draft) 
+## Focused on A - the top predators (highest trophic level)
+function Abeta(A::String, B::String)
 
+    nbA = count_unique(A, B)
+    nbB = count_unique(B, A)
+    nbAB = count_cooccurrence(A, B)
 
+    Ab = nbAB / (nbAB + nbA)
 
+    return Ab
+end
+
+## Focused on B - the small predators and herbivores (lower trophic level)
+function Bbeta(A::String, B::String)
+
+    nbA = count_unique(A, B)
+    nbB = count_unique(B, A)
+    nbAB = count_cooccurrence(A, B)
+
+    Bb = nbAB / (nbAB + nbB)
+
+    return Bb
+end
+
+# Hopefully this works... but who knows!!
+cooccurrence.abeta = Abeta(cooccurrence.spA, cooccurrence.spB)
+cooccurrence.bbeta = Bbeta(cooccurrence.spA, cooccurrence.spB)
