@@ -1,6 +1,6 @@
 include("load_rasters.jl")
 
-using Combinatoric
+using Combinatorics
 
 # Get the list of mammals
 mammals = readlines(joinpath("data", "mammals.csv"))
@@ -62,7 +62,7 @@ end
 cooccurrence.JD = JD.(cooccurrence.spA, cooccurrence.spB)
 
 # Interaction among all species pairs in the metaweb
-include("code/02-get_metaweb.jl")
+include(joinpath("code", "02-get_networks.jl"))
 
 function are_interacting(A::String, B::String)
     return has_interaction(M, A, B)
@@ -72,9 +72,9 @@ cooccurrence.P = are_interacting.(cooccurrence.spA, cooccurrence.spB)
 
 
 # Relationship between cooccurrence and interaction
-using GLM
+#using GLM
 
-glm(@formula(P ~ nbAB), cooccurrence, Bernoulli(), LogitLink()) # Not significant
+#glm(@formula(P ~ nbAB), cooccurrence, Bernoulli(), LogitLink()) # Not significant
 
 
 
