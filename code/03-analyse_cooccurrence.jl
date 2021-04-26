@@ -90,7 +90,7 @@ function Abeta(A::String, B::String)
 end
 
 ## Focused on B - the small predators and herbivores (lower trophic level)
-function Abeta(A::String, B::String)
+function Bbeta(A::String, B::String)
 
     nbA = count_unique(A, B)
     nbB = count_unique(B, A)
@@ -101,3 +101,5 @@ function Abeta(A::String, B::String)
     return Bb
 end
 
+cooccurrence.abeta = Abeta(cooccurrence.spA, cooccurrence.spB)
+cooccurrence.bbeta = Bbeta(cooccurrence.spA, cooccurrence.spB)
