@@ -76,31 +76,40 @@ cooccurrence.P = are_interacting.(cooccurrence.spA, cooccurrence.spB)
 
 #glm(@formula(P ~ nbAB), cooccurrence, Bernoulli(), LogitLink()) # Not significant
 
-# Ruggiero beta-diversity calculations (draft) 
-## Focused on A - the top predators (highest trophic level)
-function Abeta(A::String, B::String)
 
+
+
+# Need to subset the dataframes into predators and herbivores which interact (so predators are spA and herbivores in spB)
+cooccurrence_beta = filter(:P => isequal(1), cooccurrence)
+
+# Ruggiero beta-diversity calculations (draft) 
+function beta(A::String, B::String, fun)
+    
+    if fun == "pred-to-prey"
     nbA = count_unique(A, B)
-    nbB = count_unique(B, A)
     nbAB = count_cooccurrence(A, B)
 
     Ab = nbAB / (nbAB + nbA)
 
     return Ab
+
+    elseif  fun == "prey-to-pred"
+        nbB = count_unique(B, A)
+        nbAB = count_cooccurrence(A, B)
+    
+        Bb = nbAB / (nbAB + nbB)
+    
+        return Bb
+
+    else 
+        print("please select the direction of the calculation, either 'prey-to-pred' or 'pred-to-prey'") # can someone fix this so it doesn't print loads of them ;)
+
+    end
 end
 
-## Focused on B - the small predators and herbivores (lower trophic level)
-function Bbeta(A::String, B::String)
+## This should calculate the predator to prey beta diversity
+cooccurrence_beta.Rab = beta.(cooccurrence_beta.spA, cooccurrence_beta.spB, "pred-to-prey")
 
-    nbA = count_unique(A, B)
-    nbB = count_unique(B, A)
-    nbAB = count_cooccurrence(A, B)
+## This should calculate the prey to predator beta diversity
+cooccurrence_beta.Rbb = beta.(cooccurrence_beta.spA, cooccurrence_beta.spB, "prey-to-pred")
 
-    Bb = nbAB / (nbAB + nbB)
-
-    return Bb
-end
-
-# Hopefully this works... but who knows!!
-cooccurrence.abeta = Abeta(cooccurrence.spA, cooccurrence.spB)
-cooccurrence.bbeta = Bbeta(cooccurrence.spA, cooccurrence.spB)
