@@ -85,25 +85,20 @@ cooccurrence_beta = filter(:P => isequal(1), cooccurrence)
 # Ruggiero beta-diversity calculations (draft) 
 function beta(A::String, B::String, fun)
     
-    if fun == "pred-to-prey"
-    nbA = count_unique(A, B)
-    nbAB = count_cooccurrence(A, B)
-
+  nbA = count_unique(A, B)
+  nbB = count_unique(B, A)
+  nbAB = count_cooccurrence(A, B)
+    
+  if fun == "pred-to-prey"
     Ab = nbAB / (nbAB + nbA)
-
     return Ab
 
     elseif  fun == "prey-to-pred"
-        nbB = count_unique(B, A)
-        nbAB = count_cooccurrence(A, B)
-    
-        Bb = nbAB / (nbAB + nbB)
-    
-        return Bb
+    Bb = nbAB / (nbAB + nbB)
+    return Bb
 
     else 
-        print("please select the direction of the calculation, either 'prey-to-pred' or 'pred-to-prey'") # can someone fix this so it doesn't print loads of them ;)
-
+    print("please select the direction of the calculation, either 'prey-to-pred' or 'pred-to-prey'") # can someone fix this so it doesn't print loads of them ;)
     end
 end
 
