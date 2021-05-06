@@ -1,5 +1,5 @@
 # Load required scripts and packages
-# include("01-load_rasters.jl") # range maps of Serengeti mammals 
+include("01-load_rasters.jl") # range maps of Serengeti mammals 
 include("shapefile.jl") # mapping functions
 
 import CSV
@@ -85,7 +85,7 @@ function remove_carnivores(sp_list)
 end
 
 # New species list at every location
-species_lists_c = remove_carnivores.(list_layer.grid)
+species_lists_c = remove_carnivores.(species_lists)
 
 # Get new subnetworks at every location (i.e. after filtering)
 function get_subnetwork(sp_list)
