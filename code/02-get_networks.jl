@@ -106,7 +106,7 @@ function get_subnetwork(sp_list)
 end
 
 subnetworks = get_subnetwork.(species_lists)
-subnetworks_new = get_subnetwork.(species_lists_new)
+subnetworks_new = get_subnetwork.(species_lists_c)
 
 
 #### Analyse network structure and the filtering process

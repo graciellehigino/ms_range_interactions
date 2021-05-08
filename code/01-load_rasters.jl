@@ -1,4 +1,4 @@
-import Pkg; Pkg.activate(".")
+import Pkg; Pkg.activate("."); Pkg.instantiate()
 
 using SimpleSDMLayers
 using Plots
