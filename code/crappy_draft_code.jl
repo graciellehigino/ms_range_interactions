@@ -1,29 +1,27 @@
-new_ranges = SimpleSDMPredictor(species_lists_c)
-ranges_list = [Array{Union{Nothing, String}, size(new_ranges.grid)}]
-for i in eachindex(species_lists_c)
+short_list = species_lists_c[.!isnothing.(species_lists_c)]
+new_ranges_df = DataFrame(species = String[], range = Int64[])
+
+for i in 1:length(short_list)
     for j in 1:length(mammals)
-        if isnothing(species_lists_c[[i]])
-            ranges_list[i] = nothing
-        else
-            if mammals[j] in species_lists_c[[i]]
-                ranges_list[i] = mammals[j]
-                push!(ranges_list)
-            end
-        end
+        a = sum(occursin.(mammals[j], short_list[i]))
+        push!(new_ranges_df, [mammals[j], sum(a)])
     end
 end
+new_ranges_df = combine(groupby(new_ranges_df, :species),:range .=> sum)
 
 
-
-new_ranges_df = DataFrame(new_ranges)
-rename!(new_ranges_df, ["longitude", "latitude", replace.(mammals, " " => "_")...])
-
-
-
-species_lists = Union{Nothing, Vector{String}}[]
-for row in eachcol(names_df)
-    sp_row = filter(!isnothing, collect(col))
-    sp_row = length(sp_row) > 0 ? Vector{String}(sp_row) : nothing
-    push!(species_lists, sp_row)
+# old ranges----not quite that
+species_lists = Int64[]
+for col in eachcol(names_df)
+    sp_col = filter(!isnothing, collect(col))
+    sp_col = length(sp_col) > 0 ? length(sp_col) : 0
+    push!(species_lists, sp_col)
 end
 species_lists
+
+ranges_total = new_ranges_df
+ranges_total.old_ranges = species_lists
+
+# Original range size
+
+#original_range = [sum(.!isnothing.(ranges[i].grid)) for i in 1:length(ranges)]
