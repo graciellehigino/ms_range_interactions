@@ -62,7 +62,7 @@ end
 cooccurrence.JD = JD.(cooccurrence.spA, cooccurrence.spB)
 
 # Interaction among all species pairs in the metaweb
-include(joinpath("code", "02-get_networks.jl"))
+include("02-get_networks.jl")
 
 function are_interacting(A::String, B::String)
     return has_interaction(M, A, B)
