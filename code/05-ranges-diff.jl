@@ -8,15 +8,15 @@ for i in 1:length(short_list)
     end
 end
 new_ranges_df = combine(groupby(new_ranges_df, :species),:range .=> sum)
+rename!(ranges_total, :range_sum => :new_range)
 
 
 # Original range size
-original_range = [sum(.!isnothing.(ranges[i].grid)) for i in 1:length(ranges)]
+original_range = DataFrame(species = names(names_df), old_range = [sum(.!isnothing.(ranges[i].grid)) for i in 1:length(ranges)])
 
 ranges_total = new_ranges_df
-filter(:δ => !isequal(0), ranges_total)
-ranges_total.original_range = original_range
-ranges_total.δ = ranges_total.range_sum - ranges_total.original_range
+ranges_total = leftjoin(ranges_total, original_range, on=:species)
+ranges_total.δ = ranges_total.new_range - ranges_total.old_range
 
 # Only predators ranges
-filter!(x -> x.species ∈ carnivores, ranges_total)
+predator_ranges = filter(x -> x.species ∈ carnivores, ranges_total)
