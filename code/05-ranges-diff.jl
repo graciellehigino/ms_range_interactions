@@ -14,6 +14,7 @@ new_ranges_df = combine(groupby(new_ranges_df, :species),:range .=> sum)
 original_range = [sum(.!isnothing.(ranges[i].grid)) for i in 1:length(ranges)]
 
 ranges_total = new_ranges_df
+filter(:δ => !isequal(0), ranges_total)
 ranges_total.original_range = original_range
 ranges_total.δ = ranges_total.range_sum - ranges_total.original_range
 
