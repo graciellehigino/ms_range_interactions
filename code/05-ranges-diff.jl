@@ -10,18 +10,12 @@ end
 new_ranges_df = combine(groupby(new_ranges_df, :species),:range .=> sum)
 
 
-# old ranges----not quite that
-species_lists = Int64[]
-for col in eachcol(names_df)
-    sp_col = filter(!isnothing, collect(col))
-    sp_col = length(sp_col) > 0 ? length(sp_col) : 0
-    push!(species_lists, sp_col)
-end
-species_lists
+# Original range size
+original_range = [sum(.!isnothing.(ranges[i].grid)) for i in 1:length(ranges)]
 
 ranges_total = new_ranges_df
-ranges_total.old_ranges = species_lists
+ranges_total.original_range = original_range
+ranges_total.δ = ranges_total.range_sum - ranges_total.original_range
 
-# Original range size
-
-#original_range = [sum(.!isnothing.(ranges[i].grid)) for i in 1:length(ranges)]
+# Only predators ranges
+filter!(x -> x.species ∈ carnivores, ranges_total)
