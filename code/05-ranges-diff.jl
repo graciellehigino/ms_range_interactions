@@ -8,13 +8,13 @@ for i in 1:length(short_list)
     end
 end
 new_ranges_df = combine(groupby(new_ranges_df, :species),:range .=> sum)
-rename!(ranges_total, :range_sum => :new_range)
 
 
 # Original range size
 original_range = DataFrame(species = names(names_df), old_range = [sum(.!isnothing.(ranges[i].grid)) for i in 1:length(ranges)])
 
 ranges_total = new_ranges_df
+rename!(ranges_total, :range_sum => :new_range)
 ranges_total = leftjoin(ranges_total, original_range, on=:species)
 ranges_total.δ = ranges_total.new_range - ranges_total.old_range
 
