@@ -20,3 +20,6 @@ ranges_total.δ = ranges_total.new_range - ranges_total.old_range
 
 # Only predators ranges
 predator_ranges = filter(x -> x.species ∈ carnivores, ranges_total)
+
+# Relative lost
+predator_ranges.relative = predator_ranges.δ .* 100 ./ predator_ranges.old_range
