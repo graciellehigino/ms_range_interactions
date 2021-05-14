@@ -17,3 +17,11 @@ scatter(test_df.Rab, test_df.Rbb, xlabel="predator to prey beta diversity", ylab
 scatter(test_df.relative .* -1, test_df.degree, xlabel="relative lost of range", ylabel="in-degree of predators", marker_z=test_df.old_range, markercolor=:sun, markerstrokewidth=0, left_margin=10mm, right_margin=10mm, top_margin=10mm, bottom_margin=10mm, label="predators' original range", legend=:topright, foreground_color_legend=nothing, background_color_legend=:seashell)
 # savefig("figures/rel_lost-in_degree-orig_range.png")
 
+# Exploring occurrences
+plot(; frame=:box, xlim=extrema(longitudes(delta_Sxy_layer)), ylim=extrema(latitudes(delta_Sxy_layer)), dpi=500)
+plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
+plot!(ranges[4], c=:turku, colorbar=:none)
+xaxis!("Longitude")
+yaxis!("Latitude")
+scatter!(occ_gbif_iucn[occ_gbif_iucn.species.==names(names_df)[4],:latitude], occ_gbif_iucn[occ_gbif_iucn.species.==names(names_df)[4],:longitude], markerstrokewidth=0, markeralpha=0.5, markersize=2, title=names(names_df)[4], legend=:none)
+# savefig("figures/iucn_gbif_ex.png")
