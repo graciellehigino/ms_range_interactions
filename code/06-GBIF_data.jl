@@ -45,4 +45,5 @@ for i in 1:length(occ_df)
     end
 end
 
-
+# Only species with IUCN ranges
+occ_gbif_iucn = filter(x -> x.species ∈ names(names_df), occ_coordinates)
