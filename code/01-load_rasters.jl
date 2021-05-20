@@ -1,4 +1,4 @@
-import Pkg; Pkg.activate(".")
+import Pkg; Pkg.activate("."); Pkg.instantiate()
 
 using SimpleSDMLayers
 using Plots
@@ -16,7 +16,7 @@ filter!(!endswith(" spp."), speciespool) # Species with spp. at the end are plan
 mammals = readlines(joinpath("data", "mammals.csv"))
 
 # Get the individual ranges back (and remove the NaN)
-ranges = [replace(geotiff(SimpleSDMPredictor, "stack.tif", i), NaN=>nothing) for i in eachindex(mammals)]
+ranges = [replace(geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.tif"), i), NaN=>nothing) for i in eachindex(mammals)]
 
 # Map the richness
 include("shapefile.jl")

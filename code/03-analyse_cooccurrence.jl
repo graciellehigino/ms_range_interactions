@@ -1,30 +1,38 @@
-include("code/load_rasters.jl")
+include("01-load_rasters.jl")
+include("02-get_networks.jl")
 
-using Combinatoric
+using Combinatorics
 
-# Get the list of mammals
+# Mammals in the Serengeti ecosystem
 mammals = readlines(joinpath("data", "mammals.csv"))
-
 mammals = replace.(mammals, " " => "_")
 
-# Get all combinations of species names
-mammals_comb = collect(combinations(mammals,2))
+# Subset subnetwork using this list of mammals
+MM = MM[mammals]
 
-# DataFrame of co-occurrence data
-# spA: Name of species A
-# spB: Name of species B
-# nbA: Number of pixels with species A only
-# nbB: Number of pixels with species B only
+### Table of spatial overlap for interacting species 
+
+# Number of interactions between mammals in the metaweb
+L = links(MM) 
+
+# Lists of predators and preys
+preds = [interactions(MM)[i].from for i in 1:L]
+preys = [interactions(MM)[i].to for i in 1:L]
+
+
+# DataFrame of co-occurrence data for interacting species
+# spA: Name of the predator
+# spB: Name of the prey
+# nbA: Number of pixels with the predator only
+# nbB: Number of pixels with the prey only
 # nbAB: Number of pixels with both species
-# JD: Jaccard diversity index
-# P: Are species interacting (predation) in the metaweb?
-cooccurrence = DataFrame(fill(0, (length(mammals_comb), 7)),
-                 [:spA, :spB, :nbA, :nbB, :nbAB, :JD, :P])
+cooccurrence_interact = DataFrame(fill(0, (length(preds), 5)),
+                 [:spA, :spB, :nbA, :nbB, :nbAB])
 
-cooccurrence.spA = reduce(hcat, mammals_comb)[1,:]
-cooccurrence.spB = reduce(hcat, mammals_comb)[2,:]
+cooccurrence_interact.spA = preds
+cooccurrence_interact.spB = preys
 
-# Count the number of pixels unique to species A or B
+# Count the number of pixels unique to one of the two species 
 function count_unique(A::String, B::String)
     AA = names_df[!, A]
     BB = names_df[!, B]
@@ -33,10 +41,10 @@ function count_unique(A::String, B::String)
     return nbA
 end
 
-cooccurrence.nbA = count_unique.(cooccurrence.spA, cooccurrence.spB)
-cooccurrence.nbB = count_unique.(cooccurrence.spB, cooccurrence.spA)
+cooccurrence_interact.nbA = count_unique.(preds, preys)
+cooccurrence_interact.nbB = count_unique.(preys, preds)
 
-# Count the number of pixels where species A and B cooccure
+# Count the number of pixels where both species cooccurre 
 function count_cooccurrence(A::String, B::String)
     AA = names_df[!, A]
     BB = names_df[!, B]
@@ -45,37 +53,79 @@ function count_cooccurrence(A::String, B::String)
     return nbAB
 end
 
-cooccurrence.nbAB = count_cooccurrence.(cooccurrence.spA, cooccurrence.spB)
+cooccurrence_interact.nbAB = count_cooccurrence.(preds, preys)
 
-# Compute Jaccard diversity index for all species pairs
-function JD(A::String, B::String)
 
-    nbA = count_unique(A, B)
-    nbB = count_unique(B, A)
-    nbAB = count_cooccurrence(A, B)
+### Table of spatial overlap for non-interacting species 
 
-    JD = nbAB / (nbA + nbB + nbAB)
+# All combinations of species names
+mammals_comb = collect(combinations(mammals,2))
 
-    return JD
-end
+spA = reduce(hcat, mammals_comb)[1,:]
+spB = reduce(hcat, mammals_comb)[2,:]
 
-cooccurrence.JD = JD.(cooccurrence.spA, cooccurrence.spB)
-
-# Interaction among all species pairs in the metaweb
-include("code/02-get_metaweb.jl")
-
+# Which pairs of species are interacting (in either direction?)
 function are_interacting(A::String, B::String)
-    return has_interaction(M, A, B)
+    # Is there an interaction between from the first to the second species?
+    A_to_B = has_interaction(MM, A, B)
+    # Is there an interaction between from the second to the first species?
+    B_to_A = has_interaction(MM, B, A)
+    # Is there an interaction in either direction?
+    A_B_interact = ifelse(A_to_B == 1 || B_to_A == 1, true, false)
+    return A_B_interact
 end
 
-cooccurrence.P = are_interacting.(cooccurrence.spA, cooccurrence.spB)
+# Filter out species that are interacting
+A_B_interact = are_interacting.(spA, spB)
+spA = spA[.!A_B_interact]
+spB = spB[.!A_B_interact]
+
+# DataFrame of co-occurrence data for non-interacting species
+# spA: Name of one species
+# spB: Name of the other species (there is no ecological difference between species A and B)
+# nbA: Number of pixels with species A only 
+# nbB: Number of pixels with species B only 
+# nbAB: Number of pixels with both species
+cooccurrence_nointeract = DataFrame(fill(0, (length(spA), 5)),
+                 [:spA, :spB, :nbA, :nbB, :nbAB])
+
+cooccurrence_nointeract.spA = spA
+cooccurrence_nointeract.spB = spB
+
+cooccurrence_nointeract.nbA = count_unique.(spA, spB)
+cooccurrence_nointeract.nbB = count_unique.(spB, spA)
+cooccurrence_nointeract.nbAB = count_cooccurrence.(spA, spB)
 
 
-# Relationship between cooccurrence and interaction
-using GLM
+### Measures of beta-diversity 
 
-glm(@formula(P ~ nbAB), cooccurrence, Bernoulli(), LogitLink()) # Not significant
+cooccurrence_beta = copy(cooccurrence_interact)
 
+# Need to subset the dataframes into predators and herbivores which interact (so predators are spA and herbivores in spB)
+cooccurrence_beta = filter(:P => isequal(1), cooccurrence)
 
+# Ruggiero beta-diversity calculations (draft) 
+function beta(A::String, B::String, fun)
+    
+  nbA = count_unique(A, B)
+  nbB = count_unique(B, A)
+  nbAB = count_cooccurrence(A, B)
+    
+  if fun == "pred-to-prey"
+    Ab = nbAB / (nbAB + nbA)
+    return Ab
 
+    elseif  fun == "prey-to-pred"
+    Bb = nbAB / (nbAB + nbB)
+    return Bb
 
+    else 
+    print("please select the direction of the calculation, either 'prey-to-pred' or 'pred-to-prey'") # can someone fix this so it doesn't print loads of them ;)
+    end
+end
+
+## This should calculate the predator to prey beta diversity
+cooccurrence_beta.Rab = beta.(cooccurrence_beta.spA, cooccurrence_beta.spB, "pred-to-prey")
+
+## This should calculate the prey to predator beta diversity
+cooccurrence_beta.Rbb = beta.(cooccurrence_beta.spA, cooccurrence_beta.spB, "prey-to-pred")
