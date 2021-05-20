@@ -101,6 +101,9 @@ cooccurrence_nointeract.nbAB = count_cooccurrence.(spA, spB)
 
 cooccurrence_beta = copy(cooccurrence_interact)
 
+# Need to subset the dataframes into predators and herbivores which interact (so predators are spA and herbivores in spB)
+cooccurrence_beta = filter(:P => isequal(1), cooccurrence)
+
 # Ruggiero beta-diversity calculations (draft) 
 function beta(A::String, B::String, fun)
     
@@ -126,4 +129,3 @@ cooccurrence_beta.Rab = beta.(cooccurrence_beta.spA, cooccurrence_beta.spB, "pre
 
 ## This should calculate the prey to predator beta diversity
 cooccurrence_beta.Rbb = beta.(cooccurrence_beta.spA, cooccurrence_beta.spB, "prey-to-pred")
-

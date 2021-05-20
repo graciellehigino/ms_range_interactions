@@ -43,6 +43,7 @@ carnivores = sp.species[sp.type .== "carnivore"]
 
 # Build metaweb of all mammals
 MM = M[mammals]
+
 # Build spatially-explicit networks of mammals and remove carnivores with no paths to an herbivore
 
 # Remove carnivores not connected to any herbivores
