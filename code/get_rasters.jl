@@ -78,3 +78,44 @@ ranges = [geotiff(SimpleSDMPredictor, joinpath("rasters", f)) for f in readdir("
 # Save everything as a stack, order like the hosts array
 geotiff("stack.tif", ranges)
 
+## Investigate dimensions difference
+size(ranges[1])
+size(ranges[indexin(freshwater, mammals)[1]])
+# Different sizes
+
+# Re-do rasterizations
+sp = mammals[[1, indexin(freshwater, mammals)[1]]]
+fname = [joinpath("rasters", replace(sp, " " => "_")*".tif") for sp in sp]
+query1 = `gdal_rasterize -l "$(IUCNDB)" -a presence $(IUCNPATH)/$(IUCNDB)/$(IUCNDB).shp $(fname[1]) -where "binomial LIKE '$(sp[1])'" -ts 2200, 1100`
+run(query1)
+query2 = `gdal_rasterize -l "$(IUCNFR)" -a presence $(IUCNPATH)/$(IUCNFR)/$(IUCNFR).shp $(fname[2]) -where "binomial LIKE '$(sp[2])'" -ts 2200, 1100`
+run(query2)
+
+# Check rasters without subsetting coordinates
+mp = [convert(Float64, geotiff(SimpleSDMResponse, fname)) for fname in fname]
+size.(mp) # different dimensions
+longitudes.(mp) # same longitudes
+latitudes.(mp) # different latitudes
+stride.(mp) # same longitude stride, different latitude stride
+using ArchGDAL
+datasets = [ArchGDAL.read(fname) for fname in fname] # same dimensions in raster file
+[ArchGDAL.getgeotransform(d) for d in datasets] # but not the same latitude upper limit!!
+
+# Check the shapefiles directly in QGIS
+# Latitude extents are not the same for the terrestrial and freshwater files
+# TERRESTRIAL: -179.9989999999999668,-55.9794644069999663 : 179.9990000000000805,83.6274355920000687
+# FRESHWATER : -179.9989999999999668,-56.1026617959999498 : 179.9990000000000805,89.9000000000000909
+# So rasterizing by pre-setting a number of pixels in problematic
+
+# Check rasters when subsetting coordinates (as in main loop)
+mp = [convert(Float64, geotiff(SimpleSDMResponse, fname; bounding_box...)) for fname in fname]
+[replace!(mp, zero(eltype(mp)) => nothing) for mp in mp]
+size.(mp) # not the same dimensions as L82-83!!
+# The subsetting bug is causing problems again...
+
+# Check last steps of main loop (re-writing & re-reading)
+[geotiff(fname, broadcast(v -> isnothing(v) ? v : one(eltype(mp)), mp)) for (fname, mp) in zip(fname, mp)]
+testload = [geotiff(SimpleSDMPredictor, joinpath(fname)) for fname in fname]
+size.(mp)
+size.(testload)
+# Dimensions when re-reading (testload) are not the same as the re-written dimensions (mp)...
