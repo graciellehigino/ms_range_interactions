@@ -26,7 +26,7 @@ plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(richness, frame=:box, c=:turku, clim=(1, maximum(richness)))
 xaxis!("Longitude")
 yaxis!("Latitude")
-savefig("richness.png")
+savefig(joinpath("figures", "richness.png"))
 
 ## Create a layer with the names of the species present
 # Group ranges in DataFrame
