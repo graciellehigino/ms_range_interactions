@@ -86,9 +86,9 @@ size(ranges[indexin(freshwater, mammals)[1]])
 # Re-do rasterizations
 sp = mammals[[1, indexin(freshwater, mammals)[1]]]
 fname = [joinpath("rasters", replace(sp, " " => "_")*".tif") for sp in sp]
-query1 = `gdal_rasterize -l "$(IUCNDB)" -a presence $(IUCNPATH)/$(IUCNDB)/$(IUCNDB).shp $(fname[1]) -where "binomial LIKE '$(sp[1])'" -ts 2200, 1100`
+query1 = `gdal_rasterize -l "$(IUCNDB)" -a presence $(IUCNPATH)/$(IUCNDB)/$(IUCNDB).shp $(fname[1]) -where "binomial LIKE '$(sp[1])'" -tr 0.1666666666666666574 0.1666666666666666574 -te -180.0 -90.0 180.0 90.0`
 run(query1)
-query2 = `gdal_rasterize -l "$(IUCNFR)" -a presence $(IUCNPATH)/$(IUCNFR)/$(IUCNFR).shp $(fname[2]) -where "binomial LIKE '$(sp[2])'" -ts 2200, 1100`
+query2 = `gdal_rasterize -l "$(IUCNFR)" -a presence $(IUCNPATH)/$(IUCNFR)/$(IUCNFR).shp $(fname[2]) -where "binomial LIKE '$(sp[2])'" -tr 0.1666666666666666574 0.1666666666666666574 -te -180.0 -90.0 180.0 90.0`
 run(query2)
 
 # Check rasters without subsetting coordinates
@@ -119,3 +119,15 @@ testload = [geotiff(SimpleSDMPredictor, joinpath(fname)) for fname in fname]
 size.(mp)
 size.(testload)
 # Dimensions when re-reading (testload) are not the same as the re-written dimensions (mp)...
+
+# Plot results
+using Plots
+using Shapefile
+include("shapefile.jl")
+bgplot = plot(; frame=:box, xlim=extrema(longitudes(mp[1])), ylim=extrema(latitudes(mp[1])), dpi=500)
+plot!(bgplot, worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
+
+mp = [broadcast(v -> isnothing(v) ? v : one(eltype(mp)), mp) for mp in mp]
+
+plot!(deepcopy(bgplot), mp[1], frame=:box, c=:BuPu)
+plot!(deepcopy(bgplot), mp[2], frame=:box, c=:BuPu)
