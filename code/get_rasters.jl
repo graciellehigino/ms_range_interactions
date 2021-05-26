@@ -27,7 +27,7 @@ Threads.@threads for i in 1:length(speciespool)
     fname = joinpath("rasters", replace(sp, " " => "_")*".tif")
     if !isfile(fname)
         try
-            query = `gdal_rasterize -l "$(IUCNDB)" -a presence $(IUCNPATH)/$(IUCNDB)/$(IUCNDB).shp $(fname) -where "binomial LIKE '$(sp)'" -ts 2200, 1100`
+            query = `gdal_rasterize -l "$(IUCNDB)" -a presence $(IUCNPATH)/$(IUCNDB)/$(IUCNDB).shp $(fname) -where "binomial LIKE '$(sp)'" -tr 0.1666666666666666574 0.1666666666666666574 -te -180.0 -90.0 180.0 90.0`
             run(query)
             mp = convert(Float64, geotiff(SimpleSDMResponse, fname; bounding_box...))
             replace!(mp, zero(eltype(mp)) => nothing)
