@@ -50,7 +50,7 @@ end
 mammals = speciespool[findall(valid_names)]
 
 # Export names
-CSV.write(joinpath("data", "mammals.csv"), DataFrame(mammals = mammals), header = false)
+CSV.write(joinpath("data", "clean", "mammals.csv"), DataFrame(mammals = mammals), header = false)
 
 # Get all the ranges as an array
 ranges = [geotiff(SimpleSDMPredictor, joinpath("rasters", f)) for f in readdir("rasters")]

@@ -13,7 +13,7 @@ speciespool = readlines(joinpath("data", "species.csv"))
 filter!(!endswith(" spp."), speciespool) # Species with spp. at the end are plants, so we can remove them
 
 # Get the list of mammals
-mammals = readlines(joinpath("data", "mammals.csv"))
+mammals = readlines(joinpath("data", "clean", "mammals.csv"))
 
 # Get the individual ranges back (and remove the NaN)
 ranges = [replace(geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.tif"), i), NaN=>nothing) for i in eachindex(mammals)]

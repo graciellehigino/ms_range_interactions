@@ -41,7 +41,7 @@ herbivores = sp.species[sp.type .== "herbivore"]
 carnivores = sp.species[sp.type .== "carnivore"]
 
 # Investigate species difference with raster set
-mammals_prev = readlines(joinpath("data", "mammals.csv"))
+mammals_prev = readlines(joinpath("data", "clean", "mammals.csv"))
 mammals_prev = replace.(mammals_prev, " " => "_")
 
 length(mammals) # 32 elements
