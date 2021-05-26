@@ -40,27 +40,6 @@ mammals = sp.species[sp.type .!== "plant"]
 herbivores = sp.species[sp.type .== "herbivore"]
 carnivores = sp.species[sp.type .== "carnivore"]
 
-# Investigate species difference with raster set
-mammals_prev = readlines(joinpath("data", "clean", "mammals.csv"))
-mammals_prev = replace.(mammals_prev, " " => "_")
-
-length(mammals) # 32 elements
-length(mammals_prev) # 28 elements
-missing_sp = setdiff(mammals, mammals_prev)
-# Following species are missing
-#=
-"Damaliscus_korrigum"
-"Hippopotamus_amphibius"
-"Leptailurus_serval"
-"Taurotragus_oryx"
-=# 
-# Are they in original species pool?
-speciespool = readlines(joinpath("data", "species.csv"))
-speciespool = replace.(speciespool, " " => "_")
-[sp in speciespool for sp in missing_sp] # All there
-# So either IUCN has no data on these species or they're in another data set 
-# (probably Freshwater mammals for Hippopotamus amphibius, at least)
-
 # Build metaweb of all mammals
 MM = M[mammals]
 
