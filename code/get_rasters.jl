@@ -24,7 +24,7 @@ replace!(speciespool, "Damaliscus korrigum" => "Damaliscus lunatus", "Taurotragu
 # Main loop
 valid_names = zeros(Bool, length(speciespool))
 
-Threads.@threads for i in 1:length(speciespool)
+@time Threads.@threads for i in 1:length(speciespool)
     sp = speciespool[i]
     @info "Extracting $(sp) on thread $(Threads.threadid())"
     fname = joinpath("rasters", replace(sp, " " => "_")*".tif")
@@ -32,7 +32,8 @@ Threads.@threads for i in 1:length(speciespool)
         try
             query = `gdal_rasterize -l "$(IUCNDB)" -a presence $(IUCNPATH)/$(IUCNDB)/$(IUCNDB).shp $(fname) -where "binomial LIKE '$(sp)'" -tr 0.1666666666666666574 0.1666666666666666574 -te -180.0 -90.0 180.0 90.0`
             run(query)
-            mp = convert(Float64, geotiff(SimpleSDMResponse, fname; bounding_box...))
+            # mp = convert(Float64, geotiff(SimpleSDMResponse, fname; bounding_box...))
+            mp = convert(Float64, geotiff(SimpleSDMResponse, fname))
             replace!(mp, zero(eltype(mp)) => nothing)
             geotiff(fname, broadcast(v -> isnothing(v) ? v : one(eltype(mp)), mp))
             mp = nothing
@@ -64,11 +65,12 @@ size(ranges[indexin(freshwater, mammals)[1]])
 # Different sizes
 
 # Re-do rasterizations
+freshwater = ["Hippopotamus amphibius"]
 sp = mammals[[1, indexin(freshwater, mammals)[1]]]
 fname = [joinpath("rasters", replace(sp, " " => "_")*".tif") for sp in sp]
 query1 = `gdal_rasterize -l "$(IUCNDB)" -a presence $(IUCNPATH)/$(IUCNDB)/$(IUCNDB).shp $(fname[1]) -where "binomial LIKE '$(sp[1])'" -tr 0.1666666666666666574 0.1666666666666666574 -te -180.0 -90.0 180.0 90.0`
 run(query1)
-query2 = `gdal_rasterize -l "$(IUCNFR)" -a presence $(IUCNPATH)/$(IUCNFR)/$(IUCNFR).shp $(fname[2]) -where "binomial LIKE '$(sp[2])'" -tr 0.1666666666666666574 0.1666666666666666574 -te -180.0 -90.0 180.0 90.0`
+query2 = `gdal_rasterize -l "$(IUCNDB)" -a presence $(IUCNPATH)/$(IUCNDB)/$(IUCNDB).shp $(fname[2]) -where "binomial LIKE '$(sp[2])'" -tr 0.1666666666666666574 0.1666666666666666574 -te -180.0 -90.0 180.0 90.0`
 run(query2)
 
 # Check rasters without subsetting coordinates
@@ -86,6 +88,11 @@ datasets = [ArchGDAL.read(fname) for fname in fname] # same dimensions in raster
 # TERRESTRIAL: -179.9989999999999668,-55.9794644069999663 : 179.9990000000000805,83.6274355920000687
 # FRESHWATER : -179.9989999999999668,-56.1026617959999498 : 179.9990000000000805,89.9000000000000909
 # So rasterizing by pre-setting a number of pixels in problematic
+
+# Check file size when re-exporting with NaN values
+[replace!(mp, zero(eltype(mp)) => nothing) for mp in mp]
+[geotiff(fname, broadcast(v -> isnothing(v) ? v : one(eltype(mp)), mp)) for (fname, mp) in zip(fname, mp)]
+testload = [geotiff(SimpleSDMPredictor, joinpath(fname)) for fname in fname]
 
 # Check rasters when subsetting coordinates (as in main loop)
 mp = [convert(Float64, geotiff(SimpleSDMResponse, fname; bounding_box...)) for fname in fname]
