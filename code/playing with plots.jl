@@ -27,15 +27,16 @@ scatter(test_df.relative .* -1, test_df.degree, xlabel="relative loss of range",
 # savefig("figures/rel_lost-in_degree-species.png")
 
 # Exploring occurrences
+i_ex = indexin(["Canis_aureus"], names(names_df))[1]
 plot(; frame=:box, xlim=extrema(longitudes(delta_Sxy_layer)), ylim=extrema(latitudes(delta_Sxy_layer)), dpi=500)
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
-plot!(ranges[2], c=:turku, colorbar=:none)
+plot!(ranges[i_ex], c=:turku, colorbar=:none)
 xaxis!("Longitude")
 yaxis!("Latitude")
-scatter!(occ_gbif_iucn[occ_gbif_iucn.species.==names(names_df)[2],:latitude], occ_gbif_iucn[occ_gbif_iucn.species.==names(names_df)[2],:longitude], markerstrokewidth=0, markeralpha=0.5, markersize=2, title=names(names_df)[2], legend=:none)
+scatter!(occ_gbif_iucn[occ_gbif_iucn.species.==names(names_df)[i_ex],:latitude], occ_gbif_iucn[occ_gbif_iucn.species.==names(names_df)[i_ex],:longitude], markerstrokewidth=0, markeralpha=0.5, markersize=2, title=names(names_df)[i_ex], legend=:none)
 # savefig("figures/iucn_gbif_ex.png")
 
-for i in 1:28
+for i in eachindex(mammals)
     plot(; frame=:box, xlim=extrema(longitudes(delta_Sxy_layer)), ylim=extrema(latitudes(delta_Sxy_layer)), dpi=500)
     plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
     plot!(ranges[i], c=:turku, colorbar=:none)
