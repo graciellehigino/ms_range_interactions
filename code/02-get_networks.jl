@@ -148,10 +148,15 @@ delta_Sxy_layer = SimpleSDMPredictor(delta_Sxy_df, :delta_Sxy, ranges[1])
 replace!(delta_Sxy_layer.grid, 0 => nothing)
 
 # Map differences in species richness
-plot(; frame=:box, xlim=extrema(longitudes(delta_Sxy_layer)), ylim=extrema(latitudes(delta_Sxy_layer)), dpi=500)
+plot(; 
+    frame=:box,
+    xlim=extrema(longitudes(delta_Sxy_layer)),
+    ylim=extrema(latitudes(delta_Sxy_layer)),
+    dpi=500,
+    xaxis="Longitude",
+    yaxis="Latitude",
+)
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(delta_Sxy_layer, c=:turku)
-xaxis!("Longitude")
-yaxis!("Latitude")
 savefig(joinpath("figures", "species_removal.png"))
 

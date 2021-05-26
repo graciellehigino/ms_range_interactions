@@ -116,11 +116,11 @@ plot(;
     xlim=extrema(longitudes(delta_Sxy_layer)),
     ylim=extrema(latitudes(delta_Sxy_layer)),
     dpi=500,
+    xaxis="Longitude",
+    yaxis="Latitude",
 )
 plot!(worldshape(50); c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(ranges[i_ex]; c=:turku, colorbar=:none)
-xaxis!("Longitude")
-yaxis!("Latitude")
 scatter!(
     occ_gbif_iucn[occ_gbif_iucn.species .== names(names_df)[i_ex], :latitude],
     occ_gbif_iucn[occ_gbif_iucn.species .== names(names_df)[i_ex], :longitude];
@@ -138,11 +138,11 @@ for i in eachindex(mammals)
         xlim=extrema(longitudes(delta_Sxy_layer)),
         ylim=extrema(latitudes(delta_Sxy_layer)),
         dpi=500,
+        xaxis="Longitude",
+        yaxis="Latitude",
     )
     plot!(worldshape(50); c=:lightgrey, lc=:lightgrey, alpha=0.6)
     plot!(ranges[i]; c=:turku, colorbar=:none)
-    xaxis!("Longitude")
-    yaxis!("Latitude")
     scatter!(
         occ_gbif_iucn[occ_gbif_iucn.species .== names(names_df)[i], :latitude],
         occ_gbif_iucn[occ_gbif_iucn.species .== names(names_df)[i], :longitude];
