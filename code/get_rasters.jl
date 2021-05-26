@@ -56,7 +56,7 @@ CSV.write(joinpath("data", "mammals.csv"), DataFrame(mammals = mammals), header 
 ranges = [geotiff(SimpleSDMPredictor, joinpath("rasters", f)) for f in readdir("rasters")]
 
 # Save everything as a stack, order like the hosts array
-geotiff("stack.tif", ranges)
+geotiff(joinpath("data", "clean", "stack.tif"), ranges)
 
 ## Investigate dimensions difference
 size(ranges[1])
