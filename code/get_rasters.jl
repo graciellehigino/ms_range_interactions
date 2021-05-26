@@ -18,6 +18,9 @@ bounding_box = (left=-20., right=55., bottom=-35., top=40.)
 speciespool = readlines(joinpath("data", "species.csv"))
 filter!(!endswith(" spp."), speciespool) # Species with spp. at the end are plants, so we can remove them
 
+# Rename species following IUCN taxonomy
+replace!(speciespool, "Damaliscus korrigum" => "Damaliscus lunatus", "Taurotragus oryx" => "Tragelaphus oryx")
+
 # Main loop
 valid_names = zeros(Bool, length(speciespool))
 
