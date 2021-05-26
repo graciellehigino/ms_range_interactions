@@ -18,6 +18,9 @@ lk = DataFrame(CSV.File(joinpath("data", "links_code.csv")))
 
 sp.species = replace.(sp.species, " " => "_")
 
+# Rename species following IUCN taxonomy
+replace!(sp.species, "Damaliscus_korrigum" => "Damaliscus_lunatus", "Taurotragus_oryx" => "Tragelaphus_oryx")
+
 # Number of species and of interactions in the metaweb
 S = nrow(sp)
 L = nrow(lk)
