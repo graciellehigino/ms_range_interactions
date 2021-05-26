@@ -1,6 +1,6 @@
 using Plots.PlotMeasures
 
-test_df = cooccurrence_beta
+test_df = copy(cooccurrence_beta)
 rename!(test_df, :spA => "species")
 test_df = leftjoin(test_df, predator_ranges; on=:species)
 test_df = leftjoin(test_df, mammal_degree_df; on=:species)
@@ -54,9 +54,9 @@ scatter(
     xlabel="predator to prey beta diversity",
     ylabel="prey to predator beta diversity",
     group=test_df.species,
-    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle],
+    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
     markersize=6,
-    palette=:Dark2_8,
+    palette=:seaborn_colorblind,
     markerstrokewidth=0,
     size=(1000, 600),
     left_margin=10mm,
@@ -95,9 +95,9 @@ scatter(
     xlabel="relative loss of range",
     ylabel="in-degree of predators",
     group=test_df.species,
-    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle],
+    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
     markersize=6,
-    palette=:Dark2_8,
+    palette=:seaborn_colorblind,
     markerstrokewidth=0,
     left_margin=10mm,
     right_margin=10mm,
