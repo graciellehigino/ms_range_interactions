@@ -13,7 +13,7 @@ speciespool = readlines(joinpath("data", "species.csv"))
 filter!(!endswith(" spp."), speciespool) # Species with spp. at the end are plants, so we can remove them
 
 # Get the list of mammals
-mammals = readlines(joinpath("data", "mammals.csv"))
+mammals = readlines(joinpath("data", "clean", "mammals.csv"))
 
 # Get the individual ranges back (and remove the NaN)
 ranges = [replace(geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.tif"), i), NaN=>nothing) for i in eachindex(mammals)]
@@ -21,12 +21,17 @@ ranges = [replace(geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.t
 # Map the richness
 include("shapefile.jl")
 richness = mosaic(sum, ranges)
-plot(; frame=:box, xlim=extrema(longitudes(richness)), ylim=extrema(latitudes(richness)), dpi=500)
+plot(; 
+    frame=:box,
+    xlim=extrema(longitudes(richness)),
+    ylim=extrema(latitudes(richness)),
+    dpi=500,
+    xaxis="Longitude",
+    yaxis="Latitude",
+)
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(richness, frame=:box, c=:turku, clim=(1, maximum(richness)))
-xaxis!("Longitude")
-yaxis!("Latitude")
-savefig("richness.png")
+savefig(joinpath("figures", "richness.png"))
 
 ## Create a layer with the names of the species present
 # Group ranges in DataFrame

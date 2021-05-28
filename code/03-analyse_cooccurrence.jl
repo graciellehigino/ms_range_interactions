@@ -4,7 +4,7 @@ include("02-get_networks.jl")
 using Combinatorics
 
 # Mammals in the Serengeti ecosystem
-mammals = readlines(joinpath("data", "mammals.csv"))
+mammals = readlines(joinpath("data", "clean", "mammals.csv"))
 mammals = replace.(mammals, " " => "_")
 
 # Subset subnetwork using this list of mammals
@@ -100,9 +100,6 @@ cooccurrence_nointeract.nbAB = count_cooccurrence.(spA, spB)
 ### Measures of beta-diversity 
 
 cooccurrence_beta = copy(cooccurrence_interact)
-
-# Need to subset the dataframes into predators and herbivores which interact (so predators are spA and herbivores in spB)
-cooccurrence_beta = filter(:P => isequal(1), cooccurrence)
 
 # Ruggiero beta-diversity calculations (draft) 
 function beta(A::String, B::String, fun)

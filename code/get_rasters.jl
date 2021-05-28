@@ -6,7 +6,7 @@ using DataFrames
 
 # I store my IUCN data in the same location, so adapt this to where your files are
 const IUCNPATH = expanduser(joinpath("~", ".data", "iucn"))
-const IUCNDB = "MAMMALS_TERRESTRIAL_ONLY"
+const IUCNDB = "MAMMALS"
 
 # Make a folder to store the rasters if needed
 ispath("rasters") || mkpath("rasters")
@@ -18,6 +18,9 @@ bounding_box = (left=-20., right=55., bottom=-35., top=40.)
 speciespool = readlines(joinpath("data", "species.csv"))
 filter!(!endswith(" spp."), speciespool) # Species with spp. at the end are plants, so we can remove them
 
+# Rename species following IUCN taxonomy
+replace!(speciespool, "Damaliscus korrigum" => "Damaliscus lunatus", "Taurotragus oryx" => "Tragelaphus oryx")
+
 # Main loop
 valid_names = zeros(Bool, length(speciespool))
 
@@ -27,7 +30,7 @@ Threads.@threads for i in 1:length(speciespool)
     fname = joinpath("rasters", replace(sp, " " => "_")*".tif")
     if !isfile(fname)
         try
-            query = `gdal_rasterize -l "$(IUCNDB)" -a presence $(IUCNPATH)/$(IUCNDB)/$(IUCNDB).shp $(fname) -where "binomial LIKE '$(sp)'" -ts 2200, 1100`
+            query = `gdal_rasterize -l "$(IUCNDB)" -a presence $(IUCNPATH)/$(IUCNDB)/$(IUCNDB).shp $(fname) -where "binomial LIKE '$(sp)'" -tr 0.1666666666666666574 0.1666666666666666574 -te -180.0 -90.0 180.0 90.0`
             run(query)
             mp = convert(Float64, geotiff(SimpleSDMResponse, fname; bounding_box...))
             replace!(mp, zero(eltype(mp)) => nothing)
@@ -47,11 +50,10 @@ end
 mammals = speciespool[findall(valid_names)]
 
 # Export names
-CSV.write(joinpath("data", "mammals.csv"), DataFrame(mammals = mammals), header = false)
+CSV.write(joinpath("data", "clean", "mammals.csv"), DataFrame(mammals = mammals), header = false)
 
 # Get all the ranges as an array
 ranges = [geotiff(SimpleSDMPredictor, joinpath("rasters", f)) for f in readdir("rasters")]
 
 # Save everything as a stack, order like the hosts array
-geotiff("stack.tif", ranges)
-
+geotiff(joinpath("data", "clean", "stack.tif"), ranges)

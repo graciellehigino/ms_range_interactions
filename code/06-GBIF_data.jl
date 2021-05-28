@@ -36,7 +36,7 @@ for i in 1:length(occ_df)
     lat = occ_df[i].latitude
     species = mammals[i]
     x = hcat(fill.(species, length(long)), long, lat)
-    x = DataFrame(x)
+    x = DataFrame(x, :auto)
     rename!(x, :x1 => :species, :x2 => :latitude, :x3 => :longitude)
     if ~isdefined(occ_coordinates, 1) | (i == 1)
         global occ_coordinates = x

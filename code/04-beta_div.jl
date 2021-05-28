@@ -3,14 +3,14 @@
 M[carnivores];
 
 ## Subnetwork of linked carnivores
-linked_c = reduce(union, skipmissing(subnetworks_c))
+# linked_c = reduce(union, skipmissing(subnetworks_c))
 
 # Herbivores
 ## Original metaweb
 M[herbivores];
 
 ## Networks herbivores
-linked_h = reduce(union, skipmissing(subnetworks_h))
+# linked_h = reduce(union, skipmissing(subnetworks_h))
 
 # Beta-div
 ## Composition

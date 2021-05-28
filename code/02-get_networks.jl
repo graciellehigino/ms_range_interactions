@@ -18,6 +18,9 @@ lk = DataFrame(CSV.File(joinpath("data", "links_code.csv")))
 
 sp.species = replace.(sp.species, " " => "_")
 
+# Rename species following IUCN taxonomy
+replace!(sp.species, "Damaliscus_korrigum" => "Damaliscus_lunatus", "Taurotragus_oryx" => "Tragelaphus_oryx")
+
 # Number of species and of interactions in the metaweb
 S = nrow(sp)
 L = nrow(lk)
@@ -39,7 +42,6 @@ plants = sp.species[sp.type .== "plant"]
 mammals = sp.species[sp.type .!== "plant"]
 herbivores = sp.species[sp.type .== "herbivore"]
 carnivores = sp.species[sp.type .== "carnivore"]
-
 
 # Build metaweb of all mammals
 MM = M[mammals]
@@ -146,10 +148,15 @@ delta_Sxy_layer = SimpleSDMPredictor(delta_Sxy_df, :delta_Sxy, ranges[1])
 replace!(delta_Sxy_layer.grid, 0 => nothing)
 
 # Map differences in species richness
-plot(; frame=:box, xlim=extrema(longitudes(delta_Sxy_layer)), ylim=extrema(latitudes(delta_Sxy_layer)), dpi=500)
+plot(; 
+    frame=:box,
+    xlim=extrema(longitudes(delta_Sxy_layer)),
+    ylim=extrema(latitudes(delta_Sxy_layer)),
+    dpi=500,
+    xaxis="Longitude",
+    yaxis="Latitude",
+)
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(delta_Sxy_layer, c=:turku)
-xaxis!("Longitude")
-yaxis!("Latitude")
 savefig(joinpath("figures", "species_removal.png"))
 
