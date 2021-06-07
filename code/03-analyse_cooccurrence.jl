@@ -36,7 +36,7 @@ function count_unique(A::String, B::String)
     AA = names_df[!, A]
     BB = names_df[!, B]
 
-    nbA = sum(.!isnothing.(AA) .& isnothing.(BB))
+    nbA = sum(.!ismissing.(AA) .& ismissing.(BB))
     return nbA
 end
 
@@ -48,7 +48,7 @@ function count_cooccurrence(A::String, B::String)
     AA = names_df[!, A]
     BB = names_df[!, B]
 
-    nbAB = sum(.!isnothing.(AA) .& .!isnothing.(BB))
+    nbAB = sum(.!ismissing.(AA) .& .!ismissing.(BB))
     return nbAB
 end
 
