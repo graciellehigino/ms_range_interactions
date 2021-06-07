@@ -1,9 +1,13 @@
+using Base: get_preferences
 using Plots.PlotMeasures
 
 test_df = copy(cooccurrence_beta)
 rename!(test_df, :spA => "species")
 test_df = leftjoin(test_df, predator_ranges; on=:species)
 test_df = leftjoin(test_df, mammal_degree_df; on=:species)
+
+all_sp_df = copy(original_range)
+all_sp_df = leftjoin(all_sp_df, sp_outdegree_df; on=:species)
 
 # Relationship between beta-diversities, colored by absolute loss of range
 scatter(
@@ -68,12 +72,12 @@ scatter(
 )
 # savefig("figures/beta-div_pred-species.png")
 
-# In-degree vs. relative loss in range size
+# Relative loss in range size vs. out degree
 scatter(
-    test_df.relative .* -1,
-    test_df.degree;
-    xlabel="relative loss of range",
-    ylabel="in-degree of predators",
+    test_df.degree,
+    test_df.relative .* -1;
+    xlabel="Out degree of predators",
+    ylabel="Relative loss of range",
     marker_z=test_df.old_range,
     markercolor=:sun,
     markerstrokewidth=0,
@@ -84,16 +88,16 @@ scatter(
     label="predators' original range",
     legend=:topright,
     foreground_color_legend=nothing,
-    background_color_legend=:seashell,
+    background_color_legend=:white,
 )
-# savefig("figures/rel_lost-in_degree-orig_range.png")
+# savefig("figures/rel_loss-out_degree-orig_range.png")
 
-# In-degree vs. relative lost in range size, colored by species
+# Out degree vs. relative lost in range size, colored by species
 scatter(
-    test_df.relative .* -1,
-    test_df.degree;
-    xlabel="relative loss of range",
-    ylabel="in-degree of predators",
+    test_df.degree,
+    test_df.relative .* -1;
+    xlabel="Out degree of predators",
+    ylabel="Relative loss of range",
     group=test_df.species,
     markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
     markersize=6,
@@ -107,7 +111,54 @@ scatter(
     foreground_color_legend=nothing,
     background_color_legend=:seashell,
 )
-# savefig("figures/rel_lost-in_degree-species.png")
+# savefig("figures/rel_loss-outdegree-species.png")
+
+# Number of preys vs. original range - all species
+scatter(
+    all_sp_df.degree,
+    all_sp_df.old_range ./ 10^4;
+    xlabel="Out degree of species",
+    ylabel="Original range (x 10km²)",
+    markersize=3,
+    markercolor=:sun,
+    markerstrokewidth=0,
+    left_margin=4mm,
+    right_margin=6mm,
+    top_margin=6mm,
+    bottom_margin=3mm,
+    legend=:none
+)
+scatter!(
+    test_df.degree,
+    test_df.old_range ./ 10^4;
+    markercolor = :mediumpurple1,
+    markerstrokewidth = 0,
+    markersize = 3,
+    markershape = :rect
+)
+# savefig("figures/outdegree-orig_range.png")
+
+# Number of preys vs. original range - only predators
+scatter(
+    test_df.degree,
+    test_df.old_range ./ 10^4;
+    xlabel="Out degree of predators",
+    ylabel="Original range (x 10^4)",
+    group=test_df.species,
+    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+    markersize=4,
+    palette=:seaborn_colorblind,
+    markerstrokewidth=0,
+    left_margin=5mm,
+    right_margin=5mm,
+    top_margin=5mm,
+    bottom_margin=5mm,
+    legend=:topright,
+    legendfontsize = 6,
+    foreground_color_legend=nothing,
+    background_color_legend=:white,
+)
+# savefig("figures/outdegree_predators-orig_range-species.png")
 
 # Exploring occurrences
 i_ex = indexin(["Canis_aureus"], names(names_df))[1]
@@ -154,3 +205,28 @@ for i in eachindex(mammals)
     )
     savefig(joinpath("figures", "iucn_gbif" * names(names_df)[i] * ".png"))
 end
+
+
+# TABLES ----- 
+original_range # all species and their original ranges
+sp_degrees # all species and their degrees
+new_ranges_df # New ranges where species have at least one prey
+table1 = leftjoin(original_range, new_ranges_df, on=:species)
+table1 = leftjoin(table1, sp_degrees, on=:species)
+
+
+# cooccurrence_interact.nbA # number of pixels with no preys
+# cooccurrence_interact.nbB # number of pixels with no predators
+# pred_has_prey = combine(groupby(cooccurrence_interact, :spA), :nbA=>sum=>:pred_has_prey) # cells where only predators occur
+# rename!(pred_has_prey, :spA => "species")
+# prey_has_pred = combine(groupby(cooccurrence_interact, :spB), :nbB=>sum=>:prey_has_pred) # cells where only prey occur
+# rename!(prey_has_pred, :spB => "species")
+# table1_preds = leftjoin(pred_has_prey, prey_has_pred, on=:species) # predators and preys of predators
+# table1_preys = leftjoin(prey_has_pred, pred_has_prey, on=:species) # predators and preys of predators
+# table1_preds_preys = unique(vcat(table1_preds, table1_preys, cols=:union), :species)
+# table1 = leftjoin(table1, table1_preds_preys, on=:species)
+# table1 = coalesce.(table1, 0)
+# table1.pred_has_prey = table1.pred_has_prey .* 100 ./ table1.old_range
+# table1.prey_has_pred = table1.prey_has_pred .* 100 ./ table1.old_range
+# table1.pred_has_prey .= ifelse.(table1.pred_has_prey .> 100.00, 100.00, table1.pred_has_prey)
+# table1.prey_has_pred .= ifelse.(table1.prey_has_pred .> 100.00, 100.00, table1.prey_has_pred)
