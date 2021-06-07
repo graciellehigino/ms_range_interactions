@@ -109,6 +109,30 @@ scatter(
 )
 # savefig("figures/rel_lost-in_degree-species.png")
 
+# In-degree vs. relative lost in range size, symbols are species and colors are original range size
+scatter(
+    test_df.relative .* -1,
+    test_df.degree,
+    xlabel="Relative range loss (%)",
+    ylabel="In-degree of predators (n)",
+    marker_z=test_df.old_range,
+    markercolor=:sun,
+    group=test_df.species,
+    markershape = [:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle],
+    markersize= 6,
+    palette = :Dark2_8,
+    markerstrokewidth=0,
+    left_margin=10mm,
+    right_margin=10mm,
+    top_margin=10mm,
+    bottom_margin=10mm, 
+    legend=:topright,
+    foreground_color_legend=nothing,
+    background_color_legend=:seashell,
+    annotate = (128,10,text("Original range size (km²)", 12,  rotation = 270))
+)
+# savefig("figures/rel_lost-in_degree-species-and-range.png")
+
 # Exploring occurrences
 i_ex = indexin(["Canis_aureus"], names(names_df))[1]
 plot(;
