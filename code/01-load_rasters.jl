@@ -6,7 +6,7 @@ using Shapefile
 using DataFrames
 
 # This is the bounding box we care about
-bounding_box = (left=-20., right=55., bottom=-35., top=40.)
+bounding_box = (left=-20.0, right=55.0, bottom=-35.0, top=40.0)
 
 # Get the list of hosts
 speciespool = readlines(joinpath("data", "species.csv"))
@@ -16,7 +16,7 @@ filter!(!endswith(" spp."), speciespool) # Species with spp. at the end are plan
 mammals = readlines(joinpath("data", "clean", "mammals.csv"))
 
 # Get the individual ranges back (and remove the NaN)
-ranges = [replace(geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.tif"), i), NaN=>nothing) for i in eachindex(mammals)]
+ranges = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.tif"), i) for i in eachindex(mammals)]
 
 # Map the richness
 include("shapefile.jl")
@@ -46,7 +46,7 @@ end
 names_df
 
 # Get list of species per row (per site)
-species_lists = Union{Nothing, Vector{String}}[]
+species_lists = Union{Missing, Vector{String}}[]
 for row in eachrow(names_df)
     sp_row = filter(!ismissing, collect(row))
     sp_row = length(sp_row) > 0 ? Vector{String}(sp_row) : nothing
