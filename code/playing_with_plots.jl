@@ -185,7 +185,7 @@ scatter(
 # savefig("figures/rel_lost-in_degree-species-and-range.png")
 
 # Exploring occurrences
-i_ex = indexin(["Canis_aureus"], names(names_df))[1]
+i_ex = indexin(["Canis_aureus"], mammals)[1]
 plot(;
     frame=:box,
     xlim=extrema(longitudes(delta_Sxy_layer)),
@@ -197,12 +197,12 @@ plot(;
 plot!(worldshape(50); c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(ranges[i_ex]; c=:turku, colorbar=:none)
 scatter!(
-    occ_gbif_iucn[occ_gbif_iucn.species .== names(names_df)[i_ex], :latitude],
-    occ_gbif_iucn[occ_gbif_iucn.species .== names(names_df)[i_ex], :longitude];
+    occ_df[occ_df.species .== mammals[i_ex], :longitude],
+    occ_df[occ_df.species .== mammals[i_ex], :latitude];
     markerstrokewidth=0,
     markeralpha=0.5,
     markersize=2,
-    title=names(names_df)[i_ex],
+    title=replace(mammals[i_ex], "_" => " "),
     legend=:none,
 )
 # savefig("figures/iucn_gbif_ex.png")
@@ -219,15 +219,15 @@ for i in eachindex(mammals)
     plot!(worldshape(50); c=:lightgrey, lc=:lightgrey, alpha=0.6)
     plot!(ranges[i]; c=:turku, colorbar=:none)
     scatter!(
-        occ_gbif_iucn[occ_gbif_iucn.species .== names(names_df)[i], :latitude],
-        occ_gbif_iucn[occ_gbif_iucn.species .== names(names_df)[i], :longitude];
+        occ_df[occ_df.species .== mammals[i], :longitude],
+        occ_df[occ_df.species .== mammals[i], :latitude];
         markerstrokewidth=0,
         markeralpha=0.5,
         markersize=2,
-        title=names(names_df)[i],
+        title=replace(mammals[i], "_" => " "),
         legend=:none,
     )
-    savefig(joinpath("figures", "iucn_gbif" * names(names_df)[i] * ".png"))
+    savefig(joinpath("figures", "iucn_gbif" * mammals[i] * ".png"))
 end
 
 

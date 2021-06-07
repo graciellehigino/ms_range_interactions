@@ -46,12 +46,13 @@ end
 
 # Get names of species with valid files
 mammals = speciespool[findall(valid_names)]
+mammals = replace.(mammals, " " => "_")
 
 # Export names
 CSV.write(joinpath("data", "clean", "mammals.csv"), DataFrame(mammals = mammals), header = false)
 
 # Get all the ranges as an array
-files = string.(replace.(mammals, " " => "_"), ".tif")
+files = string.(mammals, ".tif")
 ranges = [geotiff(SimpleSDMPredictor, joinpath("rasters", f)) for f in files]
 
 # Save everything as a stack, order like the hosts array

@@ -37,6 +37,7 @@ using JLD2
 occ_df = DataFrame.(occ)
 occ_df = reduce(vcat, occ_df)
 select!(occ_df, :species, :longitude, :latitude)
+occ_df.species = replace.(occ_df.species, " " => "_")
 
 # Make sure the species names match
 isequal(unique(occ_df.species), mammals) # not the same
@@ -46,5 +47,5 @@ id_mismatch = filter(x -> !(x.species in mammals), occ_df)
 unique(id_mismatch.species) # Yep it's only Taurotragus oryx
 # The GBIF website agrees it's a synonym of Tragelaphus oryx, citing IUCN as source, so we're good
 
-replace!(occ_df.species, "Taurotragus oryx" => "Tragelaphus oryx")
+replace!(occ_df.species, "Taurotragus_oryx" => "Tragelaphus_oryx")
 isequal(unique(occ_df.species), mammals) # true

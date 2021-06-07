@@ -8,10 +8,6 @@ using DataFrames
 # This is the bounding box we care about
 bounding_box = (left=-20.0, right=55.0, bottom=-35.0, top=40.0)
 
-# Get the list of hosts
-speciespool = readlines(joinpath("data", "species.csv"))
-filter!(!endswith(" spp."), speciespool) # Species with spp. at the end are plants, so we can remove them
-
 # Get the list of mammals
 mammals = readlines(joinpath("data", "clean", "mammals.csv"))
 
@@ -43,7 +39,7 @@ savefig(joinpath("figures", "richness.png"))
 ## Create a layer with the names of the species present
 # Group ranges in DataFrame
 ranges_df = DataFrame(ranges)
-rename!(ranges_df, ["longitude", "latitude", replace.(mammals, " " => "_")...])
+rename!(ranges_df, ["longitude", "latitude", mammals...])
 
 # Replace presences by species names
 names_df = select(ranges_df, Not([:longitude, :latitude]))

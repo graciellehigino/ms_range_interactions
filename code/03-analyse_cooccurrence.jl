@@ -5,7 +5,6 @@ using Combinatorics
 
 # Mammals in the Serengeti ecosystem
 mammals = readlines(joinpath("data", "clean", "mammals.csv"))
-mammals = replace.(mammals, " " => "_")
 
 # Subset subnetwork using this list of mammals
 MM = MM[mammals]
