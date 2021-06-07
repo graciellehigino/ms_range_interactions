@@ -49,3 +49,22 @@ unique(id_mismatch.species) # Yep it's only Taurotragus oryx
 
 replace!(occ_df.species, "Taurotragus_oryx" => "Tragelaphus_oryx")
 isequal(unique(occ_df.species), mammals) # true
+
+# Save as CSV
+CSV.write(joinpath("data", "clean", "gbif_occurrences.csv"), occ_df)
+
+# Make sure GBIF records order is the same as in mammals CSV file
+[replace(o.occurrences[1].taxon.name, " " => "_") for o in occ] == mammals
+
+# Convert as abundance layers
+gbif_occ_layers = [mask(r, o, Float64) for (r, o) in zip(ranges, occ)]
+replace!.(gbif_occ_layers, 0.0 => nothing)
+
+# Convert as presence absence layers
+gbif_ranges = [mask(r, o, Bool) for (r, o) in zip(ranges, occ)]
+replace!.(gbif_ranges, false => nothing)
+gbif_ranges = [convert(Float64, r) for r in gbif_ranges]
+
+# Export to tif files
+geotiff(joinpath("data", "clean", "gbif_occurrences.tif"), gbif_occ_layers)
+geotiff(joinpath("data", "clean", "gbif_ranges.tif"), gbif_ranges)
