@@ -43,6 +43,11 @@ mammals = sp.species[sp.type .!== "plant"]
 herbivores = sp.species[sp.type .== "herbivore"]
 carnivores = sp.species[sp.type .== "carnivore"]
 
+# Make sure order of species is the same as in CSV file
+if mammals != replace.(readlines(joinpath("data", "clean", "mammals.csv")), " " => "_")
+    @error "mammals object does not match the `mammals.csv` file"
+end
+
 # Build metaweb of all mammals
 MM = M[mammals]
 
