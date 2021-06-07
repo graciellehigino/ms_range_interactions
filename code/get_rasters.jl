@@ -51,7 +51,8 @@ mammals = speciespool[findall(valid_names)]
 CSV.write(joinpath("data", "clean", "mammals.csv"), DataFrame(mammals = mammals), header = false)
 
 # Get all the ranges as an array
-ranges = [geotiff(SimpleSDMPredictor, joinpath("rasters", f)) for f in readdir("rasters")]
+files = string.(replace.(mammals, " " => "_"), ".tif")
+ranges = [geotiff(SimpleSDMPredictor, joinpath("rasters", f)) for f in files]
 
 # Save everything as a stack, order like the hosts array
 geotiff(joinpath("data", "clean", "stack.tif"), ranges)
