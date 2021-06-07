@@ -18,9 +18,16 @@ mammals = readlines(joinpath("data", "clean", "mammals.csv"))
 # Get the individual ranges back (and remove the NaN)
 ranges = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.tif"), i) for i in eachindex(mammals)]
 
+# Get species richness
+#= # Write to tif file
+richness = mosaic(sum, ranges)
+geotiff(joinpath("data", "clean", "richness.tif"), richness)
+=#
+# Read from tif file
+richness = geotiff(SimpleSDMPredictor, joinpath("data", "clean", "richness.tif"))
+
 # Map the richness
 include("shapefile.jl")
-richness = mosaic(sum, ranges)
 plot(; 
     frame=:box,
     xlim=extrema(longitudes(richness)),
