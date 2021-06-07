@@ -48,7 +48,7 @@ names_df
 # Get list of species per row (per site)
 species_lists = Union{Nothing, Vector{String}}[]
 for row in eachrow(names_df)
-    sp_row = filter(!isnothing, collect(row))
+    sp_row = filter(!ismissing, collect(row))
     sp_row = length(sp_row) > 0 ? Vector{String}(sp_row) : nothing
     push!(species_lists, sp_row)
 end
