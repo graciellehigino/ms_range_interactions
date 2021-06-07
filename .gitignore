@@ -8,3 +8,4 @@ affiliations.json
 rasters/
 shapefiles/
 assets/
+data/clean/gbif-occurrences.jld2
