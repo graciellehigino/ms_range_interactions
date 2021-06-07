@@ -25,8 +25,8 @@ preys = [interactions(MM)[i].to for i in 1:L]
 # nbA: Number of pixels with the predator only
 # nbB: Number of pixels with the prey only
 # nbAB: Number of pixels with both species
-cooccurrence_interact = DataFrame(fill(0, (length(preds), 5)),
-                 [:spA, :spB, :nbA, :nbB, :nbAB])
+cooccurrence_interact = DataFrame(fill(0, (length(preds), 5)), :auto)
+rename!(cooccurrence_interact, [:spA, :spB, :nbA, :nbB, :nbAB])
 
 cooccurrence_interact.spA = preds
 cooccurrence_interact.spB = preys
@@ -85,8 +85,8 @@ spB = spB[.!A_B_interact]
 # nbA: Number of pixels with species A only 
 # nbB: Number of pixels with species B only 
 # nbAB: Number of pixels with both species
-cooccurrence_nointeract = DataFrame(fill(0, (length(spA), 5)),
-                 [:spA, :spB, :nbA, :nbB, :nbAB])
+cooccurrence_nointeract = DataFrame(fill(0, (length(spA), 5)), :auto)
+rename!(cooccurrence_nointeract, [:spA, :spB, :nbA, :nbB, :nbAB])
 
 cooccurrence_nointeract.spA = spA
 cooccurrence_nointeract.spB = spB
