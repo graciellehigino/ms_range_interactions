@@ -115,7 +115,7 @@ scatter(
 
 # Number of preys vs. original range - all species
 scatter(
-    all_sp_df.degree,
+    all_sp_df.n_preys,
     all_sp_df.old_range ./ 10^4;
     xlabel="Out degree of species",
     ylabel="Original range (x 10km²)",
