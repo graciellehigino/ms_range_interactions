@@ -1,17 +1,17 @@
 {
-  "title": "Preprint template",
+  "title": "We don't have a title yet, but it'll be something with occurrence maps and ecological interactions",
   "license": "CC-BY",
   "language": "en",
   "creators": [
-    {
+    { 
       "affiliations": [
-        "Université de Montréal",
-        "Québec Centre for Biodiversity Sciences"
+        "The Quantitative and Computational Ecology Lab",
+        "Computational Biodiversity Science and Services"
       ],
-      "familyname": "Poisot",
-      "givennames": "Timothée",
-      "email": "timothee.poisot@umontreal.ca",
-      "orcid": "0000-0002-0735-5184",
+      "familyname": "T. Higino",
+      "givennames": "Gracielle",
+      "email": "graciellehigino@gmail.com",
+      "orcid": "0000-0003-2791-8383",
       "status": ["corresponding", "equal"]
     },
     {
@@ -25,19 +25,30 @@
     },
     {
       "affiliations": [
-        "Green Dragon Inn",
-        "Fellowship of the Ring"
+        "School of Natural and Environmental Sciences, Newcastle University"
       ],
-      "familyname": "Brandybuck",
-      "givennames": "Merriadoc",
-      "email": "merry@fellowship.ring",
+      "familyname": "M. Windsor",
+      "givennames": "Fredric",
+      "email": "fredric.windsor@newcastle.ac.uk",
+      "orcid": "0000-0001-5030-3470",
       "status": ["equal"]
+    },
+    {
+      "affiliations": [
+        "Université de Montréal",
+        "Québec Centre for Biodiversity Sciences"
+      ],
+      "familyname": "Poisot",
+      "givennames": "Timothée",
+      "email": "timothee.poisot@umontreal.ca",
+      "orcid": "0000-0002-0735-5184",
+      "status": ["corresponding", "equal"]
     }
   ],
-  "description": "This template is used by the Poisot lab at Université de Montréal to write manuscripts using github. It uses github actions as a way to generate a website that can be annotated using hypothes.is, a PDF document for copy-editing and submission to journals, and a PDF document for submission to preprint servers. At every push on the master branch, the whole series of documents will be updated automatically.",
+  "description": "Don't forget to add an abstract!!!!!",
   "keywords": [
-    "pandoc",
-    "pandoc-crossref",
-    "github actions"
+    "add",
+    "some",
+    "keywords"
   ]
 }
