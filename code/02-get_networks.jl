@@ -8,7 +8,6 @@ using EcologicalNetworks
 using SparseArrays
 using Statistics
 
-
 #### Build metawebs
 
 # Get Serengeti species (plants and mammals) and their interactions
@@ -43,6 +42,11 @@ mammals = sp.species[sp.type .!== "plant"]
 herbivores = sp.species[sp.type .== "herbivore"]
 carnivores = sp.species[sp.type .== "carnivore"]
 
+# Make sure order of species is the same as in CSV file
+if mammals != readlines(joinpath("data", "clean", "mammals.csv"))
+    @error "mammals object does not match the `mammals.csv` file"
+end
+
 # Build metaweb of all mammals
 MM = M[mammals]
 
@@ -55,9 +59,6 @@ function remove_carnivores(sp_list)
     if isnothing(sp_list)
         return sp_list
     else
-
-    # Change species name
-    sp_list = replace.(sp_list, " " => "_")
 
     # Get the subnetwork before filtering
     MMxy = MM[sp_list]
@@ -97,9 +98,6 @@ function get_subnetwork(sp_list)
     if isnothing(sp_list)
         return missing
     else
-
-    # Change species name
-    sp_list = replace.(sp_list, " " => "_")
 
     # Get the subnetwork 
     MMxy = MM[sp_list]

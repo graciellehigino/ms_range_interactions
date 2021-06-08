@@ -28,7 +28,7 @@ scatter(
     foreground_color_legend=nothing,
     background_color_legend=:seashell,
 )
-# savefig("figures/beta-div_pred-range-diff.png")
+savefig("figures/beta-div_pred-range-diff.png")
 
 # Relationship between beta-diversities, colored by relative loss of range
 scatter(
@@ -49,7 +49,7 @@ scatter(
     foreground_color_legend=nothing,
     background_color_legend=:seashell,
 )
-# savefig("figures/beta-div_pred-range-diff-rel.png")
+savefig("figures/beta-div_pred-range-diff-rel.png")
 
 # Relationship between beta-diversities, grouped by predator species
 scatter(
@@ -70,7 +70,7 @@ scatter(
     foreground_color_legend=nothing,
     background_color_legend=:seashell,
 )
-# savefig("figures/beta-div_pred-species.png")
+savefig("figures/beta-div_pred-species.png")
 
 # Relative loss in range size vs. out degree
 scatter(
@@ -90,7 +90,7 @@ scatter(
     foreground_color_legend=nothing,
     background_color_legend=:white,
 )
-# savefig("figures/rel_loss-out_degree-orig_range.png")
+savefig("figures/rel_loss-out_degree-orig_range.png")
 
 # Out degree vs. relative lost in range size, colored by species
 scatter(
@@ -111,11 +111,11 @@ scatter(
     foreground_color_legend=nothing,
     background_color_legend=:seashell,
 )
-# savefig("figures/rel_loss-outdegree-species.png")
+savefig("figures/rel_loss-outdegree-species.png")
 
 # Number of preys vs. original range - all species
 scatter(
-    all_sp_df.degree,
+    all_sp_df.n_preys,
     all_sp_df.old_range ./ 10^4;
     xlabel="Out degree of species",
     ylabel="Original range (x 10km²)",
@@ -136,7 +136,7 @@ scatter!(
     markersize = 3,
     markershape = :rect
 )
-# savefig("figures/outdegree-orig_range.png")
+savefig("figures/outdegree-orig_range.png")
 
 # Number of preys vs. original range - only predators
 scatter(
@@ -158,7 +158,7 @@ scatter(
     foreground_color_legend=nothing,
     background_color_legend=:white,
 )
-# savefig("figures/outdegree_predators-orig_range-species.png")
+savefig("figures/outdegree_predators-orig_range-species.png")
 
 # In-degree vs. relative lost in range size, symbols are species and colors are original range size
 scatter(
@@ -182,10 +182,10 @@ scatter(
     background_color_legend=:seashell,
     annotate = (128,10,text("Original range size (km²)", 12,  rotation = 270))
 )
-# savefig("figures/rel_lost-in_degree-species-and-range.png")
+savefig("figures/rel_lost-in_degree-species-and-range.png")
 
 # Exploring occurrences
-i_ex = indexin(["Canis_aureus"], names(names_df))[1]
+i_ex = indexin(["Canis_aureus"], mammals)[1]
 plot(;
     frame=:box,
     xlim=extrema(longitudes(delta_Sxy_layer)),
@@ -197,15 +197,15 @@ plot(;
 plot!(worldshape(50); c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(ranges[i_ex]; c=:turku, colorbar=:none)
 scatter!(
-    occ_gbif_iucn[occ_gbif_iucn.species .== names(names_df)[i_ex], :latitude],
-    occ_gbif_iucn[occ_gbif_iucn.species .== names(names_df)[i_ex], :longitude];
+    occ_df[occ_df.species .== mammals[i_ex], :longitude],
+    occ_df[occ_df.species .== mammals[i_ex], :latitude];
     markerstrokewidth=0,
     markeralpha=0.5,
     markersize=2,
-    title=names(names_df)[i_ex],
+    title=replace(mammals[i_ex], "_" => " "),
     legend=:none,
 )
-# savefig("figures/iucn_gbif_ex.png")
+savefig("figures/iucn_gbif_ex.png")
 
 for i in eachindex(mammals)
     plot(;
@@ -219,15 +219,15 @@ for i in eachindex(mammals)
     plot!(worldshape(50); c=:lightgrey, lc=:lightgrey, alpha=0.6)
     plot!(ranges[i]; c=:turku, colorbar=:none)
     scatter!(
-        occ_gbif_iucn[occ_gbif_iucn.species .== names(names_df)[i], :latitude],
-        occ_gbif_iucn[occ_gbif_iucn.species .== names(names_df)[i], :longitude];
+        occ_df[occ_df.species .== mammals[i], :longitude],
+        occ_df[occ_df.species .== mammals[i], :latitude];
         markerstrokewidth=0,
         markeralpha=0.5,
         markersize=2,
-        title=names(names_df)[i],
+        title=replace(mammals[i], "_" => " "),
         legend=:none,
     )
-    savefig(joinpath("figures", "iucn_gbif" * names(names_df)[i] * ".png"))
+    savefig(joinpath("figures", "iucn_gbif" * mammals[i] * ".png"))
 end
 
 

@@ -1,4 +1,4 @@
-short_list = species_lists_c[.!isnothing.(species_lists_c)]
+short_list = filter(!isnothing, species_lists_c)
 new_ranges_df = DataFrame(species = String[], range = Int64[])
 
 for i in 1:length(short_list)
@@ -11,15 +11,15 @@ new_ranges_df = combine(groupby(new_ranges_df, :species),:range .=> sum)
 
 
 # Original range size
-original_range = DataFrame(species = names(names_df), old_range = [sum(.!isnothing.(ranges[i].grid)) for i in 1:length(ranges)])
+original_range = DataFrame(species = mammals, old_range = length.(ranges))
 
-ranges_total = new_ranges_df
+ranges_total = copy(new_ranges_df)
 rename!(ranges_total, :range_sum => :new_range)
 ranges_total = leftjoin(ranges_total, original_range, on=:species)
-ranges_total.δ = ranges_total.new_range - ranges_total.old_range
+insertcols!(ranges_total, :δ => ranges_total.new_range - ranges_total.old_range)
 
 # Only predators ranges
-predator_ranges = filter(x -> x.species ∈ carnivores, ranges_total)
+predator_ranges = filter(x -> x.species in carnivores, ranges_total)
 
 # Relative lost
-predator_ranges.relative = predator_ranges.δ .* 100 ./ predator_ranges.old_range
+insertcols!(predator_ranges, :relative => predator_ranges.δ .* 100 ./ predator_ranges.old_range)
