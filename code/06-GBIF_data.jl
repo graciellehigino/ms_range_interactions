@@ -33,6 +33,8 @@ using JLD2
 @load joinpath("data", "clean", "gbif-occurrences.jld2") occ
 =#
 
+## Create DataFrame
+
 # Make Data Frames
 occ_df = DataFrame.(occ)
 occ_df = reduce(vcat, occ_df)
@@ -53,15 +55,22 @@ isequal(unique(occ_df.species), mammals) # true
 # Save as CSV
 CSV.write(joinpath("data", "clean", "gbif_occurrences.csv"), occ_df)
 
+## Create layers
+
 # Make sure GBIF records order is the same as in mammals CSV file
 [replace(o.occurrences[1].taxon.name, " " => "_") for o in occ] == mammals
 
-# Convert as abundance layers
-gbif_occ_layers = [mask(r, o, Float64) for (r, o) in zip(ranges, occ)]
+# Create background layer
+bglayer = SimpleSDMPredictor(WorldClim, BioClim, 1; bounding_box...)
+boundingbox(bglayer) == boundingbox(ranges[1]) || @error "background layer bounding box is different from range layer bounding box"
+size(bglayer) == size(ranges[1]) || @error "background layer size is different from range layer size"
+
+# Create an abundance layer (number of GBIF occurrences per pixel)
+gbif_occ_layers = [mask(bglayer, o, Float64) for o in occ]
 replace!.(gbif_occ_layers, 0.0 => nothing)
 
 # Convert as presence absence layers
-gbif_ranges = [mask(r, o, Bool) for (r, o) in zip(ranges, occ)]
+gbif_ranges = [mask(bglayer, o, Bool) for o in occ]
 replace!.(gbif_ranges, false => nothing)
 gbif_ranges = [convert(Float64, r) for r in gbif_ranges]
 

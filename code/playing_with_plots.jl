@@ -28,7 +28,7 @@ scatter(
     foreground_color_legend=nothing,
     background_color_legend=:seashell,
 )
-savefig("figures/beta-div_pred-range-diff.png")
+savefig(joinpath("figures", "beta-div_pred-range-diff.png"))
 
 # Relationship between beta-diversities, colored by relative loss of range
 scatter(
@@ -49,7 +49,7 @@ scatter(
     foreground_color_legend=nothing,
     background_color_legend=:seashell,
 )
-savefig("figures/beta-div_pred-range-diff-rel.png")
+savefig(joinpath("figures", "beta-div_pred-range-diff-rel.png"))
 
 # Relationship between beta-diversities, grouped by predator species
 scatter(
@@ -70,7 +70,7 @@ scatter(
     foreground_color_legend=nothing,
     background_color_legend=:seashell,
 )
-savefig("figures/beta-div_pred-species.png")
+savefig(joinpath("figures", "beta-div_pred-species.png"))
 
 # Relative loss in range size vs. out degree
 scatter(
@@ -90,7 +90,7 @@ scatter(
     foreground_color_legend=nothing,
     background_color_legend=:white,
 )
-savefig("figures/rel_loss-out_degree-orig_range.png")
+savefig(joinpath("figures", "rel_loss-out_degree-orig_range.png"))
 
 # Out degree vs. relative lost in range size, colored by species
 scatter(
@@ -111,7 +111,7 @@ scatter(
     foreground_color_legend=nothing,
     background_color_legend=:seashell,
 )
-savefig("figures/rel_loss-outdegree-species.png")
+savefig(joinpath("figures", "rel_loss-outdegree-species.png"))
 
 # Number of preys vs. original range - all species
 scatter(
@@ -136,7 +136,7 @@ scatter!(
     markersize = 3,
     markershape = :rect
 )
-savefig("figures/outdegree-orig_range.png")
+savefig(joinpath("figures", "outdegree-orig_range.png"))
 
 # Number of preys vs. original range - only predators
 scatter(
@@ -158,7 +158,7 @@ scatter(
     foreground_color_legend=nothing,
     background_color_legend=:white,
 )
-savefig("figures/outdegree_predators-orig_range-species.png")
+savefig(joinpath("figures", "outdegree_predators-orig_range-species.png"))
 
 # In-degree vs. relative lost in range size, symbols are species and colors are original range size
 scatter(
@@ -182,7 +182,7 @@ scatter(
     background_color_legend=:seashell,
     annotate = (128,10,text("Original range size (km²)", 12,  rotation = 270))
 )
-savefig("figures/rel_lost-in_degree-species-and-range.png")
+savefig(joinpath("figures", "rel_lost-in_degree-species-and-range.png"))
 
 # Exploring occurrences
 i_ex = indexin(["Canis_aureus"], mammals)[1]
@@ -205,7 +205,7 @@ scatter!(
     title=replace(mammals[i_ex], "_" => " "),
     legend=:none,
 )
-savefig("figures/iucn_gbif_ex.png")
+savefig(joinpath("figures", "ranges", "iucn_gbif_ex.png"))
 
 for i in eachindex(mammals)
     plot(;
@@ -227,7 +227,7 @@ for i in eachindex(mammals)
         title=replace(mammals[i], "_" => " "),
         legend=:none,
     )
-    savefig(joinpath("figures", "iucn_gbif" * mammals[i] * ".png"))
+    savefig(joinpath("figures", "ranges", "iucn_gbif" * mammals[i] * ".png"))
 end
 
 
