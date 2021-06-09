@@ -1,10 +1,16 @@
-# Load required scripts and packages
-include("01-load_rasters.jl") # range maps of Serengeti mammals 
-include("shapefile.jl") # mapping functions
+## Load required scripts and packages
+import Pkg; Pkg.activate("."); Pkg.instantiate()
 
 using CSV
+using DataFrames
 using GBIF
+using Plots
+using Plots.PlotMeasures
+using Shapefile
 using Statistics
+using SimpleSDMLayers
+
+include("shapefile.jl") # mapping functions
 
 ## Load required data
 
@@ -64,14 +70,80 @@ show(comparison_short, allrows = true)
 cor(comparison_short.occ_prop, comparison_short.range_prop) # 0.955
 
 ## Plot results
+
+# 1. Pixel proportion according to IUCN range
+scatter(
+    comparison_df.range ./ 10^4, 
+    comparison_df.range_prop;
+    group=comparison_df.type,
+    xlabel="IUCN range size (x 10^4)",
+    ylabel="Proportion of GBIF pixels in IUCN range",
+    legend=:right,
+    ylim=(0.0, 1.0)
+)
+savefig(joinpath("figures", "gbif_range-prop.png"))
+
+# 2. Occurrence proportion according to IUCN range
+scatter(
+    comparison_df.range ./ 10^4, 
+    comparison_df.occ_prop;
+    group=comparison_df.type,
+    xlabel="IUCN range size (x 10^4)",
+    ylabel="Proportion of occurrences in IUCN range",
+    legend=:right,
+    ylim=(0.0, 1.0)
+)
+savefig(joinpath("figures", "gbif_occ-prop.png"))
+
+# 3. Occurrence proportion according to number of GBIF occurrences
 scatter(
     comparison_df.occ_n, 
     comparison_df.occ_prop;
-    group=comparison_df.type
+    group=comparison_df.type,
+    xlabel="Number of GBIF occurrences",
+    ylabel="Proportion of occurrences in IUCN range",
+    legend=:right
 )
+savefig(joinpath("figures", "gbif_occ-prop_occ-n.png"))
 
-scatter(
-    comparison_df.range, 
-    comparison_df.range_prop;
-    group=comparison_df.type
-)
+# 4. Predators only - Pixel proportion according to IUCN range
+comparison_df |> x -> 
+    filter(:type => ==("carnivore"), x) |> x ->
+    scatter(
+        x.range ./ 10^4, 
+        x.range_prop;
+        group=x.species,
+        xlabel="IUCN range size (x 10^4)",
+        ylabel="Proportion of GBIF pixels in IUCN range",
+        # legend=:right,
+        ylim=(0.0, 1.0),
+        markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+        markersize=6,
+        palette=:seaborn_colorblind,
+        markerstrokewidth=0,
+        legend=:right,
+        foreground_color_legend=nothing,
+        background_color_legend=:white,
+    )
+savefig(joinpath("figures", "gbif_range-prop_pred.png"))
+
+# 5. Predators only - Occurrence proportion according to IUCN range
+comparison_df |> x -> 
+    filter(:type => ==("carnivore"), x) |> x ->
+    scatter(
+        x.range ./ 10^4, 
+        x.occ_prop;
+        group=x.species,
+        xlabel="IUCN range size (x 10^4)",
+        ylabel="Proportion of occurrences in IUCN range",
+        # legend=:right,
+        ylim=(0.0, 1.0),
+        markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+        markersize=6,
+        palette=:seaborn_colorblind,
+        markerstrokewidth=0,
+        legend=:right,
+        foreground_color_legend=nothing,
+        background_color_legend=:white,
+    )
+savefig(joinpath("figures", "gbif_occ-prop_pred.png"))
