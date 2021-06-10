@@ -77,8 +77,7 @@ plot(richness_original, c=:turku)
 plot(richness_updated, c=:turku)
 
 # Compare with previous range update
-richness_diff = richness_updated - richness_original
-richness_diff.grid = replace(x -> isnothing(x) ? x : abs(x), richness_diff.grid)
+richness_diff = richness_original - replace(richness_updated, nothing => 0.0)
 
 plot(replace(richness_diff, 0.0 => nothing), c=:turku, clim=(1.0, 6.0))
 plot(delta_Sxy_layer, c=:turku) # not the same...
