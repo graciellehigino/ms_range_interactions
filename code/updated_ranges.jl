@@ -31,6 +31,9 @@ missing_plants = filter(:code => in(missing_preys), sp)
 all(missing_plants.type .== "plant") # it's all plants!
 show(missing_plants; allrows=true)
 
+# Remove intermediate predators from analyses
+filter!(:prey => !in(predators), interactions_df)
+
 # Group interactions by predator
 gdf = groupby(interactions_df, :pred)
 show(stdout, "text/plain", gdf)
@@ -95,8 +98,9 @@ plot(richness_updated, c=:turku)
 # Compare with previous range update
 richness_diff = richness_original - replace(richness_updated, nothing => 0.0)
 
-plot(replace(richness_diff, 0.0 => nothing), c=:turku, clim=(1.0, 6.0))
-plot(delta_Sxy_layer, c=:turku) # not the same...
+plot(replace(richness_diff, 0.0 => nothing), c=:turku)
+plot(delta_Sxy_layer, c=:turku)
+replace(richness_diff, 0.0 => nothing) == delta_Sxy_layer # true, they're the same now! 🎉
 
 ## Produce table 
 # |  species | # of preys | # predators | total range size | proportion of range with at least 1 prey | proportion of range with at least 1 predator |
