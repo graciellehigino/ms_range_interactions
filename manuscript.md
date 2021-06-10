@@ -17,6 +17,10 @@ The occurrence of a species in each location is an encrypted message that travel
   - GBIF polemics  
 
 # Methods
+We investigated the effects of adjusting species distributions based on species interaction data across savannah ecosystems in Africa (Fig. 1). These ecosystems host a range of different species, including the well characterised predator-prey dynamics between iconic predators (e.g., lions, hyenas and leopards) and large herbivores (e.g., antelope, wildebeest and zebra), as well as a range of herbivorous and carnivorous small mammals. Here we focus on six groups of herbivores and carnivores from the Serengeti Food Web Data Set (Baskerville et al. 2011). These species exhibit direct antagonistic (predator-prey) interactions with one another and are commonly found across savanna ecosystems on the African continent.
+
+IUCN range maps were compiled for the 32 species (23 herbivores and 9 carnivores) from Spatial Data Download portal (www.iucnredlist.org/resources/spatial-data-download). 
+Species interaction data were subset from the wider interaction network presented in Baskerville et al. (2011). The network consisted of 32 taxa and 85 interactions. 
 
 Serengeti paper - species list and interactions
 IUCN range maps
