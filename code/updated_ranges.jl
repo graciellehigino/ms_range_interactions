@@ -6,11 +6,30 @@ include("02-get_networks.jl")
 mammals = readlines(joinpath("data", "clean", "mammals.csv"))
 
 # Subset subnetwork using this list of mammals
-MM = MM[mammals]
+# MM = MM[mammals]
 
 # List interactions in DataFrame
 interactions_df = DataFrame(interactions(MM))
 rename!(interactions_df, :from => :pred, :to => :prey)
+
+predators = unique(interactions_df.pred)
+preys = unique(interactions_df.prey)
+
+intersect(predators, preys) # intermediate predators
+setdiff(predators, preys)
+union(predators, preys) # why not 32??
+
+# Investigate missing species
+missing_species = setdiff(mammals, union(predators, preys))
+# "Hippopotamus_amphibius"
+# "Loxodonta_africana"
+missing_codes = filter(:species => in(missing_species), sp).code
+filter(:prey_code => in(missing_codes), lk) # none, nobody eats hippos or elephants
+missing_links = filter(:pred_code => in(missing_codes), lk) # but hippos and elephants eat things --> plants?
+missing_preys = unique(missing_links.prey_code)
+missing_plants = filter(:code => in(missing_preys), sp)
+all(missing_plants.type .== "plant") # it's all plants!
+show(missing_plants; allrows=true)
 
 # Group interactions by predator
 gdf = groupby(interactions_df, :pred)
