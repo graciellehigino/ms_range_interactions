@@ -1,7 +1,4 @@
-using SimpleSDMLayers: eachindex
 include("02-get_networks.jl")
-
-using Combinatorics
 
 ## Load required data
 
