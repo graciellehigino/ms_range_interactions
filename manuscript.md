@@ -25,9 +25,9 @@ Species interaction data were subset from the wider interaction network presente
 Serengeti paper - species list and interactions
 IUCN range maps
 - Why we removed plants from everything
-Remove predators where there’s no prey available
-The beta-diversity metrics
-The GBIF comparison
+- Remove predators where there’s no prey available
+- The beta-diversity metrics
+- The GBIF comparison
 
 # Results
 
