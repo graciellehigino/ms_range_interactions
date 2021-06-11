@@ -2,55 +2,36 @@ include("02-get_networks.jl")
 
 ## Load required data
 
-# Mammals in the Serengeti ecosystem
-mammals = readlines(joinpath("data", "clean", "mammals.csv"))
-
-# Subset subnetwork using this list of mammals
-# MM = MM[mammals]
+# Get ranges
+ranges = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.tif"), i) for i in eachindex(mammals)]
 
 # List interactions in DataFrame
 interactions_df = DataFrame(interactions(MM))
 rename!(interactions_df, :from => :pred, :to => :prey)
 
+# Separate predators & preys
 predators = unique(interactions_df.pred)
 preys = unique(interactions_df.prey)
 
-intersect(predators, preys) # intermediate predators
-setdiff(predators, preys)
-union(predators, preys) # why not 32??
-
 # Investigate missing species
 missing_species = setdiff(mammals, union(predators, preys))
-# "Hippopotamus_amphibius"
-# "Loxodonta_africana"
-missing_codes = filter(:species => in(missing_species), sp).code
-filter(:prey_code => in(missing_codes), lk) # none, nobody eats hippos or elephants
-missing_links = filter(:pred_code => in(missing_codes), lk) # but hippos and elephants eat things --> plants?
-missing_preys = unique(missing_links.prey_code)
-missing_plants = filter(:code => in(missing_preys), sp)
-all(missing_plants.type .== "plant") # it's all plants!
-show(missing_plants; allrows=true)
 
 # Investigate intermediate predators as preys
 filter(:prey => in(predators), interactions_df)
 
-# Investigate predators with themselves as prey
-filter(x -> x.prey == x.pred, interactions_df) # only Panthera_leo
-filter(:pred => ==("Panthera_leo"), interactions_df) # at least lions have tons of other preys
-# Remove that interactions
-# filter!(x -> x.prey != x.pred, interactions_df)
-# preys = unique(interactions_df.prey)
+# Remove predators with themselves as prey 
+#=
+filter!(x -> x.prey != x.pred, interactions_df) # only Pantera_leo
+preys = unique(interactions_df.prey)
+test
+=#
 
 # Remove intermediate predators from analyses
-# filter!(:prey => !in(predators), interactions_df)
-# preys = unique(interactions_df.prey)
-
-# Group interactions by predator
-gdf = groupby(interactions_df, :pred)
-show(stdout, "text/plain", gdf)
-
-# Get ranges
-ranges = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.tif"), i) for i in eachindex(mammals)]
+# (Needed to match the results from 02-get_networks.jl)
+#=
+filter!(:prey => !in(predators), interactions_df)
+preys = unique(interactions_df.prey)
+=#
 
 ## Update predactor ranges
 
@@ -98,40 +79,36 @@ function update_range(ranges::Vector{T}, interactions_list::DataFrame, sp::Strin
     return pred_updated
 end
 
-# Get predator ranges
+# Get updated ranges
 preds_updated = [update_range(ranges, interactions_df, sp) for sp in predators]
 preys_updated = [update_range(ranges, interactions_df, sp, :prey) for sp in preys]
 
-# Get original ranges (in same order)
+# Get original ranges (in same order, which is different from the order in mammals.csv)
 preds_original = ranges[indexin(predators, mammals)]
 preys_original = ranges[indexin(preys, mammals)]
 
 ## Produce table 
+
 # |  species | # of preys | # predators | total range size | proportion of range with at least 1 prey | proportion of range with at least 1 predator |
 
 # Predators
 results_preds = DataFrame(
     species = predators,
     n_preys = [nrow(filter(:pred => ==(p), interactions_df)) for p in predators],
-    # n_preds = missing,
     total_range_size = length.(preds_original),
     prop_preys = length.(preds_updated) ./ length.(preds_original),
-    # prop_preds = missing,
 )
+
 # Preys
 results_preys = DataFrame(
     species = preys,
-    # n_preys = missing,
     n_preds = [nrow(filter(:prey => ==(p), interactions_df)) for p in preys],
     total_range_size = length.(preys_original),
-    # prop_preys = missing,
     prop_preds = length.(preys_updated) ./ length.(preys_original),
 )
 
 # Combine results
 results = outerjoin(results_preds, results_preys; on=:species, makeunique=true)
-dropmissing(results, [:total_range_size, :total_range_size_1]) |> x ->
-    x.total_range_size == x.total_range_size_1 # true, they're equal
 results.total_range_size = ifelse.(ismissing.(results.total_range_size), results.total_range_size_1, results.total_range_size)
 select!(results, :species, :n_preys, :n_preds, :total_range_size, :prop_preys, :prop_preds)
 
@@ -144,6 +121,8 @@ append!(results, missing_species_df; cols=:union)
 
 # Export to CSV
 CSV.write(joinpath("data", "clean", "range_proportions.csv"), results)
+
+## Richness difference plot
 
 # Get predator richness
 richness_updated = mosaic(sum, preds_updated)
@@ -158,7 +137,7 @@ richness_diff = richness_original - replace(richness_updated, nothing => 0.0)
 
 plot(replace(richness_diff, 0.0 => nothing), c=:turku)
 plot(delta_Sxy_layer, c=:turku)
-replace(richness_diff, 0.0 => nothing) == delta_Sxy_layer # true, they're the same now! 🎉
+replace(richness_diff, 0.0 => nothing) == delta_Sxy_layer # true if intermediate predators filtered earlier
 
 # Export nicer plot
 plot(; 
@@ -173,6 +152,7 @@ plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(richness_diff, c=:turku)
 savefig(joinpath("figures", "species_removal_layer-style.png"))
 
+# Export plot without zeros, as in 02-get_networks.jl
 richness_diff_nozeros = replace(richness_diff, 0.0 => nothing)
 plot(; 
     frame=:box,
