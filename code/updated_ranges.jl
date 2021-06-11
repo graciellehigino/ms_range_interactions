@@ -127,12 +127,21 @@ results_preys = DataFrame(
     # prop_preys = missing,
     prop_preds = length.(preys_updated) ./ length.(preys_original),
 )
+
 # Combine results
 results = outerjoin(results_preds, results_preys; on=:species, makeunique=true)
 dropmissing(results, [:total_range_size, :total_range_size_1]) |> x ->
     x.total_range_size == x.total_range_size_1 # true, they're equal
 results.total_range_size = ifelse.(ismissing.(results.total_range_size), results.total_range_size_1, results.total_range_size)
 select!(results, :species, :n_preys, :n_preds, :total_range_size, :prop_preys, :prop_preds)
+
+# Add missing species
+missing_species_df = DataFrame(
+    species = missing_species,
+    total_range_size = length.(ranges[indexin(missing_species, mammals)]),
+)
+append!(results, missing_species_df; cols=:union)
+
 # Export to CSV
 CSV.write(joinpath("data", "clean", "range_proportions.csv"), results)
 
