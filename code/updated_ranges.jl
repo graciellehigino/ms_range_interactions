@@ -38,7 +38,7 @@ filter(:prey => in(predators), interactions_df)
 filter(x -> x.prey == x.pred, interactions_df) # only Panthera_leo
 filter(:pred => ==("Panthera_leo"), interactions_df) # at least lions have tons of other preys
 # Remove that interactions
-filter!(x -> x.prey != x.pred, interactions_df)
+# filter!(x -> x.prey != x.pred, interactions_df)
 
 # Remove intermediate predators from analyses
 # filter!(:prey => !in(predators), interactions_df)
@@ -68,37 +68,72 @@ end
 union(layer1::SimpleSDMLayer, layer2::SimpleSDMLayer) = union([layer1, layer2])
 
 # Function to update predator ranges
-function update_range(ranges::Vector{T}, interactions_list::SubDataFrame) where {T <: SimpleSDMLayer}
-    # Get species names
-    pred = first(interactions_list.pred)
-    preys = interactions_list.prey
+function update_range(ranges::Vector{T}, interactions_list::DataFrame, sp::String, type::Symbol=:pred) where {T <: SimpleSDMLayer}
+    type in [:pred, :prey] || throw(ArgumentError("type must be :pred or :prey"))
+    
+    # Get interaction species names
+    if type == :pred
+        interactions_list = filter(:pred => ==(sp), interactions_list)
+        int_sp = interactions_list.prey
+    elseif type == :prey
+        interactions_list = filter(:prey => ==(sp), interactions_list)
+        int_sp = interactions_list.pred
+    end
 
     # Get species indexes in ranges maps
-    pred_ind = first(indexin([pred], mammals))
-    prey_inds = indexin(preys, mammals)
+    sp_ind = first(indexin([sp], mammals))
+    int_inds = indexin(int_sp, mammals)
 
     # Get species ranges
-    pred_range = ranges[pred_ind]
-    prey_ranges = ranges[prey_inds]
+    sp_range = ranges[sp_ind]
+    int_ranges = ranges[int_inds]
 
-    # Get union of prey range --> pixels where at least one prey present
-    union_range = union(prey_ranges)
-    # Update predator range
-    pred_updated = mask(union_range, pred_range)
+    # Get union of interacting species range --> pixels where at least one interacting species present
+    union_range = union(int_ranges)
+    # Update focal species range
+    pred_updated = mask(union_range, sp_range)
 
     return pred_updated
 end
 
 # Get predator ranges
-ranges_updated = [update_range(ranges, sdf) for sdf in gdf]
+preds_updated = [update_range(ranges, interactions_df, sp) for sp in predators]
+preys_updated = [update_range(ranges, interactions_df, sp, :prey) for sp in preys]
+
+# Get original ranges (in same order)
+preds_original = ranges[indexin(predators, mammals)]
+preys_original = ranges[indexin(preys, mammals)]
+
+## Produce table 
+# |  species | # of preys | # predators | total range size | proportion of range with at least 1 prey | proportion of range with at least 1 predator |
+
+# Predators
+results_preds = DataFrame(
+    species = predators,
+    n_preys = [nrow(filter(:pred => ==(p), interactions_df)) for p in predators],
+    # n_preds = missing,
+    total_range_size = length.(preds_original),
+    prop_preys = length.(preds_updated) ./ length.(preds_original),
+    # prop_preds = missing,
+)
+# Preys
+results_preys = DataFrame(
+    species = preys,
+    # n_preys = missing,
+    n_preds = [nrow(filter(:prey => ==(p), interactions_df)) for p in preys],
+    total_range_size = length.(preys_original),
+    # prop_preys = missing,
+    prop_preds = length.(preys_updated) ./ length.(preys_original),
+)
+results = outerjoin(results_preds, results_preys; on=:species, makeunique=true)
+dropmissing(results, [:total_range_size, :total_range_size_1]) |> x ->
+    x.total_range_size == x.total_range_size_1 # true, they're equal
+results.total_range_size = ifelse.(ismissing.(results.total_range_size), results.total_range_size_1, results.total_range_size)
+select!(results, :species, :n_preys, :n_preds, :total_range_size, :prop_preys, :prop_preds)
 
 # Get predator richness
-richness_updated = mosaic(sum, ranges_updated)
-
-# Get original ranges & richness
-predators = unique(interactions_df.pred)
-ranges_original = ranges[indexin(predators, mammals)]
-richness_original = mosaic(sum, ranges_original)
+richness_updated = mosaic(sum, preds_updated)
+richness_original = mosaic(sum, preds_original)
 
 # Plot to compare
 plot(richness_original, c=:turku)
@@ -110,14 +145,3 @@ richness_diff = richness_original - replace(richness_updated, nothing => 0.0)
 plot(replace(richness_diff, 0.0 => nothing), c=:turku)
 plot(delta_Sxy_layer, c=:turku)
 replace(richness_diff, 0.0 => nothing) == delta_Sxy_layer # true, they're the same now! 🎉
-
-## Produce table 
-# |  species | # of preys | # predators | total range size | proportion of range with at least 1 prey | proportion of range with at least 1 predator |
-results = DataFrame(
-    species = predators,
-    n_preys = [nrow(sdf) for sdf in gdf],
-    n_preds = missing,
-    total_range_size = length.(ranges_original),
-    prop_preys = length.(ranges_updated) ./ length.(ranges_original),
-    prop_pred = missing,
-)
