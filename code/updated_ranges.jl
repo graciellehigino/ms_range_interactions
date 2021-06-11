@@ -39,9 +39,11 @@ filter(x -> x.prey == x.pred, interactions_df) # only Panthera_leo
 filter(:pred => ==("Panthera_leo"), interactions_df) # at least lions have tons of other preys
 # Remove that interactions
 # filter!(x -> x.prey != x.pred, interactions_df)
+# preys = unique(interactions_df.prey)
 
 # Remove intermediate predators from analyses
 # filter!(:prey => !in(predators), interactions_df)
+# preys = unique(interactions_df.prey)
 
 # Group interactions by predator
 gdf = groupby(interactions_df, :pred)
@@ -125,11 +127,14 @@ results_preys = DataFrame(
     # prop_preys = missing,
     prop_preds = length.(preys_updated) ./ length.(preys_original),
 )
+# Combine results
 results = outerjoin(results_preds, results_preys; on=:species, makeunique=true)
 dropmissing(results, [:total_range_size, :total_range_size_1]) |> x ->
     x.total_range_size == x.total_range_size_1 # true, they're equal
 results.total_range_size = ifelse.(ismissing.(results.total_range_size), results.total_range_size_1, results.total_range_size)
 select!(results, :species, :n_preys, :n_preds, :total_range_size, :prop_preys, :prop_preds)
+# Export to CSV
+CSV.write(joinpath("data", "clean", "range_proportions.csv"), results)
 
 # Get predator richness
 richness_updated = mosaic(sum, preds_updated)
@@ -145,3 +150,29 @@ richness_diff = richness_original - replace(richness_updated, nothing => 0.0)
 plot(replace(richness_diff, 0.0 => nothing), c=:turku)
 plot(delta_Sxy_layer, c=:turku)
 replace(richness_diff, 0.0 => nothing) == delta_Sxy_layer # true, they're the same now! 🎉
+
+# Export nicer plot
+plot(; 
+    frame=:box,
+    xlim=extrema(longitudes(richness_diff)),
+    ylim=extrema(latitudes(richness_diff)),
+    dpi=500,
+    xaxis="Longitude",
+    yaxis="Latitude",
+)
+plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
+plot!(richness_diff, c=:turku)
+savefig(joinpath("figures", "species_removal_layer-style.png"))
+
+richness_diff_nozeros = replace(richness_diff, 0.0 => nothing)
+plot(; 
+    frame=:box,
+    xlim=extrema(longitudes(richness_diff_nozeros)),
+    ylim=extrema(latitudes(richness_diff_nozeros)),
+    dpi=500,
+    xaxis="Longitude",
+    yaxis="Latitude",
+)
+plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
+plot!(richness_diff_nozeros, c=:turku)
+savefig(joinpath("figures", "species_removal_layer-style_no-zeros.png"))
