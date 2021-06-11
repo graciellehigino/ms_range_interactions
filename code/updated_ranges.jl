@@ -31,8 +31,17 @@ missing_plants = filter(:code => in(missing_preys), sp)
 all(missing_plants.type .== "plant") # it's all plants!
 show(missing_plants; allrows=true)
 
+# Investigate intermediate predators as preys
+filter(:prey => in(predators), interactions_df)
+
+# Investigate predators with themselves as prey
+filter(x -> x.prey == x.pred, interactions_df) # only Panthera_leo
+filter(:pred => ==("Panthera_leo"), interactions_df) # at least lions have tons of other preys
+# Remove that interactions
+filter!(x -> x.prey != x.pred, interactions_df)
+
 # Remove intermediate predators from analyses
-filter!(:prey => !in(predators), interactions_df)
+# filter!(:prey => !in(predators), interactions_df)
 
 # Group interactions by predator
 gdf = groupby(interactions_df, :pred)
