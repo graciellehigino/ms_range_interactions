@@ -51,7 +51,7 @@ end
 union(layer1::SimpleSDMLayer, layer2::SimpleSDMLayer) = union([layer1, layer2])
 
 # Function to update predator ranges
-function update_range(ranges::Vector{T}, interactions_list::DataFrame, sp::String, type::Symbol=:pred) where {T <: SimpleSDMLayer}
+function update_range(ranges_dict::Dict{String, T}, interactions_list::DataFrame, sp::String, type::Symbol=:pred) where {T <: SimpleSDMLayer}
     type in [:pred, :prey] || throw(ArgumentError("type must be :pred or :prey"))
     
     # Get interaction species names
@@ -62,26 +62,23 @@ function update_range(ranges::Vector{T}, interactions_list::DataFrame, sp::Strin
         interactions_list = filter(:prey => ==(sp), interactions_list)
         int_sp = interactions_list.pred
     end
-
-    # Get species indexes in ranges maps
-    sp_ind = first(indexin([sp], mammals))
-    int_inds = indexin(int_sp, mammals)
-
+    
     # Get species ranges
-    sp_range = ranges[sp_ind]
-    int_ranges = ranges[int_inds]
-
+    sp_range = ranges_dict[sp]
+    int_ranges = [ranges_dict[sp] for sp in int_sp]
+    
     # Get union of interacting species range --> pixels where at least one interacting species present
     union_range = union(int_ranges)
     # Update focal species range
     pred_updated = mask(union_range, sp_range)
-
+    
     return pred_updated
 end
 
 # Get updated ranges
-preds_updated = [update_range(ranges, interactions_df, sp) for sp in predators]
-preys_updated = [update_range(ranges, interactions_df, sp, :prey) for sp in preys]
+ranges_dict = Dict(mammals .=> ranges)
+preds_updated = [update_range(ranges_dict, interactions_df, sp) for sp in predators]
+preys_updated = [update_range(ranges_dict, interactions_df, sp, :prey) for sp in preys]
 
 # Get original ranges (in same order, which is different from the order in mammals.csv)
 preds_original = ranges[indexin(predators, mammals)]
