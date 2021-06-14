@@ -16,15 +16,6 @@
     },
     {
       "affiliations": [
-        "Inn of the Prancing Pony",
-        "Fellowship of the Ring"
-      ],
-      "familyname": "Took",
-      "givennames": "Peregrin",
-      "email": "pippin@took.shire"
-    },
-    {
-      "affiliations": [
         "School of Natural and Environmental Sciences, Newcastle University"
       ],
       "familyname": "M. Windsor",
@@ -36,7 +27,19 @@
     {
       "affiliations": [
         "Université de Montréal",
-        "Québec Centre for Biodiversity Sciences"
+        "Université de Sherbrooke",
+        "Quebec Centre for Biodiversity Science"
+      ],
+      "familyname": "Banville",
+      "givennames": "Francis",
+      "email": "francis.banville@umontreal.ca",
+      "orcid": "0000-0001-9051-0597",
+      "status": ["equal"]
+    }
+    {
+      "affiliations": [
+        "Université de Montréal",
+        "Quebec Centre for Biodiversity Science"
       ],
       "familyname": "Poisot",
       "givennames": "Timothée",
