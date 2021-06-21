@@ -17,10 +17,22 @@ The occurrence of a species in each location is an encrypted message that travel
   - GBIF polemics  
 
 # Methods
-We investigated the effects of adjusting species distributions based on species interaction data across savannah ecosystems in Africa (Fig. 1). These ecosystems host a range of different species, including the well characterised predator-prey dynamics between iconic predators (e.g., lions, hyenas and leopards) and large herbivores (e.g., antelope, wildebeest and zebra), as well as a range of herbivorous and carnivorous small mammals. Here we focus on six groups of herbivores and carnivores from the Serengeti Food Web Data Set (Baskerville et al. 2011). These species exhibit direct antagonistic (predator-prey) interactions with one another and are commonly found across savanna ecosystems on the African continent.
 
-IUCN range maps were compiled for the 32 species (23 herbivores and 9 carnivores) from Spatial Data Download portal (www.iucnredlist.org/resources/spatial-data-download). 
-Species interaction data were subset from the wider interaction network presented in Baskerville et al. (2011). The network consisted of 32 taxa and 85 interactions. 
+## Data 
+We investigated the effects of adjusting species distributions based on species interaction data across savannah ecosystems in Africa (Fig. 1). These ecosystems host a range of different species, including the well characterised predator-prey dynamics between iconic predators (e.g., lions, hyenas and leopards) and large herbivores (e.g., antelope, wildebeest and zebra), as well as a range of herbivorous and carnivorous small mammals. Here we focus on six groups of herbivores and carnivores from the Serengeti Food Web Data Set (Baskerville et al. 2011). These species exhibit direct antagonistic (predator-prey) interactions with one another and are commonly found across savanna ecosystems on the African continent. Although plants are included in the Serengeti Food Web Data Set, there is an absence of global range maps for many plant species (Daru, 2020), and as such we did not include plants in the following analyses.
+
+Species interaction data were subset from the wider interaction network presented in Baskerville et al. (2011). The network of herbivores and carnivores we used here contained 32 taxa and 85 interactions and had a connectance of 0.08. We refer to this network as the meta-network as it contains all possible species interactions between the different taxa.
+
+IUCN range maps were compiled for the 32 species included in the meta-network (23 herbivores and 9 carnivores) from the Spatial Data Download portal (www.iucnredlist.org/resources/spatial-data-download). Ranges were rasterized at XX km2 resolution.
+We created networks for each raster pixel, where cooccurring species were linked together based on the interactions from the meta-network. This generated a total of XX networks where at least two cooccurring and interacting species were present.
+
+## Approach
+We adjusted the ranges of carnivorous species based on a simple rule: we removed any part of a carnivore’s range that did not intersect at least one prey species range. Thus, unless the range of the predator overlapped at least one prey item, we removed that section of the predator’s range. We then calculated the difference in range size between the original IUCN ranges and those adjusted based on species interaction data. 
+
+## Analysis
+
+## Validation
+To assess the accuracy of our method we assessed the extent to which GBIF data for each species was covered by the original and adjusted ranges. As GBIF data are points 
 
 Serengeti paper - species list and interactions
 IUCN range maps
