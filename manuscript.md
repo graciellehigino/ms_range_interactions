@@ -21,33 +21,32 @@ Biases and historical lack of information about species distribution and ecology
 can lead us to the wrong conclusions [@Hortal2008HisBia]. Biodiversity
 occurrence data are knowingly biased, and the sources of bias are often
 taxonomic - including the bias related to the conservation status -, temporal or
-geographical [@Boakes2010DisVie, @Ronquillo2020AssSpa, @Meyer2016MulBia]. A
+geographical [@Boakes2010DisVie; @Ronquillo2020AssSpa; @Meyer2016MulBia]. A
 complete assessment of ecological interactions is even more difficult than
 sufficient sampling of species occurrence. The number of interactions sampled
 will always be lower than the number of possible interactions, mainly due to the
 existence of forbidden links [@Jordano2016SamNet]. This lack of information,
-known as the Eltonian Shortfall, is aggravated by biases and differences in
-sampling methods [@Poisot2020EnvBia, @Hortal2015SevSho]. Nevertheless, we have
+known as the Eltonian Shortfall, is aggravated by slanted and different
+sampling methods [@Poisot2020EnvBia; @Hortal2015SevSho]. Nevertheless, we have
 witnessed an increase in the availability of biodiversity data in the last
 decades, including those collected through community science projects
 [@Callaghan2019ImpBig, @Pocock2015BioRec] and organized dedicated databases
 mostly accessed by specialists, such as mangal [@Poisot2016ManMak] and the
 Global Biodiversity Information Facility (GBIF;
-@GBIF:TheGlobalBiodiversityInformationFacility2021WhaGbi). Amongst these
-geographical data available are the range maps provided by the International
-Union for the Conservation of Nature (IUCN), which are collections of expert
-maps [@IUCNSSCRedListTechnicalWorkingGroupMapSta]. These maps have been
-increasingly used in macroecological inferences, despite their inadequacy for
-this purpose [@Herkt2017MacCon].
+@GBIF:TheGlobalBiodiversityInformationFacility2021WhaGbi).  
 
-<!--->
-#TODO
-expand IUCN data description, flaws and benefits
-<!--->
+Amongst these geographical data available are the range maps provided by the
+International Union for the Conservation of Nature (IUCN). The geographical data
+published by IUCN are collections of expert maps, which combine species
+observations and expert knowledge [@IUCNSSCRedListTechnicalWorkingGroupMapSta].
+These maps can be used in macroecological inferences in the lack of higher
+quality information [@Fourcade2016ComSpe; @Alhajeri2019HigCor], but it has been
+recommended that they are used with caution since they tend to underestimate the
+distribution of species that are not well-known [@Herkt2017MacCon]. 
 
 The connection between occurrence and interaction data is a frequent debate in
 Ecology. For instance, some argue that occurrence data can also capture
-real-time interactions [@Roy2016FocPla, @Ryan2018RolCit], and because of that it
+real-time interactions [@Roy2016FocPla; @Ryan2018RolCit], and because of that it
 would be reasonable not to include them in macroecological models. On the other
 hand, many mechanistic simulation models in ecology have considered competition
 and facilitation in range shifts, whilst the use of trophic interactions in this
