@@ -66,9 +66,10 @@ Serengeti paper - species list and interactions IUCN range maps
 
 # Results
 
-Fig 01 - probably the species richness before and after?
+![Fig 01 - More specialized predators lose a higher proportion of their ranges. Both *Leptailurus serval* and *Canis mesomelas* have only one prey in the Serengeti foodweb, each of them with a very small range compared to those of their predators. The discrepancy between range sizes promotes significant range loss. ](figures/rel_loss-in_degree-species.png)
+<!--->update with results without self-interaction<--->
 
-Fig 02
+Fig 02 - probably the species richness before and after?
 
 Fig 03
 
