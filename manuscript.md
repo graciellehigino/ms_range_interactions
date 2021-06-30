@@ -4,17 +4,10 @@ bibliography: [references.bib]
 
 # Intro
 
---to be rephrased-- 
-The occurrence of a species in each location is an encrypted message that travels through time. It carries the species’ evolutionary history, long migration journeys, effects of other species we do not even know that exist, and ultimately the elements that shape its, yet unknown, future. Ecologists have been trying to decode this message with progressively more powerful tools, from their own field notes to highly complex computational algorithms, such as habitat suitability models. These models attempt to describe the species’ distribution based on their niche, considering their occurrences as sample points of suitable abiotic variables and their absences as sample points of unsuitable variables. However, these observations (environmental variables and geographic location) only unveils part of the mystery, and the missing link are ecological interactions.
---to be rephrased--
+The connection between species can be given by antagonistic and mutualistic interactions, which leads to the formation of complex networks that shape ecological structures and maintain the essential functions of ecosystems. These functions include seed dispersal, pollination, biological control, among others. (Albrecht et al., 2018) Plant-herbivore networks are spatiotemporally dynamic, and can be affected by several factors like seasonality, disturbance, specific attributes of species; this highlights the importance of understanding patterns in plant-herbivore ecological networks (Dáttilo & Rico-Gray, 2018).  Studies have reported changes in predator density and diversity along plant diversity gradients, and any change in consumer communities may be a mechanistic cause of changes in predation rates. (Hertzog et al., 2017) 
 
-- Data availability / biases  
-  - Occurrences  
-  - Interactions  
-- The “occurrence data captures interaction data” argument  
-- Can we update occurrence data based on species interaction information? What are the mismatches between occurrence data and interactions?  
-- Usability of IUCN range maps - underestimation of overlaps and stuff  
-  - GBIF polemics  
+
+Possibility that the effects of the species richness of one trophic level on others decrease with trophic distance (?)
 
 # Methods
 
