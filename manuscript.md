@@ -25,22 +25,18 @@ IUCN range maps were compiled for the 32 species included in the meta-network (2
 We then combined interaction data from the meta-network and cooccurrence data generated from species ranges to create networks for each raster pixel. This generated a total of XX networks where at least two cooccurring and interacting species were present.
 
 ## Approach
-Organisms cannot persist unless they are directly or indirectly connected to a primary producer within their associated food web (Power, 1992). As such, if a predator (omnivore or carnivore) becomes disconnected from primary producers, either because the primary producer itself or an organism at an intermediate trophic level become extinct, then that predator will too become extinct (REF). Thus, here we adjusted the ranges of predators based on a simple rule: we removed any part of a predator’s range that did not intersect with the range of at least one prey herbivore species. So, unless the range of the predator overlapped at least one prey item which in turn is directly connected to a primary producer (plants), we removed that section of the predator’s range.
+Organisms cannot persist unless they are directly or indirectly connected to a primary producer within their associated food web (Power, 1992). As such, if a predator (omnivore or carnivore) becomes disconnected from primary producers, either because the primary producer itself or an organism at an intermediate trophic level become extinct, then that predator will too become extinct. Thus, here we adjusted the ranges of predators based on a simple rule: we removed any part of a predator’s range that did not intersect with the range of at least one prey herbivore species. So, unless the range of the predator overlapped at least one prey item which in turn is directly connected to a primary producer (plants), we removed that section of the predator’s range.
 We then calculated the difference in range size between the original IUCN ranges and those adjusted based on species interaction data.
 
 ## Analysis
-To understand the drivers of range adjustments we completed a series of analyses. Initially we calculated the extent to which interacting predator and prey species cooccurred across their ranges (geographical overlap) by adapting a metric previously used to calculate beta-diversity (Koleff et al., 2003). We adapted the method presented by Ruggiero (1998): a/[a + c]. We define a as the number of pixels where the focal species occurs and c is the number of pixels where the focal species and another species cooccur. The index can be calculated with prey or predators as the focal species. The index varies between 0 and 1, with values closer to 0 indicating that there is large overlap in the ranges of the two species and values closer to 1 indicative of low cooccurrence across their ranges. This metric allowed us to understand the extent to which the range of different species overlap and provides an early indication of potential range adjustments as predators with consistently high values are likely to have significant range reductions using the approach detailed above.
-For each species we calculated the in and out degree to understand whether the level of trophic specialisation (i.e., number of prey items per predator or number of predators per prey) affects the extent to which the ranges of the species were altered. One would assume that predators with a greater number of prey (i.e., a higher degree) are less likely to have significant changes in range as it is more likely that at least one prey species is present across its entire range.
+To understand the drivers of range adjustments we completed a series of analyses. 
+We calculated geographical overlap, the extent to which interacting predator and prey species cooccurred across their ranges, by adapting a method presented by Ruggiero (1998): a/[a + c]. We define a as the number of pixels where the focal species occurs and c is the number of pixels where the focal species and another species cooccur. This index of geographical overlap can be calculated with prey or predators as the focal species. Values vary between 0 and 1, with values closer to 0 indicating that there is large overlap in the ranges of the two species and values closer to 1 indicative of low cooccurrence across their ranges.
+For each species we calculated the in and out degree to understand whether the level of trophic specialisation (i.e., number of prey items per predator or number of predators per prey) affects the extent to which the ranges of the species were altered. One would assume that predators with a greater number of prey (i.e., a higher degree) are less likely to have significant changes in range as it is more likely that at least one prey species is present across its entire range. 
 
 ## Validation
 For each species in the dataset we collated point observation data from the Global Biodiversity Information Facility (GBIF; www.gbif.org). These data were used to validate the range adjustments made based on species interactions (see Approach). To do so, we calculated the proportion of total GBIF observations occurring with the original and adjusted species ranges. We standardised these values by the total number of pixels within each range to account for variability in range size between different species.
 
-Serengeti paper - species list and interactions
-IUCN range maps
-- Why we removed plants from everything
-- Remove predators where there’s no prey available
-- The beta-diversity metrics
-- The GBIF comparison
+
 
 # Results
 
