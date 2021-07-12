@@ -1,5 +1,5 @@
 # Load required scripts and packages
-include("01-load_rasters.jl") # range maps of Serengeti mammals 
+include("01-load_rasters.jl") # range maps of Serengeti mammals
 include("shapefile.jl") # mapping functions
 
 import CSV
@@ -19,6 +19,9 @@ sp.species = replace.(sp.species, " " => "_")
 
 # Rename species following IUCN taxonomy
 replace!(sp.species, "Damaliscus_korrigum" => "Damaliscus_lunatus", "Taurotragus_oryx" => "Tragelaphus_oryx")
+
+# Remove self interaction for lions
+filter!(x -> x.pred_code != x.prey_code, lk)
 
 # Number of species and of interactions in the metaweb
 S = nrow(sp)
@@ -66,7 +69,7 @@ function remove_carnivores(sp_list)
     # Which species are herbivores and carnivores
     carni = in(carnivores).(sp_list)
     herbi = in(herbivores).(sp_list)
-  
+
     carn = sp_list[carni]
     herb = sp_list[herbi]
 
@@ -99,7 +102,7 @@ function get_subnetwork(sp_list)
         return missing
     else
 
-    # Get the subnetwork 
+    # Get the subnetwork
     MMxy = MM[sp_list]
 
     return MMxy
@@ -117,9 +120,9 @@ function get_richness_diff(MM1, MM2)
     # MM1: network before filtering
     # MM2: network after filtering
 
-    if ismissing(MM1) 
+    if ismissing(MM1)
         return nothing
-    
+
     elseif ismissing(MM2)
 
     # Count the number of species before
@@ -129,7 +132,7 @@ function get_richness_diff(MM1, MM2)
     else
     S1 = convert(Float64, length(species(MM1)))
     S2 = convert(Float64, length(species(MM2)))
-   
+
     return S1-S2
     end
 end
@@ -146,7 +149,7 @@ delta_Sxy_layer = SimpleSDMPredictor(delta_Sxy_df, :delta_Sxy, ranges[1])
 replace!(delta_Sxy_layer.grid, 0 => nothing)
 
 # Map differences in species richness
-plot(; 
+plot(;
     frame=:box,
     xlim=extrema(longitudes(delta_Sxy_layer)),
     ylim=extrema(latitudes(delta_Sxy_layer)),
@@ -158,3 +161,53 @@ plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(delta_Sxy_layer, c=:turku)
 savefig(joinpath("figures", "species_removal.png"))
 
+#### Create layers with updated species ranges
+
+# Get individual species presence/absence at every location from updated lists
+function get_updated_locations(sp, sp_list)
+    # sp: the species to to look for
+    # sp_list: a list of mammals at a given location
+
+    if isnothing(sp_list)
+        return nothing
+    elseif sp in sp_list
+        return 1.0
+    else
+        return nothing
+    end
+end
+
+locations = [get_updated_locations.(m, species_lists_c) for m in mammals]
+
+# Get updated ranges
+function get_updated_ranges(locations, layer)
+    # locations: a list of presences for a species at given locations
+    # layer: a layer with the dimensions for the new range
+
+    # Reshape locations as a grid of correct size & type
+    range_grid = reshape(locations, size(layer))
+    range_grid = convert(typeof(richness.grid), range_grid)
+
+    # New layer with updated range
+    range_layer = SimpleSDMResponse(range_grid, layer)
+
+    return range_layer
+end
+ranges_updated = [get_updated_ranges(l, richness) for l in locations]
+
+# Plot to verify
+function plot_layer(layer::SimpleSDMLayer)
+    plot(;
+        frame=:box,
+        xlim=extrema(longitudes(layer)),
+        ylim=extrema(latitudes(layer)),
+        dpi=500,
+        xaxis="Longitude",
+        yaxis="Latitude",
+    )
+    plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
+    plot!(convert(Float64, layer), c=:turku)
+end
+
+plot_layer(ranges_updated[1])
+plot_layer(ranges_updated[2])
