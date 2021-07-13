@@ -57,6 +57,14 @@ only be present in regions where there are preys. Mismatches between occurence
 and interaction data will produce updated range maps, and we will discuss the
 ecological meaning of this difference.
 
+Connection between species can be given by antagonistic and mutualistic interactions, which leads to the formation of complex networks that shape ecological structures and maintain the essential functions of ecosystems. These functions include seed dispersal, pollination, biological control, among others. (Albrecht et al., 2018) Plant-herbivore networks are spatiotemporally dynamic, and can be affected by several factors like seasonality, disturbance, specific attributes of species; this highlights the importance of understanding patterns in plant-herbivore ecological networks (Dáttilo & Rico-Gray, 2018).  Studies have reported changes in predator density and diversity along plant diversity gradients, and any change in consumer communities may be a mechanistic cause of changes in predation rates. (Hertzog et al., 2017) 
+
+
+Possibility that the effects of the species richness of one trophic level on others decrease with trophic distance (?)
+
+The International Union for Conservation of Nature (IUCN) is the largest provider of species range maps, covering thousands of mammal, bird, amphibian, and reptile species. These maps consist of simplified polygons, often created as alpha or convex hulls, which are drawn around known species locations, refined based on expert knowledge of species.  Being simple polygons, range maps also ignore abundance gradients and can include inadequate areas within the estimated range. As a result, can turn in biased estimations of the mean or median ecological conditions experienced by a species.  Global Biodiversity Information Facility (GBIF) provides an online repository of observational georeferenced records of more than one million species with global coverage. GBIF occurrence data are compiled from a variety of sources, including citizen science programs, museum collections, and long-term monitoring schemes. Wich can lead to GBIF data notoriously biased because of irregular sampling effort, with more occurrences recorded in attractive and accessible areas, and for charismatic species. (Alhajeri et al., 2018)
+
+
 
 # Methods
 
