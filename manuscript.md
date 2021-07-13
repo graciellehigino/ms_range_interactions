@@ -97,8 +97,8 @@ Fig 02 - probably the species richness before and after?
 
 Fig 03
 
-Fig 04 - The [beta-diversity plot](figures/beta-div_pred-species.png) with 4
-quadrants
+Fig 04 - The [beta-diversity plot](figures/beta-div_pred-species.png) with 4 quadrants
+There was high variation in the overlap of predator and prey ranges (Fig. 4). The range of several predators were well covered by prey (low values of prey-predator values), yet the ranges of some predators and prey were completely asynchronous, with no overlap (zero values for both overlap metrics; Fig. 4). For example, the range of Canis aureus is not covered by any prey species, whereas Panthera pardus exhibited highly variable levels of overlap with prey. In general, species exhibited more consistent values of prey-predator overlap, than predator-prey overlap – indicated by the spread of points along the x axis, yet more restricted variation on the y axis (Fig. 4). There was also no overall relationship between the two metrics, or for any predator species.
 
 Table 01 - The One With All the Species and Their Ranges and Predators and Preys
 
