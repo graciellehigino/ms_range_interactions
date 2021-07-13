@@ -1,13 +1,6 @@
 using Base: get_preferences
 using Plots.PlotMeasures
 
-test_df = copy(cooccurrence_beta)
-rename!(test_df, :spA => "species")
-test_df = leftjoin(test_df, predator_ranges; on=:species)
-test_df = leftjoin(test_df, mammal_degree_df; on=:species)
-
-all_sp_df = copy(original_range)
-all_sp_df = leftjoin(all_sp_df, sp_outdegree_df; on=:species)
 
 # Relationship between beta-diversities, colored by absolute loss of range
 scatter(
@@ -30,13 +23,40 @@ scatter(
 )
 savefig(joinpath("figures", "beta-div_pred-range-diff.png"))
 
-# Relationship between beta-diversities, colored by relative loss of range
+# Relationship between beta-diversities, colored by absolute loss of range
+# (log); markersize equals numer of cells where the predator *y* do not cooccur
+# with a prey *x*
 scatter(
-    test_df.Rab,
-    test_df.Rbb;
-    xlabel="predator to prey beta diversity",
-    ylabel="prey to predator beta diversity",
-    marker_z=test_df.relative,
+    ranges_degrees_df[0.0 .< ranges_degrees_df.Rab .< 1.0, :Rab],
+    ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :Rbb];
+    xlabel="predator to prey geographic dissimilarity",
+    ylabel="prey to predator geographic dissimilarity",
+    marker_z=-ranges_degrees_df.relative/100,
+    markersize= log.(ranges_degrees_df.nbA),
+    markercolor=:sun,
+    markerstrokewidth=0,
+    markeralpha=0.7,
+    size=(1000, 600),
+    left_margin=10mm,
+    right_margin=10mm,
+    top_margin=10mm,
+    bottom_margin=10mm,
+    label="range without prey",
+    #foreground_color_legend=nothing,
+    legend = :right,
+    background_color_legend=:white,
+)
+savefig(joinpath("figures", "betadiv-pred_range_diff-each_prey.png"))
+
+
+# Relationship between beta-diversities, colored by relative loss of range,
+# without "extreme cases"
+scatter(
+    ranges_degrees_df[0.0 .< ranges_degrees_df.Rab .< 1.0, :Rab],
+    ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :Rbb];
+    xlabel="predator to prey geographic dissimilarity",
+    ylabel="prey to predator geographic dissimilarity",
+    marker_z=ranges_degrees_df.relative,
     markercolor=:sun,
     markerstrokewidth=0,
     size=(1000, 600),
@@ -46,18 +66,20 @@ scatter(
     bottom_margin=10mm,
     xlim=[0, 1.0],
     label="predator range difference",
-    foreground_color_legend=nothing,
-    background_color_legend=:seashell,
+    legend = :right,
+    foreground_color_legend=:lightgrey,
+    background_color_legend=:white,
 )
 savefig(joinpath("figures", "beta-div_pred-range-diff-rel.png"))
 
 # Relationship between beta-diversities, grouped by predator species
 scatter(
-    test_df.Rab,
-    test_df.Rbb;
-    xlabel="predator to prey beta diversity",
-    ylabel="prey to predator beta diversity",
-    group=test_df.species,
+    ranges_degrees_df[0.0 .< ranges_degrees_df.Rab .< 1.0, :Rab],
+    ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :Rbb];
+    xlabel="predator to prey geographic dissimilarity",
+    ylabel="prey to predator geographic dissimilarity",
+    xlim = [0.0:1.0],
+    group=ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :species],
     markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
     markersize=6,
     palette=:seaborn_colorblind,
@@ -67,18 +89,19 @@ scatter(
     right_margin=10mm,
     top_margin=10mm,
     bottom_margin=10mm,
-    foreground_color_legend=nothing,
-    background_color_legend=:seashell,
+    legend = :right,
+    foreground_color_legend=:lightgrey,
+    background_color_legend=:white
 )
 savefig(joinpath("figures", "beta-div_pred-species.png"))
 
 # Relative loss in range size vs. out degree
 scatter(
-    test_df.degree,
-    test_df.relative .* -1;
+    ranges_degrees_df.degree,
+    ranges_degrees_df.relative .* -1;
     xlabel="Out degree of predators",
     ylabel="Relative loss of range",
-    marker_z=test_df.old_range,
+    marker_z=ranges_degrees_df.old_range,
     markercolor=:sun,
     markerstrokewidth=0,
     left_margin=10mm,
@@ -87,18 +110,18 @@ scatter(
     bottom_margin=10mm,
     label="predators' original range",
     legend=:topright,
-    foreground_color_legend=nothing,
+    foreground_color_legend=:lightgrey,
     background_color_legend=:white,
 )
 savefig(joinpath("figures", "rel_loss-out_degree-orig_range.png"))
 
 # Out degree vs. relative lost in range size, colored by species
 scatter(
-    test_df.degree,
-    test_df.relative .* -1;
+    ranges_degrees_df.degree,
+    ranges_degrees_df.relative .* -1;
     xlabel="Out degree of predators",
     ylabel="Relative loss of range",
-    group=test_df.species,
+    group=ranges_degrees_df.species,
     markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
     markersize=6,
     palette=:seaborn_colorblind,
@@ -108,8 +131,9 @@ scatter(
     top_margin=10mm,
     bottom_margin=10mm,
     legend=:topright,
-    foreground_color_legend=nothing,
-    background_color_legend=:seashell,
+    foreground_color_legend=:lightgrey,
+    background_color_legend=:white,
+    size=(1000, 600)
 )
 savefig(joinpath("figures", "rel_loss-outdegree-species.png"))
 
@@ -120,7 +144,7 @@ scatter(
     xlabel="Out degree of species",
     ylabel="Original range (x 10km²)",
     markersize=3,
-    markercolor=:sun,
+    markercolor=:orangered2,
     markerstrokewidth=0,
     left_margin=4mm,
     right_margin=6mm,
@@ -129,9 +153,9 @@ scatter(
     legend=:none
 )
 scatter!(
-    test_df.degree,
-    test_df.old_range ./ 10^4;
-    markercolor = :mediumpurple1,
+    ranges_degrees_df.degree,
+    ranges_degrees_df.old_range ./ 10^4;
+    markercolor = :teal,
     markerstrokewidth = 0,
     markersize = 3,
     markershape = :rect
@@ -140,11 +164,11 @@ savefig(joinpath("figures", "outdegree-orig_range.png"))
 
 # Number of preys vs. original range - only predators
 scatter(
-    test_df.degree,
-    test_df.old_range ./ 10^4;
+    ranges_degrees_df.degree,
+    ranges_degrees_df.old_range ./ 10^4;
     xlabel="Out degree of predators",
     ylabel="Original range (x 10^4)",
-    group=test_df.species,
+    group=ranges_degrees_df.species,
     markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
     markersize=4,
     palette=:seaborn_colorblind,
@@ -162,24 +186,25 @@ savefig(joinpath("figures", "outdegree_predators-orig_range-species.png"))
 
 # In-degree vs. relative lost in range size, symbols are species and colors are original range size
 scatter(
-    test_df.relative .* -1,
-    test_df.degree,
+    ranges_degrees_df.relative .* -1,
+    ranges_degrees_df.degree,
     xlabel="Relative range loss (%)",
-    ylabel="In-degree of predators (n)",
-    marker_z=test_df.old_range,
+    ylabel="Out-degree of predators (n)",
+    marker_z=log.(ranges_degrees_df.old_range),
     markercolor=:sun,
-    group=test_df.species,
+    group=ranges_degrees_df.species,
     markershape = [:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle],
     markersize= 6,
     palette = :Dark2_8,
     markerstrokewidth=0,
     left_margin=10mm,
-    right_margin=10mm,
+    right_margin=15mm,
     top_margin=10mm,
     bottom_margin=10mm, 
+    size=(1000, 600),
     legend=:topright,
-    foreground_color_legend=nothing,
-    background_color_legend=:seashell,
+    foreground_color_legend=:lightgrey,
+    background_color_legend=:white,
     annotate = (128,10,text("Original range size (km²)", 12,  rotation = 270))
 )
 savefig(joinpath("figures", "rel_lost-in_degree-species-and-range.png"))
