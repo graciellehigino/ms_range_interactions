@@ -75,14 +75,16 @@ savefig(joinpath("figures", "beta-div_pred-range-diff-rel.png"))
 # Relationship between beta-diversities, grouped by predator species
 scatter(
     ranges_degrees_df[0.0 .< ranges_degrees_df.Rab .< 1.0, :Rab],
-    ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :Rbb];
+    ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :Rbb],
+    regression = true,
     xlabel="predator to prey geographic dissimilarity",
     ylabel="prey to predator geographic dissimilarity",
     xlim = [0.0:1.0],
     group=ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :species],
-    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
-    markersize=6,
-    palette=:seaborn_colorblind,
+    markershape=[:circle :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+    markersize=3,
+    linewidth = 4,
+    palette = cgrad(:seaborn_colorblind)[[1, 3:9...]],
     markerstrokewidth=0,
     size=(1000, 600),
     left_margin=10mm,
