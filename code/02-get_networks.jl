@@ -118,14 +118,14 @@ Nxy_corr = get_subnetwork.(species_lists_corr)
 
 
 
-#### Analyse network structure 
+#### Analyse network structure
 
 # Get the number of mammal species (before correction)
 function get_richness(Nxy)
     # Nxy: local network of mammals (before correction)
     if ismissing(Nxy)
         return nothing
-    else 
+    else
     S = convert(Float64, length(species(Nxy)))
     return S
     end
@@ -157,7 +157,7 @@ function get_diff(Sxy, Sxy_corr)
     # Sxy_corr: species richness at the same location (after correction)
     if isnothing(Sxy_corr)
         return nothing
-    else 
+    else
         return Sxy - Sxy_corr
     end
 end
@@ -170,7 +170,7 @@ function get_prop(Sxy, Sxy_corr)
     # Sxy_corr: species richness at the same location (after correction)
     if isnothing(Sxy_corr)
         return nothing
-    else 
+    else
         return Sxy_corr / Sxy
     end
 end
@@ -179,7 +179,7 @@ prop_Sxy = get_prop.(Sxy, Sxy_corr)
 
 # Arrange in DataFrame
 Sxy_df = select(ranges_df, :longitude, :latitude)
-insertcols!(Sxy_df, :Sxy => Sxy, :Sxy_corr => Sxy_corr, 
+insertcols!(Sxy_df, :Sxy => Sxy, :Sxy_corr => Sxy_corr,
             :delta_Sxy => delta_Sxy, :prop_Sxy => prop_Sxy)
 
 # Arrange as layers
@@ -279,3 +279,8 @@ end
 
 plot_layer(ranges_updated[1])
 plot_layer(ranges_updated[2])
+
+## Export updated ranges
+
+# Export as tif stack
+geotiff(joinpath("data", "clean", "ranges_updated.tif"), ranges_updated)
