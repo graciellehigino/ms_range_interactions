@@ -1,4 +1,3 @@
-
 ## Load required scripts and packages
 import Pkg; Pkg.activate("."); Pkg.instantiate()
 
@@ -95,7 +94,7 @@ open(table_path, "w") do io
     end
 end
 
-## Plot results
+## Plot results - All species
 
 # 1. Pixel proportion according to IUCN range
 scatter(
@@ -132,44 +131,68 @@ scatter(
 )
 savefig(joinpath("figures", "gbif_occ-prop_occ-n.png"))
 
+## Plot results - Predators only
+
+# Set plot options to reuse
+carnivores_options = (
+    group=carnivores.species,
+    ylim=(-0.03, 1.0),
+    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+    markersize=6,
+    palette=:seaborn_colorblind,
+    markerstrokewidth=0,
+    legend=:bottomright,
+    legendtitle="Species",
+    legendtitlefontvalign=:bottom,
+    labels=permutedims(replace.(carnivores.species, "_" => " ")),
+    foreground_color_legend=nothing,
+    background_color_legend=:white,
+)
+
 # 4. Predators only - Pixel proportion according to IUCN range
-comparison_df |> x ->
-    filter(:type => ==("carnivore"), x) |> x ->
+range_prop_pred = carnivores |> x ->
     scatter(
         x.range ./ 10^4,
         x.range_prop;
-        group=x.species,
-        xlabel="IUCN range size (x 10^4)",
+        xlabel="IUCN range size in pixels (x 10,000)",
         ylabel="Proportion of GBIF pixels in IUCN range",
-        # legend=:right,
-        ylim=(0.0, 1.0),
-        markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
-        markersize=6,
-        palette=:seaborn_colorblind,
-        markerstrokewidth=0,
-        legend=:right,
-        foreground_color_legend=nothing,
-        background_color_legend=:white,
+        carnivores_options...
     )
 savefig(joinpath("figures", "gbif_range-prop_pred.png"))
 
 # 5. Predators only - Occurrence proportion according to IUCN range
-comparison_df |> x ->
-    filter(:type => ==("carnivore"), x) |> x ->
+occ_prop_pred = carnivores |> x ->
     scatter(
         x.range ./ 10^4,
         x.occ_prop;
-        group=x.species,
-        xlabel="IUCN range size (x 10^4)",
+        xlabel="IUCN range size in pixels (x 10,000)",
         ylabel="Proportion of occurrences in IUCN range",
-        # legend=:right,
-        ylim=(0.0, 1.0),
-        markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
-        markersize=6,
-        palette=:seaborn_colorblind,
-        markerstrokewidth=0,
-        legend=:right,
-        foreground_color_legend=nothing,
-        background_color_legend=:white,
+        carnivores_options...
     )
 savefig(joinpath("figures", "gbif_occ-prop_pred.png"))
+
+## Plot results - Predators with preys in background
+
+# 6. Predators with labels & preys in background - Occurrence proportion according to IUCN range
+scatter!(
+    deepcopy(range_prop_pred),
+    herbivores.range ./ 10^4,
+    herbivores.range_prop;
+    label="Herbivores",
+    c=:lightgrey,
+    markerstrokewidth=0,
+    markersize=4,
+)
+savefig(joinpath("figures", "gbif_range-prop_pred-prey.png"))
+
+# 7. Predators with labels & preys in background - Occurrence proportion according to IUCN range
+scatter!(
+    deepcopy(occ_prop_pred),
+    herbivores.range ./ 10^4,
+    herbivores.occ_prop;
+    label="Herbivores",
+    c=:lightgrey,
+    markerstrokewidth=0,
+    markersize=4,
+)
+savefig(joinpath("figures", "gbif_occ-prop_pred-prey.png"))
