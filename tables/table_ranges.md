@@ -5,9 +5,9 @@
 |        Canis mesomelas |   1 |   1 |        19872 |      0.190 |      0.995 |
 |        Crocuta crocuta |  12 |   1 |        43307 |      0.848 |      0.252 |
 |     Leptailurus serval |   1 |   1 |        38856 |      0.011 |      0.979 |
-|           Panthera leo |  19 |   1 |        11384 |      1 |      1 |
-|        Panthera pardus |  22 | missing |        68137 |      0.866 |    missing |
+|        Panthera pardus |  22 | missing |        68137 |      0.766 |    missing |
 |          Lycaon pictus |  14 | missing |         3873 |      0.916 |    missing |
+|           Panthera leo |  18 | missing |        11384 |      0.934 |    missing |
 |        Caracal caracal |   4 | missing |        47243 |      0.832 |    missing |
 |     Aepyceros melampus | missing |   5 |        10579 |    missing |      1 |
 |  Alcelaphus buselaphus | missing |   4 |        20761 |    missing |      1 |
