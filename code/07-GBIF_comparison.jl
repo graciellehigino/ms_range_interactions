@@ -62,18 +62,43 @@ insertcols!(
     :range => length.(ranges),
     :gbif_range => length.(gbif_ranges),
     :range_prop => length.(gbif_mask) ./ length.(gbif_ranges),
-) 
+)
 
 # Short DataFrame
 comparison_short = select(comparison_df, :species, :type, :occ_n,:range, :occ_prop, :range_prop)
 show(comparison_short, allrows = true)
 cor(comparison_short.occ_prop, comparison_short.range_prop) # 0.955
 
+## Export table
+
+# Format as Markdown table
+using Latexify
+comparison_short.species .= replace.(comparison_short.species, "_" => " ")
+table = latexify(comparison_short, env=:mdtable, fmt="%.3f", latex=false)
+print(table) # copy & save to file
+
+# Export to file
+table_path = joinpath("tables", "table_gbif.md")
+open(table_path, "w") do io
+    print(io, table)
+end
+
+# Fix digits
+lines = readlines(table_path; keep=true)
+open(table_path, "w") do io
+    for line in lines
+        line = replace(line, " 0.000" => " x.xxx")
+        line = replace(line, ".000" => "")
+        line = replace(line, " x.xxx" => " 0.000")
+        print(io, line)
+    end
+end
+
 ## Plot results
 
 # 1. Pixel proportion according to IUCN range
 scatter(
-    comparison_df.range ./ 10^4, 
+    comparison_df.range ./ 10^4,
     comparison_df.range_prop;
     group=comparison_df.type,
     xlabel="IUCN range size (x 10^4)",
@@ -85,7 +110,7 @@ savefig(joinpath("figures", "gbif_range-prop.png"))
 
 # 2. Occurrence proportion according to IUCN range
 scatter(
-    comparison_df.range ./ 10^4, 
+    comparison_df.range ./ 10^4,
     comparison_df.occ_prop;
     group=comparison_df.type,
     xlabel="IUCN range size (x 10^4)",
@@ -97,7 +122,7 @@ savefig(joinpath("figures", "gbif_occ-prop.png"))
 
 # 3. Occurrence proportion according to number of GBIF occurrences
 scatter(
-    comparison_df.occ_n, 
+    comparison_df.occ_n,
     comparison_df.occ_prop;
     group=comparison_df.type,
     xlabel="Number of GBIF occurrences",
@@ -107,10 +132,10 @@ scatter(
 savefig(joinpath("figures", "gbif_occ-prop_occ-n.png"))
 
 # 4. Predators only - Pixel proportion according to IUCN range
-comparison_df |> x -> 
+comparison_df |> x ->
     filter(:type => ==("carnivore"), x) |> x ->
     scatter(
-        x.range ./ 10^4, 
+        x.range ./ 10^4,
         x.range_prop;
         group=x.species,
         xlabel="IUCN range size (x 10^4)",
@@ -128,10 +153,10 @@ comparison_df |> x ->
 savefig(joinpath("figures", "gbif_range-prop_pred.png"))
 
 # 5. Predators only - Occurrence proportion according to IUCN range
-comparison_df |> x -> 
+comparison_df |> x ->
     filter(:type => ==("carnivore"), x) |> x ->
     scatter(
-        x.range ./ 10^4, 
+        x.range ./ 10^4,
         x.occ_prop;
         group=x.species,
         xlabel="IUCN range size (x 10^4)",

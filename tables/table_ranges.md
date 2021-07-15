@@ -1,0 +1,34 @@
+|                species | n_preys | n_preds | total_range_size | prop_preys | prop_preds |
+| ----------------------:| -------:| -------:| ----------------:| ----------:| ----------:|
+|       Acinonyx jubatus |   8 |   1 |        15540 |      0.560 |      0.670 |
+|           Canis aureus |   4 |   1 |         7358 |      0.000 |      0.780 |
+|        Canis mesomelas |   1 |   1 |        19872 |      0.190 |      0.995 |
+|        Crocuta crocuta |  12 |   1 |        43307 |      0.848 |      0.252 |
+|     Leptailurus serval |   1 |   1 |        38856 |      0.011 |      0.979 |
+|           Panthera leo |  19 |   1 |        11384 |      1 |      1 |
+|        Panthera pardus |  22 | missing |        68137 |      0.866 |    missing |
+|          Lycaon pictus |  14 | missing |         3873 |      0.916 |    missing |
+|        Caracal caracal |   4 | missing |        47243 |      0.832 |    missing |
+|     Aepyceros melampus | missing |   5 |        10579 |    missing |      1 |
+|  Alcelaphus buselaphus | missing |   4 |        20761 |    missing |      1 |
+|  Connochaetes taurinus | missing |   6 |         9650 |    missing |      1 |
+|     Damaliscus lunatus | missing |   4 |         5567 |    missing |      1 |
+|           Equus quagga | missing |   5 |         7070 |    missing |      1 |
+|          Nanger granti | missing |   6 |         2303 |    missing |      1 |
+|     Eudorcas thomsonii | missing |   6 |          463 |    missing |      1 |
+| Giraffa camelopardalis | missing |   1 |         5418 |    missing |      0.470 |
+|     Heterohyrax brucei | missing |   1 |        17728 |    missing |      0.972 |
+|   Kobus ellipsiprymnus | missing |   4 |        26705 |    missing |      1 |
+|         Madoqua kirkii | missing |   7 |         4002 |    missing |      1 |
+|         Ourebia ourebi | missing |   5 |        22380 |    missing |      1 |
+|           Papio anubis | missing |   1 |        23171 |    missing |      0.938 |
+|       Pedetes capensis | missing |   2 |        11901 |    missing |      1 |
+| Phacochoerus africanus | missing |   5 |        29963 |    missing |      0.999 |
+|      Procavia capensis | missing |   1 |        47697 |    missing |      0.647 |
+|        Redunca redunca | missing |   5 |        17465 |    missing |      1 |
+|      Rhabdomys pumilio | missing |   5 |          465 |    missing |      0.998 |
+|        Syncerus caffer | missing |   1 |        25223 |    missing |      0.250 |
+|       Tragelaphus oryx | missing |   2 |        20852 |    missing |      0.991 |
+|   Tragelaphus scriptus | missing |   3 |        36011 |    missing |      0.984 |
+| Hippopotamus amphibius | missing | missing |         3695 |    missing |    missing |
+|     Loxodonta africana | missing | missing |         9654 |    missing |    missing |
