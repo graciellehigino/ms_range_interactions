@@ -96,6 +96,10 @@ end
 
 ## Plot results
 
+# Separate carnivores & herbivores
+carnivores = filter(:type => ==("carnivore"), comparison_df)
+herbivores = filter(:type => ==("herbivore"), comparison_df)
+
 # Set plot options to reuse
 options = (
     group=carnivores.species,
@@ -110,6 +114,7 @@ options = (
     labels=permutedims(replace.(carnivores.species, "_" => " ")),
     foreground_color_legend=nothing,
     background_color_legend=:white,
+    dpi=500,
 )
 
 # 1. Pixel proportion according to IUCN range
@@ -127,5 +132,6 @@ scatter!(
     c=:lightgrey,
     markerstrokewidth=0,
     markersize=4,
+    xticks=0:1:ceil(maximum(comparison_df.range ./ 10^4)),
 )
 savefig(joinpath("figures", "gbif_range-prop_pred-prey.png"))
