@@ -269,7 +269,7 @@ sort!(table1, :trophic_levels, rev=true)
 
 using Latexify
 table1.species .= replace.(table1.species, "_" => " ")
-table1 = latexify(table1, env=:mdtable, fmt="%.3f", latex=false)
+table1 = latexify(table1, env=:mdtable, fmt="%.0f", latex=false)
 print(table1) # copy & save to file
 
 # Export to file
@@ -278,19 +278,3 @@ open(table_path, "w") do io
     print(io, table1)
 end
 
-
-# cooccurrence_interact.nbA # number of pixels with no preys
-# cooccurrence_interact.nbB # number of pixels with no predators
-# pred_has_prey = combine(groupby(cooccurrence_interact, :spA), :nbA=>sum=>:pred_has_prey) # cells where only predators occur
-# rename!(pred_has_prey, :spA => "species")
-# prey_has_pred = combine(groupby(cooccurrence_interact, :spB), :nbB=>sum=>:prey_has_pred) # cells where only prey occur
-# rename!(prey_has_pred, :spB => "species")
-# table1_preds = leftjoin(pred_has_prey, prey_has_pred, on=:species) # predators and preys of predators
-# table1_preys = leftjoin(prey_has_pred, pred_has_prey, on=:species) # predators and preys of predators
-# table1_preds_preys = unique(vcat(table1_preds, table1_preys, cols=:union), :species)
-# table1 = leftjoin(table1, table1_preds_preys, on=:species)
-# table1 = coalesce.(table1, 0)
-# table1.pred_has_prey = table1.pred_has_prey .* 100 ./ table1.old_range
-# table1.prey_has_pred = table1.prey_has_pred .* 100 ./ table1.old_range
-# table1.pred_has_prey .= ifelse.(table1.pred_has_prey .> 100.00, 100.00, table1.pred_has_prey)
-# table1.prey_has_pred .= ifelse.(table1.prey_has_pred .> 100.00, 100.00, table1.prey_has_pred)
