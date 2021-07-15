@@ -94,47 +94,10 @@ open(table_path, "w") do io
     end
 end
 
-## Plot results - All species
-
-# 1. Pixel proportion according to IUCN range
-scatter(
-    comparison_df.range ./ 10^4,
-    comparison_df.range_prop;
-    group=comparison_df.type,
-    xlabel="IUCN range size (x 10^4)",
-    ylabel="Proportion of GBIF pixels in IUCN range",
-    legend=:right,
-    ylim=(0.0, 1.0)
-)
-savefig(joinpath("figures", "gbif_range-prop.png"))
-
-# 2. Occurrence proportion according to IUCN range
-scatter(
-    comparison_df.range ./ 10^4,
-    comparison_df.occ_prop;
-    group=comparison_df.type,
-    xlabel="IUCN range size (x 10^4)",
-    ylabel="Proportion of occurrences in IUCN range",
-    legend=:right,
-    ylim=(0.0, 1.0)
-)
-savefig(joinpath("figures", "gbif_occ-prop.png"))
-
-# 3. Occurrence proportion according to number of GBIF occurrences
-scatter(
-    comparison_df.occ_n,
-    comparison_df.occ_prop;
-    group=comparison_df.type,
-    xlabel="Number of GBIF occurrences",
-    ylabel="Proportion of occurrences in IUCN range",
-    legend=:right
-)
-savefig(joinpath("figures", "gbif_occ-prop_occ-n.png"))
-
-## Plot results - Predators only
+## Plot results
 
 # Set plot options to reuse
-carnivores_options = (
+options = (
     group=carnivores.species,
     ylim=(-0.03, 1.0),
     markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
@@ -149,33 +112,15 @@ carnivores_options = (
     background_color_legend=:white,
 )
 
-# 4. Predators only - Pixel proportion according to IUCN range
-range_prop_pred = carnivores |> x ->
-    scatter(
-        x.range ./ 10^4,
-        x.range_prop;
-        xlabel="IUCN range size in pixels (x 10,000)",
-        ylabel="Proportion of GBIF pixels in IUCN range",
-        carnivores_options...
-    )
-savefig(joinpath("figures", "gbif_range-prop_pred.png"))
-
-# 5. Predators only - Occurrence proportion according to IUCN range
-occ_prop_pred = carnivores |> x ->
-    scatter(
-        x.range ./ 10^4,
-        x.occ_prop;
-        xlabel="IUCN range size in pixels (x 10,000)",
-        ylabel="Proportion of occurrences in IUCN range",
-        carnivores_options...
-    )
-savefig(joinpath("figures", "gbif_occ-prop_pred.png"))
-
-## Plot results - Predators with preys in background
-
-# 6. Predators with labels & preys in background - Occurrence proportion according to IUCN range
+# 1. Pixel proportion according to IUCN range
+scatter(
+    carnivores.range ./ 10^4,
+    carnivores.range_prop;
+    xlabel="IUCN range size in pixels (x 10,000)",
+    ylabel="Proportion of GBIF pixels in IUCN range",
+    options...
+)
 scatter!(
-    deepcopy(range_prop_pred),
     herbivores.range ./ 10^4,
     herbivores.range_prop;
     label="Herbivores",
@@ -185,9 +130,15 @@ scatter!(
 )
 savefig(joinpath("figures", "gbif_range-prop_pred-prey.png"))
 
-# 7. Predators with labels & preys in background - Occurrence proportion according to IUCN range
+# 2. Occurrence proportion according to IUCN range
+scatter(
+    carnivores.range ./ 10^4,
+    carnivores.occ_prop;
+    xlabel="IUCN range size in pixels (x 10,000)",
+    ylabel="Proportion of occurrences in IUCN range",
+    options...
+)
 scatter!(
-    deepcopy(occ_prop_pred),
     herbivores.range ./ 10^4,
     herbivores.occ_prop;
     label="Herbivores",
