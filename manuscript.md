@@ -104,7 +104,7 @@ Table 01 - The One With All the Species and Their Ranges and Predators and Preys
 
 ## GBIF
 
-![](figures/gbif_range-prop.png){#fig:gbif}
+![GBIF results woohoo](figures/gbif_range-prop.png){#fig:gbif}
 
 Our GBIF result is pretty cool ([@Fig:gbif]).
 
