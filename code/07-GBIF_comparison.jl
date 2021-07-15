@@ -129,21 +129,3 @@ scatter!(
     markersize=4,
 )
 savefig(joinpath("figures", "gbif_range-prop_pred-prey.png"))
-
-# 2. Occurrence proportion according to IUCN range
-scatter(
-    carnivores.range ./ 10^4,
-    carnivores.occ_prop;
-    xlabel="IUCN range size in pixels (x 10,000)",
-    ylabel="Proportion of occurrences in IUCN range",
-    options...
-)
-scatter!(
-    herbivores.range ./ 10^4,
-    herbivores.occ_prop;
-    label="Herbivores",
-    c=:lightgrey,
-    markerstrokewidth=0,
-    markersize=4,
-)
-savefig(joinpath("figures", "gbif_occ-prop_pred-prey.png"))
