@@ -78,13 +78,14 @@ table = latexify(comparison_short, env=:mdtable, fmt="%.3f", latex=false)
 print(table) # copy & save to file
 
 # Export to file
-open("table_gbif.md", "w") do io
+table_path = joinpath("tables", "table_gbif.md")
+open(table_path, "w") do io
     print(io, table)
 end
 
 # Fix digits
-lines = readlines("table_gbif.md"; keep=true)
-open("table_gbif.md", "w") do io
+lines = readlines(table_path; keep=true)
+open(table_path, "w") do io
     for line in lines
         line = replace(line, " 0.000" => " x.xxx")
         line = replace(line, ".000" => "")

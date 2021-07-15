@@ -127,13 +127,14 @@ results.species .= replace.(results.species, "_" => " ")
 table = latexify(results, env=:mdtable, fmt="%.3f", latex=false, escape_underscores=true)
 
 # Export to file
-open("table_ranges.md", "w") do io
+table_path = joinpath("tables", "table_ranges.md")
+open(table_path, "w") do io
     print(io, table)
 end
 
 # Fix digits
-lines = readlines("table_ranges.md"; keep=true)
-open("table_ranges.md", "w") do io
+lines = readlines(table_path; keep=true)
+open(table_path, "w") do io
     for line in lines
         line = replace(line, " 0.000" => " x.xxx")
         line = replace(line, ".000" => "")
