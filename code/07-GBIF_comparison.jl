@@ -33,37 +33,43 @@ ranges_updated = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "ranges_
 occ_df = CSV.read(joinpath("data", "clean", "gbif_occurrences.csv"), DataFrame)
 gbif_ranges = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "gbif_ranges.tif"), i) for i in eachindex(mammals)]
 
-## Compare GBIF occurrences & ranges
+## Get IUCN range values at GBIF occurrences
 
 # Separate occurrences per species
 spp_df = [filter(:species => ==(m), occ_df) for m in mammals];
 
 # Get values from IUCN layers at corresponding GBIF coordinates
 for (i, df) in enumerate(spp_df)
-    insertcols!(df, :IUCN => ranges[i][df])
-    insertcols!(df, :IUCN_updated => ranges_updated[i][df])
+    df.IUCN = ranges[i][df]
+    df.IUCN_updated = ranges_updated[i][df]
 end
 
-# Reassemble
+# Reassemble in single DataFrame
 occ_df = reduce(vcat, spp_df)
+
+# Replace nothings by zeros before performing sum
 replace!(occ_df.IUCN, nothing => 0.0)
 replace!(occ_df.IUCN_updated, nothing => 0.0)
 
-# Get proportion of occurrences in GBIF ranges
-comparison_df = combine(
+## Compare GBIF occurrences & ranges
+
+# Get number of occurrences & number of pixels in IUCN range
+comparison_occ = combine(
     groupby(occ_df, :species),
-    nrow => :occ_n,
-    :IUCN => sum => :occ_sum,
-    :IUCN_updated => sum => :occ_sum_updated,
+    nrow => :total_occ,
+    :IUCN => sum => :n_occ_original,
+    :IUCN_updated => sum => :n_occ_updated,
 )
-transform!(
-    comparison_df,
-    [:occ_sum, :occ_n] => ByRow(/) => :occ_prop,
-    [:occ_sum_updated, :occ_n] => ByRow(/) => :occ_prop_updated,
+
+# Get proportion of pixels in IUCN range
+@transform!(
+    comparison_occ,
+    occ_prop = :n_occ_original ./ :total_occ,
+    occ_prop_updated = :n_occ_updated ./ :total_occ,
 )
-comparison_df = rightjoin(sp, comparison_df; on=:species)
-select!(comparison_df, Not(:code))
-comparison_df.occ_prop == comparison_df.occ_prop_updated
+
+# Get difference between original & previous range
+@transform!(comparison_occ, occ_prop_diff = :occ_prop_updated .- :occ_prop)
 
 ## Compare layers
 
