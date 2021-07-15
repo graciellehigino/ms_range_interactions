@@ -79,21 +79,21 @@ scatter(
     regression = true,
     xlabel="predator to prey geographic dissimilarity",
     ylabel="prey to predator geographic dissimilarity",
-    xlim = [0.0:1.0],
     group=ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :species],
     markershape=[:circle :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
     markersize=3,
     linewidth = 4,
     palette = cgrad(:seaborn_colorblind)[[1, 3:9...]],
     markerstrokewidth=0,
-    size=(1000, 600),
+    size=(800, 800),
     left_margin=10mm,
     right_margin=10mm,
     top_margin=10mm,
     bottom_margin=10mm,
     legend = :right,
     foreground_color_legend=:lightgrey,
-    background_color_legend=:white
+    background_color_legend=:white,
+    aspect_ratio = :equal
 )
 savefig(joinpath("figures", "beta-div_pred-species.png"))
 
