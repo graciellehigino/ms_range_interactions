@@ -61,14 +61,21 @@ function update_range(ranges_dict::Dict{String, T}, interactions_list::DataFrame
     return pred_updated
 end
 
-# Get updated ranges
-ranges_dict = Dict(mammals .=> ranges)
-preds_updated = [update_range(ranges_dict, interactions_df, sp) for sp in predators]
-preys_updated = [update_range(ranges_dict, interactions_df, sp, :prey) for sp in preys]
-
 # Get original ranges (in same order, which is different from the order in mammals.csv)
 preds_original = ranges[indexin(predators, mammals)]
 preys_original = ranges[indexin(preys, mammals)]
+
+# Create dicts to get ranges by species name
+ranges_dict = Dict(mammals .=> ranges)
+ranges_updated_dict = Dict(mammals .=> ranges_updated)
+
+# Get predator ranges
+preds_original = [ranges_dict[sp] for sp in predators]
+preds_updated = [ranges_updated_dict[sp] for sp in predators]
+
+# Get prey ranges
+preys_original = [ranges_dict[sp] for sp in preys]
+preys_updated = [update_range(ranges_dict, interactions_df, sp, :prey) for sp in preys]
 
 ## Produce table
 
