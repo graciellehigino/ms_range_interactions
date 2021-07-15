@@ -25,12 +25,12 @@ sp = DataFrame(CSV.File(joinpath("data", "species_code.csv")))
 sp.species = replace.(sp.species, " " => "_")
 replace!(sp.species, "Damaliscus_korrigum" => "Damaliscus_lunatus", "Taurotragus_oryx" => "Tragelaphus_oryx")
 
-# Get the individual ranges back (and remove the NaN)
+# Get the individual ranges back (original and updated)
 ranges = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.tif"), i) for i in eachindex(mammals)]
+ranges_updated = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "ranges_updated.tif"), i) for i in eachindex(mammals)]
 
 # GBIF data
 occ_df = CSV.read(joinpath("data", "clean", "gbif_occurrences.csv"), DataFrame)
-gbif_occ_layers = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "gbif_occurrences.tif"), i) for i in eachindex(mammals)]
 gbif_ranges = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "gbif_ranges.tif"), i) for i in eachindex(mammals)]
 
 ## Compare GBIF occurrences & ranges
@@ -38,18 +38,32 @@ gbif_ranges = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "gbif_range
 # Separate occurrences per species
 spp_df = [filter(:species => ==(m), occ_df) for m in mammals];
 
-# Get IUCN value at corresponding coordinates
-[insertcols!(df, :IUCN => r[df]) for (df, r) in zip(spp_df, ranges)]
+# Get values from IUCN layers at corresponding GBIF coordinates
+for (i, df) in enumerate(spp_df)
+    insertcols!(df, :IUCN => ranges[i][df])
+    insertcols!(df, :IUCN_updated => ranges_updated[i][df])
+end
 
 # Reassemble
 occ_df = reduce(vcat, spp_df)
 replace!(occ_df.IUCN, nothing => 0.0)
+replace!(occ_df.IUCN_updated, nothing => 0.0)
 
 # Get proportion of occurrences in GBIF ranges
-comparison_df = combine(groupby(occ_df, :species), nrow => :occ_n, :IUCN => sum => :occ_sum)
-transform!(comparison_df, [:occ_sum, :occ_n] => ByRow(/) => :occ_prop)
+comparison_df = combine(
+    groupby(occ_df, :species),
+    nrow => :occ_n,
+    :IUCN => sum => :occ_sum,
+    :IUCN_updated => sum => :occ_sum_updated,
+)
+transform!(
+    comparison_df,
+    [:occ_sum, :occ_n] => ByRow(/) => :occ_prop,
+    [:occ_sum_updated, :occ_n] => ByRow(/) => :occ_prop_updated,
+)
 comparison_df = rightjoin(sp, comparison_df; on=:species)
 select!(comparison_df, Not(:code))
+comparison_df.occ_prop == comparison_df.occ_prop_updated
 
 ## Compare layers
 
