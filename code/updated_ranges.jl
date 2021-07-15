@@ -19,20 +19,6 @@ missing_species = setdiff(mammals, union(predators, preys))
 # Investigate intermediate predators as preys
 filter(:prey => in(predators), interactions_df)
 
-# Remove predators with themselves as prey
-#=
-filter!(x -> x.prey != x.pred, interactions_df) # only Pantera_leo
-preys = unique(interactions_df.prey)
-test
-=#
-
-# Remove intermediate predators from analyses
-# (Needed to match the results from 02-get_networks.jl)
-#=
-filter!(:prey => !in(predators), interactions_df)
-preys = unique(interactions_df.prey)
-=#
-
 ## Update predactor ranges
 
 # Function to get union between layers --> pixels where at least one species present
