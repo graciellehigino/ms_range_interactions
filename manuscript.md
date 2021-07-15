@@ -102,7 +102,11 @@ There was high variation in the overlap of predator and prey ranges (Fig. 4). Th
 
 Table 01 - The One With All the Species and Their Ranges and Predators and Preys
 
-Fig 06 - Something with GBIF results
+## GBIF
+
+![](figures/gbif_range-prop.png){#fig:gbif}
+
+Our GBIF result is pretty cool ([@Fig:gbif]).
 
 # Discussion
 
