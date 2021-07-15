@@ -33,7 +33,7 @@ plot(;
     yaxis="Latitude",
 )
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
-plot!(richness, frame=:box, c=:turku, clim=(1, maximum(richness)))
+plot!(richness, frame=:box, c=cgrad(:turku, rev=true), clim=(1, maximum(richness)))
 savefig(joinpath("figures", "richness.png"))
 
 ## Create a layer with the names of the species present

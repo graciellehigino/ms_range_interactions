@@ -20,14 +20,14 @@ sp.species = replace.(sp.species, " " => "_")
 # Rename species following IUCN taxonomy
 replace!(sp.species, "Damaliscus_korrigum" => "Damaliscus_lunatus", "Taurotragus_oryx" => "Tragelaphus_oryx")
 
-# Remove self interaction for lions
+# Remove self interactions
 filter!(x -> x.pred_code != x.prey_code, lk)
 
 # Number of species and of interactions in the metaweb
 S = nrow(sp)
 L = nrow(lk)
 
-# Find row and column numbers of all interactions
+# Find row and column numbers of all interactions to build metaweb
 # Adjacency matrix ordered by species list
 # All realized interactions have a value of 1
 rows = [findall(lk.pred_code[i] .== sp.code)[1] for i in 1:L]
@@ -37,7 +37,6 @@ vals = ones(Bool, L)
 # Build metaweb of all species (plants and mammals)
 M = sparse(rows, cols, vals, S, S)
 M = UnipartiteNetwork(Matrix(M), sp.species)
-
 
 # Get list of plants and mammals (carnivores and herbivores)
 plants = sp.species[sp.type .== "plant"]
@@ -50,10 +49,12 @@ if mammals != readlines(joinpath("data", "clean", "mammals.csv"))
     @error "mammals object does not match the `mammals.csv` file"
 end
 
-# Build metaweb of all mammals
+# Build metaweb of mammals (subnetwork of metaweb of mammals and plants)
 MM = M[mammals]
 
-# Build spatially-explicit networks of mammals and remove carnivores with no paths to an herbivore
+
+
+#### Build spatially-explicit networks of mammals and remove carnivores with no paths to an herbivore
 
 # Remove carnivores not connected to any herbivores
 function remove_carnivores(sp_list)
@@ -63,7 +64,7 @@ function remove_carnivores(sp_list)
         return sp_list
     else
 
-    # Get the subnetwork before filtering
+    # Get the subnetwork before correction
     MMxy = MM[sp_list]
 
     # Which species are herbivores and carnivores
@@ -91,10 +92,10 @@ function remove_carnivores(sp_list)
     end
 end
 
-# New species list at every location
-species_lists_c = remove_carnivores.(species_lists)
+# New species list at every location (corr stands for corrected)
+species_lists_corr = remove_carnivores.(species_lists)
 
-# Get new subnetworks at every location (i.e. after filtering)
+# Get subnetworks at every location from a species list
 function get_subnetwork(sp_list)
     # sp_list: a list of mammals at a given location
 
@@ -109,44 +110,83 @@ function get_subnetwork(sp_list)
     end
 end
 
-subnetworks = get_subnetwork.(species_lists)
-subnetworks_new = get_subnetwork.(species_lists_c)
+# Local networks of mammals according to IUCN range maps
+Nxy = get_subnetwork.(species_lists)
+
+# Local networks of mammals after removing species with no paths to an herbivore
+Nxy_corr = get_subnetwork.(species_lists_corr)
 
 
-#### Analyse network structure and the filtering process
 
-# Get difference of species richness at every location
-function get_richness_diff(MM1, MM2)
-    # MM1: network before filtering
-    # MM2: network after filtering
+#### Analyse network structure 
 
-    if ismissing(MM1)
+# Get the number of mammal species (before correction)
+function get_richness(Nxy)
+    # Nxy: local network of mammals (before correction)
+    if ismissing(Nxy)
         return nothing
-
-    elseif ismissing(MM2)
-
-    # Count the number of species before
-    S1 = convert(Float64, length(species(MM1)))
-    return S1
-
-    else
-    S1 = convert(Float64, length(species(MM1)))
-    S2 = convert(Float64, length(species(MM2)))
-
-    return S1-S2
+    else 
+    S = convert(Float64, length(species(Nxy)))
+    return S
     end
 end
 
-delta_Sxy = get_richness_diff.(subnetworks, subnetworks_new)
+# Get the number of mammal species (after correction)
+function get_richness(Nxy, Nxy_corr)
+    # Nxy: local network of mammals (before correction)
+    # Nxy_corr: local network of mammals (after correction)
+    if ismissing(Nxy)
+        return nothing
+    elseif ismissing(Nxy_corr)
+        return 0.0
+    else
+    S = convert(Float64, length(species(Nxy_corr)))
+    return S
+    end
+end
 
+# Species richness before correction
+Sxy = get_richness.(Nxy)
+
+# Species richness after correction
+Sxy_corr = get_richness.(Nxy, Nxy_corr)
+
+# Difference of species richness (before/after correction)
+function get_diff(Sxy, Sxy_corr)
+    # Sxy: species richness at one location (before correction)
+    # Sxy_corr: species richness at the same location (after correction)
+    if isnothing(Sxy_corr)
+        return nothing
+    else 
+        return Sxy - Sxy_corr
+    end
+end
+
+delta_Sxy = get_diff.(Sxy, Sxy_corr)
+
+# Proportion of remaining species
+function get_prop(Sxy, Sxy_corr)
+    # Sxy: species richness at one location (before correction)
+    # Sxy_corr: species richness at the same location (after correction)
+    if isnothing(Sxy_corr)
+        return nothing
+    else 
+        return Sxy_corr / Sxy
+    end
+end
+
+prop_Sxy = get_prop.(Sxy, Sxy_corr)
 
 # Arrange in DataFrame
-delta_Sxy_df = select(ranges_df, :longitude, :latitude)
-insertcols!(delta_Sxy_df, :delta_Sxy => delta_Sxy)
+Sxy_df = select(ranges_df, :longitude, :latitude)
+insertcols!(Sxy_df, :Sxy => Sxy, :Sxy_corr => Sxy_corr, 
+            :delta_Sxy => delta_Sxy, :prop_Sxy => prop_Sxy)
 
-# Arrange as layer
-delta_Sxy_layer = SimpleSDMPredictor(delta_Sxy_df, :delta_Sxy, ranges[1])
-replace!(delta_Sxy_layer.grid, 0 => nothing)
+# Arrange as layers
+Sxy_layer = SimpleSDMPredictor(Sxy_df, :Sxy, ranges[1])
+delta_Sxy_layer = SimpleSDMPredictor(Sxy_df, :delta_Sxy, ranges[1])
+prop_Sxy_layer = SimpleSDMPredictor(Sxy_df, :prop_Sxy, ranges[1])
+
 
 # Map differences in species richness
 plot(;
@@ -158,8 +198,36 @@ plot(;
     yaxis="Latitude",
 )
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
-plot!(delta_Sxy_layer, c=:turku)
+plot!(delta_Sxy_layer, c=cgrad(:turku, rev=true))
 savefig(joinpath("figures", "species_removal.png"))
+
+# Map figure of species richness before correction (panel A) and proportion of species remaining after correction (panel B)
+plot_richness = plot(;
+    frame=:box,
+    xlim=extrema(longitudes(Sxy_layer)),
+    ylim=extrema(latitudes(Sxy_layer)),
+    dpi=500,
+    xaxis="Longitude",
+    yaxis="Latitude",
+)
+plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
+plot!(Sxy_layer, c=cgrad(:turku, rev=true))
+
+plot_prop = plot(;
+    frame=:box,
+    xlim=extrema(longitudes(prop_Sxy_layer)),
+    ylim=extrema(latitudes(prop_Sxy_layer)),
+    dpi=500,
+    xaxis="Longitude",
+    yaxis="Latitude",
+)
+plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
+plot!(prop_Sxy_layer, c=cgrad(:viridis, rev=true))
+
+plot(plot_richness, plot_prop)
+savefig(joinpath("figures", "richness_prop_removed.png"))
+
+
 
 #### Create layers with updated species ranges
 
@@ -177,7 +245,7 @@ function get_updated_locations(sp, sp_list)
     end
 end
 
-locations = [get_updated_locations.(m, species_lists_c) for m in mammals]
+locations = [get_updated_locations.(m, species_lists_corr) for m in mammals]
 
 # Get updated ranges
 function get_updated_ranges(locations, layer)
@@ -206,7 +274,7 @@ function plot_layer(layer::SimpleSDMLayer)
         yaxis="Latitude",
     )
     plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
-    plot!(convert(Float64, layer), c=:turku)
+    plot!(convert(Float64, layer), c=cgrad(:turku, rev = true))
 end
 
 plot_layer(ranges_updated[1])
