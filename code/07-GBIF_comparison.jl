@@ -96,79 +96,42 @@ end
 
 ## Plot results
 
+# Separate carnivores & herbivores
+carnivores = filter(:type => ==("carnivore"), comparison_df)
+herbivores = filter(:type => ==("herbivore"), comparison_df)
+
+# Set plot options to reuse
+options = (
+    group=carnivores.species,
+    ylim=(-0.03, 1.0),
+    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+    markersize=6,
+    palette=:seaborn_colorblind,
+    markerstrokewidth=0,
+    legend=:bottomright,
+    legendtitle="Species",
+    legendtitlefontvalign=:bottom,
+    labels=permutedims(replace.(carnivores.species, "_" => " ")),
+    foreground_color_legend=nothing,
+    background_color_legend=:white,
+    dpi=500,
+)
+
 # 1. Pixel proportion according to IUCN range
 scatter(
-    comparison_df.range ./ 10^4,
-    comparison_df.range_prop;
-    group=comparison_df.type,
-    xlabel="IUCN range size (x 10^4)",
+    carnivores.range ./ 10^4,
+    carnivores.range_prop;
+    xlabel="IUCN range size in pixels (x 10,000)",
     ylabel="Proportion of GBIF pixels in IUCN range",
-    legend=:right,
-    ylim=(0.0, 1.0)
+    options...
+)
+scatter!(
+    herbivores.range ./ 10^4,
+    herbivores.range_prop;
+    label="Herbivores",
+    c=:lightgrey,
+    markerstrokewidth=0,
+    markersize=4,
+    xticks=0:1:ceil(maximum(comparison_df.range ./ 10^4)),
 )
 savefig(joinpath("figures", "gbif_range-prop.png"))
-
-# 2. Occurrence proportion according to IUCN range
-scatter(
-    comparison_df.range ./ 10^4,
-    comparison_df.occ_prop;
-    group=comparison_df.type,
-    xlabel="IUCN range size (x 10^4)",
-    ylabel="Proportion of occurrences in IUCN range",
-    legend=:right,
-    ylim=(0.0, 1.0)
-)
-savefig(joinpath("figures", "gbif_occ-prop.png"))
-
-# 3. Occurrence proportion according to number of GBIF occurrences
-scatter(
-    comparison_df.occ_n,
-    comparison_df.occ_prop;
-    group=comparison_df.type,
-    xlabel="Number of GBIF occurrences",
-    ylabel="Proportion of occurrences in IUCN range",
-    legend=:right
-)
-savefig(joinpath("figures", "gbif_occ-prop_occ-n.png"))
-
-# 4. Predators only - Pixel proportion according to IUCN range
-comparison_df |> x ->
-    filter(:type => ==("carnivore"), x) |> x ->
-    scatter(
-        x.range ./ 10^4,
-        x.range_prop;
-        group=x.species,
-        xlabel="IUCN range size (x 10^4)",
-        ylabel="Proportion of GBIF pixels in IUCN range",
-        # legend=:right,
-        ylim=(0.0, 1.0),
-        markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
-        markersize=6,
-        palette=:seaborn_colorblind,
-        markerstrokewidth=0,
-        legend=:right,
-        foreground_color_legend=nothing,
-        background_color_legend=:white,
-    )
-savefig(joinpath("figures", "gbif_range-prop_pred.png"))
-
-# 5. Predators only - Occurrence proportion according to IUCN range
-comparison_df |> x ->
-    filter(:type => ==("carnivore"), x) |> x ->
-    scatter(
-        x.range ./ 10^4,
-        x.occ_prop;
-        group=x.species,
-        xlabel="IUCN range size (x 10^4)",
-        ylabel="Proportion of occurrences in IUCN range",
-        # legend=:right,
-        ylim=(0.0, 1.0),
-        markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
-        markersize=6,
-        palette=:seaborn_colorblind,
-        markerstrokewidth=0,
-        legend=:right,
-        foreground_color_legend=nothing,
-        background_color_legend=:white,
-    )
-savefig(joinpath("figures", "gbif_occ-prop_pred.png"))
