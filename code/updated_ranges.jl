@@ -19,20 +19,6 @@ missing_species = setdiff(mammals, union(predators, preys))
 # Investigate intermediate predators as preys
 filter(:prey => in(predators), interactions_df)
 
-# Remove predators with themselves as prey
-#=
-filter!(x -> x.prey != x.pred, interactions_df) # only Pantera_leo
-preys = unique(interactions_df.prey)
-test
-=#
-
-# Remove intermediate predators from analyses
-# (Needed to match the results from 02-get_networks.jl)
-#=
-filter!(:prey => !in(predators), interactions_df)
-preys = unique(interactions_df.prey)
-=#
-
 ## Update predactor ranges
 
 # Function to get union between layers --> pixels where at least one species present
@@ -75,14 +61,21 @@ function update_range(ranges_dict::Dict{String, T}, interactions_list::DataFrame
     return pred_updated
 end
 
-# Get updated ranges
-ranges_dict = Dict(mammals .=> ranges)
-preds_updated = [update_range(ranges_dict, interactions_df, sp) for sp in predators]
-preys_updated = [update_range(ranges_dict, interactions_df, sp, :prey) for sp in preys]
-
 # Get original ranges (in same order, which is different from the order in mammals.csv)
 preds_original = ranges[indexin(predators, mammals)]
 preys_original = ranges[indexin(preys, mammals)]
+
+# Create dicts to get ranges by species name
+ranges_dict = Dict(mammals .=> ranges)
+ranges_updated_dict = Dict(mammals .=> ranges_updated)
+
+# Get predator ranges
+preds_original = [ranges_dict[sp] for sp in predators]
+preds_updated = [ranges_updated_dict[sp] for sp in predators]
+
+# Get prey ranges
+preys_original = [ranges_dict[sp] for sp in preys]
+preys_updated = [update_range(ranges_dict, interactions_df, sp, :prey) for sp in preys]
 
 ## Produce table
 
