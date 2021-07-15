@@ -279,3 +279,95 @@ end
 
 plot_layer(ranges_updated[1])
 plot_layer(ranges_updated[2])
+
+
+
+
+
+
+
+
+#### Analyse network structure b/a correction (work in progress)
+
+# Get the subnetworks at each location (including plants)
+function get_subnetwork_allsp(mammals)
+    # mammals: a list of mammals at a given location
+
+    if isnothing(mammals)
+        return missing
+    else
+
+    # Get the subnetwork (including plants) 
+    Nxy = M[vcat(mammals, plants)]
+
+    # Remove isolated nodes
+    simplify!(Nxy)
+
+    return Nxy
+    end
+end
+
+# Get local networks of mammals and plants before correction 
+Nxy_allsp = get_subnetwork_allsp.(species_lists)
+
+# Get local networks of mammals and plants after correction 
+Nxy_allsp_corr = get_subnetwork_allsp.(species_lists_corr)
+
+## Analyse network structure
+
+# Connectance at every location 
+function get_connectance(Nxy)
+    if ismissing(Nxy)
+        return missing
+    else 
+        return connectance(Nxy)
+    end
+end
+
+co_allsp = get_connectance.(Nxy_allsp)
+co_allsp_corr = get_connectance.(Nxy_allsp_corr)
+
+scatter(co_allsp, co_allsp_corr)
+
+# Number of links at every location (before correction)
+function get_links(Nxy)
+    if ismissing(Nxy)
+        return missing
+    else 
+        return links(Nxy)
+    end
+end
+
+# Number of links at every location (after correction)
+function get_links(Nxy, Nxy_corr)
+    if ismissing(Nxy)
+        return missing
+    elseif ismissing(Nxy_corr)
+        return 0.0
+    else
+        return links(Nxy_corr)
+    end
+end
+
+L_allsp = get_links.(Nxy_allsp)
+L_allsp_corr = get_links.(Nxy_allsp, Nxy_allsp_corr)
+
+scatter(L_allsp, L_allsp_corr)
+
+# Average trophic level 
+function get_avg_tl(Nxy)
+    if ismissing(Nxy)
+        return missing
+    else
+        try
+        return mean(values(trophic_level(Nxy)))
+        catch
+        return missing 
+        end
+    end
+end
+
+avg_tl_allsp = get_avg_tl.(Nxy_allsp)
+avg_tl_allsp_corr = get_avg_tl.(Nxy_allsp_corr)
+
+scatter(avg_tl_allsp, avg_tl_allsp_corr)
