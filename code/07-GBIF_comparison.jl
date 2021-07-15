@@ -3,7 +3,9 @@ import Pkg; Pkg.activate("."); Pkg.instantiate()
 
 using CSV
 using DataFrames
+using DataFramesMeta
 using GBIF
+using Latexify
 using Plots
 using Plots.PlotMeasures
 using Shapefile
@@ -75,44 +77,71 @@ comparison_occ = combine(
 
 # Mask GBIF range by IUCN range (updates GBIF range value to nothing if IUCN range is nothing)
 gbif_mask = mask.(ranges, gbif_ranges)
+gbif_mask_updated = mask.(ranges_updated, gbif_ranges)
 
-# Add to comparison
-insertcols!(
-    comparison_df,
-    :range => length.(ranges),
-    :gbif_range => length.(gbif_ranges),
-    :range_prop => length.(gbif_mask) ./ length.(gbif_ranges),
+# Create separate comparison DataFrame
+comparison_layers = DataFrame(
+    species = mammals,
+    range = length.(ranges),
+    range_updated = length.(ranges_updated),
+    gbif_range = length.(gbif_ranges),
+    range_prop = length.(gbif_mask) ./ length.(gbif_ranges),
+    range_prop_updated = length.(gbif_mask_updated) ./ length.(gbif_ranges),
 )
+@transform!(comparison_layers, range_prop_diff = :range_prop_updated .- :range_prop)
 
-# Short DataFrame
-comparison_short = select(comparison_df, :species, :type, :occ_n,:range, :occ_prop, :range_prop)
+## Combine occurrence & layer comparisons
+
+# Join DataFrames
+comparison_df = leftjoin(comparison_occ, comparison_layers, on=:species)
+
+# Add species type
+comparison_df = @chain comparison_df begin
+    rightjoin(sp, _; on=:species)
+    select(Not(:code))
+end
+
+# Remove some columns for display
+comparison_short = select(comparison_df, [:species, :type, :total_occ, :range, :occ_prop, :range_prop])
 show(comparison_short, allrows = true)
 cor(comparison_short.occ_prop, comparison_short.range_prop) # 0.955
 
+# Compare original & updated ranges
+comparison_diff = @chain comparison_df begin
+    filter(:type => ==("carnivore"), _)
+    select([:species, :type, :total_occ, :range, :occ_prop, :occ_prop_diff, :range_prop, :range_prop_diff])
+end
+
 ## Export table
 
-# Format as Markdown table
-using Latexify
-comparison_short.species .= replace.(comparison_short.species, "_" => " ")
-table = latexify(comparison_short, env=:mdtable, fmt="%.3f", latex=false)
-print(table) # copy & save to file
+# Wrap as function to export
+function export_table(path::String, table::DataFrame)
+    # Reformat species names
+    table.species .= replace.(table.species, "_" => " ")
 
-# Export to file
-table_path = joinpath("tables", "table_gbif.md")
-open(table_path, "w") do io
-    print(io, table)
-end
+    # Format as Markdown table
+    table = latexify(table, env=:mdtable, fmt="%.3f", latex=false, escape_underscores=true)
 
-# Fix digits
-lines = readlines(table_path; keep=true)
-open(table_path, "w") do io
-    for line in lines
-        line = replace(line, " 0.000" => " x.xxx")
-        line = replace(line, ".000" => "")
-        line = replace(line, " x.xxx" => " 0.000")
-        print(io, line)
+    # Export to file
+    open(path, "w") do io
+        print(io, table)
+    end
+
+    # Fix digits
+    lines = readlines(path; keep=true)
+    open(path, "w") do io
+        for line in lines
+            line = replace(line, " 0.000" => " x.xxx")
+            line = replace(line, ".000" => "")
+            line = replace(line, " x.xxx" => " 0.000")
+            print(io, line)
+        end
     end
 end
+
+# Export selected tables
+export_table(joinpath("tables", "gbif_proportions.md"), comparison_short)
+export_table(joinpath("tables", "gbif_difference.md"), comparison_diff)
 
 ## Plot results
 
@@ -137,7 +166,7 @@ options = (
     dpi=500,
 )
 
-# 1. Pixel proportion according to IUCN range
+# 1. Pixel proportion according to original IUCN range
 scatter(
     carnivores.range ./ 10^4,
     carnivores.range_prop;
@@ -155,3 +184,22 @@ scatter!(
     xticks=0:1:ceil(maximum(comparison_df.range ./ 10^4)),
 )
 savefig(joinpath("figures", "gbif_range-prop.png"))
+
+# 2. Pixel proportion according to updated IUCN range
+scatter(
+    carnivores.range_updated ./ 10^4,
+    carnivores.range_prop_updated;
+    xlabel="Updated range size in pixels (x 10,000)",
+    ylabel="Proportion of GBIF pixels in updated range",
+    options...
+)
+scatter!(
+    herbivores.range_updated ./ 10^4,
+    herbivores.range_prop_updated;
+    label="Herbivores",
+    c=:lightgrey,
+    markerstrokewidth=0,
+    markersize=4,
+    xticks=0:1:ceil(maximum(comparison_df.range ./ 10^4)),
+)
+savefig(joinpath("figures", "gbif_range-prop_updated.png"))
