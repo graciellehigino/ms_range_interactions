@@ -19,7 +19,7 @@ missing_species = setdiff(mammals, union(predators, preys))
 # Investigate intermediate predators as preys
 filter(:prey => in(predators), interactions_df)
 
-# Remove predators with themselves as prey 
+# Remove predators with themselves as prey
 #=
 filter!(x -> x.prey != x.pred, interactions_df) # only Pantera_leo
 preys = unique(interactions_df.prey)
@@ -35,7 +35,7 @@ preys = unique(interactions_df.prey)
 
 ## Update predactor ranges
 
-# Function to get union between layers --> pixels where at least one species present 
+# Function to get union between layers --> pixels where at least one species present
 import Base.union
 function union(layers::Vector{T}) where {T <: SimpleSDMLayer}
     # Make sure layers are compatible
@@ -53,7 +53,7 @@ union(layer1::SimpleSDMLayer, layer2::SimpleSDMLayer) = union([layer1, layer2])
 # Function to update predator ranges
 function update_range(ranges_dict::Dict{String, T}, interactions_list::DataFrame, sp::String, type::Symbol=:pred) where {T <: SimpleSDMLayer}
     type in [:pred, :prey] || throw(ArgumentError("type must be :pred or :prey"))
-    
+
     # Get interaction species names
     if type == :pred
         interactions_list = filter(:pred => ==(sp), interactions_list)
@@ -62,16 +62,16 @@ function update_range(ranges_dict::Dict{String, T}, interactions_list::DataFrame
         interactions_list = filter(:prey => ==(sp), interactions_list)
         int_sp = interactions_list.pred
     end
-    
+
     # Get species ranges
     sp_range = ranges_dict[sp]
     int_ranges = [ranges_dict[sp] for sp in int_sp]
-    
+
     # Get union of interacting species range --> pixels where at least one interacting species present
     union_range = union(int_ranges)
     # Update focal species range
     pred_updated = mask(union_range, sp_range)
-    
+
     return pred_updated
 end
 
@@ -84,7 +84,7 @@ preys_updated = [update_range(ranges_dict, interactions_df, sp, :prey) for sp in
 preds_original = ranges[indexin(predators, mammals)]
 preys_original = ranges[indexin(preys, mammals)]
 
-## Produce table 
+## Produce table
 
 # |  species | # of preys | # predators | total range size | proportion of range with at least 1 prey | proportion of range with at least 1 predator |
 
@@ -119,6 +119,30 @@ append!(results, missing_species_df; cols=:union)
 # Export to CSV
 CSV.write(joinpath("data", "clean", "range_proportions.csv"), results)
 
+## Export as markdown table
+
+# Format as Markdown table
+using Latexify
+results.species .= replace.(results.species, "_" => " ")
+table = latexify(results, env=:mdtable, fmt="%.3f", latex=false, escape_underscores=true)
+
+# Export to file
+table_path = joinpath("tables", "table_ranges.md")
+open(table_path, "w") do io
+    print(io, table)
+end
+
+# Fix digits
+lines = readlines(table_path; keep=true)
+open(table_path, "w") do io
+    for line in lines
+        line = replace(line, " 0.000" => " x.xxx")
+        line = replace(line, ".000" => "")
+        line = replace(line, " x.xxx" => " 0.000")
+        print(io, line)
+    end
+end
+
 ## Richness difference plot
 
 # Get predator richness
@@ -137,7 +161,7 @@ plot(delta_Sxy_layer, c=:turku)
 replace(richness_diff, 0.0 => nothing) == delta_Sxy_layer # true if intermediate predators filtered earlier
 
 # Export nicer plot
-plot(; 
+plot(;
     frame=:box,
     xlim=extrema(longitudes(richness_diff)),
     ylim=extrema(latitudes(richness_diff)),
@@ -151,7 +175,7 @@ savefig(joinpath("figures", "species_removal_layer-style.png"))
 
 # Export plot without zeros, as in 02-get_networks.jl
 richness_diff_nozeros = replace(richness_diff, 0.0 => nothing)
-plot(; 
+plot(;
     frame=:box,
     xlim=extrema(longitudes(richness_diff_nozeros)),
     ylim=extrema(latitudes(richness_diff_nozeros)),
