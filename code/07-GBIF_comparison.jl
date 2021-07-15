@@ -134,4 +134,4 @@ scatter!(
     markersize=4,
     xticks=0:1:ceil(maximum(comparison_df.range ./ 10^4)),
 )
-savefig(joinpath("figures", "gbif_range-prop_pred-prey.png"))
+savefig(joinpath("figures", "gbif_range-prop.png"))
