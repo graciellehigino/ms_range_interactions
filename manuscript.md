@@ -104,9 +104,9 @@ Table 01 - The One With All the Species and Their Ranges and Predators and Preys
 
 ## GBIF
 
-![GBIF results woohoo](figures/gbif_range-prop.png){#fig:gbif}
+![The proportion of GBIF pixels (pixels with at least one occurrence in GBIF) falling into the IUCN range varied from low to high depending on the species, with the lowest overlaps occurring for species with smaller ranges. Predators (presented in coloured markers) and herbivores (grouped in a single grey marker) showed similar variations. Pixels represent a resolution of 10 arc-minutes.](figures/gbif_range-prop.png){#fig:gbif}
 
-Our GBIF result is pretty cool ([@Fig:gbif]).
+The proportion of GBIF pixels (pixels with at least one GBIF occurrence) falling in the IUCN ranges varied from low overlap to high overlap depending on the species ([@Fig:gbif]). No species had all of its GBIF occurrences within its IUCN range. The lowest proportions occurred for species with small ranges although some species with small ranges showed high overlap. Species with median and large ranges had high proportions of occurrences falling into their IUCN range. Predators and preys displayed similar overlap variations. The only species for which none of the GBIF occurrences occur in the IUCN range, _Canis aureus_, is also the only species whose range is not covered by any of its preys.
 
 # Discussion
 
