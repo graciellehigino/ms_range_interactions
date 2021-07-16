@@ -90,8 +90,7 @@ For each species in the dataset we collated point observation data from the Glob
 
 # Results
 
-![Fig 01 - More specialized predators lose a higher proportion of their ranges. Both *Leptailurus serval* and *Canis mesomelas* have only one prey in the Serengeti foodweb, each of them with a very small range compared to those of their predators. The discrepancy between range sizes promotes significant range loss. ](figures/rel_loss-in_degree-species.png)
-<!--->update with results without self-interaction<--->
+![Fig 01 - More specialized predators lose a higher proportion of their ranges. Both *Leptailurus serval* and *Canis mesomelas* have only one prey in the Serengeti foodweb, each of them with a very small range compared to those of their predators. The discrepancy between range sizes promotes significant range loss. ](figures/rel_loss-outdegree-species.png){#fig:outdegree}
 
 Fig 02 - probably the species richness before and after?
 
