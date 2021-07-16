@@ -168,7 +168,7 @@ options = (
 )
 
 # 1. Pixel proportion according to original IUCN range
-scatter(
+prop_fig = scatter(
     carnivores.range ./ 10^4,
     carnivores.range_prop;
     xlabel="IUCN range size in pixels (x 10,000)",
@@ -193,7 +193,7 @@ comparison_stack = @chain comparison_df begin
     stack([:range_prop, :range_prop_updated])
 end
 
-@df comparison_stack plot(
+diff_fig = @df comparison_stack plot(
     replace.(:species, "_" => " "),
     :value;
     group=:species,
@@ -210,3 +210,14 @@ end
     dpi=500,
 )
 savefig(joinpath("figures", "gbif_range-diff.png"))
+
+# 3. Two-panel figure
+plot(
+    prop_fig,
+    diff_fig;
+    size=(1200, 450),
+    dpi=500,
+    leftmargin=25px,
+    bottommargin=30px
+)
+savefig(joinpath("figures", "gbif_panels.png"))
