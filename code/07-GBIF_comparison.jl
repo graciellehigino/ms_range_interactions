@@ -217,7 +217,7 @@ plot(
     diff_fig;
     size=(1200, 450),
     dpi=500,
-    leftmargin=25px,
+    leftmargin=35px,
     bottommargin=30px
 )
 savefig(joinpath("figures", "gbif_panels.png"))
