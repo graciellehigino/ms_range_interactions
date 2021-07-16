@@ -10,6 +10,7 @@ using Plots
 using Plots.PlotMeasures
 using Shapefile
 using Statistics
+using StatsPlots
 using SimpleSDMLayers
 
 include("shapefile.jl") # mapping functions
@@ -203,3 +204,30 @@ scatter!(
     xticks=0:1:ceil(maximum(comparison_df.range ./ 10^4)),
 )
 savefig(joinpath("figures", "gbif_range-prop_updated.png"))
+
+# 3. Range proportion difference with updated layers
+scatter(
+    comparison_diff.range ./ 10^4,
+    comparison_diff.range_prop_diff;
+    xlabel="IUCN range size in picels (x10,000)",
+    ylabel="Loss of GBIF proportion after range update",
+    options...,
+    ylim=(-1.0, 0.03)
+)
+savefig(joinpath("figures", "gbif_2nd-panel1.png"))
+
+comparison_stack = @chain comparison_df begin
+    @subset(:type .== "carnivore")
+    @select(:species, :range_prop, :range_prop_updated)
+    stack([:range_prop, :range_prop_updated])
+end
+
+@df comparison_stack boxplot(
+    replace.(string.(:species), "_" => " "),
+    :value,
+    xrotation=45,
+    legend=false,
+    ylim=(-0.03, 1.0),
+    ylabel="Proportion of GBIF pixels in original/updated range"
+)
+savefig(joinpath("figures", "gbif_2nd-panel2.png"))
