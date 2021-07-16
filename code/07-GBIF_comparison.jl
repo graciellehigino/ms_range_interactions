@@ -222,12 +222,20 @@ comparison_stack = @chain comparison_df begin
     stack([:range_prop, :range_prop_updated])
 end
 
-@df comparison_stack boxplot(
-    replace.(string.(:species), "_" => " "),
-    :value,
+@df comparison_stack plot(
+    replace.(:species, "_" => " "),
+    :value;
+    group=:species,
+    line=(:arrow, 1.5),
     xrotation=45,
     legend=false,
     ylim=(-0.03, 1.0),
-    ylabel="Proportion of GBIF pixels in original/updated range"
+    ylabel="Proportion of GBIF pixels inside ranges",
+    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+    markersize=8,
+    palette=:seaborn_colorblind,
+    markerstrokewidth=0,
+    topmargin=2.0mm,
+    dpi=500,
 )
 savefig(joinpath("figures", "gbif_2nd-panel2.png"))
