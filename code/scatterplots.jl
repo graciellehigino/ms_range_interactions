@@ -1,6 +1,9 @@
 using Base: get_preferences
 using Plots.PlotMeasures
 
+# Remove underscores 
+ranges_degrees_df.species = replace.(ranges_degrees_df.species, "_" => " ")
+ranges_degrees_df.spB = replace.(ranges_degrees_df.spB, "_" => " ")
 
 # Relationship between beta-diversities, colored by absolute loss of range
 scatter(
@@ -123,6 +126,7 @@ scatter(
     ranges_degrees_df.relative .* -1;
     xlabel="Out degree of predators",
     ylabel="Relative loss of range",
+    ylimits=(0,102),
     group=ranges_degrees_df.species,
     markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
     markersize=6,
@@ -133,7 +137,7 @@ scatter(
     top_margin=10mm,
     bottom_margin=10mm,
     legend=:topright,
-    foreground_color_legend=:lightgrey,
+    foreground_color_legend=:white,
     background_color_legend=:white,
     size=(1000, 600)
 )
