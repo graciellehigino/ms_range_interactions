@@ -102,7 +102,13 @@ There was high variation in the overlap of predator and prey ranges (Fig. 4). Th
 
 Table 01 - The One With All the Species and Their Ranges and Predators and Preys
 
-Fig 06 - Something with GBIF results
+## Validation with GBIF occurrences
+
+The proportion of GBIF pixels (pixels with at least one GBIF occurrence) falling in the IUCN ranges varied from low to high depending on the species ([@Fig:gbif], left). No species had all of its GBIF occurrences within its IUCN range. The lowest proportions occurred for species with small ranges, although some species with small ranges showed high overlap. Species with median and large ranges had high proportions of occurrences falling into their IUCN range. Predators and preys displayed similar overlap variations. The only species for which none of the GBIF pixels occur in the IUCN range, _Canis aureus_, is also the only species whose range is not covered by any of its preys.
+
+The proportion of GBIF pixels falling inside the updated ranges from our networks analysis was similar to the overlap with the original IUCN ranges for most predator species ([@Fig:gbif, right]). The proportion for the updated ranges can only be equal or lower, as our analysis removes pixels from the original range and does not add new ones. Rather, the absence of a difference between the two types of ranges indicates that no pixels with GBIF observations, hence likely true habitats, were removed by our analysis. Four species showed no difference of proportion while three species showed only small differences (proportions of 0.01 to 0.05). On the other hand, two species, _Canis mesomelas_ and _Leptailurus serval_,  showed very high differences, with overlaps lower by 0.548 and 0.871 respectively. For _Leptailurus serval_, none of the GBIF observations occurred in the updated range. These two species are also the only predators with a single prey in our meta-network.
+
+![Left panel: Relationship between the proportion of GBIF pixels (pixels with at least one occurrence in GBIF) falling into the IUCN range and the IUCN range size. Right panel: Proportion of GBIF pixels falling into the IUCN and updated ranges for every predator species. Arrows go from the proportion inside the original range to the proportion inside the updated range, which can only be equal or lower. Overlapping markers indicate no difference in the between the types of layers. Species markers are the same on both figures, with predators presented in distinct coloured markers and all herbivores grouped in a single grey marker. Pixels represent a resolution of 10 arc-minutes. ](figures/gbif_panels.png){#fig:gbif}
 
 # Discussion
 
