@@ -119,5 +119,43 @@ Some questions that’d be interesting to answer!!!!!
   ecology?
 - The follow-up paper "Spatial Robustness of networks" by Norma & Fredric 
 
+#### Geographical mismatch and data availability
 
+The geographical mismatch between predators and preys have ecological
+consequences such as loss of ecosystem functioning and extiction of populations
+[CITATIONS]. Climate change is one of the causes of this, leading, for instance,
+to the decrease of plants populations due to lack of pollination [CITATION]
+[INCLUDE EXAMPLES]. However, this mismatch can also be purely informational.
+When the distribution of predators and preys do not supperpose, it can mean we
+lack information about the distribution of either species or about their
+interactions. Here we address part of this problem by comparing the IUCN range
+maps with GBIF occurrences, which helped us clarify what is the shortfall for
+each species. 
+
+The lack of superposition between IUCN range maps and GBIF occurrences suggests
+that we certainly do miss geographical information about the distribution of a
+certain species, but it is not an indicative about the completeness of the
+information about ecological interactions. However, if both GBIF and IUCN
+occurrences tend to superpose and still the species is locally removed, this
+indicates we don't have information about all its interactions. The combination
+of this rationale with out method of updating range maps based on ecological
+interactions allows us to have a clearer idea of which information we are
+missing. For example, the lion (*Panthera leo*) was one of the species with the
+smallest difference between the original and the updated ranges
+([@Fig:rangeloss]), but 59.5% of the GBIF occurrences for this species fell
+outside the IUCN range ([@Fig:gbif]). The fact that we don't find lions where it
+doesn't have a prey is a good indicative that we have a good knowledge about its
+interactions and we probably can trust the IUCN occurrence data in this
+particular case, but the high disagreement between the IUCN and the GBIF
+databases adds uncertainty about its geographical distribution. On the other
+hand, *Leptailurus serval* and *Canis mesomelas* are two of the three species
+that lose the higher proportion of range due to the lack of paths to a herbivore
+([@Fig:rangeloss]), but are also some of the species with the higher proportion
+of GBIF occurrences inside IUCN range maps ([@Fig:gbif]). This indicates that
+the information we are missing for these two species are their ecological
+interactions. Finally, the extreme case of *Canis aureus* illustrates a lack of
+both geographical and ecological information: none of its GBIF occurrences and
+none of its preys occur inside its IUCN range. We believe, therefore, that
+the validation of species distribution based on ecological interaction is a
+relevant method that can further clarify information shortfalls.
 # References
