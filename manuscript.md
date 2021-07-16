@@ -90,6 +90,10 @@ For each species in the dataset we collated point observation data from the Glob
 
 # Results
 
+Mammal species found in the Serengeti food web are widespread in Africa, especially in grasslands and savannas (left panel of @fig:richness). However, most local networks (83.2%) built using the original IUCN range maps had at least one mammal species without a path to a primary producer (right panel of @fig:richness). On average, local food webs had almost the third of their mammal species (mean = 30.5%, median = 14.3%) disconnected from basal species. In addition, many networks (16.6%) only had disconnected mammals; these networks however all had a very low number of mammal species, specifically between 1 and 4. 
+
+![Left panel: Spatial distribution of species richness according to the original IUCN range maps of all 32 mammal species of the Serengeti food web. Right panel: Proportion of mammal species remaining in each local network (i.e. each pixel) after removing all species without a path to a primary producer.](figures/richness_prop_removed.png){#fig:richness}
+
 ![Fig 01 - More specialized predators lose a higher proportion of their ranges. Both *Leptailurus serval* and *Canis mesomelas* have only one prey in the Serengeti foodweb, each of them with a very small range compared to those of their predators. The discrepancy between range sizes promotes significant range loss. ](figures/rel_loss-in_degree-species.png)
 <!--->update with results without self-interaction<--->
 
