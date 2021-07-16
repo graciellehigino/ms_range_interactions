@@ -142,7 +142,7 @@ of this rationale with out method of updating range maps based on ecological
 interactions allows us to have a clearer idea of which information we are
 missing. For example, the lion (*Panthera leo*) was one of the species with the
 smallest difference between the original and the updated ranges
-([@Fig:rangeloss]), but 59.5% of the GBIF occurrences for this species fell
+([@Fig:outdegree]), but 59.5% of the GBIF occurrences for this species fell
 outside the IUCN range ([@Fig:gbif]). The fact that we don't find lions where it
 doesn't have a prey is a good indicative that we have a good knowledge about its
 interactions and we probably can trust the IUCN occurrence data in this
@@ -150,7 +150,7 @@ particular case, but the high disagreement between the IUCN and the GBIF
 databases adds uncertainty about its geographical distribution. On the other
 hand, *Leptailurus serval* and *Canis mesomelas* are two of the three species
 that lose the higher proportion of range due to the lack of paths to a herbivore
-([@Fig:rangeloss]), but are also some of the species with the higher proportion
+([@Fig:outdegree]), but are also some of the species with the higher proportion
 of GBIF occurrences inside IUCN range maps ([@Fig:gbif]). This indicates that
 the information we are missing for these two species are their ecological
 interactions. Finally, the extreme case of *Canis aureus* illustrates a lack of
