@@ -90,12 +90,27 @@ For each species in the dataset we collated point observation data from the Glob
 
 # Results
 
-![Fig 01 - More specialized predators lose a higher proportion of their ranges. Both *Leptailurus serval* and *Canis mesomelas* have only one prey in the Serengeti foodweb, each of them with a very small range compared to those of their predators. The discrepancy between range sizes promotes significant range loss. ](figures/rel_loss-in_degree-species.png)
-<!--->update with results without self-interaction<--->
+### Specialized predators lose more range
+
+![Negative relationship between the out degree of predator species and their
+relative range loss. More specialized predators lose a higher proportion of
+their ranges due to mismatch with the ranges of their preys.](figures/rel_loss-outdegree-species.png){#fig:degree}
+
+Predators with less preys lose more range with our method ([@Fig:degree]). For
+instance, both *Leptailurus serval* and *Canis mesomelas* have only one prey in
+the Serengeti foodweb, each of them with a very small range compared to those of
+their predators. This discrepancy between range sizes promotes significant range
+loss. On the other hand, predators of the genus *Panthera* are some of the most
+connected species, and they also lose the least proportion of their ranges. This
+mismatch between predators and preys can also be a result of taxonomic
+disagreement between the geographical and ecological data. Although *Canis
+aureus* has the same number of preys than *Caracal caracal*, none of the preys
+of the former occurs inside its original range, which results in 100% of range
+loss. 
 
 Fig 02 - probably the species richness before and after?
 
-Fig 03
+Fig 03 - 
 
 Fig 04 - The [beta-diversity plot](figures/beta-div_pred-species.png) with 4 quadrants
 There was high variation in the overlap of predator and prey ranges (Fig. 4). The range of several predators were well covered by prey (low values of prey-predator values), yet the ranges of some predators and prey were completely asynchronous, with no overlap (zero values for both overlap metrics; Fig. 4). For example, the range of Canis aureus is not covered by any prey species, whereas Panthera pardus exhibited highly variable levels of overlap with prey. In general, species exhibited more consistent values of prey-predator overlap, than predator-prey overlap – indicated by the spread of points along the x axis, yet more restricted variation on the y axis (Fig. 4). There was also no overall relationship between the two metrics, or for any predator species.
