@@ -96,7 +96,7 @@ For each species in the dataset we collated point observation data from the Glob
 relative range loss. More specialized predators lose a higher proportion of
 their ranges due to mismatch with the ranges of their preys.](figures/rel_loss-outdegree-species.png){#fig:degree}
 
-Predators with less preys lose more range with our method ([@Fig:degree]). For
+Predators with less preys lose more range with our method ([@fig:degree]). For
 instance, both *Leptailurus serval* and *Canis mesomelas* have only one prey in
 the Serengeti foodweb, each of them with a very small range compared to those of
 their predators. This discrepancy between range sizes promotes significant range
