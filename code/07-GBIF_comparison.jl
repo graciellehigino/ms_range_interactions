@@ -10,6 +10,7 @@ using Plots
 using Plots.PlotMeasures
 using Shapefile
 using Statistics
+using StatsPlots
 using SimpleSDMLayers
 
 include("shapefile.jl") # mapping functions
@@ -167,7 +168,7 @@ options = (
 )
 
 # 1. Pixel proportion according to original IUCN range
-scatter(
+prop_fig = scatter(
     carnivores.range ./ 10^4,
     carnivores.range_prop;
     xlabel="IUCN range size in pixels (x 10,000)",
@@ -185,21 +186,38 @@ scatter!(
 )
 savefig(joinpath("figures", "gbif_range-prop.png"))
 
-# 2. Pixel proportion according to updated IUCN range
-scatter(
-    carnivores.range_updated ./ 10^4,
-    carnivores.range_prop_updated;
-    xlabel="Updated range size in pixels (x 10,000)",
-    ylabel="Proportion of GBIF pixels in updated range",
-    options...
-)
-scatter!(
-    herbivores.range_updated ./ 10^4,
-    herbivores.range_prop_updated;
-    label="Herbivores",
-    c=:lightgrey,
+# 2. Range proportion difference with updated layers
+comparison_stack = @chain comparison_df begin
+    @subset(:type .== "carnivore")
+    @select(:species, :range_prop, :range_prop_updated)
+    stack([:range_prop, :range_prop_updated])
+end
+
+diff_fig = @df comparison_stack plot(
+    replace.(:species, "_" => " "),
+    :value;
+    group=:species,
+    line=(:arrow, 1.5),
+    xrotation=45,
+    legend=false,
+    ylim=(-0.03, 1.0),
+    ylabel="Proportion of GBIF pixels inside ranges",
+    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+    markersize=8,
+    palette=:seaborn_colorblind,
     markerstrokewidth=0,
-    markersize=4,
-    xticks=0:1:ceil(maximum(comparison_df.range ./ 10^4)),
+    topmargin=2.0mm,
+    dpi=500,
 )
-savefig(joinpath("figures", "gbif_range-prop_updated.png"))
+savefig(joinpath("figures", "gbif_range-diff.png"))
+
+# 3. Two-panel figure
+plot(
+    prop_fig,
+    diff_fig;
+    size=(1200, 450),
+    dpi=500,
+    leftmargin=35px,
+    bottommargin=30px
+)
+savefig(joinpath("figures", "gbif_panels.png"))

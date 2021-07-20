@@ -4,6 +4,7 @@ bibliography: [references.bib]
 
 # Intro
 
+
 Finding a species in a certain location is like finding an encrypted message
 that traveled through time. This message carries the species’ evolutionary
 history, long migration journeys, effects of other species we do not even know
@@ -57,10 +58,7 @@ only be present in regions where there are preys. Mismatches between occurence
 and interaction data will produce updated range maps, and we will discuss the
 ecological meaning of this difference.
 
-Connection between species can be given by antagonistic and mutualistic interactions, which leads to the formation of complex networks that shape ecological structures and maintain the essential functions of ecosystems. These functions include seed dispersal, pollination, biological control, among others. (Albrecht et al., 2018) Plant-herbivore networks are spatiotemporally dynamic, and can be affected by several factors like seasonality, disturbance, specific attributes of species; this highlights the importance of understanding patterns in plant-herbivore ecological networks (Dáttilo & Rico-Gray, 2018).  Studies have reported changes in predator density and diversity along plant diversity gradients, and any change in consumer communities may be a mechanistic cause of changes in predation rates. (Hertzog et al., 2017) 
-
-
-Possibility that the effects of the species richness of one trophic level on others decrease with trophic distance (?)
+Ecological networks represent species as nodes and their interactions as links, which allows quantifying the structure of animal-plant relationships,  and recognize species with higher degree values as better connected, and with a more important role in modularity [@Acevedo-Quintero2020StrFun].  The connection between species can be given by antagonistic and mutualistic interactions, which leads to the formation of complex networks that shape ecological structures and maintain the essential functions of ecosystems. One of these functions is herbivory [@Albrecht2018PlaAni]  Given the effect that herbivores exert on the composition, richness, and successional patterns of plant communities across multiple biomes; changes in herbivores abundance can lead to significant direct and indirect effects on plant-animal interaction and also the processes of the ecosystem [@Anderson2016SpaDis; @Dattilo2018EcoNet ; @Pringle2016LarHer ; @Young2013EffMam]. As occur whether interactions where the decrease in rains limits the plant resources, which leads to an ungulate birth decline, which turns lead to a reduction in carnivore births and survival. This strongly suggests the importance of herbivores for the study of networks, given their connection with vegetation and predators. [@Dobson2009FooStr] [Scott2018RolHer]. Therefore, we can assume that herbivores represent an important connector between the different trophic levels of a given ecosystem and thus the presence of large herbivores could argue the presence of both plant resources and predators.
 
 The International Union for Conservation of Nature (IUCN) is the largest provider of species range maps, covering thousands of mammal, bird, amphibian, and reptile species. These maps consist of simplified polygons, often created as alpha or convex hulls, which are drawn around known species locations, refined based on expert knowledge of species.  Being simple polygons, range maps also ignore abundance gradients and can include inadequate areas within the estimated range. As a result, can turn in biased estimations of the mean or median ecological conditions experienced by a species.  Global Biodiversity Information Facility (GBIF) provides an online repository of observational georeferenced records of more than one million species with global coverage. GBIF occurrence data are compiled from a variety of sources, including citizen science programs, museum collections, and long-term monitoring schemes. Wich can lead to GBIF data notoriously biased because of irregular sampling effort, with more occurrences recorded in attractive and accessible areas, and for charismatic species. (Alhajeri et al., 2018)
 
@@ -90,8 +88,13 @@ For each species in the dataset we collated point observation data from the Glob
 
 # Results
 
+Mammal species found in the Serengeti food web are widespread in Africa, especially in grasslands and savannas (left panel of @fig:richness). However, most local networks (83.2%) built using the original IUCN range maps had at least one mammal species without a path to a primary producer (right panel of @fig:richness). On average, local food webs had almost the third of their mammal species (mean = 30.5%, median = 14.3%) disconnected from basal species. In addition, many networks (16.6%) only had disconnected mammals; these networks however all had a very low number of mammal species, specifically between 1 and 4. 
+
+![Left panel: Spatial distribution of species richness according to the original IUCN range maps of all 32 mammal species of the Serengeti food web. Right panel: Proportion of mammal species remaining in each local network (i.e. each pixel) after removing all species without a path to a primary producer.](figures/richness_prop_removed.png){#fig:richness}
+
 ![Fig 01 - More specialized predators lose a higher proportion of their ranges. Both *Leptailurus serval* and *Canis mesomelas* have only one prey in the Serengeti foodweb, each of them with a very small range compared to those of their predators. The discrepancy between range sizes promotes significant range loss. ](figures/rel_loss-in_degree-species.png)
 <!--->update with results without self-interaction<--->
+
 
 Fig 02 - probably the species richness before and after?
 
@@ -160,4 +163,9 @@ both geographical and ecological information: none of its GBIF occurrences and
 none of its preys occur inside its IUCN range. We believe, therefore, that
 the validation of species distribution based on ecological interaction is a
 relevant method that can further clarify information shortfalls.
+
+## Acknowledgements
+
+We acknowledge that this study was conducted on land within the traditional unceded territory of the Saint Lawrence Iroquoian, Anishinabewaki, Mohawk, Huron-Wendat, and Omàmiwininiwak nations. GH, FB, GD, and NF are funded by the NSERC BIOS$^2$ CREATE program; FB, NF, and TP are funded by IVADO; NF and TP are funded by a donation from the Courtois Foundation; GD is funded by the FRQNT doctoral scholarship; TP is funded by the Canadian Institute of Ecology & Evolution; FW is funded by the Royal Society (Grant number: CHL\\R1\\180156). 
+
 # References
