@@ -96,7 +96,7 @@ For each species in the dataset we collated point observation data from the Glob
 relative range loss. More specialized predators lose a higher proportion of
 their ranges due to mismatch with the ranges of their preys.](figures/rel_loss-outdegree-species.png){#fig:degree}
 
-Predators with less preys lose more range with our method ([@fig:degree]). For
+Predators with less preys lose more range with our method (@fig:degree). For
 instance, both *Leptailurus serval* and *Canis mesomelas* have only one prey in
 the Serengeti foodweb, each of them with a very small range compared to those of
 their predators. This discrepancy between range sizes promotes significant range
@@ -157,16 +157,16 @@ of this rationale with out method of updating range maps based on ecological
 interactions allows us to have a clearer idea of which information we are
 missing. For example, the lion (*Panthera leo*) was one of the species with the
 smallest difference between the original and the updated ranges
-([@fig:degree]), but 59.5% of the GBIF occurrences for this species fell
-outside the IUCN range ([@fig:gbif]). The fact that we don't find lions where it
+(@fig:degree), but 59.5% of the GBIF occurrences for this species fell
+outside the IUCN range (fig-gbif). The fact that we don't find lions where it
 doesn't have a prey is a good indicative that we have a good knowledge about its
 interactions and we probably can trust the IUCN occurrence data in this
 particular case, but the high disagreement between the IUCN and the GBIF
 databases adds uncertainty about its geographical distribution. On the other
 hand, *Leptailurus serval* and *Canis mesomelas* are two of the three species
 that lose the higher proportion of range due to the lack of paths to a herbivore
-([@fig:degree]), but are also some of the species with the higher proportion
-of GBIF occurrences inside IUCN range maps ([@fig:gbif]). This indicates that
+(@fig:degree), but are also some of the species with the higher proportion
+of GBIF occurrences inside IUCN range maps (fig-gbif). This indicates that
 the information we are missing for these two species are their ecological
 interactions. Finally, the extreme case of *Canis aureus* illustrates a lack of
 both geographical and ecological information: none of its GBIF occurrences and
