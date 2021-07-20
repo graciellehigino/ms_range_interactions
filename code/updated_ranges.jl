@@ -109,6 +109,11 @@ missing_species_df = DataFrame(
 )
 append!(results, missing_species_df; cols=:union)
 
+# Sort by trophic level
+results = leftjoin(results, DataFrame(species = species(M), trophic_levels = floor.(values(trophic_level(M)))), on = :species)
+sort!(results, :trophic_levels, rev=true)
+results = results[!, Not(:trophic_levels)]
+
 # Export to CSV
 CSV.write(joinpath("data", "clean", "range_proportions.csv"), results)
 

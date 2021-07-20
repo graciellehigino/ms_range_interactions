@@ -1,33 +1,33 @@
 species,n_preys,n_preds,total_range_size,prop_preys,prop_preds
-Acinonyx_jubatus,8,1,15540,0.5604247104247104,0.6702059202059202
-Canis_aureus,4,1,7358,0.0,0.7802391954335417
-Canis_mesomelas,1,1,19872,0.19006642512077296,0.9949677938808373
-Crocuta_crocuta,12,1,43307,0.8483847876786663,0.25159904865264276
-Leptailurus_serval,1,1,38856,0.010757669343215977,0.9787677578752316
-Panthera_pardus,22,,68137,0.765677972320472,
-Lycaon_pictus,14,,3873,0.9160857216627937,
-Panthera_leo,18,,11384,0.933854532677442,
-Caracal_caracal,4,,47243,0.8318057701670089,
-Aepyceros_melampus,,5,10579,,1.0
-Alcelaphus_buselaphus,,4,20761,,0.9999518327633544
-Connochaetes_taurinus,,6,9650,,1.0
-Damaliscus_lunatus,,4,5567,,1.0
-Equus_quagga,,5,7070,,1.0
-Nanger_granti,,6,2303,,1.0
-Eudorcas_thomsonii,,6,463,,1.0
-Giraffa_camelopardalis,,1,5418,,0.4702842377260982
-Heterohyrax_brucei,,1,17728,,0.9724165162454874
-Kobus_ellipsiprymnus,,4,26705,,1.0
-Madoqua_kirkii,,7,4002,,1.0
-Ourebia_ourebi,,5,22380,,0.9999106344950849
-Papio_anubis,,1,23171,,0.9380259807518018
-Pedetes_capensis,,2,11901,,1.0
-Phacochoerus_africanus,,5,29963,,0.9986650201915696
-Procavia_capensis,,1,47697,,0.6474411388556932
-Redunca_redunca,,5,17465,,0.9998282278843401
-Rhabdomys_pumilio,,5,465,,0.9978494623655914
-Syncerus_caffer,,1,25223,,0.25028743607025333
-Tragelaphus_oryx,,2,20852,,0.9906963360828698
-Tragelaphus_scriptus,,3,36011,,0.9838382716392213
-Hippopotamus_amphibius,,,3695,,
-Loxodonta_africana,,,9654,,
+Canis mesomelas,1,1,19872,0.19006642512077296,0.9949677938808373
+Loxodonta africana,,,9654,,
+Panthera leo,18,,11384,0.933854532677442,
+Eudorcas thomsonii,,6,463,,1.0
+Acinonyx jubatus,8,1,15540,0.5604247104247104,0.6702059202059202
+Aepyceros melampus,,5,10579,,1.0
+Alcelaphus buselaphus,,4,20761,,0.9999518327633544
+Canis aureus,4,1,7358,0.0,0.7802391954335417
+Caracal caracal,4,,47243,0.8318057701670089,
+Connochaetes taurinus,,6,9650,,1.0
+Crocuta crocuta,12,1,43307,0.8483847876786663,0.25159904865264276
+Damaliscus lunatus,,4,5567,,1.0
+Equus quagga,,5,7070,,1.0
+Nanger granti,,6,2303,,1.0
+Giraffa camelopardalis,,1,5418,,0.4702842377260982
+Heterohyrax brucei,,1,17728,,0.9724165162454874
+Hippopotamus amphibius,,,3695,,
+Kobus ellipsiprymnus,,4,26705,,1.0
+Leptailurus serval,1,1,38856,0.010757669343215977,0.9787677578752316
+Lycaon pictus,14,,3873,0.9160857216627937,
+Madoqua kirkii,,7,4002,,1.0
+Ourebia ourebi,,5,22380,,0.9999106344950849
+Panthera pardus,22,,68137,0.765677972320472,
+Papio anubis,,1,23171,,0.9380259807518018
+Pedetes capensis,,2,11901,,1.0
+Phacochoerus africanus,,5,29963,,0.9986650201915696
+Procavia capensis,,1,47697,,0.6474411388556932
+Redunca redunca,,5,17465,,0.9998282278843401
+Rhabdomys pumilio,,5,465,,0.9978494623655914
+Syncerus caffer,,1,25223,,0.25028743607025333
+Tragelaphus oryx,,2,20852,,0.9906963360828698
+Tragelaphus scriptus,,3,36011,,0.9838382716392213

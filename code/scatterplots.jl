@@ -1,6 +1,9 @@
 using Base: get_preferences
 using Plots.PlotMeasures
 
+# Remove underscores 
+ranges_degrees_df.species = replace.(ranges_degrees_df.species, "_" => " ")
+ranges_degrees_df.spB = replace.(ranges_degrees_df.spB, "_" => " ")
 
 # Relationship between beta-diversities, colored by absolute loss of range
 scatter(
@@ -123,6 +126,7 @@ scatter(
     ranges_degrees_df.relative .* -1;
     xlabel="Out degree of predators",
     ylabel="Relative loss of range",
+    ylimits=(0,102),
     group=ranges_degrees_df.species,
     markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
     markersize=6,
@@ -133,7 +137,7 @@ scatter(
     top_margin=10mm,
     bottom_margin=10mm,
     legend=:topright,
-    foreground_color_legend=:lightgrey,
+    foreground_color_legend=:white,
     background_color_legend=:white,
     size=(1000, 600)
 )
@@ -256,25 +260,3 @@ for i in eachindex(mammals)
     )
     savefig(joinpath("figures", "ranges", "iucn_gbif" * mammals[i] * ".png"))
 end
-
-
-# TABLES ----- 
-original_range # all species and their original ranges
-sp_degrees # all species and their degrees
-new_ranges_df # New ranges where species have at least one prey
-table1 = leftjoin(original_range, new_ranges_df, on=:species)
-table1 = leftjoin(table1, sp_degrees, on=:species)
-table1 = leftjoin(table1, DataFrame(species = species(M), trophic_levels = floor.(values(trophic_level(M)))), on = :species)
-sort!(table1, :trophic_levels, rev=true)
-
-using Latexify
-table1.species .= replace.(table1.species, "_" => " ")
-table1 = latexify(table1, env=:mdtable, fmt="%.0f", latex=false)
-print(table1) # copy & save to file
-
-# Export to file
-table_path = joinpath("tables", "range_proportions.md")
-open(table_path, "w") do io
-    print(io, table1)
-end
-
