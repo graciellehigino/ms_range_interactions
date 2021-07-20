@@ -105,7 +105,7 @@ connected species, and they also lose the least proportion of their ranges. This
 mismatch between predators and preys can also be a result of taxonomic
 disagreement between the geographical and ecological data. Although *Canis
 aureus* has the same number of preys than *Caracal caracal*, none of the preys
-of the former occurs inside its original range, which results in 100% of range
+of the former occurs inside its original range, which results in complete range
 loss. 
 
 Fig 02 - probably the species richness before and after?
