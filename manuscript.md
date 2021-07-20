@@ -106,6 +106,8 @@ Fig 06 - Something with GBIF results
 
 # Discussion
 
+Although species interactions have previously been shown to affect the distribution and abundance of species at large-scales, not all research supports the assertion that ecological interactions are important at macroecological scales (REF). Here we lend further evidence to this debate, showing that when ecological interaction data (predator-prey interactions within food webs) are used to refine species range maps, there are significant reductions in the predicted range size of predatory organisms. Despite showing the potential importance in accounting for species interactions when estimating the range of a species, it remains unclear the extent of which the patterns observed represent ecological processes or a lack of data. In the following sections we discuss the implications of our findings, in terms of species range maps, interaction data and the next steps required to enhance understanding of species distributions using information on ecological networks.
+
 Some questions that’d be interesting to answer!!!!!
 - Can we SDM one of the species with the updated rangemaps?
 - Which rangemaps are the most accurate? 
