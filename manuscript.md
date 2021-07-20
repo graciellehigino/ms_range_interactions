@@ -90,12 +90,27 @@ For each species in the dataset we collated point observation data from the Glob
 
 # Results
 
-![Fig 01 - More specialized predators lose a higher proportion of their ranges. Both *Leptailurus serval* and *Canis mesomelas* have only one prey in the Serengeti foodweb, each of them with a very small range compared to those of their predators. The discrepancy between range sizes promotes significant range loss. ](figures/rel_loss-in_degree-species.png)
-<!--->update with results without self-interaction<--->
+### Specialized predators lose more range
+
+![Negative relationship between the out degree of predator species and their
+relative range loss. More specialized predators lose a higher proportion of
+their ranges due to mismatch with the ranges of their preys.](figures/rel_loss-outdegree-species.png){#fig:degree}
+
+Predators with less preys lose more range with our method (@fig:degree). For
+instance, both *Leptailurus serval* and *Canis mesomelas* have only one prey in
+the Serengeti foodweb, each of them with a very small range compared to those of
+their predators. This discrepancy between range sizes promotes significant range
+loss. On the other hand, predators of the genus *Panthera* are some of the most
+connected species, and they also lose the least proportion of their ranges. This
+mismatch between predators and preys can also be a result of taxonomic
+disagreement between the geographical and ecological data. Although *Canis
+aureus* has the same number of preys than *Caracal caracal*, none of the preys
+of the former occurs inside its original range, which results in complete range
+loss. 
 
 Fig 02 - probably the species richness before and after?
 
-Fig 03
+Fig 03 - 
 
 Fig 04 - The [beta-diversity plot](figures/beta-div_pred-species.png) with 4 quadrants
 There was high variation in the overlap of predator and prey ranges (Fig. 4). The range of several predators were well covered by prey (low values of prey-predator values), yet the ranges of some predators and prey were completely asynchronous, with no overlap (zero values for both overlap metrics; Fig. 4). For example, the range of Canis aureus is not covered by any prey species, whereas Panthera pardus exhibited highly variable levels of overlap with prey. In general, species exhibited more consistent values of prey-predator overlap, than predator-prey overlap – indicated by the spread of points along the x axis, yet more restricted variation on the y axis (Fig. 4). There was also no overall relationship between the two metrics, or for any predator species.
@@ -125,5 +140,43 @@ Some questions that’d be interesting to answer!!!!!
   ecology?
 - The follow-up paper "Spatial Robustness of networks" by Norma & Fredric 
 
+#### Geographical mismatch and data availability
 
+The geographical mismatch between predators and preys have ecological
+consequences such as loss of ecosystem functioning and extiction of populations
+[CITATIONS]. Climate change is one of the causes of this, leading, for instance,
+to the decrease of plants populations due to lack of pollination [CITATION]
+[INCLUDE EXAMPLES]. However, this mismatch can also be purely informational.
+When the distribution of predators and preys do not supperpose, it can mean we
+lack information about the distribution of either species or about their
+interactions. Here we address part of this problem by comparing the IUCN range
+maps with GBIF occurrences, which helped us clarify what is the shortfall for
+each species. 
+
+The lack of superposition between IUCN range maps and GBIF occurrences suggests
+that we certainly do miss geographical information about the distribution of a
+certain species, but it is not an indicative about the completeness of the
+information about ecological interactions. However, if both GBIF and IUCN
+occurrences tend to superpose and still the species is locally removed, this
+indicates we don't have information about all its interactions. The combination
+of this rationale with out method of updating range maps based on ecological
+interactions allows us to have a clearer idea of which information we are
+missing. For example, the lion (*Panthera leo*) was one of the species with the
+smallest difference between the original and the updated ranges
+(@fig:degree), but 59.5% of the GBIF occurrences for this species fell
+outside the IUCN range (fig-gbif). The fact that we don't find lions where it
+doesn't have a prey is a good indicative that we have a good knowledge about its
+interactions and we probably can trust the IUCN occurrence data in this
+particular case, but the high disagreement between the IUCN and the GBIF
+databases adds uncertainty about its geographical distribution. On the other
+hand, *Leptailurus serval* and *Canis mesomelas* are two of the three species
+that lose the higher proportion of range due to the lack of paths to a herbivore
+(@fig:degree), but are also some of the species with the higher proportion
+of GBIF occurrences inside IUCN range maps (fig-gbif). This indicates that
+the information we are missing for these two species are their ecological
+interactions. Finally, the extreme case of *Canis aureus* illustrates a lack of
+both geographical and ecological information: none of its GBIF occurrences and
+none of its preys occur inside its IUCN range. We believe, therefore, that
+the validation of species distribution based on ecological interaction is a
+relevant method that can further clarify information shortfalls.
 # References

@@ -75,23 +75,25 @@ savefig(joinpath("figures", "beta-div_pred-range-diff-rel.png"))
 # Relationship between beta-diversities, grouped by predator species
 scatter(
     ranges_degrees_df[0.0 .< ranges_degrees_df.Rab .< 1.0, :Rab],
-    ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :Rbb];
+    ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :Rbb],
+    regression = true,
     xlabel="predator to prey geographic dissimilarity",
     ylabel="prey to predator geographic dissimilarity",
-    xlim = [0.0:1.0],
     group=ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :species],
-    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
-    markersize=6,
-    palette=:seaborn_colorblind,
+    markershape=[:circle :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+    markersize=3,
+    linewidth = 4,
+    palette = cgrad(:seaborn_colorblind)[[1, 3:9...]],
     markerstrokewidth=0,
-    size=(1000, 600),
+    size=(800, 800),
     left_margin=10mm,
     right_margin=10mm,
     top_margin=10mm,
     bottom_margin=10mm,
     legend = :right,
     foreground_color_legend=:lightgrey,
-    background_color_legend=:white
+    background_color_legend=:white,
+    aspect_ratio = :equal
 )
 savefig(joinpath("figures", "beta-div_pred-species.png"))
 
@@ -254,41 +256,3 @@ for i in eachindex(mammals)
     )
     savefig(joinpath("figures", "ranges", "iucn_gbif" * mammals[i] * ".png"))
 end
-
-
-# TABLES ----- 
-original_range # all species and their original ranges
-sp_degrees # all species and their degrees
-new_ranges_df # New ranges where species have at least one prey
-table1 = leftjoin(original_range, new_ranges_df, on=:species)
-table1 = leftjoin(table1, sp_degrees, on=:species)
-table1 = leftjoin(table1, DataFrame(species = species(M), trophic_levels = floor.(values(trophic_level(M)))), on = :species)
-sort!(table1, :trophic_levels, rev=true)
-
-using Latexify
-table1.species .= replace.(table1.species, "_" => " ")
-table1 = latexify(table1, env=:mdtable, fmt="%.3f", latex=false)
-print(table1) # copy & save to file
-
-# Export to file
-table_path = joinpath("tables", "range_proportions.md")
-open(table_path, "w") do io
-    print(io, table1)
-end
-
-
-# cooccurrence_interact.nbA # number of pixels with no preys
-# cooccurrence_interact.nbB # number of pixels with no predators
-# pred_has_prey = combine(groupby(cooccurrence_interact, :spA), :nbA=>sum=>:pred_has_prey) # cells where only predators occur
-# rename!(pred_has_prey, :spA => "species")
-# prey_has_pred = combine(groupby(cooccurrence_interact, :spB), :nbB=>sum=>:prey_has_pred) # cells where only prey occur
-# rename!(prey_has_pred, :spB => "species")
-# table1_preds = leftjoin(pred_has_prey, prey_has_pred, on=:species) # predators and preys of predators
-# table1_preys = leftjoin(prey_has_pred, pred_has_prey, on=:species) # predators and preys of predators
-# table1_preds_preys = unique(vcat(table1_preds, table1_preys, cols=:union), :species)
-# table1 = leftjoin(table1, table1_preds_preys, on=:species)
-# table1 = coalesce.(table1, 0)
-# table1.pred_has_prey = table1.pred_has_prey .* 100 ./ table1.old_range
-# table1.prey_has_pred = table1.prey_has_pred .* 100 ./ table1.old_range
-# table1.pred_has_prey .= ifelse.(table1.pred_has_prey .> 100.00, 100.00, table1.pred_has_prey)
-# table1.prey_has_pred .= ifelse.(table1.prey_has_pred .> 100.00, 100.00, table1.prey_has_pred)
