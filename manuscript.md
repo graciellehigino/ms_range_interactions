@@ -110,11 +110,8 @@ aureus* has the same number of preys than *Caracal caracal*, none of the preys
 of the former occurs inside its original range, which results in complete range
 loss. 
 
-Fig 02 - probably the species richness before and after?
+![Geographical overlap between the original IUCN range maps of predators and preys. Dots represent predator-prey pairs, with different symbols corresponding to different predators. For a given pair of species, predator to prey geographic dissimilarity represents the proportion of the predator's range that overlaps with the prey's range, and prey to predator geographic dissimilarity is the proportion of the prey's range that overlaps with the predator's range.](figures/beta-div_pred-species.png){#fig:geo_diss} 
 
-Fig 03 - 
-
-Fig 04 - The [beta-diversity plot](figures/beta-div_pred-species.png) with 4 quadrants
 There was high variation in the overlap of predator and prey ranges (Fig. 4). The range of several predators were well covered by prey (low values of prey-predator values), yet the ranges of some predators and prey were completely asynchronous, with no overlap (zero values for both overlap metrics; Fig. 4). For example, the range of Canis aureus is not covered by any prey species, whereas Panthera pardus exhibited highly variable levels of overlap with prey. In general, species exhibited more consistent values of prey-predator overlap, than predator-prey overlap – indicated by the spread of points along the x axis, yet more restricted variation on the y axis (Fig. 4). There was also no overall relationship between the two metrics, or for any predator species.
 
 Table 01 - The One With All the Species and Their Ranges and Predators and Preys
