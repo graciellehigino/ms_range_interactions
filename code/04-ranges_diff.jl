@@ -1,4 +1,4 @@
-short_list = filter(!isnothing, species_lists_c)
+short_list = filter(!isnothing, species_lists_corr)
 new_ranges_df = DataFrame(species = String[], range = Int64[])
 
 for i in 1:length(short_list)
