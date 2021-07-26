@@ -36,6 +36,17 @@
       "orcid": "0000-0001-9051-0597",
       "status": ["equal"]
     },
+        {
+      "affiliations": [
+        "Université de Montréal",
+        "Quebec Centre for Biodiversity Science"
+      ],
+      "familyname": "Dansereau",
+      "givennames": "Gabriel",
+      "email": "gabriel.dansereau@umontreal.ca",
+      "orcid": "0000-0002-2212-3584",
+      "status": ["equal"]
+    },
     {
       "affiliations": [
         "Université de Montréal",
