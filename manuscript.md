@@ -4,11 +4,10 @@ bibliography: [references.bib]
 
 # Intro
 
-
 Finding a species in a certain location is like finding an encrypted message
-that traveled through time. This message carries the species’ evolutionary
+that travelled through time. This message carries the species’ evolutionary
 history, long migration journeys, effects of other species we do not even know
-that exist, and ultimately the elements that shape its, yet unknown, future.
+to exist, and ultimately the elements that shape its, yet unknown, future.
 Ecologists have been trying to decode this message with progressively more
 powerful tools, from their own field notes to highly complex computational
 algorithms, such as habitat suitability models. These models attempt to describe
@@ -21,47 +20,64 @@ mystery, and the missing link are ecological interactions.
 Biases and historical lack of information about species distribution and ecology
 can lead us to the wrong conclusions [@Hortal2008HisBia]. Biodiversity
 occurrence data are knowingly biased, and the sources of bias are often
-taxonomic - including the bias related to the conservation status -, temporal or
-geographical [@Boakes2010DisVie; @Ronquillo2020AssSpa; @Meyer2016MulBia]. A
-complete assessment of ecological interactions is even more difficult than
-sufficient sampling of species occurrence. The number of interactions sampled
-will always be lower than the number of possible interactions, mainly due to the
-existence of forbidden links [@Jordano2016SamNet]. This lack of information,
-known as the Eltonian Shortfall, is aggravated by slanted and different
-sampling methods [@Poisot2020EnvBia; @Hortal2015SevSho]. Nevertheless, we have
-witnessed an increase in the availability of biodiversity data in the last
-decades, including those collected through community science projects
+taxonomic, temporal or geographical [@Boakes2010DisVie; @Ronquillo2020AssSpa;
+@Meyer2016MulBia]. Amongst these geographical data available are the range maps
+provided by the International Union for the Conservation of Nature (IUCN). These
+maps consist of simplified polygons, often created as alpha or convex hulls
+around known species locations, refined by expert knowledge of species
+[@IUCNSSCRedListTechnicalWorkingGroupMapSta]. Being simple polygons, they ignore
+abundance gradients and can include inadequate areas within the estimated range.
+As a result, they can lead to biased estimations of the ecological conditions
+experienced by a species. These maps can be used in macroecological inferences
+in the lack of more precise information [@Fourcade2016ComSpe;
+@Alhajeri2019HigCor], but it has been recommended that they are used with
+caution since they tend to underestimate the distribution of species that are
+not well-known [@Herkt2017MacCon]. Another source of species distribution
+information is the Global Biodiversity Information Facility (GBIF), which is an
+online repository of georeferenced observational records that comes from various
+sources, including community science programs, museum collections, and long-term
+monitoring schemes. A great source of bias in these datasets is the irregular
+sampling effort, with more occurrences originated from attractive and accessible
+areas and observation of charismatic species [@Alhajeri2019HigCor]. A complete
+assessment is even more difficult when it comes to ecological interactions. The
+number of interactions sampled will always be lower than the number of possible
+interactions, mainly due to forbidden links [@Jordano2016SamNet]. This lack of
+information, known as the Eltonian Shortfall, is aggravated by slanted and
+different sampling methods [@Poisot2020EnvBia; @Hortal2015SevSho]. Nevertheless,
+we have witnessed an increase in the availability of biodiversity data in the
+last decades, including those collected through community science projects
 [@Callaghan2019ImpBig, @Pocock2015BioRec] and organized dedicated databases
 mostly accessed by specialists, such as mangal [@Poisot2016ManMak] and the
 Global Biodiversity Information Facility (GBIF;
 @GBIF:TheGlobalBiodiversityInformationFacility2021WhaGbi).  
 
-Amongst these geographical data available are the range maps provided by the
-International Union for the Conservation of Nature (IUCN). The geographical data
-published by IUCN are collections of expert maps, which combine species
-observations and expert knowledge [@IUCNSSCRedListTechnicalWorkingGroupMapSta].
-These maps can be used in macroecological inferences in the lack of higher
-quality information [@Fourcade2016ComSpe; @Alhajeri2019HigCor], but it has been
-recommended that they are used with caution since they tend to underestimate the
-distribution of species that are not well-known [@Herkt2017MacCon]. 
-
 The connection between occurrence and interaction data is a frequent debate in
 Ecology. For instance, some argue that occurrence data can also capture
-real-time interactions [@Roy2016FocPla; @Ryan2018RolCit], and because of that it
-would be reasonable not to include them in macroecological models. On the other
-hand, many mechanistic simulation models in ecology have considered competition
-and facilitation in range shifts, whilst the use of trophic interactions in this
-context remains insufficient [@Cabral2017MecSim]. Here we investigate whether
-occurrence data (more precisely range maps) can be refined based on species
+real-time interactions [@Roy2016FocPla; @Ryan2018RolCit], and, because of that,
+it would not be necessary to include ecological interaction dynamics in macroecological models. On the
+other hand, many mechanistic simulation models in ecology have considered the
+effect of competition and facilitation in range shifts, whilst the use of trophic
+interactions in this context remains insufficient [@Cabral2017MecSim]. The
+rationale behind these models comes from the fact that interactions form complex
+networks that shape ecological structures and maintain the essential functions
+of ecosystems, such as seed dispersal, pollination, and biological control
+[@Albrecht2018PlaAni] that ultimately affects the composition, richness, and
+successional patterns of communities across multiple biomes. Therefore, changes
+in herbivores abundance, for example, can lead to significant direct and
+indirect effects on plant-animal interaction and also the processes of the
+ecosystem [@Anderson2016SpaDis; @Dattilo2018EcoNet; @Pringle2016LarHer;
+@Young2013EffMam]. Herbivores and pollinators, more precisely, are core study
+groups for these models since they are the main connection between the plant
+resources (directly limited by environmental conditions) and predators
+[@Dobson2009FooStr; Scott2018RolHer]. Consequently, the presence of large
+herbivores could represent the presence of both plant resources and potential
+predators.
+
+Here we investigate whether occurrence data (more precisely range maps) can be refined based on species
 interaction information, considering the basic assumption that predators can
 only be present in regions where there are preys. Mismatches between occurence
 and interaction data will produce updated range maps, and we will discuss the
 ecological meaning of this difference.
-
-Ecological networks represent species as nodes and their interactions as links, which allows quantifying the structure of animal-plant relationships,  and recognize species with higher degree values as better connected, and with a more important role in modularity [@Acevedo-Quintero2020StrFun].  The connection between species can be given by antagonistic and mutualistic interactions, which leads to the formation of complex networks that shape ecological structures and maintain the essential functions of ecosystems. One of these functions is herbivory [@Albrecht2018PlaAni]  Given the effect that herbivores exert on the composition, richness, and successional patterns of plant communities across multiple biomes; changes in herbivores abundance can lead to significant direct and indirect effects on plant-animal interaction and also the processes of the ecosystem [@Anderson2016SpaDis; @Dattilo2018EcoNet ; @Pringle2016LarHer ; @Young2013EffMam]. As occur whether interactions where the decrease in rains limits the plant resources, which leads to an ungulate birth decline, which turns lead to a reduction in carnivore births and survival. This strongly suggests the importance of herbivores for the study of networks, given their connection with vegetation and predators. [@Dobson2009FooStr] [Scott2018RolHer]. Therefore, we can assume that herbivores represent an important connector between the different trophic levels of a given ecosystem and thus the presence of large herbivores could argue the presence of both plant resources and predators.
-
-The International Union for Conservation of Nature (IUCN) is the largest provider of species range maps, covering thousands of mammal, bird, amphibian, and reptile species. These maps consist of simplified polygons, often created as alpha or convex hulls, which are drawn around known species locations, refined based on expert knowledge of species.  Being simple polygons, range maps also ignore abundance gradients and can include inadequate areas within the estimated range. As a result, can turn in biased estimations of the mean or median ecological conditions experienced by a species.  Global Biodiversity Information Facility (GBIF) provides an online repository of observational georeferenced records of more than one million species with global coverage. GBIF occurrence data are compiled from a variety of sources, including citizen science programs, museum collections, and long-term monitoring schemes. Wich can lead to GBIF data notoriously biased because of irregular sampling effort, with more occurrences recorded in attractive and accessible areas, and for charismatic species. (Alhajeri et al., 2018)
-
 
 
 # Methods
