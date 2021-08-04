@@ -54,38 +54,44 @@ Global Biodiversity Information Facility (GBIF;
 The connection between occurrence and interaction data is a frequent debate in
 Ecology. For instance, some argue that occurrence data can also capture
 real-time interactions [@Roy2016FocPla; @Ryan2018RolCit], and, because of that,
-it would not be necessary to include ecological interaction dynamics in macroecological models. On the
-other hand, many mechanistic simulation models in ecology have considered the
-effect of competition and facilitation in range shifts, whilst the use of trophic
-interactions in this context remains insufficient [@Cabral2017MecSim]. The
-rationale behind these models comes from the fact that interactions form complex
-networks that shape ecological structures and maintain the essential functions
-of ecosystems, such as seed dispersal, pollination, and biological control
-[@Albrecht2018PlaAni] that ultimately affects the composition, richness, and
-successional patterns of communities across multiple biomes. Therefore, changes
-in herbivores abundance, for example, can lead to significant direct and
-indirect effects on plant-animal interaction and also the processes of the
-ecosystem [@Anderson2016SpaDis; @Dattilo2018EcoNet; @Pringle2016LarHer;
-@Young2013EffMam]. Herbivores and pollinators, more precisely, are core study
-groups for these models since they are the main connection between the plant
-resources (directly limited by environmental conditions) and predators
-[@Dobson2009FooStr; Scott2018RolHer]. Consequently, the presence of large
-herbivores could represent the presence of both plant resources and potential
-predators.
+it would not be necessary to include ecological interaction dynamics in
+macroecological models. On the other hand, many mechanistic simulation models in
+ecology have considered the effect of competition and facilitation in range
+shifts, whilst the use of trophic interactions in this context remains
+insufficient [@Cabral2017MecSim]. The rationale behind these models comes from
+the fact that interactions form complex networks that shape ecological
+structures and maintain the essential functions of ecosystems, such as seed
+dispersal, pollination, and biological control [@Albrecht2018PlaAni] that
+ultimately affects the composition, richness, and successional patterns of
+communities across multiple biomes. Therefore, changes in herbivores abundance,
+for example, can lead to significant direct and indirect effects on plant-animal
+interaction and also the processes of the ecosystem [@Anderson2016SpaDis;
+@Dattilo2018EcoNet; @Pringle2016LarHer; @Young2013EffMam]. Herbivores and
+pollinators, more precisely, are core study groups for these models since they
+are the main connection between the plant resources (directly limited by
+environmental conditions) and predators [@Dobson2009FooStr; Scott2018RolHer].
+Consequently, the presence of large herbivores could represent the presence of
+both plant resources and potential predators.
 
-Here we investigate whether occurrence data (more precisely range maps) can be refined based on species
-interaction information, considering the basic assumption that predators can
-only be present in regions where there are preys. Mismatches between occurence
-and interaction data will produce updated range maps, and we will discuss the
-ecological meaning of this difference.
+Here we investigate whether occurrence data (more precisely range maps) can be
+refined based on species interaction information, considering the basic
+assumption that predators can only be present in regions where there are preys.
+We used the Serengeti food web dataset compiled by Baskerville et al.
+-[@Baskerville2011SpaGui], which comprises carnivores, herbivores, and plants
+from Tanzania. The Serengeti ecosystem has been extensively studied and its
+foodweb is one of the most complete we have to date, including primary producers
+[@Baskerville2011SpaGui]. We used these interactions to refine occurrence maps
+of carnivores, locally excluding them wherever a herbivore was not present.
+Therefore, mismatches between occurrence and interaction data produced updated
+range maps, and we discuss further the ecological meaning of this difference.
 
 
 # Methods
 
 ## Data 
-We investigated the effects of adjusting species distributions based on species interaction data across savannah ecosystems in Africa (Fig. 1). These ecosystems host a range of different species, including the well characterised predator-prey dynamics between iconic predators (e.g., lions, hyenas and leopards) and large herbivores (e.g., antelope, wildebeest and zebra), as well as a range of herbivorous and carnivorous small mammals. Here we focus on six groups of herbivores and carnivores from the Serengeti Food Web Data Set [baskerville_spatial_2011]. These species exhibit direct antagonistic (predator-prey) interactions with one another and are commonly found across savanna ecosystems on the African continent [mcnaughton_propagation_1992]. Although plants are included in the Serengeti Food Web Data Set, there is an absence of global range maps for many plant species [daru_greenmaps_2020], and as such we did not directly include plants in the following analyses. Many savanna plants are functionally similar (i.e., grasses, trees and shrubs) and cooccur across the same habitats [baskerville_spatial_2011], furthermore many of the herbivores are generalists feeding on a wide range of plants from different functional groups. Therefore, we assume that plants consumed by large herbivores are present across their ranges, and as such the ranges of herbivores are not expected to be significantly constrained by the availability of food plants.
-From the wider ecological network presented in [baskerville_spatial_2011], we sampled interaction data for herbivores and carnivores. This network contained 32 taxa and 84 interactions (after removing all self-loops for predators) and had a connectance of 0.08. We refer to this network as the meta-web as it contains all possible species interactions between the different taxa that could occur across savanna ecosystems such as the Serengeti.
-IUCN range maps were compiled for the 32 species included in the meta-network (23 herbivores and 9 carnivores) from the Spatial Data Download portal (www.iucnredlist.org/resources/spatial-data-download). Ranges were rasterized at 0.17 arc minute resolution (~19 km2).
+We investigated the effects of adjusting species distributions based on species interaction data across savannah ecosystems in Africa (Fig. 1). These ecosystems host a range of different species, including the well characterised predator-prey dynamics between iconic predators (e.g., lions, hyenas and leopards) and large herbivores (e.g., antelope, wildebeest and zebra), as well as a range of herbivorous and carnivorous small mammals. Here we focus on six groups of herbivores and carnivores from the Serengeti Food Web Data Set [@Baskerville2011SpaGui]. These species exhibit direct antagonistic (predator-prey) interactions with one another and are commonly found across savanna ecosystems on the African continent [mcnaughton_propagation_1992]. Although plants are included in the Serengeti Food Web Data Set, there is an absence of global range maps for many plant species [daru_greenmaps_2020], and as such we did not directly include plants in the following analyses. Many savanna plants are functionally similar (i.e., grasses, trees and shrubs) and cooccur across the same habitats [baskerville_spatial_2011], furthermore many of the herbivores are generalists feeding on a wide range of plants from different functional groups. Therefore, we assume that plants consumed by large herbivores are present across their ranges, and as such the ranges of herbivores are not expected to be significantly constrained by the availability of food plants.
+From the wider ecological network presented in Baskerville [-@Baskerville2011SpaGui], we sampled interaction data for herbivores and carnivores. This network contained 32 taxa and 84 interactions (after removing all self-loops for predators) and had a connectance of 0.08. We refer to this network as the meta-web as it contains all possible species interactions between the different taxa that could occur across savanna ecosystems such as the Serengeti.
+IUCN range maps were compiled for the 32 species included in the meta-network (23 herbivores and 9 carnivores) from the Spatial Data Download portal (www.iucnredlist.org/resources/spatial-data-download. Ranges were rasterized at 0.17 arc minute resolution (~19 km2).
 We then combined interaction data from the meta-network and cooccurrence data generated from species ranges to create networks for each raster pixel. This generated a total of 84,244 networks where at least two cooccurring and interacting species were present.
 
 ## Approach
