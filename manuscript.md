@@ -210,9 +210,9 @@ points along the x-axis, yet more restricted variation on the y axis
 metrics, or for any predator species.
 
 
-Table 01 - The One With All the Species and Their Ranges and Predators and Preys
-|                Species | Number of preys | Number of predators | Total range
-size | Proportion of range occupied by preys | Proportion of range occupied by predators |
+
+
+|                Species | Number of preys | Number of predators | Total range size | Proportion of range occupied by preys | Proportion of range occupied by predators |
 | ----------------------:| -------:| -------:| ----------------:| ----------:| ----------:|
 |        Canis mesomelas |   1 |   1 |        19872 |      0.190 |      0.995 |
 |     Loxodonta africana | missing | missing |         9654 |    missing |    missing |
@@ -246,6 +246,8 @@ size | Proportion of range occupied by preys | Proportion of range occupied by p
 |        Syncerus caffer | missing |   1 |        25223 |    missing |      0.250 |
 |       Tragelaphus oryx | missing |   2 |        20852 |    missing |      0.991 |
 |   Tragelaphus scriptus | missing |   3 |        36011 |    missing |      0.984 |
+
+
 
 
 ## Validation with GBIF occurrences
