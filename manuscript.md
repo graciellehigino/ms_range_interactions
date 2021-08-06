@@ -76,32 +76,87 @@ both plant resources and potential predators.
 Here we investigate whether occurrence data (more precisely range maps) can be
 refined based on species interaction information, considering the basic
 assumption that predators can only be present in regions where there are preys.
-We used the Serengeti food web dataset compiled by Baskerville et al.
--[@Baskerville2011SpaGui], which comprises carnivores, herbivores, and plants
+We used the Serengeti food web dataset compiled by Baskerville *et al*.
+[-@Baskerville2011SpaGui], which comprises carnivores, herbivores, and plants
 from Tanzania. The Serengeti ecosystem has been extensively studied and its
 foodweb is one of the most complete we have to date, including primary producers
-[@Baskerville2011SpaGui]. We used these interactions to refine occurrence maps
-of carnivores, locally excluding them wherever a herbivore was not present.
-Therefore, mismatches between occurrence and interaction data produced updated
-range maps, and we discuss further the ecological meaning of this difference.
+identified to the species level [@Baskerville2011SpaGui]. We used these
+interactions to refine occurrence maps of carnivores, locally excluding them
+wherever a herbivore was not present. We also explored the differences between
+the IUCN range maps and GBIF occurrences both before and after our analysis as
+a tool to determine whether we miss geographical information about species
+occurrence or ecological information about their interactions.
 
 
 # Methods
 
 ## Data 
-We investigated the effects of adjusting species distributions based on species interaction data across savannah ecosystems in Africa (Fig. 1). These ecosystems host a range of different species, including the well characterised predator-prey dynamics between iconic predators (e.g., lions, hyenas and leopards) and large herbivores (e.g., antelope, wildebeest and zebra), as well as a range of herbivorous and carnivorous small mammals. Here we focus on six groups of herbivores and carnivores from the Serengeti Food Web Data Set [@Baskerville2011SpaGui]. These species exhibit direct antagonistic (predator-prey) interactions with one another and are commonly found across savanna ecosystems on the African continent [mcnaughton_propagation_1992]. Although plants are included in the Serengeti Food Web Data Set, there is an absence of global range maps for many plant species [daru_greenmaps_2020], and as such we did not directly include plants in the following analyses. Many savanna plants are functionally similar (i.e., grasses, trees and shrubs) and cooccur across the same habitats [baskerville_spatial_2011], furthermore many of the herbivores are generalists feeding on a wide range of plants from different functional groups. Therefore, we assume that plants consumed by large herbivores are present across their ranges, and as such the ranges of herbivores are not expected to be significantly constrained by the availability of food plants.
-From the wider ecological network presented in Baskerville [-@Baskerville2011SpaGui], we sampled interaction data for herbivores and carnivores. This network contained 32 taxa and 84 interactions (after removing all self-loops for predators) and had a connectance of 0.08. We refer to this network as the meta-web as it contains all possible species interactions between the different taxa that could occur across savanna ecosystems such as the Serengeti.
-IUCN range maps were compiled for the 32 species included in the meta-network (23 herbivores and 9 carnivores) from the Spatial Data Download portal (www.iucnredlist.org/resources/spatial-data-download. Ranges were rasterized at 0.17 arc minute resolution (~19 km2).
-We then combined interaction data from the meta-network and cooccurrence data generated from species ranges to create networks for each raster pixel. This generated a total of 84,244 networks where at least two cooccurring and interacting species were present.
+We investigated the effects of adjusting species distributions based on species
+interaction data across savannah ecosystems in Africa (@fig:richness). These
+ecosystems host a range of different species, including the well characterised
+predator-prey dynamics between iconic predators (e.g., lions, hyenas and
+leopards) and large herbivores (e.g., antelope, wildebeest and zebra), as well
+as a range of herbivorous and carnivorous small mammals. Here we focus on six
+groups of herbivores and carnivores from the Serengeti Food Web Data Set
+[@Baskerville2011SpaGui]. These species exhibit direct antagonistic
+(predator-prey) interactions with one another and are commonly found across
+savanna ecosystems on the African continent [@McNaughton1992ProDis]. Although
+plants are included in the Serengeti Food Web Data Set, there is an absence of
+global range maps for many plant species [@Daru2020GreToo], and as such we did
+not directly include plants in the following analyses. Many savanna plants are
+functionally similar (i.e., grasses, trees and shrubs) and cooccur across the
+same habitats [@Baskerville2011SpaGui], furthermore many of the herbivores are
+generalists feeding on a wide range of plants from different functional groups.
+Therefore, we assume that plants consumed by large herbivores are present across
+their ranges, and as such the ranges of herbivores are not expected to be
+significantly constrained by the availability of food plants.  
+
+From the wider ecological network presented in Baskerville
+[-@Baskerville2011SpaGui], we sampled interaction data for herbivores and
+carnivores. This network contained 32 taxa and 84 interactions (after removing
+all self-loops for predators) and had a connectance of 0.08. We refer to this
+network as the meta-web as it contains all possible species interactions between
+the different taxa that could occur across savanna ecosystems such as the
+Serengeti.  
+
+IUCN range maps were compiled for the 32 species included in the meta-network (23 herbivores and 9 carnivores) from the Spatial Data Download portal (www.iucnredlist.org/resources/spatial-data-download. Ranges were rasterized at 0.17 arc minute resolution (~19 km²).
+We then combined interaction data from the meta-network and cooccurrence data
+generated from species ranges to create networks for each raster pixel. This
+generated a total of 84,244 networks where at least two cooccurring and
+interacting species were present.  
 
 ## Approach
-Organisms cannot persist unless they are directly or indirectly connected to a primary producer within their associated food web [power_top-down_1992]. As such, if a predator (omnivore or carnivore) becomes disconnected from primary producers, either because the primary producer itself or an organism at an intermediate trophic level become extinct, then that predator will too become extinct. Thus, here we adjusted the ranges of predators based on a simple rule: we removed any part of a predator’s range that did not intersect with the range of at least one prey herbivore species. So, unless the range of the predator overlapped at least one prey item which in turn is directly connected to a primary producer (plants), we removed that section of the predator’s range.
-We then calculated the difference in range size between the original IUCN ranges and those adjusted based on species interaction data.
+Organisms cannot persist unless they are directly or indirectly connected to a
+primary producer within their associated food web [@Power1992TopBot]. As such,
+if a predator (omnivore or carnivore) becomes disconnected from primary
+producers, either because the primary producer itself or an organism at an
+intermediate trophic level become extinct, then that predator will too become
+extinct. Thus, here we adjusted the ranges of predators based on a simple rule:
+we removed any part of a predator’s range that did not intersect with the range
+of at least one prey herbivore species. So, unless the range of the predator
+overlapped at least one prey item which in turn is directly connected to a
+primary producer (plants), we removed that section of the predator’s range. We
+then calculated the difference in range size between the original IUCN ranges
+and those adjusted based on species interaction data.
 
 ## Analysis
 To understand the drivers of range adjustments we completed a series of analyses. 
-We calculated geographical overlap, the extent to which interacting predator and prey species cooccurred across their ranges, by adapting a method presented by [ruggiero_geographic_1998]: a/[a + c]. We define a as the number of pixels where the focal species occurs and c is the number of pixels where the focal species and another species cooccur. This index of geographical overlap can be calculated with prey or predators as the focal species. Values vary between 0 and 1, with values closer to 0 indicating that there is large overlap in the ranges of the two species and values closer to 1 indicative of low cooccurrence across their ranges.
-For each species we calculated the in and out degree to understand whether the level of trophic specialisation (i.e., number of prey items per predator or number of predators per prey) affects the extent to which the ranges of the species were altered. One would assume that predators with a greater number of prey (i.e., a higher degree) are less likely to have significant changes in range as it is more likely that at least one prey species is present across its entire range. 
+We calculated geographical overlap, the extent to which interacting predator and
+prey species cooccurred across their ranges, by adapting a method presented by
+[@Ruggiero1998GeoRan]: *a/[a + c]*. We define *a* as the number of pixels where
+the focal species occurs and *c* is the number of pixels where the focal species
+and another species cooccur. This index of geographical overlap can be
+calculated with prey or predators as the focal species. Values vary between 0
+and 1, with values closer to 0 indicating that there is large overlap in the
+ranges of the two species and values closer to 1 indicative of low cooccurrence
+across their ranges.  
+
+For each predator species we calculated its out degree to understand whether the
+level of trophic specialisation (i.e., number of prey items per predator)
+affects the extent to which the ranges of the species were altered. One would
+assume that predators with a greater number of prey (i.e., a higher degree) are
+less likely to have significant changes in range as it is more likely that at
+least one prey species is present across its entire range.   
 
 ## Validation
 For each species in the dataset we collated point observation data from the Global Biodiversity Information Facility (GBIF; www.gbif.org). These data were used to validate the range adjustments made based on species interactions (see Approach). To do so, we calculated the proportion of total GBIF observations occurring with the original and adjusted species ranges. We standardised these values by the total number of pixels within each range to account for variability in range size between different species.
@@ -110,9 +165,17 @@ For each species in the dataset we collated point observation data from the Glob
 
 # Results
 
-Mammal species found in the Serengeti food web are widespread in Africa, especially in grasslands and savannas (left panel of @fig:richness). However, most local networks (83.2%) built using the original IUCN range maps had at least one mammal species without a path to a primary producer (right panel of @fig:richness). On average, local food webs had almost the third of their mammal species (mean = 30.5%, median = 14.3%) disconnected from basal species. In addition, many networks (16.6%) only had disconnected mammals; these networks however all had a very low number of mammal species, specifically between 1 and 4. 
+Mammal species found in the Serengeti food web are widespread in Africa,
+especially in grasslands and savannas (left panel of @fig:richness). However,
+most local networks (83.2%) built using the original IUCN range maps had at
+least one mammal species without a path to a primary producer (right panel of
+@fig:richness). On average, local food webs had almost the third of their mammal
+species (mean = 30.5%, median = 14.3%) disconnected from basal species. In
+addition, many networks (16.6%) only had disconnected mammals; these networks
+however all had a very low number of mammal species, specifically between 1 and
+4 (from a total of 32). 
 
-![Left panel: Spatial distribution of species richness according to the original IUCN range maps of all 32 mammal species of the Serengeti food web. Right panel: Proportion of mammal species remaining in each local network (i.e. each pixel) after removing all species without a path to a primary producer.](figures/richness_prop_removed.png){#fig:richness}
+![Left panel: spatial distribution of species richness according to the original IUCN range maps of all 32 mammal species of the Serengeti food web. Right panel: proportion of mammal species remaining in each local network (i.e. each pixel) after removing all species without a path to a primary producer.](figures/richness_prop_removed.png){#fig:richness}
 
 ### Specialized predators lose more range
 
@@ -134,9 +197,56 @@ loss.
 
 ![Geographical dissimilarity between the original IUCN range maps of predators and preys. Dots represent predator-prey pairs, with different symbols corresponding to different predators. For a given pair of species, the number $c$ of pixels where the predator and prey cooccur and the number $a$ of pixels where the focal species is present but not the other, were calculated. Geographic dissimilarities were given by a/(a+c), with the predator being the focal species in the predator to prey dissimilarity (x-axis), while the prey is the focal one in the prey to predator dissimilarity (y-axis).](figures/beta-div_pred-species.png){#fig:geo_diss} 
 
-There was high variation in the overlap of predator and prey ranges (@fig:geo_diss). The range of several predators were well covered by prey (low values of prey-predator values), yet the ranges of some predators and prey were completely asynchronous, with no overlap (zero values for both overlap metrics; @fig:geo_diss). For example, the range of *Canis aureus* is not covered by any prey species, whereas *Panthera pardus* exhibited highly variable levels of overlap with prey. In general, species exhibited more consistent values of prey-predator overlap, than predator-prey overlap – indicated by the spread of points along the x-axis, yet more restricted variation on the y axis (@fig:geo_diss)). There was also no overall relationship between the two metrics, or for any predator species.
+There was high variation in the overlap of predator and prey ranges
+(@fig:geo_diss). The range of several predators were well covered by prey (low
+values of prey-predator values), yet the ranges of some predators and prey were
+completely asynchronous, with no overlap (zero values for both overlap metrics;
+@fig:geo_diss). For example, the range of *Canis aureus* is not covered by any
+prey species, whereas *Panthera pardus* exhibited highly variable levels of
+overlap with prey. In general, species exhibited more consistent values of
+prey-predator overlap, than predator-prey overlap – indicated by the spread of
+points along the x-axis, yet more restricted variation on the y axis
+(@fig:geo_diss)). There was also no overall relationship between the two
+metrics, or for any predator species.
+
 
 Table 01 - The One With All the Species and Their Ranges and Predators and Preys
+|                Species | Number of preys | Number of predators | Total range
+size | Proportion of range occupied by preys | Proportion of range occupied by predators |
+| ----------------------:| -------:| -------:| ----------------:| ----------:| ----------:|
+|        Canis mesomelas |   1 |   1 |        19872 |      0.190 |      0.995 |
+|     Loxodonta africana | missing | missing |         9654 |    missing |    missing |
+|           Panthera leo |  18 | missing |        11384 |      0.934 |    missing |
+|     Eudorcas thomsonii | missing |   6 |          463 |    missing |      1 |
+|       Acinonyx jubatus |   8 |   1 |        15540 |      0.560 |      0.670 |
+|     Aepyceros melampus | missing |   5 |        10579 |    missing |      1 |
+|  Alcelaphus buselaphus | missing |   4 |        20761 |    missing |      1 |
+|           Canis aureus |   4 |   1 |         7358 |      0.000 |      0.780 |
+|        Caracal caracal |   4 | missing |        47243 |      0.832 |    missing |
+|  Connochaetes taurinus | missing |   6 |         9650 |    missing |      1 |
+|        Crocuta crocuta |  12 |   1 |        43307 |      0.848 |      0.252 |
+|     Damaliscus lunatus | missing |   4 |         5567 |    missing |      1 |
+|           Equus quagga | missing |   5 |         7070 |    missing |      1 |
+|          Nanger granti | missing |   6 |         2303 |    missing |      1 |
+| Giraffa camelopardalis | missing |   1 |         5418 |    missing |      0.470 |
+|     Heterohyrax brucei | missing |   1 |        17728 |    missing |      0.972 |
+| Hippopotamus amphibius | missing | missing |         3695 |    missing |    missing |
+|   Kobus ellipsiprymnus | missing |   4 |        26705 |    missing |      1 |
+|     Leptailurus serval |   1 |   1 |        38856 |      0.011 |      0.979 |
+|          Lycaon pictus |  14 | missing |         3873 |      0.916 |    missing |
+|         Madoqua kirkii | missing |   7 |         4002 |    missing |      1 |
+|         Ourebia ourebi | missing |   5 |        22380 |    missing |      1 |
+|        Panthera pardus |  22 | missing |        68137 |      0.766 |    missing |
+|           Papio anubis | missing |   1 |        23171 |    missing |      0.938 |
+|       Pedetes capensis | missing |   2 |        11901 |    missing |      1 |
+| Phacochoerus africanus | missing |   5 |        29963 |    missing |      0.999 |
+|      Procavia capensis | missing |   1 |        47697 |    missing |      0.647 |
+|        Redunca redunca | missing |   5 |        17465 |    missing |      1 |
+|      Rhabdomys pumilio | missing |   5 |          465 |    missing |      0.998 |
+|        Syncerus caffer | missing |   1 |        25223 |    missing |      0.250 |
+|       Tragelaphus oryx | missing |   2 |        20852 |    missing |      0.991 |
+|   Tragelaphus scriptus | missing |   3 |        36011 |    missing |      0.984 |
+
 
 ## Validation with GBIF occurrences
 
