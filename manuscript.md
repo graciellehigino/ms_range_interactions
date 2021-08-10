@@ -39,7 +39,7 @@ sources, including community science programs, museum collections, and long-term
 monitoring schemes. A great source of bias in these datasets is the irregular
 sampling effort, with more occurrences originated from attractive and accessible
 areas and observation of charismatic species [@Alhajeri2019HigCor]. A complete
-assessment is even more difficult when it comes to ecological interactions. The
+assessment of ecological interactions is even more difficult. The
 number of interactions sampled will always be lower than the number of possible
 interactions, mainly due to forbidden links [@Jordano2016SamNet]. This lack of
 information, known as the Eltonian Shortfall, is aggravated by slanted and
@@ -183,16 +183,16 @@ however all had a very low number of mammal species, specifically between 1 and
 relative range loss. More specialized predators lose a higher proportion of
 their ranges due to mismatch with the ranges of their preys.](figures/rel_loss-outdegree-species.png){#fig:degree}
 
-Predators with less preys lose more range with our method (@fig:degree). For
+Predators with less preys lose more range with our method [@fig:degree]. For
 instance, both *Leptailurus serval* and *Canis mesomelas* have only one prey in
-the Serengeti foodweb, each of them with a very small range compared to those of
+the Serengeti foodweb [@tbl:everyone], each of them with a very small range compared to those of
 their predators. This discrepancy between range sizes promotes significant range
 loss. On the other hand, predators of the genus *Panthera* are some of the most
 connected species, and they also lose the least proportion of their ranges. This
 mismatch between predators and preys can also be a result of taxonomic
 disagreement between the geographical and ecological data. Although *Canis
 aureus* has the same number of preys than *Caracal caracal*, none of the preys
-of the former occurs inside its original range, which results in complete range
+of the former occurs inside its original range [@tbl:everyone], which results in complete range
 loss. 
 
 ![Geographical dissimilarity between the original IUCN range maps of predators and preys. Dots represent predator-prey pairs, with different symbols corresponding to different predators. For a given pair of species, the number $c$ of pixels where the predator and prey cooccur and the number $a$ of pixels where the focal species is present but not the other, were calculated. Geographic dissimilarities were given by a/(a+c), with the predator being the focal species in the predator to prey dissimilarity (x-axis), while the prey is the focal one in the prey to predator dissimilarity (y-axis).](figures/beta-div_pred-species.png){#fig:geo_diss} 
@@ -203,49 +203,49 @@ values of prey-predator values), yet the ranges of some predators and prey were
 completely asynchronous, with no overlap (zero values for both overlap metrics;
 @fig:geo_diss). For example, the range of *Canis aureus* is not covered by any
 prey species, whereas *Panthera pardus* exhibited highly variable levels of
-overlap with prey. In general, species exhibited more consistent values of
+overlap with prey [@tbl:everyone]. In general, species exhibited more consistent values of
 prey-predator overlap, than predator-prey overlap – indicated by the spread of
 points along the x-axis, yet more restricted variation on the y axis
 (@fig:geo_diss)). There was also no overall relationship between the two
 metrics, or for any predator species.
 
 
-
+Table: List of species analysed, their out and in degrees, total original range size and proportion of their ranges occupied by their preys and predators (values between 0 and 1). Notice how some species are isolated in the network (*Loxodonta africana*) and how *Canis aureus*'s range do not overlap with any of its preys.{#tbl:everyone}
 
 |                Species | Number of preys | Number of predators | Total range size | Proportion of range occupied by preys | Proportion of range occupied by predators |
 | ----------------------:| -------:| -------:| ----------------:| ----------:| ----------:|
 |        Canis mesomelas |   1 |   1 |        19872 |      0.190 |      0.995 |
-|     Loxodonta africana | missing | missing |         9654 |    missing |    missing |
-|           Panthera leo |  18 | missing |        11384 |      0.934 |    missing |
-|     Eudorcas thomsonii | missing |   6 |          463 |    missing |      1 |
+|     Loxodonta africana | 0 | 0 |         9654 |    0 |    0 |
+|           Panthera leo |  18 | 0 |        11384 |      0.934 |    0 |
+|     Eudorcas thomsonii | 0 |   6 |          463 |    0 |      1 |
 |       Acinonyx jubatus |   8 |   1 |        15540 |      0.560 |      0.670 |
-|     Aepyceros melampus | missing |   5 |        10579 |    missing |      1 |
-|  Alcelaphus buselaphus | missing |   4 |        20761 |    missing |      1 |
+|     Aepyceros melampus | 0 |   5 |        10579 |    0 |      1 |
+|  Alcelaphus buselaphus | 0 |   4 |        20761 |    0 |      1 |
 |           Canis aureus |   4 |   1 |         7358 |      0.000 |      0.780 |
-|        Caracal caracal |   4 | missing |        47243 |      0.832 |    missing |
-|  Connochaetes taurinus | missing |   6 |         9650 |    missing |      1 |
+|        Caracal caracal |   4 | 0 |        47243 |      0.832 |    0 |
+|  Connochaetes taurinus | 0 |   6 |         9650 |    0 |      1 |
 |        Crocuta crocuta |  12 |   1 |        43307 |      0.848 |      0.252 |
-|     Damaliscus lunatus | missing |   4 |         5567 |    missing |      1 |
-|           Equus quagga | missing |   5 |         7070 |    missing |      1 |
-|          Nanger granti | missing |   6 |         2303 |    missing |      1 |
-| Giraffa camelopardalis | missing |   1 |         5418 |    missing |      0.470 |
-|     Heterohyrax brucei | missing |   1 |        17728 |    missing |      0.972 |
-| Hippopotamus amphibius | missing | missing |         3695 |    missing |    missing |
-|   Kobus ellipsiprymnus | missing |   4 |        26705 |    missing |      1 |
+|     Damaliscus lunatus | 0 |   4 |         5567 |    0 |      1 |
+|           Equus quagga | 0 |   5 |         7070 |    0 |      1 |
+|          Nanger granti | 0 |   6 |         2303 |    0 |      1 |
+| Giraffa camelopardalis | 0 |   1 |         5418 |    0 |      0.470 |
+|     Heterohyrax brucei | 0 |   1 |        17728 |    0 |      0.972 |
+| Hippopotamus amphibius | 0 | 0 |         3695 |    0 |    0 |
+|   Kobus ellipsiprymnus | 0 |   4 |        26705 |    0 |      1 |
 |     Leptailurus serval |   1 |   1 |        38856 |      0.011 |      0.979 |
-|          Lycaon pictus |  14 | missing |         3873 |      0.916 |    missing |
-|         Madoqua kirkii | missing |   7 |         4002 |    missing |      1 |
-|         Ourebia ourebi | missing |   5 |        22380 |    missing |      1 |
-|        Panthera pardus |  22 | missing |        68137 |      0.766 |    missing |
-|           Papio anubis | missing |   1 |        23171 |    missing |      0.938 |
-|       Pedetes capensis | missing |   2 |        11901 |    missing |      1 |
-| Phacochoerus africanus | missing |   5 |        29963 |    missing |      0.999 |
-|      Procavia capensis | missing |   1 |        47697 |    missing |      0.647 |
-|        Redunca redunca | missing |   5 |        17465 |    missing |      1 |
-|      Rhabdomys pumilio | missing |   5 |          465 |    missing |      0.998 |
-|        Syncerus caffer | missing |   1 |        25223 |    missing |      0.250 |
-|       Tragelaphus oryx | missing |   2 |        20852 |    missing |      0.991 |
-|   Tragelaphus scriptus | missing |   3 |        36011 |    missing |      0.984 |
+|          Lycaon pictus |  14 | 0 |         3873 |      0.916 |    0 |
+|         Madoqua kirkii | 0 |   7 |         4002 |    0 |      1 |
+|         Ourebia ourebi | 0 |   5 |        22380 |    0 |      1 |
+|        Panthera pardus |  22 | 0 |        68137 |      0.766 |    0 |
+|           Papio anubis | 0 |   1 |        23171 |    0 |      0.938 |
+|       Pedetes capensis | 0 |   2 |        11901 |    0 |      1 |
+| Phacochoerus africanus | 0 |   5 |        29963 |    0 |      0.999 |
+|      Procavia capensis | 0 |   1 |        47697 |    0 |      0.647 |
+|        Redunca redunca | 0 |   5 |        17465 |    0 |      1 |
+|      Rhabdomys pumilio | 0 |   5 |          465 |    0 |      0.998 |
+|        Syncerus caffer | 0 |   1 |        25223 |    0 |      0.250 |
+|       Tragelaphus oryx | 0 |   2 |        20852 |    0 |      0.991 |
+|   Tragelaphus scriptus | 0 |   3 |        36011 |    0 |      0.984 |
 
 
 
@@ -260,33 +260,58 @@ The proportion of GBIF pixels falling inside the updated ranges from our network
 
 # Discussion
 
-Although species interactions have previously been shown to affect the distribution and abundance of species at large-scales, not all research supports the assertion that ecological interactions are important at macroecological scales (REF). Here we lend further evidence to this debate, showing that when ecological interaction data (predator-prey interactions within food webs) are used to refine species range maps, there are significant reductions in the predicted range size of predatory organisms. Despite showing the potential importance in accounting for species interactions when estimating the range of a species, it remains unclear the extent of which the patterns observed represent ecological processes or a lack of data. In the following sections we discuss the implications of our findings, in terms of species range maps, interaction data and the next steps required to enhance understanding of species distributions using information on ecological networks.
+Although species interactions have previously been shown to affect the
+distribution and abundance of species at large-scales [@Bullock2000GeoSep;
+@Chesson2008IntPre; @Godsoe2012HowSpe; @Svenning2014InfInt; @Godsoe2017IntBio],
+not all research supports the assertion that ecological interactions are
+important at macroecological scales [Pearson2003PreImp; @Soberon2009NicDis]. For
+instance, preys' range expansion tends to be slower when generalists predators
+are present or when mutualists are absent [@Svenning2014InfInt]. On the other
+hand, range preservation is also associated with ecological interactions, once
+connected species can be protected of climate change and invasion
+[@Dunne2002NetStr; @Memmott2004TolPol; @Ramos-Jiliberto2012TopPla]. Here we lend
+further evidence to this debate, showing that when ecological interaction data
+(predator-prey interactions within food webs) are used to refine species range
+maps, there are significant reductions in the predicted range size of predatory
+organisms. Despite showing the potential importance in accounting for species
+interactions when estimating the range of a species, it remains unclear the
+extent of which the patterns observed represent ecological processes or a lack
+of data. In the following sections we discuss the implications of our findings,
+in terms of species range maps, interaction data and the next steps required to
+enhance understanding of species distributions using information on ecological
+networks.
 
-Some questions that’d be interesting to answer!!!!!
-- Can we SDM one of the species with the updated rangemaps?
-- Which rangemaps are the most accurate? 
-  - We SDM species from inference data and check which rangemaps (original or
-    updated) are more similar to that 
-    - Might bring more questions about which data we’re missing (occurrence or
-      links)
-- What does a 0 value on beta-diversity mean? Why does it matter? 
-  - Is it the data??????!!!?!?! WHO’S WRONG?!?!?!?
-- Can GBIF help us identify if the things we observe is a matter of data or
-  ecology?
-- The follow-up paper "Spatial Robustness of networks" by Norma & Fredric 
+#### Connectivity, diversity and range preservation
+
+In the Serengeti food web there is a positive relationship between the predators
+out degree and the size of their ranges [@tbl:everyone]. In addition, our
+results show that there is a negative relationship between the relative loss of
+range and number of preys [@fig:degree], reinforcing the ideia that generalist
+species tend to preserve their range. The factors limiting the geographical
+range of a species in a community can vary with connectivity and richness.
+Younger communities may be more affected by environmental limitations because
+they are dominated by generalist species, while older metacommunities are
+probably affected in different ways in the centre of the distribution, at the
+edge of ranges and in sink and source communities. Additionally, it is likely
+that species with larger ranges of distribution and those that are more
+generalists would co-occur with a greater number of other species
+[@Dattilo2020SpeDri], while dispersal capacity of competitive species modulate
+their aggregation in space and the effect of interactions on their range limits
+[@Godsoe2017IntBio].
 
 #### Geographical mismatch and data availability
 
 The geographical mismatch between predators and preys have ecological
 consequences such as loss of ecosystem functioning and extiction of populations
-[CITATIONS]. Climate change is one of the causes of this, leading, for instance,
-to the decrease of plants populations due to lack of pollination [CITATION]
-[INCLUDE EXAMPLES]. However, this mismatch can also be purely informational.
-When the distribution of predators and preys do not supperpose, it can mean we
-lack information about the distribution of either species or about their
-interactions. Here we address part of this problem by comparing the IUCN range
-maps with GBIF occurrences, which helped us clarify what is the shortfall for
-each species. 
+[@Anderson2016SpaDis; @Dattilo2018EcoNet; @Pringle2016LarHer; @Young2013EffMam].
+Climate change is one of the causes of this, leading, for instance, to the
+decrease of plants populations due to lack of pollination [@Bullock2000GeoSep;
+@Hellmann2012InfSpe; @Afkhami2014MutEff; @Godsoe2017IntBio; @Siren2020IntRan].
+However, this mismatch can also be purely informational. When the distribution
+of predators and preys do not supperpose, it can mean we lack information about
+the distribution of either species or about their interactions. Here we address
+part of this problem by comparing the IUCN range maps with GBIF occurrences,
+which helped us clarify what is the shortfall for each species. 
 
 The lack of superposition between IUCN range maps and GBIF occurrences suggests
 that we certainly do miss geographical information about the distribution of a
@@ -314,6 +339,35 @@ both geographical and ecological information: none of its GBIF occurrences and
 none of its preys occur inside its IUCN range. We believe, therefore, that
 the validation of species distribution based on ecological interaction is a
 relevant method that can further clarify information shortfalls.
+
+#### Next steps
+
+Here we demonstrate how we can detect uncertainty in species distribution data
+using ecological interactions. Knowing where questionable occurrence data is can
+be crucial in ecological modelling[@Hortal2008UncMea; @Ladle2013MapSpe], and
+accounting for these errors can improve model outputs by diminishing the error
+propation [@Draper1995AssPro]. For instance, we believe this is a way to account
+for ecological interactions in habitat suitability models without making the
+models more complex, but making sure (not assuming) that the input data - the
+species occurrence - actually accounts for ecological interactions. It is
+important to notice, however, that the quality and usefulness of this method is
+highly correlated with the amount and quality of data available about species'
+occurrences **and** interactions. In our case, one predator (*Canis aureus*)
+would be completely excluded of its original range probably because of a
+taxonomic mismatch between datasets. Hence, this method can be useful when the
+study group is well known, and the growing availability of data will certainly
+improve the its applicability.
+
+With this paper we hope to add to the collective effort to decode the encrypted
+message that is the occurrence of a species in space and time. A promising venue
+that adds to our method is the prediction of networks and interactions in large
+scale [REFS], for they can add valuable information about ecological
+interactions where they are missing. Additionally, in order to achieve a robust
+modelling framework towards actual species distribution models we should invest
+on efforts to collect and combine open data on species occurrence and
+interactions, especially because we may have been losing ecological interactions
+at least as fast as we are losing biodiversity [@Parejo2016InfMis].
+
 
 ## Acknowledgements
 
