@@ -212,41 +212,7 @@ metrics, or for any predator species.
 
 : List of species analysed, their out and in degrees, total original range size and proportion of their ranges occupied by their preys and predators (values between 0 and 1). Notice how some species are isolated in the network (*Loxodonta africana*) and how *Canis aureus*'s range do not overlap with any of its preys. {#tbl:everyone}
 
-|                Species | Number of preys | Number of predators | Total range size | Proportion of range occupied by preys | Proportion of range occupied by predators |
-| ----------------------:| -------:| -------:| ----------------:| ----------:| ----------:|
-|        Canis mesomelas |   1 |   1 |        19872 |      0.190 |      0.995 |
-|     Loxodonta africana | 0 | 0 |         9654 |    0 |    0 |
-|           Panthera leo |  18 | 0 |        11384 |      0.934 |    0 |
-|     Eudorcas thomsonii | 0 |   6 |          463 |    0 |      1 |
-|       Acinonyx jubatus |   8 |   1 |        15540 |      0.560 |      0.670 |
-|     Aepyceros melampus | 0 |   5 |        10579 |    0 |      1 |
-|  Alcelaphus buselaphus | 0 |   4 |        20761 |    0 |      1 |
-|           Canis aureus |   4 |   1 |         7358 |      0.000 |      0.780 |
-|        Caracal caracal |   4 | 0 |        47243 |      0.832 |    0 |
-|  Connochaetes taurinus | 0 |   6 |         9650 |    0 |      1 |
-|        Crocuta crocuta |  12 |   1 |        43307 |      0.848 |      0.252 |
-|     Damaliscus lunatus | 0 |   4 |         5567 |    0 |      1 |
-|           Equus quagga | 0 |   5 |         7070 |    0 |      1 |
-|          Nanger granti | 0 |   6 |         2303 |    0 |      1 |
-| Giraffa camelopardalis | 0 |   1 |         5418 |    0 |      0.470 |
-|     Heterohyrax brucei | 0 |   1 |        17728 |    0 |      0.972 |
-| Hippopotamus amphibius | 0 | 0 |         3695 |    0 |    0 |
-|   Kobus ellipsiprymnus | 0 |   4 |        26705 |    0 |      1 |
-|     Leptailurus serval |   1 |   1 |        38856 |      0.011 |      0.979 |
-|          Lycaon pictus |  14 | 0 |         3873 |      0.916 |    0 |
-|         Madoqua kirkii | 0 |   7 |         4002 |    0 |      1 |
-|         Ourebia ourebi | 0 |   5 |        22380 |    0 |      1 |
-|        Panthera pardus |  22 | 0 |        68137 |      0.766 |    0 |
-|           Papio anubis | 0 |   1 |        23171 |    0 |      0.938 |
-|       Pedetes capensis | 0 |   2 |        11901 |    0 |      1 |
-| Phacochoerus africanus | 0 |   5 |        29963 |    0 |      0.999 |
-|      Procavia capensis | 0 |   1 |        47697 |    0 |      0.647 |
-|        Redunca redunca | 0 |   5 |        17465 |    0 |      1 |
-|      Rhabdomys pumilio | 0 |   5 |          465 |    0 |      0.998 |
-|        Syncerus caffer | 0 |   1 |        25223 |    0 |      0.250 |
-|       Tragelaphus oryx | 0 |   2 |        20852 |    0 |      0.991 |
-|   Tragelaphus scriptus | 0 |   3 |        36011 |    0 |      0.984 |
-
+\input{tables/table_ranges.md}
 
 ## Validation with GBIF occurrences
 
