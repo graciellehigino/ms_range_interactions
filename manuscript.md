@@ -210,7 +210,7 @@ points along the x-axis, yet more restricted variation on the y axis
 metrics, or for any predator species.
 
 
-Table: List of species analysed, their out and in degrees, total original range size and proportion of their ranges occupied by their preys and predators (values between 0 and 1). Notice how some species are isolated in the network (*Loxodonta africana*) and how *Canis aureus*'s range do not overlap with any of its preys.{#tbl:everyone}
+: List of species analysed, their out and in degrees, total original range size and proportion of their ranges occupied by their preys and predators (values between 0 and 1). Notice how some species are isolated in the network (*Loxodonta africana*) and how *Canis aureus*'s range do not overlap with any of its preys. {#tbl:everyone}
 
 |                Species | Number of preys | Number of predators | Total range size | Proportion of range occupied by preys | Proportion of range occupied by predators |
 | ----------------------:| -------:| -------:| ----------------:| ----------:| ----------:|
