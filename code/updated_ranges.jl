@@ -1,3 +1,4 @@
+using Latexify
 include("02-get_networks.jl")
 
 ## Load required data
@@ -119,9 +120,25 @@ CSV.write(joinpath("data", "clean", "range_proportions.csv"), results)
 
 ## Export as markdown table
 
-# Format as Markdown table
-using Latexify
+# Fix the formatting
 results.species .= replace.(results.species, "_" => " ")
+for col in [:prop_preys, :prop_preds]
+    results[!, col] = replace(results[!, col], missing => "-")
+end
+results
+
+# Rename columns
+rename!(
+    results,
+    "species" => "Species",
+    "n_preys" => "Number of preys",
+    "n_preds" => "Number of predators",
+    "total_range_size" => "Total range size",
+    "prop_preys" => "Proportion of range occupied by preys",
+    "prop_preds" => "Proportion of range occupied by predators"
+)
+
+# Format as Markdown table
 table = latexify(results, env=:mdtable, fmt="%.3f", latex=false, escape_underscores=true)
 
 # Export to file
@@ -137,6 +154,7 @@ open(table_path, "w") do io
         line = replace(line, " 0.000" => " x.xxx")
         line = replace(line, ".000" => "")
         line = replace(line, " x.xxx" => " 0.000")
+        line = replace(line, "missing" => "0")
         print(io, line)
     end
 end
