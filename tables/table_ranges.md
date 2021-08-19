@@ -1,10 +1,12 @@
 |                Species |            Group | Number of preys | Number of predators | Total range size | Proportion of range occupied by preys | Proportion of range occupied by predators |
 | ----------------------:| ----------------:| ---------------:| -------------------:| ----------------:| -------------------------------------:| -----------------------------------------:|
+| **Group 1: Large carnivores** | | | |
 |           Panthera leo | Large carnivores |          18 |             0 |        11384 |                                 0.934 |                                         - |
 |       Acinonyx jubatus | Large carnivores |           8 |               1 |        15540 |                                 0.560 |                                     0.670 |
 |        Crocuta crocuta | Large carnivores |          12 |               1 |        43307 |                                 0.848 |                                     0.252 |
 |          Lycaon pictus | Large carnivores |          14 |             0 |         3873 |                                 0.916 |                                         - |
 |        Panthera pardus | Large carnivores |          22 |             0 |        68137 |                                 0.766 |                                         - |
+| **Group 2: Small carnivores** | | | |
 |        Canis mesomelas | Small carnivores |           1 |               1 |        19872 |                                 0.190 |                                     0.995 |
 |           Canis aureus | Small carnivores |           4 |               1 |         7358 |                                 0.000 |                                     0.780 |
 |        Caracal caracal | Small carnivores |           4 |             0 |        47243 |                                 0.832 |                                         - |
