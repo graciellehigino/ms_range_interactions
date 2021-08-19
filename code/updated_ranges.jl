@@ -127,10 +127,18 @@ for col in [:prop_preys, :prop_preds]
 end
 results
 
+# Reorder species by the groups from Baskerville 2011
+sp_groups = CSV.read(joinpath("data", "species_groups.csv"), DataFrame)
+results = results |>
+    x -> leftjoin(sp_groups, x, on=:species) |>
+    x -> sort(x, :group) |>
+    x -> select(x, Not(:group))
+
 # Rename columns
 rename!(
     results,
     "species" => "Species",
+    "description" => "Group",
     "n_preys" => "Number of preys",
     "n_preds" => "Number of predators",
     "total_range_size" => "Total range size",
