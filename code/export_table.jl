@@ -69,7 +69,7 @@ end
 lines = readlines(table_path; keep=true)
 open(table_path, "w") do io
     for line in lines
-        line = startswith(line, "| --") ? "| ----------------------:| -------:| -------:| -------:| ----------:| ----------:|\n" : line
+        line = startswith(line, "| --") ? "| :---------------------- | -------:| -------:| -------:| ----------:| ----------:|\n" : line
         print(io, line)
     end
 end
