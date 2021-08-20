@@ -206,7 +206,7 @@ prey species, whereas *Panthera pardus* exhibited highly variable levels of
 overlap with prey ([@tbl:everyone]). In general, species exhibited more consistent values of
 prey-predator overlap, than predator-prey overlap – indicated by the spread of
 points along the x-axis, yet more restricted variation on the y axis
-(@fig:geo_diss)). There was also no overall relationship between the two
+(@fig:geo_diss). There was also no overall relationship between the two
 metrics, or for any predator species.
 
 
