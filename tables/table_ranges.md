@@ -1,5 +1,5 @@
 |                Species | Number of preys | Number of predators | Total range size | Proportion of range occupied by preys | Proportion of range occupied by predators |
-| ----------------------:| -------:| -------:| ----------------:| ----------:| ----------:|
+| ----------------------:| -------:| -------:| -------:| ----------:| ----------:|
 | **Large carnivores** | | | | | |
 |       Acinonyx jubatus |           8 |               1 |        15540 |                                 0.560 |                                     0.670 |
 |        Crocuta crocuta |          12 |               1 |        43307 |                                 0.848 |                                     0.252 |
