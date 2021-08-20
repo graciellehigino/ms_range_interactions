@@ -131,14 +131,14 @@ results
 sp_groups = CSV.read(joinpath("data", "species_groups.csv"), DataFrame)
 results = results |>
     x -> leftjoin(sp_groups, x, on=:species) |>
-    x -> sort(x, :group) |>
-    x -> select(x, Not(:group))
+    x -> sort(x, [:group, :species]) |>
+    x -> select(x, Not([:group, :description]))
 
 # Rename columns
 rename!(
     results,
     "species" => "Species",
-    "description" => "Group",
+    # "description" => "Group",
     "n_preys" => "Number of preys",
     "n_preds" => "Number of predators",
     "total_range_size" => "Total range size",
