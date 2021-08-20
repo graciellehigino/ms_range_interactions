@@ -32,6 +32,7 @@
 | **Hyraxes** | | | | | |
 |     Heterohyrax brucei |         0 |               1 |        17728 |                                     - |                                     0.972 |
 |      Procavia capensis |         0 |               1 |        47697 |                                     - |                                     0.647 |
+| **Others** | | | | | |
 | Giraffa camelopardalis |         0 |               1 |         5418 |                                     - |                                     0.470 |
 |     Loxodonta africana |         0 |             0 |         9654 |                                     - |                                         - |
 |         Madoqua kirkii |         0 |               7 |         4002 |                                     - |                                     1 |
