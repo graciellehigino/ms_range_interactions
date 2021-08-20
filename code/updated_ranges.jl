@@ -117,30 +117,6 @@ results = results[!, Not(:trophic_levels)]
 # Export to CSV
 CSV.write(joinpath("data", "clean", "range_proportions.csv"), results)
 
-## Export as markdown table
-
-# Format as Markdown table
-using Latexify
-results.species .= replace.(results.species, "_" => " ")
-table = latexify(results, env=:mdtable, fmt="%.3f", latex=false, escape_underscores=true)
-
-# Export to file
-table_path = joinpath("tables", "table_ranges.md")
-open(table_path, "w") do io
-    print(io, table)
-end
-
-# Fix digits
-lines = readlines(table_path; keep=true)
-open(table_path, "w") do io
-    for line in lines
-        line = replace(line, " 0.000" => " x.xxx")
-        line = replace(line, ".000" => "")
-        line = replace(line, " x.xxx" => " 0.000")
-        print(io, line)
-    end
-end
-
 ## Richness difference plot
 
 # Get predator richness
