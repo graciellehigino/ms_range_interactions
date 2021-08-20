@@ -42,7 +42,12 @@ open(table_path, "w") do io
     print(io, table)
 end
 
-# Fix digits
+## Fix the digits
+
+# Digits for integers are wrong (42.000 instead of 42)
+# However, we can't just remove the .000 as we have some 0.000 we want to keep
+# So we'll first change the 0.000 to x.xxx, fix the integers, then bring back the 0.000
+# We'll also convert the remaining missing values to 0 at the end (as integers, not 0.000)
 lines = readlines(table_path; keep=true)
 open(table_path, "w") do io
     for line in lines
@@ -50,6 +55,52 @@ open(table_path, "w") do io
         line = replace(line, ".000" => "")
         line = replace(line, " x.xxx" => " 0.000")
         line = replace(line, "missing" => "0")
+        print(io, line)
+    end
+end
+
+## Column widths
+
+# Columns widths are determined by the longest string in each column
+# This makes the proportion columns way too wide compared to the species column
+# To fix it, we can change the 2nd line with the | -----:| signs
+# The number of - determines the column width
+# This is a combination which looked fine
+lines = readlines(table_path; keep=true)
+open(table_path, "w") do io
+    for line in lines
+        line = startswith(line, "| --") ? "| ----------------------:| -------:| -------:| -------:| ----------:| ----------:|\n" : line
+        print(io, line)
+    end
+end
+
+## Add species groups
+
+# Species are sorted by the groups from Baskerville (2011), e.g. small/large carnivores
+# We'll add the group description before the first species in that group
+
+# Find the first species in each group
+first_species = unique(sp_groups, :description)
+
+# Find the lines that correspond
+lines = readlines(table_path; keep=true)
+group_lines_inds = [findfirst(contains(sp), lines) for sp in first_species.species]
+group_lines = lines[group_lines_inds]
+
+# Add the group descriptions
+open(table_path, "w") do io
+    for line in lines
+        if line == group_lines[1] # first one goes directly after the header
+            # Get the group
+            group = first_species.description[line .== group_lines][1]
+            # Add the group (without an empty line)
+            line = "| **$(group)** | | | | | |\n$(line)"
+        elseif line in group_lines[2:end] # other ones need an empty line first
+            # Get the group
+            group = first_species.description[line .== group_lines][1]
+            # Add the group (with an empty line)
+            line = "| | | | | | |\n| **$(group)** | | | | | |\n$(line)"
+        end
         print(io, line)
     end
 end

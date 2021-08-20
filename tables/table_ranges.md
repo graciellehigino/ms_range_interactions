@@ -6,7 +6,7 @@
 |          Lycaon pictus |          14 |             0 |         3873 |                                 0.916 |                                         - |
 |           Panthera leo |          18 |             0 |        11384 |                                 0.934 |                                         - |
 |        Panthera pardus |          22 |             0 |        68137 |                                 0.766 |                                         - |
-|  | | | | | |
+| | | | | | |
 | **Small carnivores** | | | | | |
 |           Canis aureus |           4 |               1 |         7358 |                                 0.000 |                                     0.780 |
 |        Canis mesomelas |           1 |               1 |        19872 |                                 0.190 |                                     0.995 |

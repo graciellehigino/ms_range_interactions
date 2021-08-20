@@ -1,2 +1,0 @@
-|                Species |            Group | Number of preys | Number of predators | Total range size | Proportion of range occupied by preys | Proportion of range occupied by predators |
-| ----------------------:| ----------------:| ---------------:| -------------------:| ----------------:| -------------------------------------:| -----------------------------------------:|
