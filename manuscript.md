@@ -5,51 +5,40 @@ bibliography: [references.bib]
 # Intro
 
 Finding a species in a certain location is like finding an encrypted message
-that travelled through time. This message carries the species’ evolutionary
-history, long migration journeys, effects of other species we do not even know
-to exist, and ultimately the elements that shape its, yet unknown, future.
-Ecologists have been trying to decode this message with progressively more
-powerful tools, from their own field notes to highly complex computational
-algorithms, such as habitat suitability models. These models attempt to describe
-the species’ distribution based on their niche, considering their occurrences as
-sample points of suitable abiotic variables and their absences as sample points
-of unsuitable variables [@Peterson2012EcoNic]. However, these observations
-(environmental variables and geographic location) only unveils part of the
-mystery, and the missing link are ecological interactions.  
+that travelled through time. This message carries the species’ evolutionary 
+history, migration patterns, direct and indirect effects of other species 
+(some of which we may not even know exist). Ecologists have been trying to 
+decode this message with progressively more powerful tools, from their own 
+field notes to highly complex computational algorithms. These methods attempt
+to describe the species’ distribution based on their niche, considering their
+occurrences as sample points of suitable abiotic variables and their absences
+as sample points of unsuitable variables [@Peterson2012EcoNic]. 
 
-Biases and historical lack of information about species distribution and ecology
-can lead us to the wrong conclusions [@Hortal2008HisBia]. Biodiversity
-occurrence data are knowingly biased, and the sources of bias are often
-taxonomic, temporal or geographical [@Boakes2010DisVie; @Ronquillo2020AssSpa;
-@Meyer2016MulBia]. Amongst these geographical data available are the range maps
-provided by the International Union for the Conservation of Nature (IUCN). These
-maps consist of simplified polygons, often created as alpha or convex hulls
-around known species locations, refined by expert knowledge of species
-[@IUCNSSCRedListTechnicalWorkingGroupMapSta]. Being simple polygons, they ignore
-abundance gradients and can include inadequate areas within the estimated range.
-As a result, they can lead to biased estimations of the ecological conditions
-experienced by a species. These maps can be used in macroecological inferences
-in the lack of more precise information [@Fourcade2016ComSpe;
-@Alhajeri2019HigCor], but it has been recommended that they are used with
-caution since they tend to underestimate the distribution of species that are
-not well-known [@Herkt2017MacCon]. Another source of species distribution
+As methods have developed it has become possible to complete analyses at large 
+spatial scales in order to understand the factors influencing the macroecology 
+of organisms. A significant challenge in this field, however, is the quality and
+quantity of species distribution data and biases and historical lack of 
+information about species distribution and ecology can lead us to the wrong
+conclusions [@Hortal2008HisBia]. Biodiversity occurrence data are knowingly 
+biased, and the sources of bias are often taxonomic, temporal or geographical
+[@Boakes2010DisVie; @Ronquillo2020AssSpa; @Meyer2016MulBia]. Amongst these 
+geographical data available are the range maps provided by the International 
+Union for the Conservation of Nature (IUCN). These maps consist of simplified
+polygons, often created as alpha or convex hulls around known species locations,
+refined by expert knowledge of species [@IUCNSSCRedListTechnicalWorkingGroupMapSta].
+Being simple polygons, they ignore abundance gradients and can include inadequate
+areas within the estimated range. As a result, they can lead to biased estimations 
+of the ecological conditions experienced by a species. These maps can be used in
+macroecological inferences in the lack of more precise information
+[@Fourcade2016ComSpe; @Alhajeri2019HigCor], but it has been recommended that they
+are used with caution since they tend to underestimate the distribution of species
+that are not well-known [@Herkt2017MacCon]. Another source of species distribution
 information is the Global Biodiversity Information Facility (GBIF), which is an
 online repository of georeferenced observational records that comes from various
 sources, including community science programs, museum collections, and long-term
 monitoring schemes. A great source of bias in these datasets is the irregular
 sampling effort, with more occurrences originated from attractive and accessible
-areas and observation of charismatic species [@Alhajeri2019HigCor]. A complete
-assessment of ecological interactions is even more difficult. The
-number of interactions sampled will always be lower than the number of possible
-interactions, mainly due to forbidden links [@Jordano2016SamNet]. This lack of
-information, known as the Eltonian Shortfall, is aggravated by slanted and
-different sampling methods [@Poisot2020EnvBia; @Hortal2015SevSho]. Nevertheless,
-we have witnessed an increase in the availability of biodiversity data in the
-last decades, including those collected through community science projects
-[@Callaghan2019ImpBig, @Pocock2015BioRec] and organized dedicated databases
-mostly accessed by specialists, such as mangal [@Poisot2016ManMak] and the
-Global Biodiversity Information Facility (GBIF;
-@GBIF:TheGlobalBiodiversityInformationFacility2021WhaGbi).  
+areas and observation of charismatic species [@Alhajeri2019HigCor]. 
 
 The connection between occurrence and interaction data is a frequent debate in
 Ecology. For instance, some argue that occurrence data can also capture
@@ -71,7 +60,28 @@ pollinators, more precisely, are core study groups for these models since they
 are the main connection between the plant resources (directly limited by
 environmental conditions) and predators [@Dobson2009FooStr; Scott2018RolHer].
 Consequently, the presence of large herbivores could represent the presence of
-both plant resources and potential predators.
+both plant resources and potential predators. Such processes are not commonly
+considered in species distribution assessments, and potentially explain some of 
+the observed inaccuracies in species occurrence data. 
+
+One potential option for improving our estimates of species’ distributions is 
+to make use of data on ecological interactions. For example, a predator must 
+co-occur with prey in order to survive, in other words the predator must be 
+connected to the primary producer in the food web (REF). A complete
+assessment of ecological interactions is even more difficult. The
+number of interactions sampled will always be lower than the number of possible
+interactions, mainly due to forbidden links [@Jordano2016SamNet]. This lack of
+information, known as the Eltonian Shortfall, is aggravated by slanted and
+different sampling methods [@Poisot2020EnvBia; @Hortal2015SevSho]. Nevertheless,
+we have witnessed an increase in the availability of biodiversity data in the
+last decades, including those collected through community science projects
+[@Callaghan2019ImpBig, @Pocock2015BioRec] and organized dedicated databases
+mostly accessed by specialists, such as mangal [@Poisot2016ManMak] and the
+Global Biodiversity Information Facility (GBIF;
+@GBIF:TheGlobalBiodiversityInformationFacility2021WhaGbi). This provides an 
+opportunity to merge species distribution and ecological interaction data to 
+improve our predictions of where a species may be found across large spatial 
+scales (e.g., continental and global). 
 
 Here we investigate whether occurrence data (more precisely range maps) can be
 refined based on species interaction information, considering the basic
