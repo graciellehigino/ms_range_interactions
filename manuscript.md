@@ -65,9 +65,7 @@ considered in species distribution assessments, and potentially explain some of
 the observed inaccuracies in species occurrence data. 
 
 One potential option for improving our estimates of species’ distributions is 
-to make use of data on ecological interactions. For example, a predator must 
-co-occur with prey in order to survive, in other words the predator must be 
-connected to the primary producer in the food web (REF). A complete
+to make use of data on ecological interactions. A complete
 assessment of ecological interactions is even more difficult. The
 number of interactions sampled will always be lower than the number of possible
 interactions, mainly due to forbidden links [@Jordano2016SamNet]. This lack of
