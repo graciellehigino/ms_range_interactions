@@ -59,10 +59,11 @@
       "status": ["corresponding", "equal"]
     }
   ],
-  "description": "Don't forget to add an abstract!!!!!",
+  "description": "Range maps are a useful tool to describe the spatial distribution of species. However, they often need to be used with caution, as they essentially represent a rough approximation of a species' suitable habitats. When stacked together, the resulting communities in each grid cell may not always be realistic, especially when species interactions are taken into account. Here we show the extent of the mismatch between range maps, provided by the International Union for Conservation of Nature, and species interactions data. More precisely, we show that local networks built from those stacked range maps often yield unrealistic communities, where species of higher trophic levels are completely disconnected from primary producers. We use the well-described Serengeti food web of mammals and plants as our case study, and provide updated range maps that take into account food-web structure. We finally discuss general guidelines to help identify defective data among distributions and interactions data.",
   "keywords": [
-    "add",
-    "some",
-    "keywords"
+    "range maps",
+    "species interactions",
+    "food web",
+    "Serengeti"
   ]
 }
