@@ -1,0 +1,33 @@
+species,group,description
+Acinonyx jubatus,1,Large carnivores
+Crocuta crocuta,1,Large carnivores
+Lycaon pictus,1,Large carnivores
+Panthera leo,1,Large carnivores
+Panthera pardus,1,Large carnivores
+Canis aureus,2,Small carnivores
+Canis mesomelas,2,Small carnivores
+Caracal caracal,2,Small carnivores
+Leptailurus serval,2,Small carnivores
+Damaliscus lunatus,3,Small herbivores
+Hippopotamus amphibius,3,Small carnivores
+Kobus ellipsiprymnus,3,Small carnivores
+Ourebia ourebi,3,Small carnivores
+Pedetes capensis,3,Small carnivores
+Phacochoerus africanus,3,Small carnivores
+Redunca redunca,3,Small carnivores
+Rhabdomys pumilio,3,Small carnivores
+Tragelaphus oryx,3,Small carnivores
+Tragelaphus scriptus,3,Small carnivores
+Aepyceros melampus,4,Large grazers
+Alcelaphus buselaphus,4,Large grazers
+Connochaetes taurinus,4,Large grazers
+Equus quagga,4,Large grazers
+Eudorcas thomsonii,4,Large grazers
+Nanger granti,4,Large grazers
+Heterohyrax brucei,5,Hyraxes
+Procavia capensis,5,Hyraxes
+Giraffa camelopardalis,6,Others
+Loxodonta africana,6,Others
+Madoqua kirkii,6,Others
+Papio anubis,6,Others
+Syncerus caffer,6,Others
