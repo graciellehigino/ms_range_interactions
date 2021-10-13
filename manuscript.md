@@ -77,7 +77,7 @@ information, known as the Eltonian Shortfall, is aggravated by slanted and
 different sampling methods [@Poisot2020EnvBia; @Hortal2015SevSho]. Nevertheless,
 we have witnessed an increase in the availability of biodiversity data in the
 last decades, including those collected through community science projects
-[@Callaghan2019ImpBig, @Pocock2015BioRec] and organized dedicated databases
+[@Callaghan2019ImpBig; @Pocock2015BioRec] and organized dedicated databases
 mostly accessed by specialists, such as mangal [@Poisot2016ManMak] and the
 Global Biodiversity Information Facility (GBIF;
 @GBIF:TheGlobalBiodiversityInformationFacility2021WhaGbi). This provides an 
