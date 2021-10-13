@@ -32,7 +32,7 @@ of the ecological conditions experienced by a species. These maps can be used in
 macroecological inferences in the lack of more precise information
 [@Fourcade2016ComSpe; @Alhajeri2019HigCor], but it has been recommended that they
 are used with caution since they tend to underestimate the distribution of species
-that are not well-known [@Herkt2017MacCon]. Another source of species distribution
+that are not well-known [@Herkt2017MacCon] and they do not represent spatial variation on species occurrence and abundance. Another source of species distribution
 information is the Global Biodiversity Information Facility (GBIF), which is an
 online repository of georeferenced observational records that comes from various
 sources, including community science programs, museum collections, and long-term
@@ -41,33 +41,38 @@ sampling effort, with more occurrences originated from attractive and accessible
 areas and observation of charismatic species [@Alhajeri2019HigCor]. 
 
 The connection between occurrence and interaction data is a frequent debate in
-Ecology. For instance, some argue that occurrence data can also capture
-real-time interactions [@Roy2016FocPla; @Ryan2018RolCit], and, because of that,
-it would not be necessary to include ecological interaction dynamics in
-macroecological models. On the other hand, many mechanistic simulation models in
-ecology have considered the effect of competition and facilitation in range
-shifts, whilst the use of trophic interactions in this context remains
-insufficient [@Cabral2017MecSim]. The rationale behind these models comes from
-the fact that interactions form complex networks that shape ecological
-structures and maintain the essential functions of ecosystems, such as seed
-dispersal, pollination, and biological control [@Albrecht2018PlaAni] that
-ultimately affects the composition, richness, and successional patterns of
-communities across multiple biomes. Therefore, changes in herbivores abundance,
-for example, can lead to significant direct and indirect effects on plant-animal
-interaction and also the processes of the ecosystem [@Anderson2016SpaDis;
-@Dattilo2018EcoNet; @Pringle2016LarHer; @Young2013EffMam]. Herbivores and
-pollinators, more precisely, are core study groups for these models since they
-are the main connection between the plant resources (directly limited by
-environmental conditions) and predators [@Dobson2009FooStr; Scott2018RolHer].
-Consequently, the presence of large herbivores could represent the presence of
-both plant resources and potential predators. Such processes are not commonly
-considered in species distribution assessments, and potentially explain some of 
-the observed inaccuracies in species occurrence data. 
+Ecology. For instance, macroecological models are often used with point or range
+occurrence data in order to investigate the dynamics of a species with its
+environment. However, these models do not account for ecological interactions,
+which might largely affect species distribution [@AbregoAccSpe,
+@Afkhami2014MutEff, @Araujo2014ImpBio]. Some researchers argue that occurrence
+data can also capture real-time interactions [@Roy2016FocPla; @Ryan2018RolCit],
+and, because of that, it would not be necessary to include ecological
+interaction dynamics in macroecological models. On the other hand, many
+mechanistic simulation models in ecology have considered the effect of
+competition and facilitation in range shifts, whilst the use of trophic
+interactions in this context remains insufficient [@Cabral2017MecSim]. The
+rationale behind these models comes from the fact that interactions form complex
+networks that shape ecological structures and maintain the essential functions
+of ecosystems, such as seed dispersal, pollination, and biological control
+[@Albrecht2018PlaAni] that ultimately affects the composition, richness, and
+successional patterns of communities across multiple biomes. Therefore, changes
+in herbivores abundance, for example, can lead to significant direct and
+indirect effects on plant-animal interaction and also the processes of the
+ecosystem [@Anderson2016SpaDis; @Dattilo2018EcoNet; @Pringle2016LarHer;
+@Young2013EffMam]. Herbivores and pollinators, more precisely, are core study
+groups for these models since they are the main connection between the plant
+resources (directly limited by environmental conditions) and predators
+[@Dobson2009FooStr; @Scott2018RolHer]. Consequently, the presence of herbivores
+could represent the presence of both plant resources and potential predators.
+Such processes are not commonly considered in species distribution assessments,
+and potentially explain some of the observed inaccuracies in species occurrence
+data. 
 
 One potential option for improving our estimates of species’ distributions is 
 to make use of data on ecological interactions. A complete
 assessment of ecological interactions is even more difficult. The
-number of interactions sampled will always be lower than the number of possible
+number of interactions sampled will always be lower than the number of mathematically possible
 interactions, mainly due to forbidden links [@Jordano2016SamNet]. This lack of
 information, known as the Eltonian Shortfall, is aggravated by slanted and
 different sampling methods [@Poisot2020EnvBia; @Hortal2015SevSho]. Nevertheless,
@@ -83,7 +88,8 @@ scales (e.g., continental and global).
 
 Here we investigate whether occurrence data (more precisely range maps) can be
 refined based on species interaction information, considering the basic
-assumption that predators can only be present in regions where there are preys.
+assumption that predators can only be present in regions where they are
+connected to at least one herbivore.
 We used the Serengeti food web dataset compiled by Baskerville *et al*.
 [-@Baskerville2011SpaGui], which comprises carnivores, herbivores, and plants
 from Tanzania. The Serengeti ecosystem has been extensively studied and its
