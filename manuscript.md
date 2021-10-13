@@ -25,7 +25,7 @@ biased, and the sources of bias are often taxonomic, temporal or geographical
 geographical data available are the range maps provided by the International 
 Union for the Conservation of Nature (IUCN). These maps consist of simplified
 polygons, often created as alpha or convex hulls around known species locations,
-refined by expert knowledge of species [@IUCNSSCRedListTechnicalWorkingGroupMapSta].
+refined by expert knowledge of species [@IUCNSSCRedListTechnicalWorkingGroup2021MapSta].
 Being simple polygons, they ignore abundance gradients and can include inadequate
 areas within the estimated range. As a result, they can lead to biased estimations 
 of the ecological conditions experienced by a species. These maps can be used in
