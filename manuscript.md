@@ -92,7 +92,7 @@ connected to at least one herbivore.
 We used the Serengeti food web dataset compiled by Baskerville *et al*.
 [-@Baskerville2011SpaGui], which comprises carnivores, herbivores, and plants
 from Tanzania. The Serengeti ecosystem has been extensively studied and its
-foodweb is one of the most complete we have to date, including primary producers
+food web is one of the most complete we have to date, including primary producers
 identified to the species level [@Baskerville2011SpaGui]. We used these
 interactions to refine occurrence maps of carnivores, locally excluding them
 wherever a herbivore was not present. We also explored the differences between
@@ -198,7 +198,7 @@ their ranges due to mismatch with the ranges of their preys.](figures/rel_loss-o
 
 Predators with less preys lose more range with our method ([@fig:degree]). For
 instance, both *Leptailurus serval* and *Canis mesomelas* have only one prey in
-the Serengeti foodweb ([@tbl:everyone]), each of them with a very small range compared to those of
+the Serengeti food web ([@tbl:everyone]), each of them with a very small range compared to those of
 their predators. This discrepancy between range sizes promotes significant range
 loss. On the other hand, predators of the genus *Panthera* are some of the most
 connected species, and they also lose the least proportion of their ranges. This
