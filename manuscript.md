@@ -190,7 +190,7 @@ however all had a very low number of mammal species, specifically between 1 and
 
 ![Left panel: spatial distribution of species richness according to the original IUCN range maps of all 32 mammal species of the Serengeti food web. Right panel: proportion of mammal species remaining in each local network (i.e. each pixel) after removing all species without a path to a primary producer.](figures/richness_prop_removed.png){#fig:richness}
 
-### Specialized predators lose more range
+## Specialized predators lose more range
 
 ![Negative relationship between the out degree of predator species and their
 relative range loss. More specialized predators lose a higher proportion of
@@ -258,7 +258,7 @@ in terms of species range maps, interaction data and the next steps required to
 enhance understanding of species distributions using information on ecological
 networks.
 
-#### Connectivity, diversity and range preservation
+## Connectivity, diversity and range preservation
 
 In the Serengeti food web there is a positive relationship between the predators
 out degree and the size of their ranges ([@tbl:everyone]). In addition, our
@@ -276,7 +276,7 @@ generalists would co-occur with a greater number of other species
 their aggregation in space and the effect of interactions on their range limits
 [@Godsoe2017IntBio].
 
-#### Geographical mismatch and data availability
+## Geographical mismatch and data availability
 
 The geographical mismatch between predators and preys have ecological
 consequences such as loss of ecosystem functioning and extiction of populations
@@ -317,7 +317,7 @@ none of its preys occur inside its IUCN range. We believe, therefore, that
 the validation of species distribution based on ecological interaction is a
 relevant method that can further clarify information shortfalls.
 
-#### Next steps
+## Next steps
 
 Here we demonstrate how we can detect uncertainty in species distribution data
 using ecological interactions. Knowing where questionable occurrence data is can
@@ -346,7 +346,7 @@ interactions, especially because we may have been losing ecological interactions
 at least as fast as we are losing biodiversity [@Parejo2016InfMis].
 
 
-## Acknowledgements
+# Acknowledgements
 
 We acknowledge that this study was conducted on land within the traditional unceded territory of the Saint Lawrence Iroquoian, Anishinabewaki, Mohawk, Huron-Wendat, and Omàmiwininiwak nations. GH, FB, GD, and NF are funded by the NSERC BIOS$^2$ CREATE program; FB, NF, and TP are funded by IVADO; NF and TP are funded by a donation from the Courtois Foundation; GD is funded by the FRQNT doctoral scholarship; TP is funded by the Canadian Institute of Ecology & Evolution; FW is funded by the Royal Society (Grant number: CHL\\R1\\180156). 
 
