@@ -32,7 +32,8 @@ of the ecological conditions experienced by a species. These maps can be used in
 macroecological inferences in the lack of more precise information
 [@Fourcade2016ComSpe; @Alhajeri2019HigCor], but it has been recommended that they
 are used with caution since they tend to underestimate the distribution of species
-that are not well-known [@Herkt2017MacCon] and they do not represent spatial variation on species occurrence and abundance. Another source of species distribution
+that are not well-known [@Herkt2017MacCon] and they do not represent spatial 
+variation in species occurrence and abundance. Another source of species distribution
 information is the Global Biodiversity Information Facility (GBIF), which is an
 online repository of georeferenced observational records that comes from various
 sources, including community science programs, museum collections, and long-term
@@ -44,7 +45,8 @@ The connection between occurrence and interaction data is a frequent debate in
 Ecology. For instance, macroecological models are often used with point or range
 occurrence data in order to investigate the dynamics of a species with its
 environment. However, these models do not account for ecological interactions,
-which might largely affect species distribution [@AbregoAccSpe; @Afkhami2014MutEff; @Araujo2014ImpBio]. Some researchers argue that occurrence
+which might largely affect species distribution [@AbregoAccSpe; @Afkhami2014MutEff; 
+@Araujo2014ImpBio]. Some researchers argue that occurrence
 data can also capture real-time interactions [@Roy2016FocPla; @Ryan2018RolCit],
 and, because of that, it would not be necessary to include ecological
 interaction dynamics in macroecological models. On the other hand, many
@@ -69,21 +71,21 @@ and potentially explain some of the observed inaccuracies in species occurrence
 data. 
 
 One potential option for improving our estimates of species’ distributions is 
-to make use of data on ecological interactions. A complete
-assessment of ecological interactions is even more difficult. The
-number of interactions sampled will always be lower than the number of mathematically possible
-interactions, mainly due to forbidden links - those interactions that although theoretically possible
-cannot occur for a variety of reasons, e.g., spatial mismatches in species ranges or
-differences in phenology and thus temporal uncoupling of species [@Jordano2016SamNet]. This lack of 
-local ecological information, known as the Eltonian Shortfall, is aggravated by biased sampling methods
-and data aggregation [@Poisot2020EnvBia; @Hortal2015SevSho]. Nevertheless,
-we have witnessed an increase in the availability of biodiversity data in the
-last decades, including those collected through community science projects
-[@Callaghan2019ImpBig; @Pocock2015BioRec] and organized dedicated databases
-mostly accessed by specialists, such as mangal [@Poisot2016ManMak] and the
-Global Biodiversity Information Facility (GBIF;
-@GBIF:TheGlobalBiodiversityInformationFacility2021WhaGbi). This provides an 
-opportunity to merge species distribution and ecological interaction data to 
+to make use of data on ecological interactions. Yet a complete assessment of
+ecological interactions is difficult. The number of interactions sampled will
+always be lower than the number of mathematically possible interactions, mainly
+due to forbidden links - those interactions that although theoretically possible
+cannot occur for a variety of reasons, e.g., spatial mismatches in species ranges 
+or temporal uncoupling of species[@Jordano2016SamNet]. This lack of local 
+ecological information, known as the Eltonian Shortfall, is aggravated by
+biased sampling methods and data aggregation [@Poisot2020EnvBia; 
+@Hortal2015SevSho]. Nevertheless, we have witnessed an increase in the 
+availability of biodiversity data in the last decades, including those collected
+through community science projects [@Callaghan2019ImpBig; @Pocock2015BioRec]
+and organized dedicated databases mostly accessed by specialists, such as
+mangal [@Poisot2016ManMak] and the Global Biodiversity Information Facility 
+(GBIF; @GBIF:TheGlobalBiodiversityInformationFacility2021WhaGbi). This provides
+an opportunity to merge species distribution and ecological interaction data to 
 improve our predictions of where a species may be found across large spatial 
 scales (e.g., continental and global). 
 
@@ -128,13 +130,16 @@ significantly constrained by the availability of food plants.
 
 From the wider ecological network presented in Baskerville
 [-@Baskerville2011SpaGui], we sampled interaction data for herbivores and
-carnivores. This network contained 32 taxa and 84 interactions (after removing
+carnivores. This subnetwork contained 32 taxa and 84 interactions (after removing
 all self-loops for predators) and had a connectance of 0.08. We refer to this
 network as the meta-web as it contains all possible species interactions between
 the different taxa that could occur across savanna ecosystems such as the
 Serengeti.  
 
-IUCN range maps were compiled for the 32 species included in the meta-network (23 herbivores and 9 carnivores) from the Spatial Data Download portal (www.iucnredlist.org/resources/spatial-data-download). Ranges were rasterized at 0.17 arc minute resolution (~19 km²).
+IUCN range maps were compiled for the 32 species included in the meta-network 
+(23 herbivores and 9 carnivores) from the Spatial Data Download portal 
+(www.iucnredlist.org/resources/spatial-data-download). Ranges were rasterized
+at 10 arc minute resolution (~19 km² at the equator).
 We then combined interaction data from the meta-network and cooccurrence data
 generated from species ranges to create networks for each raster pixel. This
 generated a total of 84,244 networks where at least two cooccurring and
@@ -159,22 +164,29 @@ To understand the drivers of range adjustments we completed a series of analyses
 We calculated geographical overlap, the extent to which interacting predator and
 prey species cooccurred across their ranges, by adapting a method presented by
 [@Ruggiero1998GeoRan]: *a/[a + c]*. We define *a* as the number of pixels where
-the focal species occurs and *c* is the number of pixels where the focal species
-and another species cooccur. This index of geographical overlap can be
-calculated with prey or predators as the focal species. Values vary between 0
-and 1, with values closer to 0 indicating that there is large overlap in the
-ranges of the two species and values closer to 1 indicative of low cooccurrence
-across their ranges.  
+the focal species occurs without another species and *c* is the number of pixels
+where the focal species and another species cooccur. This index of geographical
+overlap can be calculated with prey or predators as the focal species. Values 
+vary between 0 and 1, with values closer to 0 indicating that there is large 
+overlap in the ranges of the two species and values closer to 1 indicative of low
+cooccurrence across their ranges.  
 
 For each predator species we calculated its out degree to understand whether the
 level of trophic specialisation (i.e., number of prey items per predator)
 affects the extent to which the ranges of the species were altered. One would
-assume that predators with a greater number of prey (i.e., a higher degree) are
-less likely to have significant changes in range as it is more likely that at
+assume that predators with a greater number of prey taxa (i.e., a higher out-degree) 
+are less likely to have significant changes in range as it is more likely that at
 least one prey species is present across its entire range.   
 
 ## Validation
-For each species in the dataset we collated point observation data from the Global Biodiversity Information Facility (GBIF; www.gbif.org). These data were used to validate the range adjustments made based on species interactions (see Approach). To do so, we calculated the proportion of total GBIF observations occurring with the original and adjusted species ranges. We standardised these values by the total number of pixels within each range to account for variability in range size between different species.
+For each species in the dataset we collated point observation data from the Global 
+Biodiversity Information Facility (GBIF; www.gbif.org), and condensed these data into
+pixels representing presence or absence of the focal taxon. These data were used to 
+validate the range adjustments made based on species interactions (see Approach).
+To do so, we calculated the proportion of total GBIF pixels occurring with
+the original and adjusted species ranges. We standardised these values by the
+total number of pixels within each range to account for variability in range size
+between different species.
 
 
 
