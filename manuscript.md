@@ -17,11 +17,10 @@ as sample points of unsuitable variables [@Peterson2012EcoNic].
 As methods have developed it has become possible to complete analyses at large 
 spatial scales in order to understand the factors influencing the macroecology 
 of organisms. A significant challenge in this field, however, is the quality and
-quantity of species distribution data and biases and historical lack of 
+quantity of species distribution data, as biases (taxonomic, temporal or geographical
+[@Boakes2010DisVie; @Ronquillo2020AssSpa; @Meyer2016MulBia]) and historical lack of 
 information about species distribution and ecology can lead us to the wrong
-conclusions [@Hortal2008HisBia]. Biodiversity occurrence data are knowingly 
-biased, and the sources of bias are often taxonomic, temporal or geographical
-[@Boakes2010DisVie; @Ronquillo2020AssSpa; @Meyer2016MulBia]. Amongst these 
+conclusions [@Hortal2008HisBia]. Amongst these 
 geographical data available are the range maps provided by the International 
 Union for the Conservation of Nature (IUCN). These maps consist of simplified
 polygons, often created as alpha or convex hulls around known species locations,
@@ -153,10 +152,11 @@ primary producer within their associated food web [@Power1992TopBot]. As such,
 if a predator (omnivore or carnivore) becomes disconnected from primary
 producers, either because the primary producer itself or an organism at an
 intermediate trophic level become extinct, then that predator will too become
-extinct. Thus, here we adjusted the ranges of predators based on a simple rule:
+extinct (considering a small temporal and geographical scale). Thus, here we
+adjusted the ranges of predators based on a simple rule:
 we removed any part of a predator’s range that did not intersect with the range
 of at least one prey herbivore species. So, unless the range of the predator
-overlapped at least one prey item which in turn is directly connected to a
+overlapped with at least one prey item, which in turn is directly connected to a
 primary producer (plants), we removed that section of the predator’s range. We
 then calculated the difference in range size between the original IUCN ranges
 and those adjusted based on species interaction data.
@@ -165,12 +165,12 @@ and those adjusted based on species interaction data.
 To understand the drivers of range adjustments we completed a series of analyses. 
 We calculated geographical overlap, the extent to which interacting predator and
 prey species cooccurred across their ranges, by adapting a method presented by
-[@Ruggiero1998GeoRan]: *a/(a + c)*. We define *a* as the number of pixels where
+Ruggiero, Lawton, and Blackburn [-@Ruggiero1998GeoRan]: *a/(a + c)*. We define *a* as the number of pixels where
 the focal species occurs without another species and *c* as the number of pixels
 where the focal species and another species cooccur. This index of geographical
 overlap can be calculated with prey or predators as the focal species. Values 
 vary between 0 and 1, with values closer to 0 indicating that there is large 
-overlap in the ranges of the two species and values closer to 1 indicative of low
+overlap in the ranges of the two species and values closer to 1 indicate low
 cooccurrence across their ranges.  
 
 For each predator species we calculated its out degree to understand whether the
@@ -185,7 +185,7 @@ For each species in the dataset we collated point observation data from the Glob
 Biodiversity Information Facility (GBIF; www.gbif.org), and condensed these data into
 pixels representing presence or absence of the focal taxon. These data were used to 
 validate the range adjustments made based on species interactions (see Approach).
-To do so, we calculated the proportion of total GBIF pixels occurring with
+To do so, we calculated the proportion of total GBIF pixels occurring within
 the original and adjusted species ranges. We standardised these values by the
 total number of pixels within each range to account for variability in range size
 between different species.
@@ -234,10 +234,14 @@ $c$ of pixels where the predator and prey cooccur and the number $a$ of pixels
 where the focal species is present but not the other, were calculated. Geographic
 dissimilarities were given by a/(a+c), with the predator being the focal species
 in the predator to prey dissimilarity (x-axis), while the prey is the focal one
-in the prey to predator dissimilarity (y-axis).](figures/beta-div_pred-species.png){#fig:geo_diss} 
+in the prey to predator dissimilarity (y-axis). One of the predators, *Canis
+aurea*, is not represented in the image because it's an extreme case (where all
+its range is supressed by the absence of preys) and it would make the
+interpretation of the data more
+difficult.](figures/beta-div_pred-species.png){#fig:geo_diss} 
 
 There was high variation in the overlap of predator and prey ranges
-(@fig:geo_diss). The range of several predators were well covered by prey (low
+(@fig:geo_diss). The range of several predators were well covered by preys (low
 values of both prey-predator and predator-prey geographic dissimilarity values),
 yet the ranges of some predators and prey were completely asynchronous, with no
 overlap (values of 1 for both overlap metrics; @fig:geo_diss). For example, the
@@ -262,7 +266,7 @@ of its preys. {#tbl:everyone}
 The proportion of GBIF pixels (pixels with at least one GBIF occurrence) falling
 in the IUCN ranges varied from low to high depending on the species ([@fig:gbif],
 left). No species had all of its GBIF occurrences within its IUCN range. The 
-lowest proportions occurred for species with small ranges, although some 
+lowest proportions occurred for species with small ranges (such as *Lycaon pictus*), although some 
 species with small ranges showed high overlap. Species with median and large
 ranges had high proportions of occurrences falling into their IUCN range. 
 Predators and preys displayed similar overlap variations. The only species for
@@ -290,7 +294,7 @@ IUCN range size. Right panel: Proportion of GBIF pixels falling into the
 IUCN and updated ranges for every predator species. Arrows go from the
 proportion inside the original range to the proportion inside the updated
 range, which can only be equal or lower. Overlapping markers indicate no
-difference in the between the types of layers. Species markers are the same
+difference between the types of layers. Species markers are the same
 on both figures, with predators presented in distinct coloured markers and
 all herbivores grouped in a single grey marker. Pixels represent a 
 resolution of 10 arc-minutes. ](figures/gbif_panels.png){#fig:gbif}
@@ -335,8 +339,7 @@ The geographical mismatch between predators and preys have ecological
 consequences such as loss of ecosystem functioning and extiction of populations
 [@Anderson2016SpaDis; @Dattilo2018EcoNet; @Pringle2016LarHer; @Young2013EffMam].
 Climate change is one of the causes of this, leading, for instance, to the
-decrease of plants populations due to lack of pollination [@Bullock2000GeoSep;
-@Hellmann2012InfSpe; @Afkhami2014MutEff; @Godsoe2017IntBio; @Siren2020IntRan].
+decrease of plants populations due to lack of pollination [@Bullock2000GeoSep; @Afkhami2014MutEff; @Godsoe2017IntBio].
 However, this mismatch can also be purely informational. When the distribution
 of predators and preys do not superpose, it can mean we lack information about
 the distribution of either species or about their interactions. Here we address
@@ -355,10 +358,8 @@ missing. For example, the lion (*Panthera leo*) was one of the species with the
 smallest difference between the original and the updated ranges
 (@fig:degree), but 59.5% of the GBIF occurrences for this species fell
 outside the IUCN range (@fig:gbif). The fact that we don't find lions where it
-doesn't have a prey is a good indicative that we have a good knowledge about its
-interactions and we probably can trust the IUCN occurrence data in this
-particular case, but the high disagreement between the IUCN and the GBIF
-databases adds uncertainty about its geographical distribution. On the other
+doesn't have a prey is a good indicative that the IUCN range maps are a good representation of their distribution, but the high disagreement between the IUCN and the GBIF
+databases adds uncertainty to this statement. On the other
 hand, *Leptailurus serval* and *Canis mesomelas* are two of the three species
 that lose the higher proportion of range due to the lack of paths to a herbivore
 (@fig:degree), but are also some of the species with the higher proportion
@@ -384,14 +385,14 @@ important to notice, however, that the quality and usefulness of this method is
 highly correlated with the amount and quality of data available about species'
 occurrences **and** interactions. In our case, one predator (*Canis aureus*)
 would be completely excluded of its original range probably because of a
-taxonomic mismatch between datasets. Hence, this method can be useful when the
+taxonomic mismatch between datasets, which is hard to solve based only on occurrence data. Hence, this method can be useful when the
 study group is well known, and the growing availability of data will certainly
 improve its applicability.
 
 With this paper we hope to add to the collective effort to decode the encrypted
 message that is the occurrence of a species in space and time. A promising venue
 that adds to our method is the prediction of networks and interactions in large
-scale [REFS], for they can add valuable information about ecological
+scale [@Strydom2021RoaPre], for they can add valuable information about ecological
 interactions where they are missing. Additionally, in order to achieve a robust
 modelling framework towards actual species distribution models we should invest
 in efforts to collect and combine open data on species occurrence and
