@@ -28,7 +28,7 @@ plot(;
     frame=:box,
     xlim=extrema(longitudes(richness)),
     ylim=extrema(latitudes(richness)),
-    dpi=500,
+    dpi=600,
     xaxis="Longitude",
     yaxis="Latitude",
 )
