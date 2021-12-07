@@ -207,7 +207,7 @@ diff_fig = @df comparison_stack plot(
     palette=:seaborn_colorblind,
     markerstrokewidth=0,
     topmargin=2.0mm,
-    dpi=500,
+    dpi=600,
 )
 savefig(joinpath("figures", "gbif_range-diff.png"))
 
@@ -216,7 +216,7 @@ plot(
     prop_fig,
     diff_fig;
     size=(1200, 450),
-    dpi=500,
+    dpi=600,
     leftmargin=35px,
     bottommargin=30px
 )

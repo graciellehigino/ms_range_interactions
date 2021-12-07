@@ -84,16 +84,18 @@ scatter(
     ylabel="prey to predator geographic dissimilarity",
     group=ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :species],
     markershape=[:circle :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
-    markersize=3,
-    linewidth = 4,
+    markersize=6,
+    linewidth = 3,
     palette = cgrad(:seaborn_colorblind)[[1, 3:9...]],
     markerstrokewidth=0,
-    size=(800, 800),
+    size=(1024, 800),
+    lims = [0,1],
     margin=5Plots.mm,
     legend = :right,
-    foreground_color_legend=:lightgrey,
+    foreground_color_legend=:white,
     background_color_legend=:white,
-    aspect_ratio = :equal
+    aspect_ratio = :equal,
+    dpi = 600
 )
 savefig(joinpath("figures", "beta-div_pred-species.png"))
 
@@ -136,7 +138,8 @@ scatter(
     legend=:topright,
     foreground_color_legend=:white,
     background_color_legend=:white,
-    size=(1000, 600)
+    size=(1000, 600),
+    dpi = 600
 )
 savefig(joinpath("figures", "rel_loss-outdegree-species.png"))
 

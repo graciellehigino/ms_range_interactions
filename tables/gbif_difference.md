@@ -1,11 +1,11 @@
 |            species |      type | total_occ |     range | occ_prop | occ_prop_diff | range_prop | range_prop_diff |
 | ------------------:| ---------:| ---------:| ---------:| --------:| -------------:| ----------:| ---------------:|
-|   Acinonyx jubatus | carnivore |   183 | 15540 |    0.508 |         0.000 |      0.513 |           0.000 |
-|       Canis aureus | carnivore |   114 |  7358 |    0.000 |         0.000 |      0.000 |           0.000 |
-|    Canis mesomelas | carnivore |   963 | 19872 |    0.927 |        -0.492 |      0.943 |          -0.548 |
-|    Caracal caracal | carnivore |   117 | 47243 |    0.803 |        -0.009 |      0.837 |          -0.011 |
+|   Acinonyx jubatus | carnivore |   183 | 15540 |    0.503 |         0.000 |      0.507 |           0.000 |
+|       Canis aureus | carnivore |   108 |  7358 |    0.000 |         0.000 |      0.000 |           0.000 |
+|    Canis mesomelas | carnivore |   955 | 19872 |    0.929 |        -0.496 |      0.949 |          -0.565 |
+|    Caracal caracal | carnivore |   116 | 47243 |    0.802 |        -0.009 |      0.835 |          -0.011 |
 |    Crocuta crocuta | carnivore |  1065 | 43307 |    0.968 |        -0.005 |      0.934 |          -0.017 |
-| Leptailurus serval | carnivore |   263 | 38856 |    0.913 |        -0.913 |      0.871 |          -0.871 |
-|      Lycaon pictus | carnivore |    98 |  3873 |    0.173 |         0.000 |      0.153 |           0.000 |
-|       Panthera leo | carnivore |   583 | 11384 |    0.595 |         0.000 |      0.462 |           0.000 |
-|    Panthera pardus | carnivore |   350 | 68137 |    0.809 |        -0.057 |      0.964 |          -0.052 |
+| Leptailurus serval | carnivore |   263 | 38856 |    0.916 |        -0.916 |      0.880 |          -0.880 |
+|      Lycaon pictus | carnivore |    97 |  3873 |    0.175 |         0.000 |      0.155 |           0.000 |
+|       Panthera leo | carnivore |   582 | 11384 |    0.596 |         0.000 |      0.458 |           0.000 |
+|    Panthera pardus | carnivore |   345 | 68137 |    0.809 |        -0.058 |      0.968 |          -0.053 |
