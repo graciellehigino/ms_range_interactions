@@ -12,7 +12,7 @@ decode this message with progressively more powerful tools, from their own
 field notes to highly complex computational algorithms. These methods attempt
 to describe the species’ distribution based on their niche, considering their
 occurrences as sample points of suitable abiotic variables and their absences
-as sample points of unsuitable variables [@Peterson2012EcoNic]. 
+as sample points of unsuitable variables [@Peterson2012EcoNic].
 
 As methods have developed it has become possible to complete analyses at large 
 spatial scales in order to understand the factors influencing the macroecology 
@@ -20,9 +20,9 @@ of organisms. A significant challenge in this field, however, is the quality and
 quantity of species distribution data, as biases (taxonomic, temporal or geographical
 [@Boakes2010DisVie; @Ronquillo2020AssSpa; @Meyer2016MulBia]) and historical lack of 
 information about species distribution and ecology can lead us to the wrong
-conclusions [@Hortal2008HisBia]. Amongst these 
+conclusions [@Hortal2008HisBia]. Amongst the
 geographical data available are the range maps provided by the International 
-Union for the Conservation of Nature (IUCN). These maps consist of simplified
+Union for the Conservation of Nature (IUCN). Such maps consist of simplified
 polygons, often created as alpha or convex hulls around known species locations,
 refined by expert knowledge of species [@IUCNSSCRedListTechnicalWorkingGroup2021MapSta].
 Being simple polygons, they ignore abundance gradients and can include inadequate
@@ -32,16 +32,21 @@ macroecological inferences in the lack of more precise information
 [@Fourcade2016ComSpe; @Alhajeri2019HigCor], but it has been recommended that they
 are used with caution since they tend to underestimate the distribution of species
 that are not well-known [@Herkt2017MacCon] and they do not represent spatial 
-variation in species occurrence and abundance. Another source of species distribution
-information is the Global Biodiversity Information Facility (GBIF), which is an
-online repository of georeferenced observational records that comes from various
-sources, including community science programs, museum collections, and long-term
-monitoring schemes. A great source of bias in these datasets is the irregular
-sampling effort, with more occurrences originated from attractive and accessible
-areas and observation of charismatic species [@Alhajeri2019HigCor]. 
+variation in species occurrence and abundance [REF - Tad Dallas]. Another source 
+of species distribution information is the Global Biodiversity Information Facility
+(GBIF), which is an online repository of georeferenced observational records that
+comes from various sources, including community science programs, museum collections,
+and long-term monitoring schemes. A great source of bias in these datasets is the
+irregular sampling effort, with more occurrences originated from attractive and
+accessible areas and observation of charismatic species [@Alhajeri2019HigCor]. 
 
-The connection between occurrence and interaction data is a frequent debate in
-Ecology. For instance, macroecological models are often used with point or range
+The rationale behind species distribution models comes from the fact that interactions form complex
+networks that shape ecological structures and maintain the essential functions
+of ecosystems, such as seed dispersal, pollination, and biological control
+[@Albrecht2018PlaAni] that ultimately affects the composition, richness, and
+successional patterns of communities across multiple biomes. Yet, the connection 
+between occurrence and interaction data is a frequent debate in
+Ecology [REF - Blanchet]. For instance, macroecological models are often used with point or range
 occurrence data in order to investigate the dynamics of a species with its
 environment. However, these models do not account for ecological interactions,
 which might largely affect species distribution [@AbregoAccSpe; @Afkhami2014MutEff; 
@@ -51,17 +56,13 @@ and, because of that, it would not be necessary to include ecological
 interaction dynamics in macroecological models. On the other hand, many
 mechanistic simulation models in ecology have considered the effect of
 competition and facilitation in range shifts, whilst the use of trophic
-interactions in this context remains insufficient [@Cabral2017MecSim]. The
-rationale behind these models comes from the fact that interactions form complex
-networks that shape ecological structures and maintain the essential functions
-of ecosystems, such as seed dispersal, pollination, and biological control
-[@Albrecht2018PlaAni] that ultimately affects the composition, richness, and
-successional patterns of communities across multiple biomes. Therefore, changes
-in herbivores abundance, for example, can lead to significant direct and
+interactions in this context remains insufficient [@Cabral2017MecSim]. 
+
+Changes in herbivores abundance can lead to significant direct and
 indirect effects on plant-animal interaction and also the processes of the
 ecosystem [@Anderson2016SpaDis; @Dattilo2018EcoNet; @Pringle2016LarHer;
 @Young2013EffMam]. Herbivores and pollinators, more precisely, are core study
-groups for these models since they are the main connection between the plant
+groups for distribution models since they are the main connection between the plant
 resources (directly limited by environmental conditions) and predators
 [@Dobson2009FooStr; @Scott2018RolHer]. Consequently, the presence of herbivores
 could represent the presence of both plant resources and potential predators.
