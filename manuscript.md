@@ -32,7 +32,7 @@ macroecological inferences in the lack of more precise information
 [@Fourcade2016ComSpe; @Alhajeri2019HigCor], but it has been recommended that they
 are used with caution since they tend to underestimate the distribution of species
 that are not well-known [@Herkt2017MacCon] and they do not represent spatial 
-variation in species occurrence and abundance [REF - Tad Dallas]. Another source 
+variation in species occurrence and abundance [REF - Dallas]. Another source 
 of species distribution information is the Global Biodiversity Information Facility
 (GBIF), which is an online repository of georeferenced observational records that
 comes from various sources, including community science programs, museum collections,
@@ -83,9 +83,8 @@ biased sampling methods and data aggregation [@Poisot2020EnvBia;
 availability of biodiversity data in the last decades, including those collected
 through community science projects [@Callaghan2019ImpBig; @Pocock2015BioRec]
 and organized dedicated databases mostly accessed by specialists, such as
-mangal [@Poisot2016ManMak] and the Global Biodiversity Information Facility 
-(GBIF; @GBIF:TheGlobalBiodiversityInformationFacility2021WhaGbi). This provides
-an opportunity to merge species distribution and ecological interaction data to 
+mangal [@Poisot2016ManMak] and GBIF [@GBIF:TheGlobalBiodiversityInformationFacility2021WhaGbi].
+This provides an opportunity to merge species distribution and ecological interaction data to 
 improve our predictions of where a species may be found across large spatial 
 scales (e.g., continental and global). 
 
@@ -109,6 +108,21 @@ interaction networks).
 
 # Methods
 
+## Approach
+Organisms cannot persist unless they are directly or indirectly connected to a
+primary producer within their associated food web [@Power1992TopBot]. As such,
+the range of a predator (omnivore or carnivore) is explained by the overlapping 
+ranges of its prey. If sections of a predator's range does not overlap with at 
+least one of its prey it will become disconnected from primary producers, and we 
+therefore would not expect the predator to occur in this area. Thus, here we
+adjusted the ranges of predators based on a simple rule: we removed any part
+of a predator’s range that did not intersect with the range
+of at least one prey herbivore species. So, unless the range of the predator
+overlapped with at least one prey item, which in turn is directly connected to a
+primary producer (plants), we removed that section of the predator’s range. We
+then calculated the difference in range size between the original IUCN ranges
+and those adjusted based on species interaction data.
+
 ## Data 
 We investigated the effects of adjusting species distributions based on species
 interaction data across savannah ecosystems in Africa (@fig:richness). These
@@ -119,27 +133,31 @@ as a range of herbivorous and carnivorous small mammals. Here we focus on six
 groups of herbivores and carnivores from the Serengeti Food Web Data Set
 [@Baskerville2011SpaGui]. These species exhibit direct antagonistic
 (predator-prey) interactions with one another and are commonly found across
-savannah ecosystems on the African continent [@McNaughton1992ProDis]. Although
-plants are included in the Serengeti Food Web Data Set, there is an absence of
-global range maps for many plant species [@Daru2020GreToo], and as such we did
-not directly include plants in the following analyses. Many savannah plants are
-functionally similar (i.e., grasses, trees and shrubs) and cooccur across the
-same habitats [@Baskerville2011SpaGui]. Furthermore, many of the herbivores are
-generalists feeding on a wide range of plants from different functional groups.
-Therefore, we assume that plants consumed by herbivores are present across
+savannah ecosystems on the African continent [@McNaughton1992ProDis]. Plants in the
+network were included indirectly in our analyses as we do not expect the primary producers
+to significantly influence the range of herbivores for several reasons. Firstly, 
+many savannah plants are functionally similar (i.e., grasses, trees and shrubs) and 
+cooccur across the same habitats [@Baskerville2011SpaGui]. Secondly, herbivores
+in the network are broadly generalists feeding on a wide range of different plants
+across habitats (MEAN PLANTS PER HERBIVORE). There is also an absence of global
+range maps for many plant species [@Daru2020GreToo], which also
+prevents their direct inclusion. Therefore, we assume that
+plants consumed by herbivores are present across
 their ranges, and as such the ranges of herbivores are not expected to be
 significantly constrained by the availability of food plants.  
 
 From the wider ecological network presented in Baskerville
 [-@Baskerville2011SpaGui], we sampled interaction data for herbivores and
-carnivores. This subnetwork contained 32 taxa and 84 interactions (after removing
-all self-loops for predators) and had a connectance of 0.08. We refer to this
-network as the meta-web as it contains all possible species interactions between
-the different taxa that could occur across savannah ecosystems such as the
-Serengeti.  
+carnivores. This subnetwork contained 32 taxa (23 herbivores and 9 carnivores) 
+and 84 interactions, and had a connectance of 0.08. Although self-loops are 
+informative, here we removed these interactions to allow for the ranges predators
+with cannabalistic interactions to be adjusted. We refer to this
+overall network as the metaweb as it contains all possible species interactions
+between the different taxa that could occur across savannah ecosystems
+such as the Serengeti.  
 
-IUCN range maps were compiled for the 32 species included in the meta-network 
-(23 herbivores and 9 carnivores) from the Spatial Data Download portal 
+IUCN range maps were compiled for the 32 species included in the metaweb 
+from the Spatial Data Download portal 
 (www.iucnredlist.org/resources/spatial-data-download). Ranges were rasterized
 at 10 arc minute resolution (~19 km² at the equator).
 We then combined interaction data from the meta-network and cooccurrence data
@@ -147,39 +165,22 @@ generated from species ranges to create networks for each raster pixel. This
 generated a total of 84,244 networks where at least two cooccurring and
 interacting species were present.  
 
-## Approach
-Organisms cannot persist unless they are directly or indirectly connected to a
-primary producer within their associated food web [@Power1992TopBot]. As such,
-if a predator (omnivore or carnivore) becomes disconnected from primary
-producers, either because the primary producer itself or an organism at an
-intermediate trophic level become extinct, then that predator will too become
-extinct (considering a small temporal and geographical scale). Thus, here we
-adjusted the ranges of predators based on a simple rule:
-we removed any part of a predator’s range that did not intersect with the range
-of at least one prey herbivore species. So, unless the range of the predator
-overlapped with at least one prey item, which in turn is directly connected to a
-primary producer (plants), we removed that section of the predator’s range. We
-then calculated the difference in range size between the original IUCN ranges
-and those adjusted based on species interaction data.
-
-## Analysis
-To understand the drivers of range adjustments we completed a series of analyses. 
+## Range overlap measurement
 We calculated geographical overlap, the extent to which interacting predator and
 prey species cooccurred across their ranges, by adapting a method presented by
-Ruggiero, Lawton, and Blackburn [-@Ruggiero1998GeoRan]: *a/(a + c)*. We define *a* as the number of pixels where
-the focal species occurs without another species and *c* as the number of pixels
-where the focal species and another species cooccur. This index of geographical
-overlap can be calculated with prey or predators as the focal species. Values 
-vary between 0 and 1, with values closer to 0 indicating that there is large 
-overlap in the ranges of the two species and values closer to 1 indicate low
-cooccurrence across their ranges.  
-
-For each predator species we calculated its out degree to understand whether the
-level of trophic specialisation (i.e., number of prey items per predator)
-affects the extent to which the ranges of the species were altered. One would
-assume that predators with a greater number of prey taxa (i.e., a higher out-degree) 
-are less likely to have significant changes in range as it is more likely that at
-least one prey species is present across its entire range.   
+Ruggiero, Lawton, and Blackburn [-@Ruggiero1998GeoRan]: *a/(a + c)*. We define *a* 
+as the number of pixels where the focal species occurs without another species 
+and *c* as the number of pixels where the focal species and another species cooccur.
+This index of geographical overlap can be calculated with prey or predators as the 
+focal species. Values vary between 0 and 1, with values closer to 0 indicating 
+that there is large overlap in the ranges of the two species and values closer to
+1 indicate low cooccurrence across their ranges. For each predator species we 
+calculated its generality to understand whether the level of trophic specialisation
+(i.e., number of prey items per predator) affects the extent to which the ranges 
+of the species were altered. One would assume that predators with a greater number
+of prey taxa (i.e., a higher generality) are less likely to have significant 
+changes in range as it is more likely that at least one prey species is present
+across its entire range.   
 
 ## Validation
 For each species in the dataset we collated point observation data from the Global 
@@ -190,7 +191,6 @@ To do so, we calculated the proportion of total GBIF pixels occurring within
 the original and adjusted species ranges. We standardised these values by the
 total number of pixels within each range to account for variability in range size
 between different species.
-
 
 
 # Results
@@ -299,6 +299,7 @@ difference between the types of layers. Species markers are the same
 on both figures, with predators presented in distinct coloured markers and
 all herbivores grouped in a single grey marker. Pixels represent a 
 resolution of 10 arc-minutes. ](figures/gbif_panels.png){#fig:gbif}
+
 
 # Discussion
 
