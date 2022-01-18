@@ -12,12 +12,14 @@ decode this message with progressively more powerful tools, from their own
 field notes to highly complex computational algorithms. These methods attempt
 to describe the species’ distribution based on their niche, considering their
 occurrences as sample points of suitable abiotic variables and their absences
-as sample points of unsuitable variables [@Peterson2012EcoNic].
+as sample points of unsuitable variables [@Peterson2012EcoNic]. As methods have 
+developed it has become possible to complete analyses at large spatial scales
+in order to understand the factors influencing the macroecology of organisms. The 
+accuracy of predictions of species distributions at macroscales, however,
+remains variable and in some cases poor. 
 
-As methods have developed it has become possible to complete analyses at large 
-spatial scales in order to understand the factors influencing the macroecology 
-of organisms. A significant challenge in this field, however, is the quality and
-quantity of species distribution data, as biases (taxonomic, temporal or geographical
+A significant challenge is the quality and quantity of species distribution data,
+as biases (taxonomic, temporal or geographical
 [@Boakes2010DisVie; @Ronquillo2020AssSpa; @Meyer2016MulBia]) and historical lack of 
 information about species distribution and ecology can lead us to the wrong
 conclusions [@Hortal2008HisBia]. Amongst the
@@ -43,7 +45,7 @@ accessible areas and observation of charismatic species [@Alhajeri2019HigCor].
 The rationale behind species distribution models comes from the fact that interactions form complex
 networks that shape ecological structures and maintain the essential functions
 of ecosystems, such as seed dispersal, pollination, and biological control
-[@Albrecht2018PlaAni] that ultimately affects the composition, richness, and
+[@Albrecht2018PlaAni] [REF - Fricke 2022] that ultimately affects the composition, richness, and
 successional patterns of communities across multiple biomes. Yet, the connection 
 between occurrence and interaction data is a frequent debate in
 Ecology [REF - Blanchet]. For instance, macroecological models are often used with point or range
@@ -73,10 +75,10 @@ data.
 One potential option for improving our estimates of species’ distributions is 
 to make use of data on ecological interactions. Yet a complete assessment of
 ecological interactions is difficult. The number of interactions sampled will
-always be lower than the number of mathematically possible interactions, mainly
-due to forbidden links - those interactions that although theoretically possible
-cannot occur for a variety of reasons, e.g., spatial mismatches in species ranges 
-or temporal uncoupling of species [@Jordano2016SamNet]. This lack of local 
+always be lower than the number of possible interactions, mainly
+due to forbidden links [REF - Olesen], those interactions that although theoretically possible
+cannot occur for a variety of reasons (e.g., spatial mismatches in species ranges 
+or temporal uncoupling of species [@Jordano2016SamNet]). This lack of local 
 ecological information, known as the Eltonian Shortfall, is aggravated by
 biased sampling methods and data aggregation [@Poisot2020EnvBia; 
 @Hortal2015SevSho]. Nevertheless, we have witnessed an increase in the 
@@ -108,7 +110,6 @@ interaction networks).
 
 # Methods
 
-## Approach
 Organisms cannot persist unless they are directly or indirectly connected to a
 primary producer within their associated food web [@Power1992TopBot]. As such,
 the range of a predator (omnivore or carnivore) is explained by the overlapping 
@@ -124,8 +125,8 @@ then calculated the difference in range size between the original IUCN ranges
 and those adjusted based on species interaction data.
 
 ## Data 
-We investigated the effects of adjusting species distributions based on species
-interaction data across savannah ecosystems in Africa (@fig:richness). These
+We investigated the mismatch between species ranges and interactions across 
+savannah ecosystems in Africa (@fig:richness). These
 ecosystems host a range of different species, including the well characterised
 predator-prey dynamics between iconic predators (e.g., lions, hyenas and
 leopards) and large herbivores (e.g., antelope, wildebeest and zebra), as well
@@ -167,7 +168,7 @@ interacting species were present.
 
 ## Range overlap measurement
 We calculated geographical overlap, the extent to which interacting predator and
-prey species cooccurred across their ranges, by adapting a method presented by
+prey species cooccurred across their ranges, by using a method presented by
 Ruggiero, Lawton, and Blackburn [-@Ruggiero1998GeoRan]: *a/(a + c)*. We define *a* 
 as the number of pixels where the focal species occurs without another species 
 and *c* as the number of pixels where the focal species and another species cooccur.
@@ -303,6 +304,13 @@ resolution of 10 arc-minutes. ](figures/gbif_panels.png){#fig:gbif}
 
 # Discussion
 
+In our case, one predator (*Canis aureus*)
+would be completely excluded of its original range probably because of a
+taxonomic mismatch between datasets, which is hard to solve based only on 
+occurrence data. Hence, this method can be useful when the study group
+is well known, and the growing availability of data will certainly
+improve its applicability.
+
 Here we lend further evidence to the debate surrounding the effects of ecological
 interactions on the distribution and abundance of species at large scales 
 [@Bullock2000GeoSep; @Chesson2008IntPre; @Godsoe2012HowSpe; @Svenning2014InfInt;
@@ -341,7 +349,8 @@ The geographical mismatch between predators and preys have ecological
 consequences such as loss of ecosystem functioning and extiction of populations
 [@Anderson2016SpaDis; @Dattilo2018EcoNet; @Pringle2016LarHer; @Young2013EffMam].
 Climate change is one of the causes of this, leading, for instance, to the
-decrease of plants populations due to lack of pollination [@Bullock2000GeoSep; @Afkhami2014MutEff; @Godsoe2017IntBio].
+decrease of plants populations due to lack of pollination [@Bullock2000GeoSep; 
+@Afkhami2014MutEff; @Godsoe2017IntBio].
 However, this mismatch can also be purely informational. When the distribution
 of predators and preys do not superpose, it can mean we lack information about
 the distribution of either species or about their interactions. Here we address
@@ -360,8 +369,9 @@ missing. For example, the lion (*Panthera leo*) was one of the species with the
 smallest difference between the original and the updated ranges
 (@fig:degree), but 59.5% of the GBIF occurrences for this species fell
 outside the IUCN range (@fig:gbif). The fact that we don't find lions where it
-doesn't have a prey is a good indicative that the IUCN range maps are a good representation of their distribution, but the high disagreement between the IUCN and the GBIF
-databases adds uncertainty to this statement. On the other
+doesn't have a prey is a good indicative that the IUCN range maps are a good
+representation of their distribution, but the high disagreement between the 
+IUCN and the GBIF databases adds uncertainty to this statement. On the other
 hand, *Leptailurus serval* and *Canis mesomelas* are two of the three species
 that lose the higher proportion of range due to the lack of paths to a herbivore
 (@fig:degree), but are also some of the species with the higher proportion
@@ -385,17 +395,12 @@ models more complex, but making sure (not assuming) that the input data - the
 species occurrence - actually accounts for ecological interactions. It is
 important to notice, however, that the quality and usefulness of this method is
 highly correlated with the amount and quality of data available about species'
-occurrences **and** interactions. In our case, one predator (*Canis aureus*)
-would be completely excluded of its original range probably because of a
-taxonomic mismatch between datasets, which is hard to solve based only on occurrence data. Hence, this method can be useful when the
-study group is well known, and the growing availability of data will certainly
-improve its applicability.
-
-With this paper we hope to add to the collective effort to decode the encrypted
-message that is the occurrence of a species in space and time. A promising venue
-that adds to our method is the prediction of networks and interactions in large
-scale [@Strydom2021RoaPre], for they can add valuable information about ecological
-interactions where they are missing. Additionally, in order to achieve a robust
+occurrences **and** interactions. With this paper we hope to add to the collective 
+effort to decode the encrypted message that is the occurrence of a species in 
+space and time. A promising avenue that adds to our method is the prediction
+of networks and interactions in large scale [@Strydom2021RoaPre], for they
+can add valuable information about ecological interactions where they are missing.
+Additionally, in order to achieve a robust
 modelling framework towards actual species distribution models we should invest
 in efforts to collect and combine open data on species occurrence and
 interactions, especially because we may have been losing ecological interactions
