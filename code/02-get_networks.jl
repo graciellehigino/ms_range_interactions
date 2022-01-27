@@ -201,8 +201,8 @@ plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(delta_Sxy_layer, c=cgrad(:turku, rev=true))
 savefig(joinpath("figures", "species_removal.png"))
 
-# Map figure of species richness before correction (panel A) and proportion of species remaining after correction (panel B)
-plot_richness = plot(;
+## Map of species richness before correction 
+map_richness = plot(;
     frame=:box,
     xlim=extrema(longitudes(Sxy_layer)),
     ylim=extrema(latitudes(Sxy_layer)),
@@ -213,7 +213,8 @@ plot_richness = plot(;
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(Sxy_layer, c=cgrad(:turku, rev=true))
 
-plot_prop = plot(;
+## Map of proportion of species remaining after correction 
+map_prop = plot(;
     frame=:box,
     xlim=extrema(longitudes(prop_Sxy_layer)),
     ylim=extrema(latitudes(prop_Sxy_layer)),
@@ -224,7 +225,32 @@ plot_prop = plot(;
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(prop_Sxy_layer, c=cgrad(:viridis, rev=true))
 
-plot(plot_richness, plot_prop)
+## Proportion of remaining species as a function of species richeness 
+values = Sxy_df.Sxy .!= nothing
+
+prop_richness = scatter(Sxy_df.Sxy[values],
+                    Sxy_df.prop_Sxy[values],
+                    frame=:box,
+                    markershape=:circle,
+                    markersize=4,
+                    alpha=0.05,
+                    palette=:seaborn_colorblind,
+                    markerstrokewidth=0,
+                    label="",
+                    background_color_legend=:white,
+                    dpi=500,
+                    xaxis="Species richness",
+                    yaxis="Proportion of species",
+)
+
+l = @layout [[a ; b] c]
+
+plot(map_richness, map_prop, prop_richness,
+    layout = l,
+    title = ["(a)" "(b)" "(c)"],
+    titleloc=:right,
+    titlefont=font("Arial",10))
+
 savefig(joinpath("figures", "richness_prop_removed.png"))
 
 

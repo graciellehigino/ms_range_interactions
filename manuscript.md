@@ -206,10 +206,10 @@ addition, many networks (16.6%) only had disconnected mammals; these networks
 however all had a very low number of mammal species, specifically between 1 and
 4 (from a total of 32). 
 
-![Left panel: spatial distribution of species richness according to the original 
-IUCN range maps of all 32 mammal species of the Serengeti food web. Right panel:
-proportion of mammal species remaining in each local network (i.e. each pixel)
-after removing all species without a path to a primary producer.](figures/richness_prop_removed.png){#fig:richness}
+![(a) Spatial distribution of species richness according to the original 
+IUCN range maps of all 32 mammal species of the Serengeti food web. (b)
+Proportion of mammal species remaining in each local network (i.e., each pixel)
+after removing all species without a path to a primary producer. (c) Proportion of mammal species remaining in each local network as a function of the number of species given by the original IUCN range maps.](figures/richness_prop_removed.png){#fig:richness}
 
 ## Specialized predators lose more range
 
