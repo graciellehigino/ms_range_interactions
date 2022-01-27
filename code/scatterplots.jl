@@ -76,16 +76,19 @@ scatter(
 savefig(joinpath("figures", "beta-div_pred-range-diff-rel.png"))
 
 # Relationship between beta-diversities, grouped by predator species
+
+using GLM
+
+ranges_degrees_df
+
 scatter(
     ranges_degrees_df[0.0 .< ranges_degrees_df.Rab .< 1.0, :Rab],
     ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :Rbb],
-    regression = true,
     xlabel="predator to prey geographic dissimilarity",
     ylabel="prey to predator geographic dissimilarity",
     group=ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :species],
     markershape=[:circle :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
     markersize=6,
-    linewidth = 3,
     palette = cgrad(:seaborn_colorblind)[[1, 3:9...]],
     markerstrokewidth=0,
     size=(1024, 800),
@@ -95,8 +98,20 @@ scatter(
     foreground_color_legend=:white,
     background_color_legend=:white,
     aspect_ratio = :equal,
-    dpi = 600
+    dpi = 600,
 )
+# add regression lines separately so that markers are not printed at their extremities
+scatter!(
+    ranges_degrees_df[0.0 .< ranges_degrees_df.Rab .< 1.0, :Rab],
+    ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :Rbb],
+    group=ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :species],
+    markersize=0,
+    palette = cgrad(:seaborn_colorblind)[[1, 3:9...]],
+    smooth=true,
+    linewidth=3,
+    lab=""
+)
+
 savefig(joinpath("figures", "beta-div_pred-species.png"))
 
 # Relative loss in range size vs. out degree
