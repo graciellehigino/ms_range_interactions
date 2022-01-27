@@ -226,10 +226,10 @@ plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(prop_Sxy_layer, c=cgrad(:viridis, rev=true))
 
 ## Proportion of remaining species as a function of species richeness 
-values = Sxy_df.Sxy .!= nothing
+index = Sxy_df.Sxy .!= nothing
 
-prop_richness = scatter(Sxy_df.Sxy[values],
-                    Sxy_df.prop_Sxy[values],
+prop_richness = scatter(Sxy_df.Sxy[index],
+                    Sxy_df.prop_Sxy[index],
                     frame=:box,
                     markershape=:circle,
                     markersize=4,
