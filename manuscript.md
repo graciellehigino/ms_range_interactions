@@ -85,17 +85,19 @@ significant uncertainty areas in range maps.
 
 Organisms cannot persist unless they are directly or indirectly connected to a
 primary producer within their associated food web [@Power1992TopBot]. As such,
-the range of a predator (omnivore or carnivore) is explained by the overlapping 
-ranges of its prey. If sections of a predator's range does not overlap with at 
-least one of its prey it will become disconnected from primary producers, and we 
-therefore would not expect the predator to occur in this area. Thus, here we
-adjusted the ranges of predators based on a simple rule: we removed any part
-of a predator’s range that did not intersect with the range
-of at least one prey herbivore species. So, unless the range of the predator
-overlapped with at least one prey item, which in turn is directly connected to a
-primary producer (plants), we removed that section of the predator’s range. We
-then calculated the difference in range size between the original IUCN ranges
-and those adjusted based on species interaction data.
+the range of a predator (omnivore or carnivore) is explained by the overlapping
+ranges of its prey. If sections of a predator's range does not overlap with at
+least one of its prey it will become disconnected from primary producers, and we
+therefore would not expect the predator to occur in this area. This mismatch can
+be the result of different mechanisms, such as the overestimation of predator's
+range, taxonomic errors, or the lack of information about trophic links. Thus,
+here we adjusted the ranges of predators based on a simple rule: we removed any
+part of a predator’s range that did not intersect with the range of at least one
+prey herbivore species. So, unless the range of the predator overlapped with at
+least one prey item, which in turn is directly connected to a primary producer
+(plants), we removed that section of the predator’s range. We then calculated
+the difference in range size between the original IUCN ranges and those adjusted
+based on species interaction data.
 
 ## Data 
 We investigated the mismatch between species ranges and interactions across 
@@ -105,7 +107,7 @@ predator-prey dynamics between iconic predators (e.g., lions, hyenas and
 leopards) and large herbivores (e.g., antelope, wildebeest and zebra), as well
 as a range of herbivorous and carnivorous small mammals. The Serengeti ecosystem has been extensively studied and its
 food web is one of the most complete we have to date, including primary producers
-identified to the species level [@Baskerville2011SpaGui]. Here we focus on six
+identified to the species level. Here we focus on six
 groups of herbivores and carnivores from the Serengeti Food Web Data Set
 [@Baskerville2011SpaGui]. These species exhibit direct antagonistic
 (predator-prey) interactions with one another and are commonly found across
@@ -115,7 +117,7 @@ to significantly influence the range of herbivores for several reasons. Firstly,
 many savannah plants are functionally similar (i.e., grasses, trees and shrubs) and 
 cooccur across the same habitats [@Baskerville2011SpaGui]. Secondly, herbivores
 in the network are broadly generalists feeding on a wide range of different plants
-across habitats (MEAN PLANTS PER HERBIVORE). There is also an absence of global
+across habitats <!---MEAN PLANTS PER HERBIVORE--->. There is also an absence of global
 range maps for many plant species [@Daru2020GreToo], which also
 prevents their direct inclusion. Therefore, we assume that
 plants consumed by herbivores are present across
@@ -126,22 +128,23 @@ From the wider ecological network presented in Baskerville
 [-@Baskerville2011SpaGui], we sampled interaction data for herbivores and
 carnivores. This subnetwork contained 32 taxa (23 herbivores and 9 carnivores) 
 and 84 interactions, and had a connectance of 0.08. Although self-loops are 
-informative, here we removed these interactions to allow for the ranges predators
+informative, here we removed these interactions to allow for the original IUCN ranges of predators
 with cannabalistic interactions to be adjusted. We refer to this
 overall network as the metaweb as it contains all possible species interactions
 between the different taxa that could occur across savannah ecosystems
 such as the Serengeti.  
 
-IUCN range maps were compiled for the 32 species included in the metaweb 
-from the Spatial Data Download portal 
-(www.iucnredlist.org/resources/spatial-data-download). Ranges were rasterized
-at 10 arc minute resolution (~19 km² at the equator).
-We then combined interaction data from the meta-network and cooccurrence data
-generated from species ranges to create networks for each raster pixel. This
-generated a total of 84,244 networks where at least two cooccurring and
-interacting species were present.  
+We compile IUCN range maps for the 32 species included in the metaweb from the
+Spatial Data Download portal
+(www.iucnredlist.org/resources/spatial-data-download), which we rasterized at 10
+arc minute resolution (~19 km² at the equator). We then combined interaction
+data from the metaweb and cooccurrence data generated from species ranges to
+create networks for each raster pixel. This generated a total of 84,244
+pixel-level networks. These networks describe potential predation, not actual
+interactions: the former is derived information from the metaweb, and the later
+is contigent to the presence of herbivores. 
 
-## Range overlap measurement
+## Range overlap measurement <!---continue editing from here--->
 We calculated geographical overlap, the extent to which interacting predator and
 prey species cooccurred across their ranges, by using a method presented by
 Ruggiero, Lawton, and Blackburn [-@Ruggiero1998GeoRan]: *a/(a + c)*. We define *a* 
