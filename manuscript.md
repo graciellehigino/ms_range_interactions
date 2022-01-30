@@ -144,10 +144,9 @@ pixel-level networks. These networks describe potential predation, not actual
 interactions: the former is derived information from the metaweb, and the later
 is contigent to the presence of herbivores. 
 
-## Range overlap measurement <!---continue editing from here--->
-We calculated geographical overlap, the extent to which interacting predator and
-prey species cooccurred across their ranges, by using a method presented by
-Ruggiero, Lawton, and Blackburn [-@Ruggiero1998GeoRan]: *a/(a + c)*. We define *a* 
+## Range overlap measurement 
+We calculated the geographical overlap, the extent to which interacting predator and
+prey species cooccurred across their ranges as <!---, by using a method presented by Ruggiero, Lawton, and Blackburn [-@Ruggiero1998GeoRan]--->: *a/(a + c)*. We define *a* 
 as the number of pixels where the focal species occurs without another species 
 and *c* as the number of pixels where the focal species and another species cooccur.
 This index of geographical overlap can be calculated with prey or predators as the 
@@ -165,9 +164,9 @@ across its entire range.
 For each species in the dataset we collated point observation data from the Global 
 Biodiversity Information Facility (GBIF; www.gbif.org), and condensed these data into
 pixels representing presence or absence of the focal taxon. These data were used to 
-validate the range adjustments made based on species interactions (see Approach).
-To do so, we calculated the proportion of total GBIF pixels occurring within
-the original and adjusted species ranges. We standardised these values by the
+validate the range adjustments made based on species interactions (see previous section).
+To do so, we calculated the proportion of GBIF pixels occurring within
+both the original and adjusted species ranges, standardised by the
 total number of pixels within each range to account for variability in range size
 between different species.
 
