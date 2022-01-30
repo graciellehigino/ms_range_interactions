@@ -102,7 +102,7 @@ based on species interaction data.
 ## Data 
 We investigated the mismatch between species ranges and interactions across 
 savannah ecosystems in Africa (@fig:richness). These
-ecosystems host a range of different species, including the well characterised
+ecosystems host a range of different species, including the well characterized
 predator-prey dynamics between iconic predators (e.g., lions, hyenas and
 leopards) and large herbivores (e.g., antelope, wildebeest and zebra), as well
 as a range of herbivorous and carnivorous small mammals. The Serengeti ecosystem has been extensively studied and its
@@ -129,7 +129,7 @@ From the wider ecological network presented in Baskerville
 carnivores. This subnetwork contained 32 taxa (23 herbivores and 9 carnivores) 
 and 84 interactions, and had a connectance of 0.08. Although self-loops are 
 informative, here we removed these interactions to allow for the original IUCN ranges of predators
-with cannabalistic interactions to be adjusted. We refer to this
+with cannibalistic interactions to be adjusted. We refer to this
 overall network as the metaweb as it contains all possible species interactions
 between the different taxa that could occur across savannah ecosystems
 such as the Serengeti.  
@@ -142,7 +142,7 @@ data from the metaweb and cooccurrence data generated from species ranges to
 create networks for each raster pixel. This generated a total of 84,244
 pixel-level networks. These networks describe potential predation, not actual
 interactions: the former is derived information from the metaweb, and the later
-is contigent to the presence of herbivores. 
+is contingent to the presence of herbivores. 
 
 ## Range overlap measurement 
 We calculated the geographical overlap, the extent to which interacting predator and
@@ -153,7 +153,7 @@ This index of geographical overlap can be calculated with prey or predators as t
 focal species. Values vary between 0 and 1, with values closer to 0 indicating 
 that there is large overlap in the ranges of the two species and values closer to
 1 indicate low cooccurrence across their ranges. For each predator species we 
-calculated its generality to understand whether the level of trophic specialisation
+calculated its generality to understand whether the level of trophic specialization
 (i.e., number of prey items per predator) affects the extent to which the ranges 
 of the species were altered. One would assume that predators with a greater number
 of prey taxa (i.e., a higher generality) are less likely to have significant 
@@ -166,7 +166,7 @@ Biodiversity Information Facility (GBIF; www.gbif.org), and condensed these data
 pixels representing presence or absence of the focal taxon. These data were used to 
 validate the range adjustments made based on species interactions (see previous section).
 To do so, we calculated the proportion of GBIF pixels occurring within
-both the original and adjusted species ranges, standardised by the
+both the original and adjusted species ranges, standardized by the
 total number of pixels within each range to account for variability in range size
 between different species.
 
@@ -174,7 +174,7 @@ between different species.
 # Results
 
 Mammal species found in the Serengeti food web are widespread in Africa,
-especially in grasslands and savannahs (left panel of @fig:richness). However,
+especially in grasslands and Savannahs (left panel of @fig:richness). However,
 most local networks (83.2%) built using the original IUCN range maps had at
 least one mammal species without a path to a primary producer (right panel of
 @fig:richness). On average, local food webs had almost the third of their mammal
@@ -215,14 +215,14 @@ dissimilarities were given by a/(a+c), with the predator being the focal species
 in the predator to prey dissimilarity (x-axis), while the prey is the focal one
 in the prey to predator dissimilarity (y-axis). One of the predators, *Canis
 aurea*, is not represented in the image because it's an extreme case (where all
-its range is supressed by the absence of preys) and it would make the
+its range is suppressed by the absence of preys) and it would make the
 interpretation of the data more
 difficult.](figures/beta-div_pred-species.png){#fig:geo_diss} 
 
 There was high variation in the overlap of predator and prey ranges
 (@fig:geo_diss). The range of several predators were well covered by preys (low
 values of both prey-predator and predator-prey geographic dissimilarity values),
-yet the ranges of some predators and prey were completely asynchronous, with no
+yet the ranges of some predators and preys were completely asynchronous, with no
 overlap (values of 1 for both overlap metrics; @fig:geo_diss). For example, the
 range of *Canis aureus* is not covered by any prey species, whereas *Panthera
 pardus* exhibited highly variable levels of overlap with prey taxa ([@tbl:everyone]).
@@ -231,7 +231,7 @@ than predator-prey overlap – indicated by the spread of points along the x-axi
 yet more restricted variation on the y axis (@fig:geo_diss). There was also
 no overall relationship between the two metrics, or for any predator species.
 
-: List of species analysed, their out and in degrees, total original range
+: List of species analyzed, their out and in degrees, total original range
 size (in pixels) and proportion of their ranges occupied by their preys and predators 
 (values between 0 and 1). Species are sorted according to the groups identified
 by @Baskerville2011SpaGui. Notice how some species are isolated in the network
@@ -244,37 +244,46 @@ of its preys. {#tbl:everyone}
 
 The proportion of GBIF pixels (pixels with at least one GBIF occurrence) falling
 in the IUCN ranges varied from low to high depending on the species ([@fig:gbif],
-left). No species had all of its GBIF occurrences within its IUCN range. The 
+left). The 
 lowest proportions occurred for species with small ranges (such as *Lycaon pictus*), although some 
 species with small ranges showed high overlap. Species with median and large
 ranges had high proportions of occurrences falling into their IUCN range. 
-Predators and preys displayed similar overlap variations. The only species for
-which none of the GBIF pixels occur in the IUCN range, _Canis aureus_, is also
+Predators and preys displayed similar overlap variations. While no species had all of its GBIF occurrences within its IUCN range, one species had this proportion equal to zero, _Canis aureus_, which is also
 the only species whose range is not covered by any of its preys.
+This result reinforces the concern raised in the literature on the use of IUCN
+range maps for species that are not well known [@Herkt2017MacCon], demonstrating
+how small range species are likely to have their distribution underestimated in
+the IUCN database. Additionally, the fact that _Canis aureus_ had none of its
+GBIF pixels overlapping with IUCN maps suggests a taxonomic mismatch between
+both databases, which we explore in the Discussion section. 
 
-The proportion of GBIF pixels falling inside the updated ranges from our 
-networks analysis was similar to the overlap with the original IUCN ranges
-for most predator species ([@fig:gbif, right]). The proportion for the 
-updated ranges can only be equal or lower, as our analysis removes pixels
+The proportion of GBIF pixels in 
+updated ranges can only be equal to or lower than that of the original ranges, as our analysis removes pixels
 from the original range and does not add new ones. Rather, the absence of
 a difference between the two types of ranges indicates that no pixels with
-GBIF observations, hence likely true habitats, were removed by our analysis.
+GBIF observations, hence likely true habitats, were removed by our analysis. Here this proportion was mostly similar to that of the original IUCN ranges
+for most predator species ([@fig:gbif, right]). 
 Four species showed no difference of proportion while three species showed
 only small differences (proportions of 0.01 to 0.05). On the other hand,
-two species, _Canis mesomelas_ and _Leptailurus serval_,  showed very high
+two species, _Canis mesomelas_ and _Leptailurus serval_, showed very high
 differences, with overlaps lower by 0.548 and 0.871 respectively. For
 _Leptailurus serval_, none of the GBIF observations occurred in the 
 updated range. These two species are also the only predators with a 
-single prey in our meta-network.
+single prey in our metaweb. Our results delineates how a mismatch between GBIF
+and IUCN databases differ greatly with small changes in herbivore species
+ranges, and it is somewhat positively related to range size for predator
+species. Moreover, we show that accounting for interactions does not necessarily
+aggravates this dissimilarity, but it is relevant for species with little
+ecological information or specialists.
 
-![Left panel: Relationship between the proportion of GBIF pixels (pixels
-with at least one occurrence in GBIF) falling into the IUCN range and the
-IUCN range size. Right panel: Proportion of GBIF pixels falling into the
-IUCN and updated ranges for every predator species. Arrows go from the
+![Left panel: Distribution of the proportion of GBIF pixels (pixels
+with at least one occurrence in GBIF) falling into the IUCN range for different
+range sizes. Right panel: Differences between the proportion of GBIF pixels falling into the
+IUCN and the updated ranges for every predator species. Arrows go from the
 proportion inside the original range to the proportion inside the updated
 range, which can only be equal or lower. Overlapping markers indicate no
 difference between the types of layers. Species markers are the same
-on both figures, with predators presented in distinct coloured markers and
+on both figures, with predators presented in distinct colored markers and
 all herbivores grouped in a single grey marker. Pixels represent a 
 resolution of 10 arc-minutes. ](figures/gbif_panels.png){#fig:gbif}
 
