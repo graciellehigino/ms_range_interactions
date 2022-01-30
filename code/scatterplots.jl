@@ -137,13 +137,13 @@ savefig(joinpath("figures", "rel_loss-out_degree-orig_range.png"))
 # Out degree vs. relative lost in range size, colored by species
 scatter(
     ranges_degrees_df.degree,
-    ranges_degrees_df.relative .* -1;
+    ranges_degrees_df.relative .* -1/100;
     xlabel="Out degree of predators",
     ylabel="Relative loss of range",
-    ylimits=(0,102),
+    ylimits=(0,1.05),
     group=ranges_degrees_df.species,
     markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
-    markersize=6,
+    markersize=8,
     palette=:seaborn_colorblind,
     markerstrokewidth=0,
     left_margin=10mm,
@@ -151,6 +151,9 @@ scatter(
     top_margin=10mm,
     bottom_margin=10mm,
     legend=:topright,
+    legendfontsize=12,
+    guidefont = 13,
+    tickfont = 12,
     foreground_color_legend=:white,
     background_color_legend=:white,
     size=(1000, 600),
