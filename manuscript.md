@@ -134,7 +134,7 @@ overall network as the metaweb as it contains all possible species interactions
 between the different taxa that could occur across savannah ecosystems
 such as the Serengeti.  
 
-We compile IUCN range maps for the 32 species included in the metaweb from the
+We compiled IUCN range maps for the 32 species included in the metaweb from the
 Spatial Data Download portal
 (www.iucnredlist.org/resources/spatial-data-download), which we rasterized at 10
 arc minute resolution (~19 km² at the equator). We then combined interaction
@@ -161,15 +161,14 @@ changes in range as it is more likely that at least one prey species is present
 across its entire range.   
 
 ## Validation
-For each species in the dataset we collated point observation data from the Global 
+For each species in the dataset we collated point observation data from the Global
 Biodiversity Information Facility (GBIF; www.gbif.org), and condensed these data into
-pixels representing presence or absence of the focal taxon. These data were used to 
+pixels representing presence or absence of the focal taxon. These data were used to
 validate the range adjustments made based on species interactions (see previous section).
-To do so, we calculated the proportion of GBIF pixels occurring within
-both the original and adjusted species ranges, standardized by the
-total number of pixels within each range to account for variability in range size
-between different species.
-
+To do so, we calculated the proportion of GBIF presence pixels occurring within both the
+original and adjusted species ranges. We then compared these proportions for the predators
+to verify if the range adjustments removed locations with GBIF observations, hence likely
+true habitats.
 
 # Results
 

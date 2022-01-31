@@ -54,17 +54,19 @@ occ_df = reduce(vcat, spp_df)
 replace!(occ_df.IUCN, nothing => 0.0)
 replace!(occ_df.IUCN_updated, nothing => 0.0)
 
-## Compare GBIF occurrences & ranges
+## Compare GBIF occurrences with IUCN ranges
 
-# Get number of occurrences & number of pixels in IUCN range
-comparison_occ = combine(
-    groupby(occ_df, :species),
-    nrow => :total_occ,
-    :IUCN => sum => :n_occ_original,
-    :IUCN_updated => sum => :n_occ_updated,
-)
+# Get number of occurrences in IUCN ranges
+comparison_occ = @chain occ_df begin
+    groupby(:species)
+    @combine(
+        total_occ = length(:species),
+        n_occ_original = sum(:IUCN),
+        n_occ_updated =  sum(:IUCN_updated),
+    )
+end
 
-# Get proportion of pixels in IUCN range
+# Get proportion of occurrences in IUCN range
 @transform!(
     comparison_occ,
     occ_prop = :n_occ_original ./ :total_occ,
@@ -74,22 +76,30 @@ comparison_occ = combine(
 # Get difference between original & previous range
 @transform!(comparison_occ, occ_prop_diff = :occ_prop_updated .- :occ_prop)
 
-## Compare layers
+## Compare GBIF layers with IUCN ranges (based on pixels with occurrences)
 
 # Mask GBIF range by IUCN range (updates GBIF range value to nothing if IUCN range is nothing)
 gbif_mask = mask.(ranges, gbif_ranges)
 gbif_mask_updated = mask.(ranges_updated, gbif_ranges)
 
-# Create separate comparison DataFrame
+# Get number of pixels with presences/occurrences in each layer
 comparison_layers = DataFrame(
     species = mammals,
     range = length.(ranges),
     range_updated = length.(ranges_updated),
     gbif_range = length.(gbif_ranges),
-    range_prop = length.(gbif_mask) ./ length.(gbif_ranges),
-    range_prop_updated = length.(gbif_mask_updated) ./ length.(gbif_ranges),
+    mask_range = length.(gbif_mask),
+    mask_range_updated = length.(gbif_mask_updated)
 )
-@transform!(comparison_layers, range_prop_diff = :range_prop_updated .- :range_prop)
+
+# Get proportions for comparison
+@chain begin comparison_layers
+    @transform!(
+        range_prop = :mask_range ./ :gbif_range,
+        range_prop_updated = :mask_range_updated ./ :gbif_range,
+    )
+    @transform!(range_prop_diff = :range_prop_updated .- :range_prop)
+end
 
 ## Combine occurrence & layer comparisons
 
