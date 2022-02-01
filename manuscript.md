@@ -76,9 +76,9 @@ and potential predators. Here we used a Serengeti food web dataset
 from Tanzania) to investigate whether occurrence data (more precisely range
 maps) can be refined based on species interaction information. Considering the
 basic assumption that predators can only be present in regions where they are
-connected to at least one herbivore, and thus decoupled from primary producers,
-we demonstrate how a mismatch between occurrence and ecological data can
-highlight significant uncertainty areas in range maps. 
+connected to at least one herbivore, and thus indirectly connected to primary 
+producers, we demonstrate how a mismatch between occurrence and ecological data
+can highlight significant uncertainty areas in range maps. 
 
 
 # Methods
