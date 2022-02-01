@@ -166,15 +166,14 @@ range.
 
 ## Validation
 
-For each species in the dataset we collated point observation data from the
-Global Biodiversity Information Facility (GBIF; www.gbif.org), and condensed
-these data into pixels representing presence or absence of the focal taxon.
-These data were used to validate the range adjustments made based on species
-interactions (see previous section). To do so, we calculated the proportion of
-GBIF presence pixels occurring within both the original and adjusted species
-ranges. We then compared these proportions for the predators to verify if the
-range adjustments removed locations with GBIF observations, hence likely true
-habitats.
+For each species in the dataset we collated point observation data from GBIF 
+(www.gbif.org), and condensed these data into pixels representing presence or
+absence of the focal taxon. These data were used to validate the range 
+adjustments made based on species interactions (see previous section). To do
+so, we calculated the proportion of GBIF presence pixels occurring within both
+the original and adjusted species ranges. We then compared these proportions
+for the predators to verify if the range adjustments removed locations with GBIF
+observations, hence likely true habitats.
 
 # Results
 
@@ -280,7 +279,7 @@ the other hand, two species, _Canis mesomelas_ and _Leptailurus serval_, showed
 very high differences, with overlaps lower by 0.548 and 0.871 respectively. For
 _Leptailurus serval_, none of the GBIF observations occurred in the updated
 range. These two species are also the only predators with a single prey in our
-metaweb. Our results delineates how a mismatch between GBIF and IUCN databases
+metaweb. Our results delineate how a mismatch between GBIF and IUCN databases
 differ greatly with small changes in herbivore species ranges, and it is
 somewhat positively related to range size for predator species. Moreover, we
 show that accounting for interactions does not necessarily aggravates this
@@ -301,12 +300,12 @@ arc-minutes. ](figures/gbif_panels.png){#fig:gbif}
 
 # Discussion
 
-The jackal is a widespread group in northern Africa, Europe and Australasia,
+The jackal is a widespread taxon in northern Africa, Europe and Australasia,
 generally well adapted to local conditions due to its largely varied diet
 [@Tsunoda2020VarTro; @Krofel2021ResTax]. Because of that, we expected that the
 _Canis_ species in our dataset would be the ones losing the least amount of
 range, with a higher value of the proportion of GBIF pixels within IUCN range
-maps. However, the taxonomy of this groups is a matter of intense discussion, as
+maps. However, the taxonomy of this group is a matter of intense discussion, as
 molecular and morphological data seem too disagree in the clustering of species
 and subspecies [@Krofel2021ResTax; @Stoyanov2020CraVar]. This debate is indeed
 reflected in our analysis: the GBIF identification of the golden jackal is
