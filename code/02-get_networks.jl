@@ -52,7 +52,14 @@ end
 # Build metaweb of mammals (subnetwork of metaweb of mammals and plants)
 MM = M[mammals]
 
+# Count the number of plants that are eaten by each herbivores
+M_plants_herb = M[vcat(plants, herbivores)]
 
+kout_plants_herb = collect(values(degree(M_plants_herb, dims = 1))) # out-degree of herbivores and plants
+kout_herb = kout_plants_herb[kout_plants_herb .!= 0] # out-degree of herbivores
+kout_herb_avg = mean(kout_herb) # mean out-degree of herbivores
+kout_herb_sd = std(kout_herb) 
+kout_herb_ext = extrema(kout_herb)
 
 #### Build spatially-explicit networks of mammals and remove carnivores with no paths to an herbivore
 
