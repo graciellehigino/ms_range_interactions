@@ -84,17 +84,17 @@ can highlight significant uncertainty areas in range maps.
 # Methods
 
 Organisms cannot persist unless they are directly or indirectly connected to a
-primary producer within their associated food web [@Power1992TopBot]. As such,
+primary producer within their associated food web [@Power1992TopBot]. Therefore,
 the range of a predator (omnivore or carnivore) depends on the overlapping
 ranges of its preys. If sections of a predator's range does not overlap with at
 least one of its prey it will become disconnected from primary producers, and therefore we would not expect the predator to occur in this area. This mismatch can
-be the result of different mechanisms, such as the overestimation of the predator's
+be the result of different mechanisms, like the overestimation of the predator's
 range, taxonomic errors, or the lack of information about trophic links. Thus,
 here we adjusted the ranges of predators based on a simple rule: we removed any
 part of a predator’s range that did not intersect with the range of at least one
 prey herbivore species. So, unless the range of the predator overlapped with at
 least one prey item, which in turn is directly connected to a primary producer
-(plants), we removed that section of the predator’s range. We then calculated
+(plants), we removed that section of the predator’s range. Finaly, we calculated
 the difference in range size between the original IUCN ranges and those adjusted
 based on species interaction data.
 
@@ -299,7 +299,7 @@ arc-minutes. ](figures/gbif_panels.png){#fig:gbif}
 
 The jackal is a widespread taxon in northern Africa, Europe and Australasia,
 generally well adapted to local conditions due to its largely varied diet
-[@Tsunoda2020VarTro; @Krofel2021ResTax]. Because of that, we expected that the
+[@Tsunoda2020VarTro; @Krofel2021ResTax]. Consequently, we expected that the
 _Canis_ species in our dataset would be the ones losing the least amount of
 range, with a higher value of the proportion of GBIF pixels within their IUCN range
 maps. However, the taxonomy of this group is a matter of intense discussion, as
@@ -308,7 +308,7 @@ and subspecies [@Krofel2021ResTax; @Stoyanov2020CraVar]. This debate is indeed
 reflected in our analysis: the GBIF identification of the golden jackal is
 incompatible with the one used by IUCN, each of them mapping its distribution in
 completely different places. This led to a complete exclusion of *Canis aureus*
-from its original range in our analysis, despite the fact that this species has
+from its original range in our analysis, despite this species has
 four documented preys in our metaweb. This example illustrates how the
 taxonomic, geographical and ecological data can be used to validate one another. 
 
@@ -345,13 +345,13 @@ interactions on their range limits [@Godsoe2017IntBio].
 ## Geographical mismatch and data availability
 
 The geographical mismatch between predators and preys have ecological
-consequences such as loss of ecosystem functioning and extinction of populations
+consequences like loss of ecosystem functioning and extinction of populations
 [@Anderson2016SpaDis; @Dattilo2018EcoNet; @Pringle2016LarHer; @Young2013EffMam].
 Climate change is one of the causes of this, leading, for instance, to the
 decrease of plants populations due to the lack of pollination [@Bullock2000GeoSep;
 @Afkhami2014MutEff; @Godsoe2017IntBio]. However, this mismatch can also be
 purely informational. When the distribution of predators and preys do not
-superpose, it can mean we lack information about the distribution of either
+superpose, it could mean lack of information about the distribution of either
 species or about their interactions (e.g., predators may be feeding on different
 species than the ones in our dataset outside the Serengeti ecosystem). Here we
 addressed part of this problem by comparing the IUCN range maps with GBIF
