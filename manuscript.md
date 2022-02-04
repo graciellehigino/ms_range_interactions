@@ -43,7 +43,7 @@ macroecological research [@Hortal2008HisBia]. Amongst the geographical data
 available are the range maps provided by the International Union for the
 Conservation of Nature (IUCN). Such maps consist of simplified polygons, often
 created as alpha or convex hulls around known species locations, refined by
-expert knowledge of species [@IUCNSSCRedListTechnicalWorkingGroup2021MapSta].
+expert knowledge about the species [@IUCNSSCRedListTechnicalWorkingGroup2021MapSta].
 These maps can be used in macroecological inferences in the lack of more precise
 information [@Fourcade2016ComSpe; @Alhajeri2019HigCor], but it has been
 recommended that they are used with caution since they tend to underestimate the
@@ -61,24 +61,24 @@ data, a complete assessment is difficult and is aggravated by biased sampling
 methods and data aggregation [@Poisot2020EnvBia; @Hortal2015SevSho].
 Nevertheless, we have witnessed an increase in the availability of biodiversity
 data in the last decades, including those collected through community science
-projects [@Callaghan2019ImpBig; @Pocock2015BioRec] and organized dedicated
+projects [@Callaghan2019ImpBig; @Pocock2015BioRec] and dedicated
 databases, such as Mangal [@Poisot2016ManMak]. This provides an opportunity to
 merge species distribution and ecological interaction data to improve our
 predictions of where a species may be found across large spatial scales (e.g.,
 continental and global). 
 
-Herbivores are core study groups for distribution models since they are the main
-connection between the plant resources (directly limited by environmental
-conditions) and predators [@Dobson2009FooStr; @Scott2018RolHer]. Consequently,
-the presence of herbivores could represent the presence of both plant resources
-and potential predators. Here we used a Serengeti food web dataset
-[@Baskerville2011SpaGui] (which comprises carnivores, herbivores, and plants
-from Tanzania) to investigate whether occurrence data (more precisely range
-maps) can be refined based on species interaction information. Considering the
+In this context, we elaborate a method that allows us to refine distribution
+data (more precisely range maps) based on interaction data, considering the
 basic assumption that predators can only be present in regions where they are
-connected to at least one herbivore, and thus indirectly connected to primary 
-producers, we demonstrate how a mismatch between occurrence and interaction data
-can highlight significant uncertainty areas in range maps. 
+connected to at least one herbivore - and thus indirectly connected to primary
+producers. We used a Serengeti food web dataset [@Baskerville2011SpaGui] (which
+comprises carnivores, herbivores, and plants from Tanzania) to demonstrate how a
+mismatch between occurrence and interaction data can highlight significant
+uncertainty areas in IUCN range maps. Finally, we add the GBIF occurrence points
+for the Serengeti species to the investigation, discuss the mechanisms that can
+lead to the lack of agreement between data, and build from that a vision for the
+next steps, reinforcing the importance of geographically explicit interaction
+data. 
 
 
 # Methods
@@ -90,11 +90,14 @@ ranges of its preys. If sections of a predator's range does not overlap with at
 least one of its prey it will become disconnected from primary producers, and therefore we would not expect the predator to occur in this area. This mismatch can
 be the result of different mechanisms, like the overestimation of the predator's
 range, taxonomic errors, or the lack of information about trophic links. Thus,
+given that herbivores are the main connection between plant resources (directly
+limited by environmental conditions) and predators [@Dobson2009FooStr;
+@Scott2018RolHer], 
 here we adjusted the ranges of predators based on a simple rule: we removed any
 part of a predator’s range that did not intersect with the range of at least one
 prey herbivore species. So, unless the range of the predator overlapped with at
 least one prey item, which in turn is directly connected to a primary producer
-(plants), we removed that section of the predator’s range. Finaly, we calculated
+(plants), we removed that section of the predator’s range. Finally, we calculated
 the difference in range size between the original IUCN ranges and those adjusted
 based on species interaction data.
 
@@ -299,7 +302,7 @@ arc-minutes. ](figures/gbif_panels.png){#fig:gbif}
 
 The jackal is a widespread taxon in northern Africa, Europe and Australasia,
 generally well adapted to local conditions due to its largely varied diet
-[@Tsunoda2020VarTro; @Krofel2021ResTax]. Consequently, we expected that the
+[@Tsunoda2020VarTro; @Krofel2021ResTax]. Because of that, we expected that the
 _Canis_ species in our dataset would be the ones losing the least amount of
 range, with a higher value of the proportion of GBIF pixels within their IUCN range
 maps. However, the taxonomy of this group is a matter of intense discussion, as
@@ -308,7 +311,7 @@ and subspecies [@Krofel2021ResTax; @Stoyanov2020CraVar]. This debate is indeed
 reflected in our analysis: the GBIF identification of the golden jackal is
 incompatible with the one used by IUCN, each of them mapping its distribution in
 completely different places. This led to a complete exclusion of *Canis aureus*
-from its original range in our analysis, despite this species has
+from its original range in our analysis, despite the fact that this species has
 four documented preys in our metaweb. This example illustrates how the
 taxonomic, geographical and ecological data can be used to validate one another. 
 
@@ -345,13 +348,13 @@ interactions on their range limits [@Godsoe2017IntBio].
 ## Geographical mismatch and data availability
 
 The geographical mismatch between predators and preys have ecological
-consequences like loss of ecosystem functioning and extinction of populations
+consequences such as loss of ecosystem functioning and extinction of populations
 [@Anderson2016SpaDis; @Dattilo2018EcoNet; @Pringle2016LarHer; @Young2013EffMam].
 Climate change is one of the causes of this, leading, for instance, to the
 decrease of plants populations due to the lack of pollination [@Bullock2000GeoSep;
 @Afkhami2014MutEff; @Godsoe2017IntBio]. However, this mismatch can also be
 purely informational. When the distribution of predators and preys do not
-superpose, it could mean lack of information about the distribution of either
+superpose, it can mean we lack information about the distribution of either
 species or about their interactions (e.g., predators may be feeding on different
 species than the ones in our dataset outside the Serengeti ecosystem). Here we
 addressed part of this problem by comparing the IUCN range maps with GBIF
