@@ -151,11 +151,10 @@ is contingent to the presence of herbivores.
 We calculated the geographical overlap, i.e. the extent to which interacting predator
 and prey species cooccurred across their ranges, as 
 <!---, by using a method presented by Ruggiero, Lawton, and Blackburn [-@Ruggiero1998GeoRan]--->
-$a/(a + c)$, where $a$ is the number of pixels where the focal species
-occurs without the other species and $c$ is the number of pixels where both species cooccur. This index of geographical overlap can be
+$a/(a + c)$, where $a$ is the number of pixels where predator and prey cooccur and $c$ is the number of pixels where only the focal species occur. This index of geographical overlap can be
 calculated with prey or predators as the focal species. Values vary between 0
-and 1, with values closer to 0 indicating that there is a large overlap in the
-ranges of the two species and values closer to 1 indicating low cooccurrence
+and 1, with values closer to 1 indicating that there is a large overlap in the
+ranges of the two species and values closer to 0 indicating low cooccurrence
 across their ranges. For each predator species we calculated its generality to
 understand whether the level of trophic specialization (i.e., number of prey
 items per predator) affects the extent to which the ranges of the species were
@@ -214,26 +213,27 @@ data. Although *Canis aureus* has the same number of prey as *Caracal caracal*,
 none of the prey taxa of the former occurs inside its original range
 ([@tbl:everyone]), which results in complete range loss. 
 
-![Geographical dissimilarity between the original IUCN range maps of predators
+![Geographical similarity between the original IUCN range maps of predators
 and preys. Dots represent predator-prey pairs, with different symbols
 corresponding to different predators. For a given pair of species, the number
-$c$ of pixels where the predator and prey cooccur and the number $a$ of pixels
-where the focal species is present but not the other, were calculated.
-Geographic dissimilarities were given by $a/(a+c)$, with the predator being the
-focal species in the predator to prey dissimilarity (x-axis), while the prey is
-the focal one in the prey to predator dissimilarity (y-axis). One of the
-predators, *Canis aurea*, is not represented in the image because it is an
+$c$ of pixels where the focal species is present but not the other and the number $a$ of pixels
+where the predator and prey cooccur, were calculated.
+Geographic similarities were given by $a/(a+c)$, with the predator being the
+focal species in the predator to prey similarity (x-axis), while the prey is
+the focal one in the prey to predator similarity (y-axis). One of the
+predators, *Canis aureus*, is not represented in the image because it is an
 extreme case (where all its range is suppressed by the absence of preys) and it
 would make the interpretation of the data more
 difficult.](figures/beta-div_pred-species.png){#fig:geo_diss} 
 
 There was high variation in the overlap of predator and prey ranges
-(@fig:geo_diss). The range of several predators were well covered by preys (low
-values of both prey-predator and predator-prey geographic dissimilarity values),
-yet the ranges of some predators and preys were completely asynchronous, with no
-overlap (values of 1 for both overlap metrics; @fig:geo_diss). For example, the
-range of *Canis aureus* is not covered by any prey species, whereas *Panthera
-pardus* exhibited highly variable levels of overlap with prey taxa
+(@fig:geo_diss). The high density of points on left-hand side of @fig:geo_diss
+indicates that most preys have small ranges in comparison to those of the set of
+carnivores in the networks, resulting in either low overlap between both ranges
+(bottom) or high overlap of ranges because much of that of the prey is within
+predators' range (top). The top-right side of the plot encompasses situations where the ranges of both predator and prey are similar and overlapping, while the bottom-right part of the plot represents a situation where the range of the predator is smaller than that of its prey and much of it occurs within the preys' range.
+For example, *Panthera
+pardus* had many preys occurring inside its range, with highly variable levels of overlap
 ([@tbl:everyone]). In general, species exhibited more consistent values of
 prey-predator overlap, than predator-prey overlap – indicated by the spread of
 points along the x-axis, yet more restricted variation on the y-axis
