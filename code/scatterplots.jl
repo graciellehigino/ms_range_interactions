@@ -84,8 +84,8 @@ ranges_degrees_df
 scatter(
     ranges_degrees_df[0.0 .< ranges_degrees_df.Rab .< 1.0, :Rab],
     ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :Rbb],
-    xlabel="predator to prey geographic dissimilarity",
-    ylabel="prey to predator geographic dissimilarity",
+    xlabel="predator to prey geographic similarity",
+    ylabel="prey to predator geographic similarity",
     group=ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :species],
     markershape=[:circle :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
     markersize=6,
