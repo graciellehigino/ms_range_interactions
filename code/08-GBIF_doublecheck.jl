@@ -5,6 +5,7 @@ using DataFramesMeta
 using GBIF
 using CSV
 using Statistics
+using StatsPlots
 
 # Load IUCN ranges
 mammals = readlines(joinpath("data", "clean", "mammals.csv"))
@@ -112,3 +113,43 @@ sum(buffered)/length(buffered) # ~ 13%
 
 # What percentage of the prey's GBIF observations are within the range loss?
 length(_prey_sites)/length(prey_gbif_range) # ~ 53%
+
+## GBIF figure with the serval and it's prey only
+
+# Proportions of GBIF pixels in IUCN ranges
+serval_prop = length(intersect(keys(serval), keys(serval_gbif)))/length(serval_gbif)
+prey_prop = length(intersect(keys(prey_range), keys(prey_gbif_range)))/length(prey_gbif_range)
+
+# Assemble data frame
+mismatch_df = DataFrame(
+    species = ["Leptailurus serval", replace(prey, "_" => " ")],
+    range = [length(serval), length(prey_range)],
+    prop = [serval_prop, prey_prop]
+)
+
+# Plot it
+options = (
+    # group=carnivores.species,
+    ylim=(-0.03, 1.0),
+    xlim=(-0.2, 7),
+    xticks=0:1:7,
+    markershape=[:cross :circle],
+    markersize=6,
+    color=[cgrad(:seaborn_colorblind)[6] :lightgrey],
+    markerstrokewidth=0,
+    legend=:bottomright,
+    legendtitle="Species",
+    legendtitlefontvalign=:bottom,
+    # labels=permutedims(replace.(carnivores.species, "_" => " ")),
+    foreground_color_legend=nothing,
+    background_color_legend=:white,
+    dpi=500,
+)
+@df mismatch_df scatter(
+    :range ./ 10^4, :prop;
+    group=:species,
+    xaxis="IUCN range size in pixels (x 10,000)",
+    yaxis="Proportion of GBIF pixels in IUCN range",
+    options...
+)
+savefig(joinpath("figures", "serval_gbif-figure.png"))
