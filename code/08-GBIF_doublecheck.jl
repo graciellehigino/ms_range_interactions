@@ -1,8 +1,10 @@
 using SimpleSDMLayers
 using Plots
 using Shapefile
-using DataFrames
+using DataFramesMeta
 using GBIF
+using CSV
+using Statistics
 
 # Load IUCN ranges
 mammals = readlines(joinpath("data", "clean", "mammals.csv"))
@@ -28,3 +30,69 @@ serval_loss = similar(serval)
 serval_loss[_loss_sites] = fill(1.0, length(_loss_sites))
 serval_loss = replace(serval_loss, 0.0 => nothing)
 plot(serval_loss, c=:BuPu, title="Range loss")
+
+## Extract the prey's range
+
+# Get the Serengeti data
+sp = DataFrame(CSV.File(joinpath("data", "species_code.csv")))
+lk = DataFrame(CSV.File(joinpath("data", "links_code.csv")))
+sp.species = replace.(sp.species, " " => "_")
+replace!(sp.species, "Damaliscus_korrigum" => "Damaliscus_lunatus", "Taurotragus_oryx" => "Tragelaphus_oryx")
+
+# Get the serval's preys
+preys = @chain lk begin
+    leftjoin(sp, on=[:pred_code => :code])
+    @subset(:species .== "Leptailurus_serval")
+    leftjoin(sp, on=[:prey_code => :code], makeunique=true)
+    rename(:species_1 => :prey)
+    _.prey
+end
+prey = preys[1] # since there's only 1 prey in this case
+
+# Get the preys' range
+prey_range = ranges[findfirst(==(prey), mammals)]
+prey_gbif_range = gbif_ranges[findfirst(==(prey), mammals)]
+plot(prey_range, c=:BuPu)
+plot(prey_gbif_range, c=:BuPu) # definitely some observations inside the removed range
+
+# Get the sites where the prey has GBIF observations in the removed range
+_prey_sites = intersect(keys(serval_loss), keys(prey_gbif_range))
+prey_mismatch = similar(serval_loss)
+prey_mismatch[_prey_sites] = fill(1.0, length(_prey_sites))
+
+# Map the mismatch
+include("shapefile.jl")
+begin
+    plot(;
+        frame=:box,
+        xlim=extrema(longitudes(prey_mismatch)),
+        ylim=extrema(latitudes(prey_mismatch)),
+        dpi=600,
+        xaxis="Longitude",
+        yaxis="Latitude",
+    )
+    plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
+    plot!(prey_mismatch, c=:BuPu, title="Prey mismatch", cb_title="Prey present within removed range")
+end
+savefig(joinpath("figures", "serval_prey_mismatch.png"))
+
+# Add a buffer
+buffered = slidingwindow(prey_mismatch, mean, 100.0)
+buffered = broadcast(x -> x > 0.0 ? 1.0 : 0.0, buffered)
+begin
+    plot(;
+        frame=:box,
+        xlim=extrema(longitudes(buffered)),
+        ylim=extrema(latitudes(buffered)),
+        dpi=600,
+        xaxis="Longitude",
+        yaxis="Latitude",
+    )
+    plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
+    plot!(buffered, c=:BuPu, title="Prey mismatch (buffered)", cb_title="Prey present within 100km of removed range")
+end
+savefig(joinpath("figures", "serval_prey_mismatch_buffered.png"))
+
+# What percentage of the range does the buffer represent?
+sum(buffered)/length(buffered)
+
