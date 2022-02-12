@@ -76,57 +76,23 @@ begin
 end
 savefig(joinpath("figures", "serval_prey_mismatch.png"))
 
-# Add a buffer
-buffered = slidingwindow(prey_mismatch, mean, 100.0)
-buffered = broadcast(x -> x > 0.0 ? 1.0 : 0.0, buffered)
-begin
-    plot(;
-        frame=:box,
-        xlim=extrema(longitudes(buffered)),
-        ylim=extrema(latitudes(buffered)),
-        dpi=600,
-        xaxis="Longitude",
-        yaxis="Latitude",
-    )
-    plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
-    plot!(buffered, c=:BuPu, title="Prey mismatch (buffered)", cb_title="Prey present within 100km of removed range")
-end
-savefig(joinpath("figures", "serval_prey_mismatch_buffered.png"))
+## Add a buffer around the prey's range
 
-# What percentage of the range does the buffer represent?
-sum(buffered)/length(buffered)
-
-# Recalculate buffer from all GBIF observations for the prey
-_prey_sites2 = intersect(keys(serval), keys(prey_gbif_range))
-prey_mismatch2 = similar(serval)
-prey_mismatch2[_prey_sites2] = fill(1.0, length(_prey_sites2))
-@time buffered2 = slidingwindow(prey_mismatch2, mean, 100.0)
-buffered2 = broadcast(x -> x > 0.0 ? 1.0 : 0.0, buffered2)
-buffered2[keys(serval_updated)] = fill(nothing, length(keys(serval_updated)))
-begin
-    plot(;
-        frame=:box,
-        xlim=extrema(longitudes(buffered2)),
-        ylim=extrema(latitudes(buffered2)),
-        dpi=600,
-        xaxis="Longitude",
-        yaxis="Latitude",
-    )
-    plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
-    plot!(buffered2, c=:BuPu, title="Prey mismatch (buffered2)", cb_title="Prey present within 100km of removed range")
-end
-savefig(joinpath("figures", "serval_prey_mismatch_buffered2.png"))
-
-# Is the buffer different if we start from the reference layer?
-_prey_sites3 = keys(prey_gbif_range)
+# Get the sites where the prey has GBIF observations _on land_
+_prey_sites2 = keys(prey_gbif_range)
 reference_layer = SimpleSDMPredictor(WorldClim, BioClim, 1; boundingbox(serval)...)
-prey_mismatch3 = similar(reference_layer)
-prey_mismatch3[_prey_sites3] = fill(1.0, length(_prey_sites3))
-@time buffered3 = slidingwindow(prey_mismatch3, mean, 100.0)
-buffered3 = broadcast(x -> x > 0.0 ? 1.0 : 0.0, buffered3)
-buffered3[keys(serval_updated)] = fill(nothing, length(keys(serval_updated)))
+prey_mismatch2 = similar(reference_layer)
+prey_mismatch2[_prey_sites2] = fill(1.0, length(_prey_sites2))
+
+# Add a 100 km buffer around the GBIF observation pixels
+buffered = slidingwindow(prey_mismatch2, mean, 100.0)
+buffered = broadcast(x -> x > 0.0 ? 1.0 : 0.0, buffered)
+
+# Apply the buffer only on the sites that are part of the range loss
 _background_sites = setdiff(keys(reference_layer), keys(serval_loss))
-buffered3[_background_sites] = fill(nothing, length(_background_sites))
+buffered[_background_sites] = fill(nothing, length(_background_sites))
+
+# Map the buffered mismatch
 begin
     plot(;
         frame=:box,
@@ -137,6 +103,12 @@ begin
         yaxis="Latitude",
     )
     plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
-    plot!(buffered3, c=:BuPu, title="Prey mismatch (buffered3)", cb_title="Prey present within 100km of removed range")
+    plot!(buffered3, c=:BuPu, title="Prey mismatch (buffered)", cb_title="Prey present within 100km of removed range")
 end
-savefig(joinpath("figures", "serval_prey_mismatch_buffered3.png"))
+savefig(joinpath("figures", "serval_prey_mismatch_buffered.png"))
+
+# What percentage of the range loss does the buffered range represent?
+sum(buffered)/length(buffered) # ~ 13%
+
+# What percentage of the prey's GBIF observations are within the range loss?
+length(_prey_sites)/length(prey_gbif_range) # ~ 53%
