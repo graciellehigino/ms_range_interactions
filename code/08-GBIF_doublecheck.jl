@@ -97,14 +97,14 @@ buffered[_background_sites] = fill(nothing, length(_background_sites))
 begin
     plot(;
         frame=:box,
-        xlim=extrema(longitudes(buffered3)),
-        ylim=extrema(latitudes(buffered3)),
+        xlim=extrema(longitudes(buffered)),
+        ylim=extrema(latitudes(buffered)),
         dpi=600,
         xaxis="Longitude",
         yaxis="Latitude",
     )
     plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
-    plot!(buffered3, c=:BuPu, title="Prey mismatch (buffered)", cb_title="Prey present within 100km of removed range")
+    plot!(buffered, c=:BuPu, title="Prey mismatch (buffered)", cb_title="Prey present within 100km of removed range")
 end
 savefig(joinpath("figures", "serval_prey_mismatch_buffered.png"))
 
