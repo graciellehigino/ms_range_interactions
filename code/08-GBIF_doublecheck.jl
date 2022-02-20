@@ -1,5 +1,6 @@
 using SimpleSDMLayers
 using Plots
+using Plots.PlotMeasures
 using Shapefile
 using DataFramesMeta
 using GBIF
@@ -153,3 +154,67 @@ options = (
     options...
 )
 savefig(joinpath("figures", "serval_gbif-figure.png"))
+
+## Plot range loss & buffer side-by-side
+
+# Map the range loss
+p_loss = begin
+    plot(;
+        frame=:box,
+        xlim=extrema(longitudes(buffered)),
+        ylim=extrema(latitudes(buffered)),
+        dpi=600,
+        xaxis="Longitude",
+        yaxis="Latitude",
+        title="Serval range loss"
+    )
+    plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, cbar=:none)
+    plot!(serval, c=cgrad(:BuPu, rev=true))
+    plot!(serval_updated, c=:orange)
+    scatter!([-180.0 -180.0],
+        legend=:bottomleft,
+        shape=:rect,
+        mc=[cgrad(:BuPu)[1] :orange],
+        labels=["Removed range" "Remaining range"],
+        background_colour_legend=nothing,
+        foreground_colour_legend=nothing,
+        legend_font_pointsize=6,
+        extra_kwargs=:subplot,
+        legend_hfactor=1.25,
+    )
+end
+
+# Map the buffered mismatch
+p_buffer = begin
+    plot(;
+        frame=:box,
+        xlim=extrema(longitudes(buffered)),
+        ylim=extrema(latitudes(buffered)),
+        dpi=600,
+        xaxis="Longitude",
+        yaxis="Latitude",
+    )
+    plot!(worldshape(50), c=:lightgrey, lc=:lightgrey)
+    plot!(buffered, c=:BuPu, title="Mismatch with prey range", cb=:none)
+    scatter!(
+        [-180.0 -180.0],
+        legend=:bottomleft,
+        shape=:rect,
+        mc=cgrad(:BuPu)[[1, end]] |> permutedims,
+        labels=["Removed range" "Buffered range"],
+    )
+    scatter!(
+        keys(serval_gbif);
+        label="Serval occurrences",
+        msw=0, ma=0.5, ms=2,
+        background_colour_legend=nothing,
+        foreground_colour_legend=nothing,
+        legend_font_pointsize=6,
+        extra_kwargs=:subplot,
+        legend_hfactor=1.25,
+    )
+end
+
+# Combine side-by-side
+plot(p_loss, p_buffer, dpi=600, size=(800, 400), left_margin=10px)
+savefig(joinpath("figures", "serval_mismatch_combined.png"))
