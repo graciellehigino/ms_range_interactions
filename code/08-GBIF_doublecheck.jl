@@ -172,7 +172,7 @@ p_loss = begin
     plot!(serval, c=cgrad(:BuPu, rev=true))
     plot!(serval_updated, c=:orange)
     scatter!([-180.0 -180.0],
-        legend=:bottomleft,
+        legend=(0.15, 0.13),
         shape=:rect,
         mc=[cgrad(:BuPu)[1] :orange],
         labels=["Removed range" "Remaining range"],
@@ -198,14 +198,14 @@ p_buffer = begin
     plot!(buffered, c=:BuPu, title="Mismatch with prey range", cb=:none)
     scatter!(
         [-180.0 -180.0],
-        legend=:bottomleft,
+        legend=(0.15, 0.13),
         shape=:rect,
         mc=cgrad(:BuPu)[[1, end]] |> permutedims,
-        labels=["Removed range" "Buffered range"],
+        labels=["Removed range" "Prey occurrence buffer"],
     )
     scatter!(
         keys(serval_gbif);
-        label="Serval occurrences",
+        label="Serval GBIF occurrences",
         msw=0, ma=0.5, ms=2,
         background_colour_legend=nothing,
         foreground_colour_legend=nothing,
