@@ -385,9 +385,9 @@ interaction or the presence of interacting species. To illustrate that, we
 mapped the GBIF data for the prey of *Leptailurus serval*, with a mobility
 buffer around each point ([@fig:serval]). When considering GBIF data,
 approximately 53% of the prey's occurrences are within the portion of the serval
-range that was lost, and 13% of the serval's lost range is occupied by preys.
+range that was lost, and 13% of the serval's lost range is also occupied by its prey.
 This means that by adding GBIF information, we would reduce the loss of range
-(or information) by 13%, since the occurrence of a prey validates the occurrence
+(or information) by 13% since the occurrence of a prey validates the occurrence
 of a predator.
 
 ![Mismatch between serval's range loss and GBIF occurrence of its prey. The left panel shows the reduction of serval's range when we consider the IUCN data on its prey. On the right panel, we added GBIF data on both serval and its prey, with a buffer for the prey to account on prey mobility.](figures/serval_mismatch_combined.png){#fig:serval}
