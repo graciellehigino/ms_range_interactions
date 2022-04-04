@@ -380,7 +380,18 @@ and *Canis mesomelas* are two of the three species that lose the higher
 proportion of range due to the lack of paths to a herbivore (@fig:degree), but
 are also some of the species with the higher proportion of GBIF occurrences
 inside IUCN range maps (@fig:gbif). This indicates that the information we are
-missing for these two species is probably their ecological interactions.
+missing for these two species is related to either the occurrence of an
+interaction or the presence of interacting species. To illustrate that, we
+mapped the GBIF data for the prey of *Leptailurus serval*, with a mobility
+buffer around each point ([@fig:serval]). When considering GBIF data,
+approximately 53% of the prey's occurrences are within the portion of the serval
+range that was lost, and 13% of the serval's lost range is occupied by preys.
+This means that by adding GBIF information, we would reduce the loss of range
+(or information) by 13%, since the occurrence of a prey validates the occurrence
+of a predator.
+
+![Mismatch between serval's range loss and GBIF occurrence of its prey. The left panel shows the reduction of serval's range when we consider the IUCN data on its prey. On the right panel, we added GBIF data on both serval and its prey, with a buffer for the prey to account on prey mobility.](figures/serval_mismatch_combined.png){#fig:serval}
+
 Finally, the extreme case of *Canis aureus* illustrates a lack of both
 geographical and ecological information: none of its GBIF occurrences and none
 of its preys occur inside its IUCN range. We believe, therefore, that the
