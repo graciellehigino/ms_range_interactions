@@ -1,0 +1,77 @@
+\begin{figure}
+\hypertarget{fig:richness}{%
+\centering
+\includegraphics{figures/richness_prop_removed.png}
+\caption{(a) Spatial distribution of species richness according to the
+original IUCN range maps of all 32 mammal species of the Serengeti food
+web. (b) Proportion of mammal species remaining in each local network
+(i.e., each pixel) after removing all species without a path to a
+primary producer. (c) Proportion of mammal species remaining in each
+local network as a function of the number of species given by the
+original IUCN range maps.}\label{fig:richness}
+}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\hypertarget{fig:degree}{%
+\centering
+\includegraphics{figures/rel_loss-outdegree-species.png}
+\caption{Negative relationship between the out degree of predator
+species and their relative range loss. More specialized predators lose a
+higher proportion of their ranges due to mismatches with the ranges of
+their preys.}\label{fig:degree}
+}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\hypertarget{fig:geo_diss}{%
+\centering
+\includegraphics{figures/beta-div_pred-species.png}
+\caption{Geographical similarity between the original IUCN range maps of
+predators and preys. Dots represent predator-prey pairs, with different
+symbols corresponding to different predators. For a given pair of
+species, the number \(c\) of pixels where the focal species is present
+but not the other and the number \(a\) of pixels where the predator and
+prey cooccur, were calculated. Geographic similarities were given by
+\(a/(a+c)\), with the predator being the focal species in the predator
+to prey similarity (x-axis), while the prey is the focal one in the prey
+to predator similarity (y-axis). One of the predators, \emph{Canis
+aureus}, is not represented in the image because it is an extreme case
+(where all its range is suppressed by the absence of preys) and it would
+make the interpretation of the data more difficult.}\label{fig:geo_diss}
+}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\hypertarget{fig:gbif}{%
+\centering
+\includegraphics{figures/gbif_panels.png}
+\caption{Left panel: Distribution of the proportion of GBIF pixels
+(pixels with at least one occurrence in GBIF) falling into the IUCN
+range for different range sizes. Right panel: Differences between the
+proportion of GBIF pixels falling into the IUCN and the updated ranges
+for every predator species. Arrows go from the proportion inside the
+original range to the proportion inside the updated range, which can
+only be equal or lower. Overlapping markers indicate no difference
+between the types of layers. Species markers are the same on both
+figures, with predators presented in distinct colored markers and all
+herbivores grouped in a single grey marker. Pixels represent a
+resolution of 10 arc-minutes.}\label{fig:gbif}
+}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\hypertarget{fig:serval}{%
+\centering
+\includegraphics{figures/serval_mismatch_combined.png}
+\caption{Mismatch between serval's range loss and GBIF occurrence of its
+prey. The left panel shows the reduction of serval's range when we
+consider the IUCN data on its prey. On the right panel, we added GBIF
+data on both serval and its prey, with a buffer for the prey to account
+on species mobility.}\label{fig:serval}
+}
+\end{figure}

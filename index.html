@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mismatch between IUCN range maps and species interactions data illustrated using the Serengeti food web</title>
+    <script src="https://hypothes.is/embed.js" async></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
+        :root {
+            --citation: #1976D2;
+            --structure: hsl(210, 61%, 43%);
+            
+            --light: #474747;
+            --pale: #a5a5a5;
+            --grey: #e0e0e0;
+            --nav: #fdfdfd;
+
+            --width: 820px;
+            --inner-space: 1.2em;
+        }
+
+        body {
+            font-family: "Roboto", sans-serif;
+            margin: 0 0;
+            padding: 0 0;
+        }
+
+        article > p {
+            line-height: 135%;
+        }
+        article > h1 {
+            padding-top: 3em;
+        }
+        a {
+            text-decoration: none;
+            color: #000;
+            border-bottom: 1px solid var(--structure);
+        }
+        a:hover {
+            font-weight: 500;
+        }
+        .citation {
+            color: var(--citation);
+        }
+        .container {
+            margin: 0em auto;
+            max-width: var(--width);
+            padding: var(--inner-space);
+        }
+        header > .container {
+            margin-top: 4em;
+        }
+        code, pre {
+            font-family: "Roboto Mono", monospace;
+        }
+        pre {
+            white-space: pre-wrap;
+        }
+        h1, h2, h3 {
+            color: var(--structure);
+            font-family: "Roboto Condensed", sans-serif;
+            font-weight: 400;
+        }
+        header {
+            font-family: "Roboto Condensed", sans-serif;
+            z-index: 5;
+            color: black;
+            margin-top: 4rem;
+        }
+        .header--title {
+            font-weight: 400;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .header--authors > span {
+            color: var(--light);
+            font-weight: 400;
+        }
+        main {
+            padding-top: 8em !important;
+            padding-bottom: 8em !important;
+        }
+        footer {
+            background-color: var(--grey);
+            font-weight: 300;
+        }
+        .abstract {
+            color: var(--light);
+            margin-bottom: 5em;
+        }
+        figure {
+            max-width: 100%;
+            border: 1px solid var(--pale);
+            border-radius: 2px;
+            margin: 1em 0.5em;
+        }
+        figure > img {
+            max-width: 100%;
+            display: block;
+            margin: 0em auto;
+        }
+        figure > figcaption {
+            padding: var(--inner-space);
+        }
+        table {
+            width: 100%;
+            min-width: 100%;
+            border-collapse: collapse;
+        }
+        table > caption {
+            padding: var(--inner-space);
+        }
+        figcaption, caption {
+            color: var(--light);
+            font-weight: 300;
+        }
+        thead {
+            color: var(--structure);
+        }
+        td, th {
+            padding: 3px;
+        }
+        tr {
+            border-top: 1px solid var(--structure);
+            border-bottom: 1px solid var(--structure);
+        }
+        tbody > tr:nth-child(even) {background: var(--grey)};
+        tbody {
+            border-bottom: 1px solid var(--structure);
+        }
+        #refs {
+            font-size: 90%;
+            column-count: 2;
+        }
+        #refs > .csl-entry {
+            padding-bottom: 0.2em;
+            padding-top: 0.2em;
+        }
+        .hanging-indent > .csl-entry {
+            padding-left: 15px ;
+            text-indent: -15px ;
+        }    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+    integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+    integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+    crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF"
+    crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false }
+                ]
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header--title">Mismatch between IUCN range maps and species interactions data illustrated using the Serengeti food web</div>
+            <div class="header--authors">
+                                <span class="header--author">
+                                        <a href="https://orcid.org/0000-0003-2791-8383" target="_blank">
+                        Gracielle T. Higino
+                    </a>
+                                                                <sup class="affilcode">1</sup>
+                                            <sup class="affilcode">2</sup>
+                                            <sup class="affilcode">‡</sup>
+                                    </span>
+                                <span class="header--author">
+                                        <a href="https://orcid.org/0000-0001-5030-3470" target="_blank">
+                        Fredric M. Windsor
+                    </a>
+                                                                <sup class="affilcode">3</sup>
+                                            <sup class="affilcode">‡</sup>
+                                    </span>
+                                <span class="header--author">
+                                        <a href="https://orcid.org/0000-0001-9051-0597" target="_blank">
+                        Francis Banville
+                    </a>
+                                                                <sup class="affilcode">4</sup>
+                                            <sup class="affilcode">5</sup>
+                                            <sup class="affilcode">6</sup>
+                                            <sup class="affilcode">‡</sup>
+                                    </span>
+                                <span class="header--author">
+                                        <a href="https://orcid.org/0000-0002-2212-3584" target="_blank">
+                        Gabriel Dansereau
+                    </a>
+                                                                <sup class="affilcode">4</sup>
+                                            <sup class="affilcode">6</sup>
+                                            <sup class="affilcode">‡</sup>
+                                    </span>
+                                <span class="header--author">
+                                        <a href="https://orcid.org/0000-0001-9019-0108" target="_blank">
+                        Norma R. Forero-Muñoz
+                    </a>
+                                                                <sup class="affilcode">4</sup>
+                                            <sup class="affilcode">6</sup>
+                                            <sup class="affilcode">‡</sup>
+                                    </span>
+                                <span class="header--author">
+                                        <a href="https://orcid.org/0000-0002-0735-5184" target="_blank">
+                        Timothée Poisot
+                    </a>
+                                                                <sup class="affilcode">4</sup>
+                                            <sup class="affilcode">6</sup>
+                                            <sup class="affilcode">‡</sup>
+                                    </span>
+                            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="abstract">
+            <b>Abstract:</b> Range maps are a useful tool to describe the spatial distribution of species. However, they often need to be used with caution, as they essentially represent a rough approximation of a species’ suitable habitats. When stacked together, the resulting communities in each grid cell may not always be realistic, especially when species interactions are taken into account. Here we show the extent of the mismatch between range maps, provided by the International Union for Conservation of Nature, and species interactions data. More precisely, we show that local networks built from those stacked range maps often yield unrealistic communities, where species of higher trophic levels are completely disconnected from primary producers. We use the well-described Serengeti food web of mammals and plants as our case study, and provide updated range maps that take into account food-web structure. In our analysis, most predator ranges were restricted by the absence of herbivores. This restriction was sometimes contradicted by GBIF occurrences, suggesting the mismatch can be due either to the lack of information about ecological interactions or about the geographical occurrence of preys. We finally discuss general guidelines to help identify defective data among distributions and interactions data, and we recommend this method as a valuable way to assess weather the occurrence data that are being used, even if incomplete, is ecologically accurate.<br />
+            <div class="artifacts">
+                <a href="draft.pdf" title="Draft PDF" target="_blank">draft</a>
+                <a href="preprint.pdf" title="Preprint PDF" target="_blank">preprint</a>
+            </div>
+        </section>
+        
+        <article>
+            <h1 id="introduction">Introduction</h1>
+            <p>Finding a species in a certain location is like finding an encrypted message that travelled through time. It carries the species’ evolutionary history, migration patterns, as well as any direct and indirect effects generated by other species (some of which we may not even know exist). Ecologists have been trying to decode this message with progressively more powerful tools, from their own field notes to highly complex computational algorithms. However, to succeed in this challenge it is important to have the right clues in hand. There are many ways we can be misled by data - or the lack of it: taxonomic errors, geographic inaccuracy, or sampling biases <span class="citation" data-cites="Ladle2013MapSpe Hortal2015SevSho Poisot2021GloKno">(Ladle and Hortal 2013; Hortal et al. 2015; Poisot et al. 2021)</span>. One way to identify - and potentially fix - these errors is to combine many different pieces of information about the occurrence of a species, so agreements and mismatches can emerge. Here we suggest jointly analysing species occurrence (range maps and point occurrences) and ecological interactions to identify mismatches between datasets.</p>
+            <p>Interactions form complex networks that shape ecological structures and maintain the essential functions of ecosystems, such as seed dispersal, pollination, and biological control <span class="citation" data-cites="Albrecht2018PlaAni Fricke2022EffDef">(Albrecht 2018; Fricke et al. 2022)</span> that ultimately affect the composition, richness, and successional patterns of communities across biomes. Yet, the connection between occurrence and interaction data is a frequent debate in ecology <span class="citation" data-cites="Blanchet2020CooNot">(Blanchet, Cazelles, and Gravel 2020)</span>. For instance, macroecological models are often used with point or range occurrence data in order to investigate the dynamics of a species with its environment. However, these models do not account for ecological interactions, which might largely affect species distribution <span class="citation" data-cites="AbregoAccSpe Afkhami2014MutEff Araujo2014ImpBio Godsoe2017IntBio Godsoe2012HowSpe">(Abrego et al., n.d.; Afkhami, McIntyre, and Strauss 2014; Araújo, Marcondes-Machado, and Costa 2014; Godsoe et al. 2017; Godsoe and Harmon 2012)</span>. Some researchers argue that occurrence data can also capture real-time interactions <span class="citation" data-cites="Roy2016FocPla Ryan2018RolCit">(Roy et al. 2016; Ryan et al. 2018)</span>, and, because of that, it would not be necessary to include ecological interaction dynamics in macroecological models. On the other hand, many mechanistic simulation models in ecology have considered the effect of competition and facilitation in range shifts, whilst the use of trophic interactions in this context remains insufficient <span class="citation" data-cites="Cabral2017MecSim">(Cabral, Valente, and Hartig 2017)</span>.</p>
+            <p>A significant challenge in this debate is the quality and quantity of species distribution and ecological data <span class="citation" data-cites="Boakes2010DisVie Ronquillo2020AssSpa Meyer2016MulBia">(Boakes et al. 2010; Ronquillo et al. 2020; Meyer, Weigelt, and Kreft 2016)</span> - a gap that can lead to erroneous conclusions in macroecological research <span class="citation" data-cites="Hortal2008HisBia">(Hortal et al. 2008)</span>. Amongst the geographical data available are the range maps provided by the International Union for the Conservation of Nature (IUCN). Such maps consist of simplified polygons, often created as alpha or convex hulls around known species locations, refined by expert knowledge about the species <span class="citation" data-cites="IUCNSSCRedListTechnicalWorkingGroup2021MapSta">(2021)</span>. These maps can be used in macroecological inferences in the lack of more precise information <span class="citation" data-cites="Fourcade2016ComSpe Alhajeri2019HigCor">(Fourcade 2016; Alhajeri and Fourcade 2019)</span>, but it has been recommended that they are used with caution since they tend to underestimate the distribution of species that are not well-known <span class="citation" data-cites="Herkt2017MacCon">(Herkt, Skidmore, and Fahr 2017)</span>, do not represent spatial variation in species occurrence and abundance <span class="citation" data-cites="Dallas2020AbuNot">(Dallas, Pironon, and Santini 2020)</span>, and can include inadequate areas within the estimated range. Another source of species distribution information is the Global Biodiversity Information Facility (GBIF), which is an online repository of georeferenced observational records that come from various sources, including community science programs, museum collections, and long-term monitoring schemes. A great source of bias in these datasets is the irregular sampling effort, with more occurrences originated from attractive and accessible areas and observation of charismatic species <span class="citation" data-cites="Alhajeri2019HigCor">(Alhajeri and Fourcade 2019)</span>. As for ecological data, a complete assessment is difficult and is aggravated by biased sampling methods and data aggregation <span class="citation" data-cites="Poisot2020EnvBia Hortal2015SevSho">(Poisot et al. 2020; Hortal et al. 2015)</span>. Nevertheless, we have witnessed an increase in the availability of biodiversity data in the last decades, including those collected through community science projects <span class="citation" data-cites="Callaghan2019ImpBig Pocock2015BioRec">(Callaghan et al. 2019; Pocock et al. 2015)</span> and dedicated databases, such as Mangal <span class="citation" data-cites="Poisot2016ManMak">(Poisot et al. 2016)</span>. This provides an opportunity to merge species distribution and ecological interaction data to improve our predictions of where a species may be found across large spatial scales (e.g., continental and global).</p>
+            <p>In this context, we elaborate a method that allows us to refine distribution data (more precisely range maps) based on interaction data, considering the basic assumption that predators can only be present in regions where they are connected to at least one herbivore - and thus indirectly connected to primary producers. We used a Serengeti food web dataset <span class="citation" data-cites="Baskerville2011SpaGui">(Baskerville et al. 2011)</span> (which comprises carnivores, herbivores, and plants from Tanzania) to demonstrate how a mismatch between occurrence and interaction data can highlight significant uncertainty areas in IUCN range maps. Finally, we add the GBIF occurrence points for the Serengeti species to the investigation, discuss the mechanisms that can lead to the lack of agreement between data, and build from that a vision for the next steps, reinforcing the importance of geographically explicit interaction data.</p>
+            <h1 id="methods">Methods</h1>
+            <p>Organisms cannot persist unless they are directly or indirectly connected to a primary producer within their associated food web <span class="citation" data-cites="Power1992TopBot">(Power 1992)</span>. Therefore, the range of a predator (omnivore or carnivore) depends on the overlapping ranges of its preys. If sections of a predator’s range does not overlap with at least one of its prey it will become disconnected from primary producers, and therefore we would not expect the predator to occur in this area. This mismatch can be the result of different mechanisms, like the overestimation of the predator’s range, taxonomic errors, or the lack of information about trophic links. Thus, given that herbivores are the main connection between plant resources (directly limited by environmental conditions) and predators <span class="citation" data-cites="Dobson2009FooStr Scott2018RolHer">(Dobson 2009; Scott et al. 2018)</span>, here we adjusted the ranges of predators based on a simple rule: we removed any part of a predator’s range that did not intersect with the range of at least one prey herbivore species. So, unless the range of the predator overlapped with at least one prey item, which in turn is directly connected to a primary producer (plants), we removed that section of the predator’s range. Finally, we calculated the difference in range size between the original IUCN ranges and those adjusted based on species interaction data.</p>
+            <h2 id="data">Data</h2>
+            <p>We investigated the mismatch between savannah species ranges and interactions in Africa (fig. 1). These ecosystems host a range of different species, including the well characterized predator-prey dynamics between iconic predators (e.g., lions, hyenas and leopards) and large herbivores (e.g., antelopes, wildebeests and zebras), as well as a range of herbivorous and carnivorous small mammals. The Serengeti ecosystem has been extensively studied and its food web is one of the most complete we have to date, including primary producers identified to the species level. Here we focus on six groups of herbivores and carnivores from the Serengeti Food Web Data Set <span class="citation" data-cites="Baskerville2011SpaGui">(Baskerville et al. 2011)</span>. These species exhibit direct antagonistic (predator-prey) interactions with one another and are commonly found across savannah ecosystems on the African continent <span class="citation" data-cites="McNaughton1992ProDis">(McNaughton 1992)</span>. Plants in the network were included indirectly in our analyses as we do not expect the primary producers to significantly influence the range of herbivores for several reasons. Firstly, many savannah plants are functionally similar (i.e., grasses, trees and shrubs) and cooccur across the same habitats <span class="citation" data-cites="Baskerville2011SpaGui">(Baskerville et al. 2011)</span>. Secondly, herbivores in the network are broadly generalists feeding on a wide range of different plants across habitats. Indeed, out of 129 plants in our dataset, herbivores (n = 23) had a mean out degree (mean number of preys) of around 22 (std = 17.5). There is also an absence of global range maps for many plant species <span class="citation" data-cites="Daru2020GreToo">(Daru 2020)</span>, which prevents their direct inclusion in our analysis. Therefore, we assume that plants consumed by herbivores are present across their ranges, and as such the ranges of herbivores are not expected to be significantly constrained by the availability of food plants.</p>
+            <p>From the wider ecological network presented in Baskerville <span class="citation" data-cites="Baskerville2011SpaGui">(2011)</span>, we sampled interaction data for herbivores and carnivores. This subnetwork contained 32 taxa (23 herbivores and 9 carnivores) and 84 interactions, and had a connectance of 0.08. Although self-loops are informative, we removed these interactions to allow for the original IUCN ranges of predators with cannibalistic interactions to be adjusted. We treated this overall network as a metaweb since it <em>should</em> contain all potential species interactions between mammalian taxa occurring across savannah ecosystems such as the Serengeti.</p>
+            <p>We compiled IUCN range maps for the 32 species included in the metaweb from the Spatial Data Download portal (www.iucnredlist.org/resources/spatial-data-download), which we rasterized at 10 arc-minute resolution (~19 km² at the equator). We then combined interaction data from the metaweb and cooccurrence data generated from species ranges to create networks for each raster pixel. This generated a total of 84,244 pixel-level networks. These networks describe potential predation, not actual interactions: the former is derived information from the metaweb, and the later is contingent to the presence of herbivores.</p>
+            <h2 id="range-overlap-measurement">Range overlap measurement</h2>
+            <p>We calculated the geographical overlap, i.e. the extent to which interacting predator and prey species cooccurred across their ranges, as <!---, by using a method presented by Ruggiero, Lawton, and Blackburn [-@Ruggiero1998GeoRan]---> <span class="math inline"><em>a</em>/(<em>a</em> + <em>c</em>)</span>, where <span class="math inline"><em>a</em></span> is the number of pixels where predator and prey cooccur and <span class="math inline"><em>c</em></span> is the number of pixels where only the focal species occur. This index of geographical overlap can be calculated with prey or predators as the focal species. Values vary between 0 and 1, with values closer to 1 indicating that there is a large overlap in the ranges of the two species and values closer to 0 indicating low cooccurrence across their ranges. For each predator species we calculated its generality to understand whether the level of trophic specialization (i.e., number of prey items per predator) affects the extent to which the ranges of the species were altered. One would assume that predators with a greater number of prey taxa (i.e., a higher generality) are less likely to have significant changes in their range as it is more likely that at least one prey species is present across most of their range.</p>
+            <h2 id="validation">Validation</h2>
+            <p>For each species in the dataset we collated point observation data from GBIF (www.gbif.org), and condensed these data into pixels representing presence or absence of the focal taxon. These data were used to validate the range adjustments made based on species interactions (see previous section). To do so, we calculated the proportion of GBIF presence pixels occurring within both the original and adjusted species ranges. We then compared these proportions for the predators to verify if the range adjustments removed locations with GBIF observations, hence likely true habitats.</p>
+            <h1 id="results">Results</h1>
+            <p>Mammal species found in the Serengeti food web are widespread in Africa, especially in grasslands and savannahs (first panel of fig. 1). However, most local networks (83.2%) built using the original IUCN range maps had at least one mammal species without a path to a primary producer (second panel of fig. 1). On average, local food webs had almost the third of their mammal species (mean = 30.5%, median = 14.3%) disconnected from basal species. In addition, many networks (16.6%) only had disconnected mammals; these networks however all had a very low number of mammal species, specifically between 1 and 4 (from a total of 32). As expected, the proportion of carnivores with a path to a primary producer was conditional on the total number of mammal species in each local network (third panel of fig. 1).</p>
+            <figure>
+            <img src="figures/richness_prop_removed.png" id="fig:richness" alt="Figure 1: (a) Spatial distribution of species richness according to the original IUCN range maps of all 32 mammal species of the Serengeti food web. (b) Proportion of mammal species remaining in each local network (i.e., each pixel) after removing all species without a path to a primary producer. (c) Proportion of mammal species remaining in each local network as a function of the number of species given by the original IUCN range maps." /><figcaption aria-hidden="true">Figure 1: (a) Spatial distribution of species richness according to the original IUCN range maps of all 32 mammal species of the Serengeti food web. (b) Proportion of mammal species remaining in each local network (i.e., each pixel) after removing all species without a path to a primary producer. (c) Proportion of mammal species remaining in each local network as a function of the number of species given by the original IUCN range maps.</figcaption>
+            </figure>
+            <h2 id="specialized-predators-lose-more-range">Specialized predators lose more range</h2>
+            <figure>
+            <img src="figures/rel_loss-outdegree-species.png" id="fig:degree" alt="Figure 2: Negative relationship between the out degree of predator species and their relative range loss. More specialized predators lose a higher proportion of their ranges due to mismatches with the ranges of their preys." /><figcaption aria-hidden="true">Figure 2: Negative relationship between the out degree of predator species and their relative range loss. More specialized predators lose a higher proportion of their ranges due to mismatches with the ranges of their preys.</figcaption>
+            </figure>
+            <p>Predators with less preys lose more range with our method (fig. 2). For instance, both <em>Leptailurus serval</em> and <em>Canis mesomelas</em> have only one prey in the Serengeti food web (tbl. 1), each of them with a very small range compared to those of their predator. This discrepancy between range sizes promotes significant range loss. On the other hand, predators of the genus <em>Panthera</em> are some of the most connected species, and they also lose the least proportion of their ranges. This mismatch between predators and preys can also be a result of taxonomic disagreement between the geographical and ecological data. Although <em>Canis aureus</em> has the same number of prey as <em>Caracal caracal</em>, none of the prey taxa of the former occurs inside its original range (tbl. 1), which results in complete range loss.</p>
+            <figure>
+            <img src="figures/beta-div_pred-species.png" id="fig:geo_diss" alt="Figure 3: Geographical similarity between the original IUCN range maps of predators and preys. Dots represent predator-prey pairs, with different symbols corresponding to different predators. For a given pair of species, the number c of pixels where the focal species is present but not the other and the number a of pixels where the predator and prey cooccur, were calculated. Geographic similarities were given by a/(a+c), with the predator being the focal species in the predator to prey similarity (x-axis), while the prey is the focal one in the prey to predator similarity (y-axis). One of the predators, Canis aureus, is not represented in the image because it is an extreme case (where all its range is suppressed by the absence of preys) and it would make the interpretation of the data more difficult." /><figcaption aria-hidden="true">Figure 3: Geographical similarity between the original IUCN range maps of predators and preys. Dots represent predator-prey pairs, with different symbols corresponding to different predators. For a given pair of species, the number <span class="math inline"><em>c</em></span> of pixels where the focal species is present but not the other and the number <span class="math inline"><em>a</em></span> of pixels where the predator and prey cooccur, were calculated. Geographic similarities were given by <span class="math inline"><em>a</em>/(<em>a</em> + <em>c</em>)</span>, with the predator being the focal species in the predator to prey similarity (x-axis), while the prey is the focal one in the prey to predator similarity (y-axis). One of the predators, <em>Canis aureus</em>, is not represented in the image because it is an extreme case (where all its range is suppressed by the absence of preys) and it would make the interpretation of the data more difficult.</figcaption>
+            </figure>
+            <p>There was high variation in the overlap of predator and prey ranges (fig. 3). The high density of points on left-hand side of fig. 3 indicates that most preys have small ranges in comparison to those of the set of carnivores in the networks, resulting in either low overlap between both ranges (bottom) or high overlap of ranges because much of that of the prey is within predators’ range (top). The top-right side of the plot encompasses situations where the ranges of both predator and prey are similar and overlapping, while the bottom-right part of the plot represents a situation where the range of the predator is smaller than that of its prey and much of it occurs within the preys’ range. For example, <em>Panthera pardus</em> had many preys occurring inside its range, with highly variable levels of overlap (tbl. 1). In general, species exhibited more consistent values of prey-predator overlap, than predator-prey overlap – indicated by the spread of points along the x-axis, yet more restricted variation on the y-axis (fig. 3). There was also no overall relationship between the two metrics, or for any predator species.</p>
+            <div id="tbl:everyone">
+            <table>
+            <caption>Table 1: List of species analyzed, their out and in degrees, total original range size (in pixels) and proportion of their ranges occupied by their preys and predators (values between 0 and 1). Species are sorted according to the groups identified by <span class="citation" data-cites="Baskerville2011SpaGui">Baskerville et al. (2011)</span>. Notice how some species are isolated in the network (<em>Loxodonta africana</em>) and how <em>Canis aureus</em>’s range do not overlap with any of its preys.</caption>
+            <colgroup>
+            <col style="width: 33%" />
+            <col style="width: 11%" />
+            <col style="width: 11%" />
+            <col style="width: 11%" />
+            <col style="width: 15%" />
+            <col style="width: 15%" />
+            </colgroup>
+            <thead>
+            <tr class="header">
+            <th style="text-align: left;">Species</th>
+            <th style="text-align: right;">Number of preys</th>
+            <th style="text-align: right;">Number of predators</th>
+            <th style="text-align: right;">Total range size</th>
+            <th style="text-align: right;">Proportion of range occupied by preys</th>
+            <th style="text-align: right;">Proportion of range occupied by predators</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="odd">
+            <td style="text-align: left;"><strong>Large carnivores</strong></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Acinonyx jubatus</td>
+            <td style="text-align: right;">8</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">15540</td>
+            <td style="text-align: right;">0.560</td>
+            <td style="text-align: right;">0.670</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Crocuta crocuta</td>
+            <td style="text-align: right;">12</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">43307</td>
+            <td style="text-align: right;">0.848</td>
+            <td style="text-align: right;">0.252</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Lycaon pictus</td>
+            <td style="text-align: right;">14</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">3873</td>
+            <td style="text-align: right;">0.916</td>
+            <td style="text-align: right;">-</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Panthera leo</td>
+            <td style="text-align: right;">18</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">11384</td>
+            <td style="text-align: right;">0.934</td>
+            <td style="text-align: right;">-</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Panthera pardus</td>
+            <td style="text-align: right;">22</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">68137</td>
+            <td style="text-align: right;">0.766</td>
+            <td style="text-align: right;">-</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;"><strong>Small carnivores</strong></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Canis aureus</td>
+            <td style="text-align: right;">4</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">7358</td>
+            <td style="text-align: right;">0.000</td>
+            <td style="text-align: right;">0.780</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Canis mesomelas</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">19872</td>
+            <td style="text-align: right;">0.190</td>
+            <td style="text-align: right;">0.995</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Caracal caracal</td>
+            <td style="text-align: right;">4</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">47243</td>
+            <td style="text-align: right;">0.832</td>
+            <td style="text-align: right;">-</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Leptailurus serval</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">38856</td>
+            <td style="text-align: right;">0.011</td>
+            <td style="text-align: right;">0.979</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;"><strong>Small herbivores</strong></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Damaliscus lunatus</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">4</td>
+            <td style="text-align: right;">5567</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">1</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Hippopotamus amphibius</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">3695</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">-</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Kobus ellipsiprymnus</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">4</td>
+            <td style="text-align: right;">26705</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">1</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Ourebia ourebi</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">5</td>
+            <td style="text-align: right;">22380</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">1</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Pedetes capensis</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">2</td>
+            <td style="text-align: right;">11901</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">1</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Phacochoerus africanus</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">5</td>
+            <td style="text-align: right;">29963</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">0.999</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Redunca redunca</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">5</td>
+            <td style="text-align: right;">17465</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">1</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Rhabdomys pumilio</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">5</td>
+            <td style="text-align: right;">465</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">0.998</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Tragelaphus oryx</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">2</td>
+            <td style="text-align: right;">20852</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">0.991</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Tragelaphus scriptus</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">3</td>
+            <td style="text-align: right;">36011</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">0.984</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;"><strong>Large grazers</strong></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Aepyceros melampus</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">5</td>
+            <td style="text-align: right;">10579</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">1</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Alcelaphus buselaphus</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">4</td>
+            <td style="text-align: right;">20761</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">1</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Connochaetes taurinus</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">6</td>
+            <td style="text-align: right;">9650</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">1</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Equus quagga</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">5</td>
+            <td style="text-align: right;">7070</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">1</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Eudorcas thomsonii</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">6</td>
+            <td style="text-align: right;">463</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">1</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Nanger granti</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">6</td>
+            <td style="text-align: right;">2303</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">1</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;"><strong>Hyraxes</strong></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Heterohyrax brucei</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">17728</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">0.972</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Procavia capensis</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">47697</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">0.647</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;"><strong>Others</strong></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            <td style="text-align: right;"></td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Giraffa camelopardalis</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">5418</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">0.470</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Loxodonta africana</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">9654</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">-</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Madoqua kirkii</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">7</td>
+            <td style="text-align: right;">4002</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">1</td>
+            </tr>
+            <tr class="even">
+            <td style="text-align: left;">Papio anubis</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">23171</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">0.938</td>
+            </tr>
+            <tr class="odd">
+            <td style="text-align: left;">Syncerus caffer</td>
+            <td style="text-align: right;">0</td>
+            <td style="text-align: right;">1</td>
+            <td style="text-align: right;">25223</td>
+            <td style="text-align: right;">-</td>
+            <td style="text-align: right;">0.250</td>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+            <h2 id="validation-with-gbif-occurrences">Validation with GBIF occurrences</h2>
+            <p>The proportion of GBIF pixels (pixels with at least one GBIF occurrence) falling in the IUCN ranges varied from low to high depending on the species (fig. 4, left). The lowest proportions occurred for species with small ranges (such as <em>Lycaon pictus</em>), although some species with small ranges showed high overlap. Species with median and large ranges had high proportions of occurrences falling into their IUCN range. Predators and preys displayed similar overlap variations. While no species had all of its GBIF occurrences within its IUCN range, one species had this proportion equal to zero, <em>Canis aureus</em>, which is also the only species whose range is not covered by any of its preys. This result reinforces the concern raised in the literature on the use of IUCN range maps for species that are not well known <span class="citation" data-cites="Herkt2017MacCon">(Herkt, Skidmore, and Fahr 2017)</span>, demonstrating how small range species are likely to have their distribution underestimated in the IUCN database. Additionally, the fact that <em>Canis aureus</em> had none of its GBIF pixels overlapping with IUCN maps suggests a taxonomic mismatch between both databases, which we explore in the Discussion section.</p>
+            <p>The proportion of GBIF pixels in updated ranges can only be equal to or lower than that of the original ranges, as our analysis removes pixels from the original range and does not add new ones. Rather, the absence of a difference between the two types of ranges indicates that no pixels with GBIF observations, hence likely true habitats, were removed by our analysis. Here this proportion was mostly similar to that of the original IUCN ranges for most predator species (fig. 4, right). Four species showed no difference of proportion while three species showed only small differences (proportions of 0.01 to 0.05). On the other hand, two species, <em>Canis mesomelas</em> and <em>Leptailurus serval</em>, showed very high differences, with overlaps lower by 0.548 and 0.871 respectively. For <em>Leptailurus serval</em>, none of the GBIF observations occurred in the updated range. These two species are also the only predators with a single prey in our metaweb. Our results delineate how a mismatch between GBIF and IUCN databases differ greatly with small changes in herbivore species ranges, and it is somewhat positively related to range size for predator species. Moreover, we show that accounting for interactions does not necessarily aggravates this dissimilarity, but it is relevant for species with little ecological information or specialists.</p>
+            <figure>
+            <img src="figures/gbif_panels.png" id="fig:gbif" alt="Figure 4: Left panel: Distribution of the proportion of GBIF pixels (pixels with at least one occurrence in GBIF) falling into the IUCN range for different range sizes. Right panel: Differences between the proportion of GBIF pixels falling into the IUCN and the updated ranges for every predator species. Arrows go from the proportion inside the original range to the proportion inside the updated range, which can only be equal or lower. Overlapping markers indicate no difference between the types of layers. Species markers are the same on both figures, with predators presented in distinct colored markers and all herbivores grouped in a single grey marker. Pixels represent a resolution of 10 arc-minutes." /><figcaption aria-hidden="true">Figure 4: Left panel: Distribution of the proportion of GBIF pixels (pixels with at least one occurrence in GBIF) falling into the IUCN range for different range sizes. Right panel: Differences between the proportion of GBIF pixels falling into the IUCN and the updated ranges for every predator species. Arrows go from the proportion inside the original range to the proportion inside the updated range, which can only be equal or lower. Overlapping markers indicate no difference between the types of layers. Species markers are the same on both figures, with predators presented in distinct colored markers and all herbivores grouped in a single grey marker. Pixels represent a resolution of 10 arc-minutes.</figcaption>
+            </figure>
+            <h1 id="discussion">Discussion</h1>
+            <p>The jackal is a widespread taxon in northern Africa, Europe and Australasia, generally well adapted to local conditions due to its largely varied diet <span class="citation" data-cites="Tsunoda2020VarTro Krofel2021ResTax">(Tsunoda and Saito 2020; Krofel et al. 2021)</span>. Because of that, we expected that the <em>Canis</em> species in our dataset would be the ones losing the least amount of range, with a higher value of the proportion of GBIF pixels within their IUCN range maps. However, the taxonomy of this group is a matter of intense discussion, as molecular and morphological data seem to disagree in the clustering of species and subspecies <span class="citation" data-cites="Krofel2021ResTax Stoyanov2020CraVar">(Krofel et al. 2021; Stoyanov 2020)</span>. This debate is indeed reflected in our analysis: the GBIF identification of the golden jackal is incompatible with the one used by IUCN, each of them mapping its distribution in completely different places. This led to a complete exclusion of <em>Canis aureus</em> from its original range in our analysis, despite the fact that this species has four documented preys in our metaweb. This example illustrates how the taxonomic, geographical and ecological data can be used to validate one another.</p>
+            <p>Here we show that when ecological interaction data (predator-prey interactions within food webs) are used to refine species range maps, there are significant reductions in the IUCN range size of predatory organisms. Despite showing the potential importance in accounting for species interactions when estimating the range of a species, it remains unclear the extent to which the patterns observed represent ecological processes or a lack of data. In the following sections we discuss the implications of our findings, in terms of species range maps, interaction data and the next steps required to enhance understanding of species distributions using information on ecological networks.</p>
+            <h2 id="connectivity-diversity-and-range-preservation">Connectivity, diversity and range preservation</h2>
+            <p>In the Serengeti food web there is a positive relationship between the out degrees of predators and the size of their ranges (tbl. 1). In addition, our results show that there is a negative relationship between the relative loss of predators’ ranges and their number of preys (fig. 2), reinforcing the idea that generalist species can preserve their distributions longer while losing interactions. The factors limiting the geographical range of a species in a community can vary with connectivity and richness <span class="citation" data-cites="Svenning2014InfInt">(Svenning et al. 2014)</span>. Younger communities may be more affected by environmental limitations because they are dominated by generalist species, while older metacommunities are probably affected in different ways in the centre of the distribution, at the edge of ranges and in sink and source communities <span class="citation" data-cites="Svenning2014InfInt Godsoe2017IntBio Cazelles2016IntBio Bullock2000GeoSep">(Svenning et al. 2014; Godsoe et al. 2017; Cazelles et al. 2016; Bullock et al. 2000)</span>. Additionally, it is likely that species with larger ranges of distribution and those that are more generalists would co-occur with a greater number of other species <span class="citation" data-cites="Dattilo2020SpeDri">(Dáttilo et al. 2020)</span>, while dispersal capacity of competitive species modulate their aggregation in space and the effect of interactions on their range limits <span class="citation" data-cites="Godsoe2017IntBio">(Godsoe et al. 2017)</span>.</p>
+            <h2 id="geographical-mismatch-and-data-availability">Geographical mismatch and data availability</h2>
+            <p>The geographical mismatch between predators and preys have ecological consequences such as loss of ecosystem functioning and extinction of populations <span class="citation" data-cites="Anderson2016SpaDis Dattilo2018EcoNet Pringle2016LarHer Young2013EffMam">(Anderson et al. 2016; Dáttilo and Rico-Gray 2018; Pringle et al. 2016; Young et al. 2013)</span>. Climate change is one of the causes of this, leading, for instance, to the decrease of plants populations due to the lack of pollination <span class="citation" data-cites="Bullock2000GeoSep Afkhami2014MutEff Godsoe2017IntBio">(Bullock et al. 2000; Afkhami, McIntyre, and Strauss 2014; Godsoe et al. 2017)</span>. However, this mismatch can also be purely informational. When the distribution of predators and preys do not superpose, it can mean we lack information about the distribution of either species or about their interactions (e.g., predators may be feeding on different species than the ones in our dataset outside the Serengeti ecosystem). Here we addressed part of this problem by comparing the IUCN range maps with GBIF occurrences, which helped us clarify what is the shortfall for each species.</p>
+            <p>The lack of superposition between IUCN range maps and GBIF occurrences suggests that we certainly do miss geographical information about the distribution of a certain species, but it is not an indicative about the completeness of the information about ecological interactions. However, if both GBIF and IUCN occurrences tend to superpose and still the species is locally removed, this indicates we don’t have information about all its interactions. The combination of this rationale with our method of updating range maps based on ecological interactions allows us to have a clearer idea of which information we are missing. For example, the lion (<em>Panthera leo</em>) was one of the species with the smallest difference between the original and the updated ranges (fig. 2), but 59.5% of the GBIF occurrences for this species fell outside the IUCN range (fig. 4). In this particular case, the IUCN maps seem to agree with species interactions data. However, the disagreement between the IUCN and the GBIF databases is concerning and suggests that the IUCN maps might underestimate the lion’s distribution. On the other hand, <em>Leptailurus serval</em> and <em>Canis mesomelas</em> are two of the three species that lose the higher proportion of range due to the lack of paths to a herbivore (fig. 2), but are also some of the species with the higher proportion of GBIF occurrences inside IUCN range maps (fig. 4). This indicates that the information we are missing for these two species is related to either the occurrence of an interaction or the presence of interacting species. To illustrate that, we mapped the GBIF data for the prey of <em>Leptailurus serval</em>, with a mobility buffer around each point (fig. 5). When considering GBIF data, approximately 53% of the prey’s occurrences are within the portion of the serval’s range that was lost. With the buffer area, this corresponds to 13% of the lost range. This means that by adding GBIF information, we would reduce the loss of range (or information) for the predator by 13% since its distribution is conditional on the occurrence of its preys.</p>
+            <figure>
+            <img src="figures/serval_mismatch_combined.png" id="fig:serval" alt="Figure 5: Mismatch between serval’s range loss and GBIF occurrence of its prey. The left panel shows the reduction of serval’s range when we consider the IUCN data on its prey. On the right panel, we added GBIF data on both serval and its prey, with a buffer for the prey to account on species mobility." /><figcaption aria-hidden="true">Figure 5: Mismatch between serval’s range loss and GBIF occurrence of its prey. The left panel shows the reduction of serval’s range when we consider the IUCN data on its prey. On the right panel, we added GBIF data on both serval and its prey, with a buffer for the prey to account on species mobility.</figcaption>
+            </figure>
+            <p>Finally, the extreme case of <em>Canis aureus</em> illustrates a lack of both geographical and ecological information: none of its GBIF occurrences and none of its preys occur inside its IUCN range. We believe, therefore, that the validation of species distribution based on ecological interaction is a relevant method that can further fill in information gaps. Nevertheless, it is imperative that more geographically explicit data about ecological networks and interactions become available. This would help clarify when cooccurrences can be translated into interactions and help the development of more advanced validation methods for occurrence data.</p>
+            <h2 id="next-steps">Next steps</h2>
+            <p>Here we demonstrated how we can detect uncertainty in species distribution data using ecological interactions. Knowing where questionable occurrence data are can be crucial in ecological modelling <span class="citation" data-cites="Hortal2008UncMea Ladle2013MapSpe">(Hortal 2008; Ladle and Hortal 2013)</span>, and accounting for these errors can improve model outputs by diminishing the error propagation <span class="citation" data-cites="Draper1995AssPro">(Draper 1995)</span>. For instance, we believe this is a way to account for ecological interactions in habitat suitability models without making the models more complex, but making sure (not assuming) that the input data - the species occurrence - actually accounts for ecological interactions. It is important to notice, however, that the quality and usefulness of this method is highly correlated with the amount and quality of data available about species’ occurrences <strong>and</strong> interactions. With this paper we hope to add to the collective effort to decode the encrypted message that is the occurrence of a species in space and time. A promising avenue that adds to our method is the prediction of networks and interactions in large scales <span class="citation" data-cites="Strydom2021RoaPre">(Strydom et al. 2021)</span>, for they can add valuable information about ecological interactions where they are missing. Additionally, in order to achieve a robust modelling framework towards actual species distribution models we should invest in efforts to collect and combine open data on species occurrence and interactions, especially because we may be losing ecological interactions at least as fast as we are losing species <span class="citation" data-cites="Valiente-Banuet2015SpeLos">(Valiente-Banuet et al. 2015)</span>.</p>
+            <h1 id="acknowledgements">Acknowledgements</h1>
+            <p>We acknowledge that this study was conducted on land within the traditional unceded territory of the Saint Lawrence Iroquoian, Anishinabewaki, Mohawk, Huron-Wendat, and Omàmiwininiwak nations. GH, FB, GD, and NF are funded by the NSERC BIOS<span class="math inline"><sup>2</sup></span> CREATE program; FB, NF, and TP are funded by IVADO; NF and TP are funded by a donation from the Courtois Foundation; GD is funded by the FRQNT doctoral scholarship; TP is funded by the Canadian Institute of Ecology &amp; Evolution; FW is funded by the Royal Society (Grant number: CHL\R1\180156).</p>
+            <h1 class="unnumbered" id="references">References</h1>
+            <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+            <div id="ref-AbregoAccSpe" class="csl-entry" role="doc-biblioentry">
+            Abrego, Nerea, Tomas Roslin, Tea Huotari, Yinqiu Ji, Niels Martin Schmidt, Jiaxin Wang, Douglas W. Yu, and Otso Ovaskainen. n.d. <span>“Accounting for Species Interactions Is Necessary for Predicting How Arctic Arthropod Communities Respond to Climate Change.”</span> <em>Ecography</em> n/a (n/a). <a href="https://doi.org/10.1111/ecog.05547">https://doi.org/10.1111/ecog.05547</a>.
+            </div>
+            <div id="ref-Afkhami2014MutEff" class="csl-entry" role="doc-biblioentry">
+            Afkhami, Michelle E., Patrick J. McIntyre, and Sharon Y. Strauss. 2014. <span>“Mutualist-Mediated Effects on Species’ Range Limits Across Large Geographic Scales.”</span> <em>Ecology Letters</em> 17 (10): 1265–73. <a href="https://doi.org/10.1111/ele.12332">https://doi.org/10.1111/ele.12332</a>.
+            </div>
+            <div id="ref-Albrecht2018PlaAni" class="csl-entry" role="doc-biblioentry">
+            Albrecht, Jörg. 2018. <span>“Plant and Animal Functional Diversity Drive Mutualistic Network Assembly Across an Elevational Gradient.”</span> <em>NATURE COMMUNICATIONS</em>, 10.
+            </div>
+            <div id="ref-Alhajeri2019HigCor" class="csl-entry" role="doc-biblioentry">
+            Alhajeri, Bader H, and Yoan Fourcade. 2019. <span>“High Correlation Between Species-Level Environmental Data Estimates Extracted from IUCN Expert Range Maps and from GBIF Occurrence Data.”</span> <em>Journal of Biogeography</em>, 13. <a href="https://doi.org/10.1111/jbi.13619">https://doi.org/10.1111/jbi.13619</a>.
+            </div>
+            <div id="ref-Anderson2016SpaDis" class="csl-entry" role="doc-biblioentry">
+            Anderson, T. Michael, Staci White, Bryant Davis, Rob Erhardt, Meredith Palmer, Alexandra Swanson, Margaret Kosmala, and Craig Packer. 2016. <span>“The Spatial Distribution of African Savannah Herbivores: Species Associations and Habitat Occupancy in a Landscape Context.”</span> <em>Philosophical Transactions of the Royal Society B: Biological Sciences</em> 371 (1703): 20150314. <a href="https://doi.org/10.1098/rstb.2015.0314">https://doi.org/10.1098/rstb.2015.0314</a>.
+            </div>
+            <div id="ref-Araujo2014ImpBio" class="csl-entry" role="doc-biblioentry">
+            Araújo, Carlos B. de, Luiz Octavio Marcondes-Machado, and Gabriel C. Costa. 2014. <span>“The Importance of Biotic Interactions in Species Distribution Models: A Test of the Eltonian Noise Hypothesis Using Parrots.”</span> <em>Journal of Biogeography</em> 41 (3): 513–23. <a href="https://doi.org/10.1111/jbi.12234">https://doi.org/10.1111/jbi.12234</a>.
+            </div>
+            <div id="ref-Baskerville2011SpaGui" class="csl-entry" role="doc-biblioentry">
+            Baskerville, Edward B., Andy P. Dobson, Trevor Bedford, Stefano Allesina, T. Michael Anderson, and Mercedes Pascual. 2011. <span>“Spatial Guilds in the Serengeti Food Web Revealed by a Bayesian Group Model.”</span> <em>PLOS Computational Biology</em> 7 (12): e1002321. <a href="https://doi.org/10.1371/journal.pcbi.1002321">https://doi.org/10.1371/journal.pcbi.1002321</a>.
+            </div>
+            <div id="ref-Blanchet2020CooNot" class="csl-entry" role="doc-biblioentry">
+            Blanchet, F. Guillaume, Kevin Cazelles, and Dominique Gravel. 2020. <span>“Co-Occurrence Is Not Evidence of Ecological Interactions.”</span> <em>Ecology Letters</em> 23 (7): 1050–63. <a href="https://doi.org/10.1111/ele.13525">https://doi.org/10.1111/ele.13525</a>.
+            </div>
+            <div id="ref-Boakes2010DisVie" class="csl-entry" role="doc-biblioentry">
+            Boakes, Elizabeth H., Philip J. K. McGowan, Richard A. Fuller, Ding Chang-qing, Natalie E. Clark, Kim O’Connor, and Georgina M. Mace. 2010. <span>“Distorted Views of Biodiversity: Spatial and Temporal Bias in Species Occurrence Data.”</span> <em>PLOS Biology</em> 8 (6): e1000385. <a href="https://doi.org/10.1371/journal.pbio.1000385">https://doi.org/10.1371/journal.pbio.1000385</a>.
+            </div>
+            <div id="ref-Bullock2000GeoSep" class="csl-entry" role="doc-biblioentry">
+            Bullock, James M., Rebecca J. Edwards, Peter D. Carey, and Rob J. Rose. 2000. <span>“Geographical Separation of Two Ulex Species at Three Spatial Scales: Does Competition Limit Species’ Ranges?”</span> <em>Ecography</em> 23 (2): 257–71. <a href="https://doi.org/10.1111/j.1600-0587.2000.tb00281.x">https://doi.org/10.1111/j.1600-0587.2000.tb00281.x</a>.
+            </div>
+            <div id="ref-Cabral2017MecSim" class="csl-entry" role="doc-biblioentry">
+            Cabral, Juliano Sarmento, Luis Valente, and Florian Hartig. 2017. <span>“Mechanistic Simulation Models in Macroecology and Biogeography: State-of-Art and Prospects.”</span> <em>Ecography</em> 40 (2): 267–80. <a href="https://doi.org/10.1111/ecog.02480">https://doi.org/10.1111/ecog.02480</a>.
+            </div>
+            <div id="ref-Callaghan2019ImpBig" class="csl-entry" role="doc-biblioentry">
+            Callaghan, Corey T., Jodi J. L. Rowley, William K. Cornwell, Alistair G. B. Poore, and Richard E. Major. 2019. <span>“Improving Big Citizen Science Data: Moving Beyond Haphazard Sampling.”</span> <em>PLOS Biology</em> 17 (6): e3000357. <a href="https://doi.org/10.1371/journal.pbio.3000357">https://doi.org/10.1371/journal.pbio.3000357</a>.
+            </div>
+            <div id="ref-Cazelles2016IntBio" class="csl-entry" role="doc-biblioentry">
+            Cazelles, Kévin, Nicolas Mouquet, David Mouillot, and Dominique Gravel. 2016. <span>“On the Integration of Biotic Interaction and Environmental Constraints at the Biogeographical Scale.”</span> <em>Ecography</em> 39 (10): 921–31. <a href="https://doi.org/10.1111/ecog.01714">https://doi.org/10.1111/ecog.01714</a>.
+            </div>
+            <div id="ref-Dallas2020AbuNot" class="csl-entry" role="doc-biblioentry">
+            Dallas, Tad, Samuel Pironon, and Luca Santini. 2020. <span>“The Abundant-Centre Is Not All That Abundant: A Comment to Osorio-Olvera Et Al. 2020,”</span> 2020.02.27.968586. <a href="https://doi.org/10.1101/2020.02.27.968586">https://doi.org/10.1101/2020.02.27.968586</a>.
+            </div>
+            <div id="ref-Daru2020GreToo" class="csl-entry" role="doc-biblioentry">
+            Daru, Barnabas H. 2020. <span>“GreenMaps: A Tool for Addressing the Wallacean Shortfall in the Global Distribution of Plants.”</span> <em>bioRxiv</em>, 2020.02.21.960161. <a href="https://doi.org/10.1101/2020.02.21.960161">https://doi.org/10.1101/2020.02.21.960161</a>.
+            </div>
+            <div id="ref-Dattilo2020SpeDri" class="csl-entry" role="doc-biblioentry">
+            Dáttilo, Wesley, Nathalia Barrozo-Chávez, Andrés Lira-Noriega, Roger Guevara, Fabricio Villalobos, Diego Santiago-Alarcon, Frederico Siqueira Neves, Thiago Izzo, and Sérvio Pontes Ribeiro. 2020. <span>“Species-Level Drivers of Mammalian Ectoparasite Faunas.”</span> <em>Journal of Animal Ecology</em> 89 (8): 1754–65. <a href="https://doi.org/10.1111/1365-2656.13216">https://doi.org/10.1111/1365-2656.13216</a>.
+            </div>
+            <div id="ref-Dattilo2018EcoNet" class="csl-entry" role="doc-biblioentry">
+            Dáttilo, Wesley, and Victor Rico-Gray, eds. 2018. <em>Ecological Networks in the Tropics: An Integrative Overview of Species Interactions from Some of the Most Species-Rich Habitats on Earth</em>. 1st ed. 2018. Cham: Springer International Publishing : Imprint: Springer. <a href="https://doi.org/10.1007/978-3-319-68228-0">https://doi.org/10.1007/978-3-319-68228-0</a>.
+            </div>
+            <div id="ref-Dobson2009FooStr" class="csl-entry" role="doc-biblioentry">
+            Dobson, Andy. 2009. <span>“Food-Web Structure and Ecosystem Services: Insights from the Serengeti.”</span> <em>Philosophical Transactions of the Royal Society B: Biological Sciences</em> 364 (1524): 1665–82. <a href="https://doi.org/10.1098/rstb.2008.0287">https://doi.org/10.1098/rstb.2008.0287</a>.
+            </div>
+            <div id="ref-Draper1995AssPro" class="csl-entry" role="doc-biblioentry">
+            Draper, D. 1995. <span>“Assessment and Propagation of Model Uncertainty.”</span> <em>Journal of the Royal Statistical Society Series B-Statistical Methodology</em> 57 (1): 45–97. <a href="https://doi.org/10.1111/j.2517-6161.1995.tb02015.x">https://doi.org/10.1111/j.2517-6161.1995.tb02015.x</a>.
+            </div>
+            <div id="ref-Fourcade2016ComSpe" class="csl-entry" role="doc-biblioentry">
+            Fourcade, Yoan. 2016. <span>“Comparing Species Distributions Modelled from Occurrence Data and from Expert-Based Range Maps. Implication for Predicting Range Shifts with Climate Change.”</span> <em>Ecological Informatics</em> 36: 8–14. <a href="https://doi.org/10.1016/j.ecoinf.2016.09.002">https://doi.org/10.1016/j.ecoinf.2016.09.002</a>.
+            </div>
+            <div id="ref-Fricke2022EffDef" class="csl-entry" role="doc-biblioentry">
+            Fricke, Evan C., Alejandro Ordonez, Haldre S. Rogers, and Jens-Christian Svenning. 2022. <span>“The Effects of Defaunation on Plants’ Capacity to Track Climate Change.”</span> <em>Science</em>. <a href="https://doi.org/10.1126/science.abk3510">https://doi.org/10.1126/science.abk3510</a>.
+            </div>
+            <div id="ref-Godsoe2012HowSpe" class="csl-entry" role="doc-biblioentry">
+            Godsoe, William, and Luke J. Harmon. 2012. <span>“How Do Species Interactions Affect Species Distribution Models?”</span> <em>Ecography</em> 35 (9): 811–20. <a href="https://doi.org/10.1111/j.1600-0587.2011.07103.x">https://doi.org/10.1111/j.1600-0587.2011.07103.x</a>.
+            </div>
+            <div id="ref-Godsoe2017IntBio" class="csl-entry" role="doc-biblioentry">
+            Godsoe, William, Jill Jankowski, Robert D. Holt, and Dominique Gravel. 2017. <span>“Integrating Biogeography with Contemporary Niche Theory.”</span> <em>Trends in Ecology and Evolution</em> 32 (7): 488–99. <a href="https://doi.org/10.1016/j.tree.2017.03.008">https://doi.org/10.1016/j.tree.2017.03.008</a>.
+            </div>
+            <div id="ref-Herkt2017MacCon" class="csl-entry" role="doc-biblioentry">
+            Herkt, K. Matthias B., Andrew K. Skidmore, and Jakob Fahr. 2017. <span>“Macroecological Conclusions Based on IUCN Expert Maps: A Call for Caution.”</span> <em>Global Ecology and Biogeography</em> 26 (8): 930–41. <a href="https://doi.org/10.1111/geb.12601">https://doi.org/10.1111/geb.12601</a>.
+            </div>
+            <div id="ref-Hortal2008UncMea" class="csl-entry" role="doc-biblioentry">
+            Hortal, Joaquín. 2008. <span>“Uncertainty and the Measurement of Terrestrial Biodiversity Gradients.”</span> <em>Journal of Biogeography</em> 35 (8): 1335–36. <a href="https://doi.org/10.1111/j.1365-2699.2008.01955.x">https://doi.org/10.1111/j.1365-2699.2008.01955.x</a>.
+            </div>
+            <div id="ref-Hortal2015SevSho" class="csl-entry" role="doc-biblioentry">
+            Hortal, Joaquín, Francesco de Bello, José Alexandre F. Diniz-Filho, Thomas M. Lewinsohn, Jorge M. Lobo, and Richard J. Ladle. 2015. <span>“Seven Shortfalls That Beset Large-Scale Knowledge of Biodiversity.”</span> <em>Annual Review of Ecology, Evolution, and Systematics</em> 46 (1): 523–49. <a href="https://doi.org/10.1146/annurev-ecolsys-112414-054400">https://doi.org/10.1146/annurev-ecolsys-112414-054400</a>.
+            </div>
+            <div id="ref-Hortal2008HisBia" class="csl-entry" role="doc-biblioentry">
+            Hortal, Joaquín, Alberto Jiménez-Valverde, José F. Gómez, Jorge M. Lobo, and Andrés Baselga. 2008. <span>“Historical Bias in Biodiversity Inventories Affects the Observed Environmental Niche of the Species.”</span> <em>Oikos</em> 117 (6): 847–58. <a href="https://doi.org/10.1111/j.0030-1299.2008.16434.x">https://doi.org/10.1111/j.0030-1299.2008.16434.x</a>.
+            </div>
+            <div id="ref-IUCNSSCRedListTechnicalWorkingGroup2021MapSta" class="csl-entry" role="doc-biblioentry">
+            IUCN SSC Red List Technical Working Group. 2021. <em>Mapping Standards and Data Quality for IUCN Red List Spatial Data</em>.
+            </div>
+            <div id="ref-Krofel2021ResTax" class="csl-entry" role="doc-biblioentry">
+            Krofel, M., J. Hatlauf, W. Bogdanowicz, L. a. D. Campbell, R. Godinho, Y. V. Jhala, A. C. Kitchener, et al. 2021. <span>“Towards Resolving Taxonomic Uncertainties in Wolf, Dog and Jackal Lineages of Africa, Eurasia and Australasia.”</span> <em>Journal of Zoology</em> n/a (n/a): 1–14. <a href="https://doi.org/10.1111/jzo.12946">https://doi.org/10.1111/jzo.12946</a>.
+            </div>
+            <div id="ref-Ladle2013MapSpe" class="csl-entry" role="doc-biblioentry">
+            Ladle, Richard, and Joaquín Hortal. 2013. <span>“Mapping Species Distributions: Living with Uncertainty.”</span> <em>Frontiers of Biogeography</em> 5 (1): 4–6.
+            </div>
+            <div id="ref-McNaughton1992ProDis" class="csl-entry" role="doc-biblioentry">
+            McNaughton, S. J. 1992. <span>“The Propagation of Disturbance in Savannas Through Food Webs.”</span> <em>Journal of Vegetation Science</em> 3 (3): 301–14. <a href="https://doi.org/10.2307/3235755">https://doi.org/10.2307/3235755</a>.
+            </div>
+            <div id="ref-Meyer2016MulBia" class="csl-entry" role="doc-biblioentry">
+            Meyer, Carsten, Patrick Weigelt, and Holger Kreft. 2016. <span>“Multidimensional Biases, Gaps and Uncertainties in Global Plant Occurrence Information.”</span> <em>Ecology Letters</em> 19 (8): 992–1006. <a href="https://doi.org/10.1111/ele.12624">https://doi.org/10.1111/ele.12624</a>.
+            </div>
+            <div id="ref-Pocock2015BioRec" class="csl-entry" role="doc-biblioentry">
+            Pocock, Michael J. O., Helen E. Roy, Chris D. Preston, and David B. Roy. 2015. <span>“The Biological Records Centre: A Pioneer of Citizen Science.”</span> <em>Biological Journal of the Linnean Society</em> 115 (3): 475–93. <a href="https://doi.org/10.1111/bij.12548">https://doi.org/10.1111/bij.12548</a>.
+            </div>
+            <div id="ref-Poisot2016ManMak" class="csl-entry" role="doc-biblioentry">
+            Poisot, Timothée, Benjamin Baiser, Jennifer A Dunne, Sonia Kéfi, François Massol, Nicolas Mouquet, Tamara N Romanuk, Daniel B Stouffer, Spencer A Wood, and Dominique Gravel. 2016. <span>“Mangal - Making Ecological Network Analysis Simple.”</span> <em>Ecography</em> 39 (4): 384–90.
+            </div>
+            <div id="ref-Poisot2021GloKno" class="csl-entry" role="doc-biblioentry">
+            Poisot, Timothée, Gabriel Bergeron, Kevin Cazelles, Tad Dallas, Dominique Gravel, Andrew MacDonald, Benjamin Mercier, Clément Violet, and Steve Vissault. 2021. <span>“Global Knowledge Gaps in Species Interaction Networks Data.”</span> <em>Journal of Biogeography</em> 48 (7): 1552–63. <a href="https://doi.org/10.1111/jbi.14127">https://doi.org/10.1111/jbi.14127</a>.
+            </div>
+            <div id="ref-Poisot2020EnvBia" class="csl-entry" role="doc-biblioentry">
+            Poisot, Timothée, Gabriel Bergeron, Kevin Cazelles, Tad Dallas, Dominique Gravel, Andrew Macdonald, Benjamin Mercier, Clément Violet, and Steve Vissault. 2020. <span>“Environmental Biases in the Study of Ecological Networks at the Planetary Scale.”</span> <em>bioRxiv</em>, 2020.01.27.921429. <a href="https://doi.org/10.1101/2020.01.27.921429">https://doi.org/10.1101/2020.01.27.921429</a>.
+            </div>
+            <div id="ref-Power1992TopBot" class="csl-entry" role="doc-biblioentry">
+            Power, Mary E. 1992. <span>“Top-Down and Bottom-Up Forces in Food Webs: Do Plants Have Primacy.”</span> <em>Ecology</em> 73 (3): 733–46. <a href="https://doi.org/10.2307/1940153">https://doi.org/10.2307/1940153</a>.
+            </div>
+            <div id="ref-Pringle2016LarHer" class="csl-entry" role="doc-biblioentry">
+            Pringle, Robert M., Kirsten M. Prior, Todd M. Palmer, Truman P. Young, and Jacob R. Goheen. 2016. <span>“Large Herbivores Promote Habitat Specialization and Beta Diversity of African Savanna Trees.”</span> <em>Ecology</em> 97 (10): 2640–57. <a href="https://doi.org/10.1002/ecy.1522">https://doi.org/10.1002/ecy.1522</a>.
+            </div>
+            <div id="ref-Ronquillo2020AssSpa" class="csl-entry" role="doc-biblioentry">
+            Ronquillo, Cristina, Fernanda Alves-Martins, Vicente Mazimpaka, Thadeu Sobral-Souza, Bruno Vilela-Silva, Nagore G. Medina, and Joaquín Hortal. 2020. <span>“Assessing Spatial and Temporal Biases and Gaps in the Publicly Available Distributional Information of Iberian Mosses.”</span> <em>Biodiversity Data Journal</em> 8: e53474. <a href="https://doi.org/10.3897/BDJ.8.e53474">https://doi.org/10.3897/BDJ.8.e53474</a>.
+            </div>
+            <div id="ref-Roy2016FocPla" class="csl-entry" role="doc-biblioentry">
+            Roy, Helen E., Elizabeth Baxter, Aoine Saunders, and Michael J. O. Pocock. 2016. <span>“Focal Plant Observations as a Standardised Method for Pollinator Monitoring: Opportunities and Limitations for Mass Participation Citizen Science.”</span> <em>PLOS ONE</em> 11 (3): e0150794. <a href="https://doi.org/10.1371/journal.pone.0150794">https://doi.org/10.1371/journal.pone.0150794</a>.
+            </div>
+            <div id="ref-Ryan2018RolCit" class="csl-entry" role="doc-biblioentry">
+            Ryan, S. F., N. L. Adamson, A. Aktipis, L. K. Andersen, R. Austin, L. Barnes, M. R. Beasley, et al. 2018. <span>“The Role of Citizen Science in Addressing Grand Challenges in Food and Agriculture Research.”</span> <em>Proceedings of the Royal Society B: Biological Sciences</em> 285 (1891). <a href="https://doi.org/10.1098/rspb.2018.1977">https://doi.org/10.1098/rspb.2018.1977</a>.
+            </div>
+            <div id="ref-Scott2018RolHer" class="csl-entry" role="doc-biblioentry">
+            Scott, Abigail L., Paul H. York, Clare Duncan, Peter I. Macreadie, Rod M. Connolly, Megan T. Ellis, Jessie C. Jarvis, Kristin I. Jinks, Helene Marsh, and Michael A. Rasheed. 2018. <span>“The Role of Herbivory in Structuring Tropical Seagrass Ecosystem Service Delivery.”</span> <em>Frontiers in Plant Science</em> 9: 127. <a href="https://doi.org/10.3389/fpls.2018.00127">https://doi.org/10.3389/fpls.2018.00127</a>.
+            </div>
+            <div id="ref-Stoyanov2020CraVar" class="csl-entry" role="doc-biblioentry">
+            Stoyanov, S. 2020. <span>“Cranial Variability and Differentiation Among Golden Jackals (Canis Aureus) in Europe, Asia Minor and Africa.”</span> <em>ZooKeys</em>. <a href="https://doi.org/10.3897/zookeys.917.39449">https://doi.org/10.3897/zookeys.917.39449</a>.
+            </div>
+            <div id="ref-Strydom2021RoaPre" class="csl-entry" role="doc-biblioentry">
+            Strydom, Tanya, Michael D. Catchen, Francis Banville, Dominique Caron, Gabriel Dansereau, Philippe Desjardins-Proulx, Norma R. Forero-Muñoz, et al. 2021. <span>“A Roadmap Towards Predicting Species Interaction Networks (across Space and Time).”</span> <em>Philosophical Transactions of the Royal Society B: Biological Sciences</em> 376 (1837): 20210063. <a href="https://doi.org/10.1098/rstb.2021.0063">https://doi.org/10.1098/rstb.2021.0063</a>.
+            </div>
+            <div id="ref-Svenning2014InfInt" class="csl-entry" role="doc-biblioentry">
+            Svenning, Jens Christian, Dominique Gravel, Robert D. Holt, Frank M. Schurr, Wilfried Thuiller, Tamara Münkemüller, Katja H. Schiffers, et al. 2014. <span>“The Influence of Interspecific Interactions on Species Range Expansion Rates.”</span> <em>Ecography</em> 37 (12): 1198–1209. <a href="https://doi.org/10.1111/j.1600-0587.2013.00574.x">https://doi.org/10.1111/j.1600-0587.2013.00574.x</a>.
+            </div>
+            <div id="ref-Tsunoda2020VarTro" class="csl-entry" role="doc-biblioentry">
+            Tsunoda, Hiroshi, and Masayuki U. Saito. 2020. <span>“Variations in the Trophic Niches of the Golden Jackal Canis Aureus Across the Eurasian Continent Associated with Biogeographic and Anthropogenic Factors.”</span> <em>Journal of Vertebrate Biology</em> 69 (4): 20056.1. <a href="https://doi.org/10.25225/jvb.20056">https://doi.org/10.25225/jvb.20056</a>.
+            </div>
+            <div id="ref-Valiente-Banuet2015SpeLos" class="csl-entry" role="doc-biblioentry">
+            Valiente-Banuet, Alfonso, Marcelo A. Aizen, Julio M. Alcántara, Juan Arroyo, Andrea Cocucci, Mauro Galetti, María B. García, et al. 2015. <span>“Beyond Species Loss: The Extinction of Ecological Interactions in a Changing World.”</span> Edited by Marc Johnson. <em>Functional Ecology</em> 29 (3): 299–307. <a href="https://doi.org/10.1111/1365-2435.12356">https://doi.org/10.1111/1365-2435.12356</a>.
+            </div>
+            <div id="ref-Young2013EffMam" class="csl-entry" role="doc-biblioentry">
+            Young, Hillary S., Douglas J. McCauley, Kristofer M. Helgen, Jacob R. Goheen, Erik Otárola-Castillo, Todd M. Palmer, Robert M. Pringle, Truman P. Young, and Rodolfo Dirzo. 2013. <span>“Effects of Mammalian Herbivore Declines on Plant Communities: Observations and Experiments in an <span class="smallcaps">A</span> Frican Savanna.”</span> Edited by Luis Santamaria. <em>Journal of Ecology</em> 101 (4): 1030–41. <a href="https://doi.org/10.1111/1365-2745.12096">https://doi.org/10.1111/1365-2745.12096</a>.
+            </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <h2>Affiliations</h2> 
+            <sup>1</sup>&nbsp;The University of British Columbia; <sup>2</sup>&nbsp;Computational Biodiversity Science and Services; <sup>3</sup>&nbsp;School of Natural and Environmental Sciences, Newcastle University; <sup>4</sup>&nbsp;Université de Montréal; <sup>5</sup>&nbsp;Université de Sherbrooke; <sup>6</sup>&nbsp;Quebec Centre for Biodiversity Science
+            <br />
+            <sup>‡</sup>&nbsp;These authors contributed equally to the work
+        </div>
+    </footer>
+    
+</body>
+</html>
