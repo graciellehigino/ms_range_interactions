@@ -173,7 +173,7 @@ range.
 For each species in the dataset we collated point observation data from GBIF 
 (www.gbif.org), and condensed these data into pixels representing presence or
 absence of the focal taxon. These data were used to validate the range 
-adjustments made based on species interactions (see previous section). To do
+adjustments made based on species interactions (see the previous section). To do
 so, we calculated the proportion of GBIF presence pixels occurring within both
 the original and adjusted species ranges. We then compared these proportions
 for the predators to verify if the range adjustments removed locations with GBIF
