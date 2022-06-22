@@ -15,7 +15,11 @@ many ways we can be misled by data - or the lack of it: taxonomic errors,
 geographic inaccuracy, or sampling biases [@Ladle2013MapSpe; @Hortal2015SevSho;
 @Poisot2021GloKno]. One way to identify - and potentially fix - these errors is
 to combine many different pieces of information about the occurrence of a
-species, so agreements and mismatches can emerge. Here we suggest jointly
+species, so agreements and mismatches can emerge. Although previous studies have
+combined different types of occurrence data to measure the accuracy of datasets
+[@Hurlbert2007SpeRic; @Hurlbert2005DisRan;
+@Ficetola2014EvaRob], none have used different types of information so far (i.e., ecological
+characteristics other than geographical distribution). Here we suggest jointly
 analyzing species occurrence (range maps and point occurrences) and ecological
 interactions to identify mismatches between datasets.  
 
@@ -48,7 +52,8 @@ expert knowledge about the species [@IUCNSSCRedListTechnicalWorkingGroup2021MapS
 These maps can be used in macroecological inferences in the lack of more precise
 information [@Fourcade2016ComSpe; @Alhajeri2019HigCor], but it has been
 recommended that they are used with caution since they tend to underestimate the
-distribution of species that are not well-known [@Herkt2017MacCon], do not
+distribution of species that are not well-known [@Herkt2017MacCon] (especially
+at fine scale resolutions; [@Hurlbert2007SpeRic; @Hurlbert2005DisRan]), do not
 represent spatial variation in species occurrence and abundance
 [@Dallas2020AbuNot], and can include inadequate areas within the estimated
 range. Another source of species distribution information is the Global
@@ -68,7 +73,12 @@ merge species distribution and ecological interaction data to improve our
 predictions of where a species may be found across large spatial scales (e.g.,
 continental and global). 
 
-In this context, we elaborate a method that allows us to refine distribution
+It has been demonstrated that the agreement between range maps and point data
+varies geographically [@Hurlbert2007SpeRic; @Hurlbert2005DisRan;
+@Ficetola2014EvaRob]. Adding ecological interaction data to this comparison
+might help to elucidate where these (dis)agreements are more likely to be true
+and which dataset better represent the actual distribution of species. In this
+context, we elaborate a method that allows us to refine distribution
 data (more precisely range maps) based on interaction data, considering the
 basic assumption that predators can only be present in regions where they are
 connected to at least one herbivore - and thus indirectly connected to primary
@@ -79,7 +89,7 @@ uncertainty areas in IUCN range maps. Finally, we add the GBIF occurrence points
 for the Serengeti species to the investigation, discuss the mechanisms that can
 lead to the lack of agreement between data, and build from that a vision for the
 next steps, reinforcing the importance of geographically explicit interaction
-data. 
+data.  
 
 
 # Methods
