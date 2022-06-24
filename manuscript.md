@@ -33,12 +33,16 @@ models are often used with point or range occurrence data in order to
 investigate the dynamics of a species with its environment. However, these
 models do not account for ecological interactions, which might largely affect
 species distribution [@AbregoAccSpe; @Afkhami2014MutEff; @Araujo2014ImpBio;
-@Godsoe2017IntBio; @Godsoe2012HowSpe]. Some researchers argue that occurrence
+@Godsoe2017IntBio; @Godsoe2012HowSpe; @Gotelli2010MacSig]. Some researchers argue that occurrence
 data can also capture real-time interactions [@Roy2016FocPla; @Ryan2018RolCit],
 and, because of that, it would not be necessary to include ecological
 interaction dynamics in macroecological models. On the other hand, many
 mechanistic simulation models in ecology have considered the effect of
-competition and facilitation in range shifts, whilst the use of trophic
+competition and facilitation in range shifts. For example, Gotelli _et al._
+-[@Gotelli2010MacSig] demonstrate how conspecific attraction might be the main
+factor driving the distribution of migratory birds; Afkhami _et al._
+-[@Afkhami2014MutEff] explores how mutualistic fungal endophytes are responsible
+or expanding the range of native grass. <!---add more examples---> Yet, the use of trophic
 interactions in this context remains insufficient [@Cabral2017MecSim]. 
 
 A significant challenge in this debate is the quality and quantity of species
