@@ -256,7 +256,7 @@ extreme case (where all its range is suppressed by the absence of preys) and it
 would make the interpretation of the data more
 difficult.](figures/beta-div_pred-species.png){#fig:geo_diss} 
 
-There was high variation in the overlap of predator and prey ranges
+There was a high variation in the overlap of predator and prey ranges
 (@fig:geo_diss). The high density of points on the left-hand side of @fig:geo_diss
 indicates that most preys have small ranges in comparison to those of the set of
 carnivores in the networks, resulting in either low overlap between both ranges
@@ -357,9 +357,9 @@ represent ecological processes or a lack of data.
 
 ## Connectivity, diversity and range preservation
 
-In the Serengeti food web there is a positive relationship between the out
+In the Serengeti food web, there is a positive relationship between the out
 degrees of predators and the size of their ranges. In
-addition, our results show that there is a negative relationship between the
+addition, there is a negative relationship between the
 relative loss of predators' ranges and their number of preys,
 reinforcing the idea that generalist species can preserve their distributions
 longer while losing interactions. The factors limiting the geographical range of
@@ -439,11 +439,11 @@ be crucial in ecological modelling [@Hortal2008UncMea; @Ladle2013MapSpe], and
 accounting for these errors can improve model outputs by diminishing the error
 propagation [@Draper1995AssPro]. For instance, we believe this is a way to
 account for ecological interactions in habitat suitability models without making
-the models more complex, but making sure (not assuming) that the input data -
+the models more complex, but by making sure (not assuming) that the input data -
 the species occurrence - actually accounts for ecological interactions. It is
 important to notice, however, that the quality and usefulness of this method are
 highly correlated with the amount and quality of data available about species'
-occurrences **and** interactions. With this paper we hope to add to the
+occurrences **and** interactions. With this paper, we hope to add to the
 collective effort to decode the encrypted message that is the occurrence of a
 species in space and time. A promising avenue that adds to our method is the
 prediction of networks and interactions in large scales [@Strydom2021RoaPre],
