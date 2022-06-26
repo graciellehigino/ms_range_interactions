@@ -22,7 +22,7 @@ species, so agreements and mismatches can emerge. Although previous studies have
 combined different types of occurrence data to measure the accuracy of datasets
 [@Hurlbert2007SpeRic; @Hurlbert2005DisRan; @Ficetola2014EvaRob], none have used
 different types of information so far (i.e., ecological characteristics other
-than geographical distribution). Here we suggest jointly analyzing species
+than geographical distribution). Here we suggest jointly analysing species
 occurrence (range maps and point occurrences) and ecological interactions to
 identify mismatches between datasets.  
 
@@ -38,7 +38,7 @@ these models do not account for ecological interactions, although it has been de
 affect species distribution [@Abrego2021AccSpe; @Afkhami2014MutEff;
 @Araujo2014ImpBio; @Godsoe2017IntBio; @Godsoe2012HowSpe; @Gotelli2010MacSig;
 Wisz2013RolBio]. Some researchers argue that occurrence data can also capture
-real-time interactions [@Roy2016FocPla; @Ryan2018RolCit], and, because of that,
+real-time interactions [see @Roy2016FocPla; @Ryan2018RolCit], and, because of that,
 it would not be necessary to include ecological interaction dynamics in
 macroecological models. On the other hand, many mechanistic simulation models in
 ecology have considered the effect of competition and facilitation in range
@@ -273,7 +273,7 @@ points along the x-axis, yet more restricted variation on the y-axis
 (@fig:geo_diss). There was also no overall relationship between the two metrics,
 or for any predator species.
 
-: List of species analyzed, their out and in degrees, total original range size
+: List of species analysed, their out and in degrees, total original range size
 (in pixels), and proportion of their ranges occupied by their preys and predators
 (values between 0 and 1). Species are sorted according to the groups identified
 by @Baskerville2011SpaGui. Notice how some species are isolated in the network
