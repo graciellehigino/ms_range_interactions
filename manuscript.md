@@ -108,19 +108,22 @@ Organisms cannot persist unless they are directly or indirectly connected to a
 primary producer within their associated food web [@Power1992TopBot]. Therefore,
 the range of a predator (omnivore or carnivore) depends on the overlapping
 ranges of its preys. If sections of a predator's range does not overlap with at
-least one of its prey it will become disconnected from primary producers, and 
-therefore we would not expect the predator to occur in this area. This mismatch can
-be the result of different mechanisms, like the overestimation of the predator's
-range, taxonomic errors, or the lack of information about trophic links. Thus,
-given that herbivores are the main connection between plant resources (directly
-limited by environmental conditions) and predators [@Dobson2009FooStr;
-@Scott2018RolHer], here we adjusted the ranges of predators based on a simple 
+least one of its prey it will become disconnected from primary producers, and
+therefore we would not expect the predator to occur in this area. This mismatch
+can be the result of different mechanisms, like the overestimation of the
+predator's range [@Ladle2013MapSpe; Rondinini2006TraDif], taxonomic errors
+[@Isaac2004TaxInf; @Ladle2013MapSpe], or the lack of information about trophic
+links (i.e., the lack of connection between the ranges of a predator and a
+primary producer may be due a third species we don't know is connected to both).
+Thus, given that herbivores are the main connection between plant resources
+(directly limited by environmental conditions) and predators [@Dobson2009FooStr;
+@Scott2018RolHer], here we adjusted the ranges of predators based on a simple
 rule: we removed any part of a predator’s range that did not intersect with the
-range of at least one prey herbivore species. So, unless the range of the predator
-overlapped with at least one prey item, which in turn is directly connected to a
-primary producer (plants), we removed that section of the predator’s range. Finally,
-we calculated the difference in range size between the original IUCN ranges and 
-those adjusted based on species interaction data.
+range of at least one prey herbivore species. So, unless the range of the
+predator overlapped with at least one prey item, which in turn is directly
+connected to a primary producer (plants), we removed that section of the
+predator’s range. Finally, we calculated the difference in range size between
+the original IUCN ranges and those adjusted based on species interaction data.
 
 ## Data 
 
