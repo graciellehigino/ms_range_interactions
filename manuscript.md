@@ -58,7 +58,7 @@ macroecological research [@Hortal2008HisBia]. Amongst the geographical data
 available are the range maps provided by the International Union for the
 Conservation of Nature (IUCN). Such maps consist of simplified polygons, often
 created as alpha or convex hulls around known species locations, refined by
-expert knowledge about the species [@IUCNSSCRedListTechnicalWorkingGroup2021MapSta].
+expert knowledge about the species [@IUCN2019MapSta].
 These maps can be used in macroecological inferences in the lack of more precise
 information [@Fourcade2016ComSpe; @Alhajeri2019HigCor], but it has been
 recommended that they are used with caution since they tend to underestimate the
