@@ -35,7 +35,7 @@ frequent debate in ecology [@Blanchet2020CooNot; Wisz2013RolBio]. For instance,
 macroecological models are often used with point or range occurrence data in
 order to investigate the dynamics of a species with its environment. However,
 these models do not account for ecological interactions, which might largely
-affect species distribution [@AbregoAccSpe; @Afkhami2014MutEff;
+affect species distribution [@Abrego2021AccSpe; @Afkhami2014MutEff;
 @Araujo2014ImpBio; @Godsoe2017IntBio; @Godsoe2012HowSpe; @Gotelli2010MacSig;
 Wisz2013RolBio]. Some researchers argue that occurrence data can also capture
 real-time interactions [@Roy2016FocPla; @Ryan2018RolCit], and, because of that,
