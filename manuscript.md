@@ -49,7 +49,7 @@ fungal endophytes are responsible or expanding the range of native grass; many
 other examples are discussed in Wisz _et al._ -[@Wisz2013RolBio]. Although
 interactions across trophic levels are demonstrated to determine species range
 [@Wisz2013RolBio], the use of these interactions in mechanistic simulation
-models in macroecology remains insufficient [@Cabral2017MecSim]. 
+models in macroecology remains insufficient [as discussed in @Cabral2017MecSim]. 
 
 A significant challenge in this debate is the quality and quantity of species
 distribution and ecological data [@Boakes2010DisVie; @Ronquillo2020AssSpa;
