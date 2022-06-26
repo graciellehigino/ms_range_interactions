@@ -17,33 +17,36 @@ geographic inaccuracy, or sampling biases [@Ladle2013MapSpe; @Hortal2015SevSho;
 to combine many different pieces of information about the occurrence of a
 species, so agreements and mismatches can emerge. Although previous studies have
 combined different types of occurrence data to measure the accuracy of datasets
-[@Hurlbert2007SpeRic; @Hurlbert2005DisRan;
-@Ficetola2014EvaRob], none have used different types of information so far (i.e., ecological
-characteristics other than geographical distribution). Here we suggest jointly
-analyzing species occurrence (range maps and point occurrences) and ecological
-interactions to identify mismatches between datasets.  
+[@Hurlbert2007SpeRic; @Hurlbert2005DisRan; @Ficetola2014EvaRob], none have used
+different types of information so far (i.e., ecological characteristics other
+than geographical distribution). Here we suggest jointly analyzing species
+occurrence (range maps and point occurrences) and ecological interactions to
+identify mismatches between datasets.  
 
 Interactions form complex networks that shape ecological structures and maintain
 the essential functions of ecosystems, such as seed dispersal, pollination, and
 biological control [@Albrecht2018PlaAni; @Fricke2022EffDef] that ultimately
 affect the composition, richness, and successional patterns of communities
 across biomes. Yet, the connection between occurrence and interaction data is a
-frequent debate in ecology [@Blanchet2020CooNot]. For instance, macroecological
-models are often used with point or range occurrence data in order to
-investigate the dynamics of a species with its environment. However, these
-models do not account for ecological interactions, which might largely affect
-species distribution [@AbregoAccSpe; @Afkhami2014MutEff; @Araujo2014ImpBio;
-@Godsoe2017IntBio; @Godsoe2012HowSpe; @Gotelli2010MacSig]. Some researchers argue that occurrence
-data can also capture real-time interactions [@Roy2016FocPla; @Ryan2018RolCit],
-and, because of that, it would not be necessary to include ecological
-interaction dynamics in macroecological models. On the other hand, many
-mechanistic simulation models in ecology have considered the effect of
-competition and facilitation in range shifts. For example, Gotelli _et al._
--[@Gotelli2010MacSig] demonstrate how conspecific attraction might be the main
-factor driving the distribution of migratory birds; Afkhami _et al._
--[@Afkhami2014MutEff] explores how mutualistic fungal endophytes are responsible
-or expanding the range of native grass. <!---add more examples---> Yet, the use of trophic
-interactions in this context remains insufficient [@Cabral2017MecSim]. 
+frequent debate in ecology [@Blanchet2020CooNot; Wisz2013RolBio]. For instance,
+macroecological models are often used with point or range occurrence data in
+order to investigate the dynamics of a species with its environment. However,
+these models do not account for ecological interactions, which might largely
+affect species distribution [@AbregoAccSpe; @Afkhami2014MutEff;
+@Araujo2014ImpBio; @Godsoe2017IntBio; @Godsoe2012HowSpe; @Gotelli2010MacSig;
+Wisz2013RolBio]. Some researchers argue that occurrence data can also capture
+real-time interactions [@Roy2016FocPla; @Ryan2018RolCit], and, because of that,
+it would not be necessary to include ecological interaction dynamics in
+macroecological models. On the other hand, many mechanistic simulation models in
+ecology have considered the effect of competition and facilitation in range
+shifts. For example, Gotelli _et al._ -[@Gotelli2010MacSig] demonstrate how
+conspecific attraction might be the main factor driving the distribution of
+migratory birds; Afkhami _et al._ -[@Afkhami2014MutEff] explores how mutualistic
+fungal endophytes are responsible or expanding the range of native grass; many
+other examples are discussed in Wisz _et al._ -[@Wisz2013RolBio]. Although
+interactions across trophic levels are demonstrated to determine species range
+[@Wisz2013RolBio], the use of these interactions in mechanistic simulation
+models in macroecology remains insufficient [@Cabral2017MecSim]. 
 
 A significant challenge in this debate is the quality and quantity of species
 distribution and ecological data [@Boakes2010DisVie; @Ronquillo2020AssSpa;
