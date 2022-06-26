@@ -34,7 +34,7 @@ across biomes. Yet, the connection between occurrence and interaction data is a
 frequent debate in ecology [@Blanchet2020CooNot; Wisz2013RolBio]. For instance,
 macroecological models are often used with point or range occurrence data in
 order to investigate the dynamics of a species with its environment. However,
-these models do not account for ecological interactions, which might largely
+these models do not account for ecological interactions, although it has been demonstrated that they might largely
 affect species distribution [@Abrego2021AccSpe; @Afkhami2014MutEff;
 @Araujo2014ImpBio; @Godsoe2017IntBio; @Godsoe2012HowSpe; @Gotelli2010MacSig;
 Wisz2013RolBio]. Some researchers argue that occurrence data can also capture
