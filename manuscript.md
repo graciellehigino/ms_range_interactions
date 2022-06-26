@@ -11,9 +11,12 @@ other species (some of which we may not even know exist). Ecologists have been
 trying to decode this message with progressively more powerful tools, from their
 field notes to highly complex computational algorithms. However, to succeed
 in this challenge it is important to have the right clues in hand. There are
-many ways we can be misled by data - or the lack of it: taxonomic errors,
-geographic inaccuracy, or sampling biases [@Ladle2013MapSpe; @Hortal2015SevSho;
-@Poisot2021GloKno]. One way to identify - and potentially fix - these errors is
+many ways we can be misled by data - or the lack of it: taxonomic errors (e.g.,
+due to updates in the taxonomy of a species), geographic inaccuracy (e.g.,
+approximate coordinates or lack of documentation about their accuracy), or
+sampling biases (e.g. data clustered near roads or research centers)
+[@Ladle2013MapSpe; @Hortal2015SevSho; @Poisot2021GloKno]. One way to identify -
+and potentially fix - these errors is
 to combine many different pieces of information about the occurrence of a
 species, so agreements and mismatches can emerge. Although previous studies have
 combined different types of occurrence data to measure the accuracy of datasets
@@ -347,10 +350,7 @@ within food webs) are used to refine species range maps, there are significant
 reductions in the IUCN range size of predatory organisms. Despite showing the
 potential importance of accounting for species interactions when estimating the
 range of a species, it remains unclear the extent to which the patterns observed
-represent ecological processes or a lack of data. In the following sections, we
-discuss the implications of our findings, in terms of species range maps,
-interaction data, and the next steps required to enhance understanding of species
-distributions using information on ecological networks.
+represent ecological processes or a lack of data.
 
 ## Connectivity, diversity and range preservation
 
