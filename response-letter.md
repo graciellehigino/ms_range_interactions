@@ -53,7 +53,7 @@ described below:
    misestimation of both species in a trophic interaction. We have also added
    citations and examples.
 - We have addressed the grammatical suggestions throughout the text, except for
-  the legend of figure 5. We thought that the suggested phrasing adds a little
+  the legend of figure 1. We thought that the suggested phrasing adds a little
   bit of confusion to the comprehension of the figure.
 
 We hope our revised manuscript is now more appropriate for publishing at PeerJ.
