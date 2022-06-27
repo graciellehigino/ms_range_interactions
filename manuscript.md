@@ -110,8 +110,7 @@ the range of a predator (omnivore or carnivore) depends on the overlapping
 ranges of its preys. If sections of a predator's range does not overlap with at
 least one of its prey it will become disconnected from primary producers, and
 therefore we would not expect the predator to occur in this area. This mismatch
-can be the result of different mechanisms, like the overestimation of the
-predator's range [@Ladle2013MapSpe; Rondinini2006TraDif], taxonomic errors
+can be the result of different mechanisms, like the misestimation of both the predator's and the preys' ranges [@Ladle2013MapSpe; Rondinini2006TraDif], taxonomic errors
 [@Isaac2004TaxInf; @Ladle2013MapSpe], or the lack of information about trophic
 links (i.e., the lack of connection between the ranges of a predator and a
 primary producer may be due a third species we don't know is connected to both).
