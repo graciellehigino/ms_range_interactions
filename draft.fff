@@ -72,6 +72,6 @@ resolution of 10 arc-minutes.}\label{fig:gbif}
 prey. The left panel shows the reduction of serval's range when we
 consider the IUCN data on its prey. On the right panel, we added GBIF
 data on both serval and its prey, with a buffer for the prey to account
-on species mobility.}\label{fig:serval}
+for species mobility.}\label{fig:serval}
 }
 \end{figure}
