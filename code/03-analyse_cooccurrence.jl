@@ -1,4 +1,3 @@
-include("01-load_rasters.jl")
 include("02-get_networks.jl")
 
 using Combinatorics
@@ -9,10 +8,10 @@ mammals = readlines(joinpath("data", "clean", "mammals.csv"))
 # Subset subnetwork using this list of mammals
 MM = MM[mammals]
 
-### Table of spatial overlap for interacting species 
+### Table of spatial overlap for interacting species
 
 # Number of interactions between mammals in the metaweb
-L = links(MM) 
+L = links(MM)
 
 # Lists of predators and preys
 preds = [interactions(MM)[i].from for i in 1:L]
@@ -31,7 +30,7 @@ rename!(cooccurrence_interact, [:spA, :spB, :nbA, :nbB, :nbAB])
 cooccurrence_interact.spA = preds
 cooccurrence_interact.spB = preys
 
-# Count the number of pixels unique to one of the two species 
+# Count the number of pixels unique to one of the two species
 function count_unique(A::String, B::String)
     AA = names_df[!, A]
     BB = names_df[!, B]
@@ -43,7 +42,7 @@ end
 cooccurrence_interact.nbA = count_unique.(preds, preys)
 cooccurrence_interact.nbB = count_unique.(preys, preds)
 
-# Count the number of pixels where both species cooccurre 
+# Count the number of pixels where both species cooccurre
 function count_cooccurrence(A::String, B::String)
     AA = names_df[!, A]
     BB = names_df[!, B]
@@ -55,7 +54,7 @@ end
 cooccurrence_interact.nbAB = count_cooccurrence.(preds, preys)
 
 
-### Table of spatial overlap for non-interacting species 
+### Table of spatial overlap for non-interacting species
 
 # All combinations of species names
 mammals_comb = collect(combinations(mammals,2))
@@ -82,8 +81,8 @@ spB = spB[.!A_B_interact]
 # DataFrame of co-occurrence data for non-interacting species
 # spA: Name of one species
 # spB: Name of the other species (there is no ecological difference between species A and B)
-# nbA: Number of pixels with species A only 
-# nbB: Number of pixels with species B only 
+# nbA: Number of pixels with species A only
+# nbB: Number of pixels with species B only
 # nbAB: Number of pixels with both species
 cooccurrence_nointeract = DataFrame(fill(0, (length(spA), 5)), :auto)
 rename!(cooccurrence_nointeract, [:spA, :spB, :nbA, :nbB, :nbAB])
@@ -96,17 +95,17 @@ cooccurrence_nointeract.nbB = count_unique.(spB, spA)
 cooccurrence_nointeract.nbAB = count_cooccurrence.(spA, spB)
 
 
-### Measures of beta-diversity 
+### Measures of beta-diversity
 
 cooccurrence_beta = copy(cooccurrence_interact)
 
-# Ruggiero beta-diversity calculations (draft) 
+# Ruggiero beta-diversity calculations (draft)
 function beta(A::String, B::String, fun)
-    
+
   nbA = count_unique(A, B)
   nbB = count_unique(B, A)
   nbAB = count_cooccurrence(A, B)
-    
+
   if fun == "pred-to-prey"
     Ab = nbAB / (nbAB + nbA)
     return Ab
@@ -115,7 +114,7 @@ function beta(A::String, B::String, fun)
     Bb = nbAB / (nbAB + nbB)
     return Bb
 
-    else 
+    else
     print("please select the direction of the calculation, either 'prey-to-pred' or 'pred-to-prey'") # can someone fix this so it doesn't print loads of them ;)
     end
 end
