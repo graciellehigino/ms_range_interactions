@@ -8,6 +8,6 @@ affiliations.json
 rasters/
 shapefiles/
 assets/
-data/clean/gbif-occurrences.jld2
+data/clean/gbif-occurrences*.jld2
 *.code-workspace
 .DS_Store

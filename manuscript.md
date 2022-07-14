@@ -356,9 +356,9 @@ represent ecological processes or a lack of data.
 
 ## Connectivity, diversity and range preservation
 
-In the Serengeti food web, there is a positive relationship between the out
+In the Serengeti food web there is a positive relationship between the out
 degrees of predators and the size of their ranges. In
-addition, there is a negative relationship between the
+addition, our results show that there is a negative relationship between the
 relative loss of predators' ranges and their number of preys,
 reinforcing the idea that generalist species can preserve their distributions
 longer while losing interactions. The factors limiting the geographical range of
@@ -398,14 +398,16 @@ indicates we don't have information about all its interactions. The combination
 of this rationale with our method of updating range maps based on ecological
 interactions allows us to have a clearer idea of which information we are
 missing. For example, the lion (*Panthera leo*) was one of the species with the
-smallest difference between the original and the updated ranges (@fig:degree),
-but 59.5% of the GBIF occurrences for this species fell outside the IUCN range. In this particular case, the IUCN maps seem to agree with species
+smallest difference between the original and the updated ranges,
+but 59.5% of the GBIF occurrences for this species fell outside the IUCN range
+(@fig:gbif). In this particular case, the IUCN maps seem to agree with species
 interaction data. However, the disagreement between the IUCN and the GBIF
 databases is concerning and suggests that the IUCN maps might underestimate the
 lion's distribution. On the other hand, *Leptailurus serval* and *Canis
 mesomelas* are two of the three species that lose the higher proportion of range
-due to the lack of paths to a herbivore (@fig:degree), but are also some of the
-species with the higher proportion of GBIF occurrences inside IUCN range maps. This indicates that the information we are missing for these two
+due to the lack of paths to a herbivore, but are also some of the
+species with the higher proportion of GBIF occurrences inside IUCN range maps
+(@fig:gbif). This indicates that the information we are missing for these two
 species is related to either the occurrence of an interaction or the presence of
 interacting species. To illustrate that, we mapped the GBIF data for the prey of
 *Leptailurus serval*, with a mobility buffer around each point ([@fig:serval]).
@@ -459,8 +461,9 @@ losing species [@Valiente-Banuet2015SpeLos].
 We acknowledge that this study was conducted on land within the traditional
 unceded territory of the Saint Lawrence Iroquoian, Anishinabewaki, Mohawk,
 Huron-Wendat, and Omàmiwininiwak nations. GH, FB, GD, and NF are funded by the
-NSERC BIOS$^2$ CREATE program; FB, NF, and TP are funded by IVADO; NF and TP are
-funded by a donation from the Courtois Foundation; GD is funded by the FRQNT
+NSERC Computational Biodiversity Science and Services (BIOS$^2$) CREATE program; 
+FB, NF, and TP are funded by the Institute for Data Valorization (IVADO); 
+NF and TP are funded by a donation from the Courtois Foundation; GD is funded by the FRQNT
 doctoral scholarship; TP is funded by the Canadian Institute of Ecology &
 Evolution; FW is funded by the Royal Society (Grant number: CHL\\R1\\180156). 
 

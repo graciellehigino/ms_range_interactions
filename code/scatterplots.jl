@@ -1,17 +1,20 @@
 using Base: get_preferences
 using Plots.PlotMeasures
 
-# Remove underscores 
+include("05-degrees.jl")
+include("07-GBIF_comparison.jl")
+
+# Remove underscores
 ranges_degrees_df.species = replace.(ranges_degrees_df.species, "_" => " ")
 ranges_degrees_df.spB = replace.(ranges_degrees_df.spB, "_" => " ")
 
 # Relationship between beta-diversities, colored by absolute loss of range
 scatter(
-    test_df.Rab,
-    test_df.Rbb;
+    ranges_degrees_df.Rab,
+    ranges_degrees_df.Rbb;
     xlabel="predator to prey beta diversity",
     ylabel="prey to predator beta diversity",
-    marker_z=test_df.δ,
+    marker_z=ranges_degrees_df.δ,
     markercolor=:sun,
     markerstrokewidth=0,
     size=(1000, 600),
@@ -224,7 +227,7 @@ scatter(
     left_margin=10mm,
     right_margin=15mm,
     top_margin=10mm,
-    bottom_margin=10mm, 
+    bottom_margin=10mm,
     size=(1000, 600),
     legend=:topright,
     foreground_color_legend=:lightgrey,
