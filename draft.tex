@@ -241,14 +241,21 @@ Ecologists have been trying to decode this message with progressively
 more powerful tools, from their field notes to highly complex
 computational algorithms. However, to succeed in this challenge it is
 important to have the right clues in hand. There are many ways we can be
-misled by data - or the lack of it: taxonomic errors, geographic
-inaccuracy, or sampling biases (Ladle and Hortal 2013; Hortal et al.
-2015; Poisot et al. 2021). One way to identify - and potentially fix -
-these errors is to combine many different pieces of information about
-the occurrence of a species, so agreements and mismatches can emerge.
-Here we suggest jointly analyzing species occurrence (range maps and
-point occurrences) and ecological interactions to identify mismatches
-between datasets.
+misled by data - or the lack of it: taxonomic errors (e.g., due to
+updates in the taxonomy of a species), geographic inaccuracy (e.g.,
+approximate coordinates or lack of documentation about their accuracy),
+or sampling biases (e.g.~data clustered near roads or research centers)
+(Ladle and Hortal 2013; Hortal et al. 2015; Poisot et al. 2021). One way
+to identify - and potentially fix - these errors is to combine many
+different pieces of information about the occurrence of a species, so
+agreements and mismatches can emerge. Although previous studies have
+combined different types of occurrence data to measure the accuracy of
+datasets (Hurlbert and Jetz 2007; Hurlbert and White 2005; Ficetola et
+al. 2014), none have used different types of information so far (i.e.,
+ecological characteristics other than geographical distribution). Here
+we suggest jointly analysing species occurrence (range maps and point
+occurrences) and ecological interactions to identify mismatches between
+datasets.
 
 Interactions form complex networks that shape ecological structures and
 maintain the essential functions of ecosystems, such as seed dispersal,
@@ -256,20 +263,30 @@ pollination, and biological control (Albrecht 2018; Fricke et al. 2022)
 that ultimately affect the composition, richness, and successional
 patterns of communities across biomes. Yet, the connection between
 occurrence and interaction data is a frequent debate in ecology
-(Blanchet, Cazelles, and Gravel 2020). For instance, macroecological
-models are often used with point or range occurrence data in order to
-investigate the dynamics of a species with its environment. However,
-these models do not account for ecological interactions, which might
-largely affect species distribution (Abrego et al., n.d.; Afkhami,
-McIntyre, and Strauss 2014; Araújo, Marcondes-Machado, and Costa 2014;
-Godsoe et al. 2017; Godsoe and Harmon 2012). Some researchers argue that
-occurrence data can also capture real-time interactions (Roy et al.
-2016; Ryan et al. 2018), and, because of that, it would not be necessary
-to include ecological interaction dynamics in macroecological models. On
-the other hand, many mechanistic simulation models in ecology have
-considered the effect of competition and facilitation in range shifts,
-whilst the use of trophic interactions in this context remains
-insufficient (Cabral, Valente, and Hartig 2017).
+{[}Blanchet, Cazelles, and Gravel (2020); Wisz2013RolBio{]}. For
+instance, macroecological models are often used with point or range
+occurrence data in order to investigate the dynamics of a species with
+its environment. However, these models do not account for ecological
+interactions, although it has been demonstrated that they might largely
+affect species distribution {[}Abrego et al. (2021); Afkhami, McIntyre,
+and Strauss (2014); Araújo, Marcondes-Machado, and Costa (2014); Godsoe
+et al. (2017); Godsoe and Harmon (2012); Gotelli, Graves, and Rahbek
+(2010); Wisz2013RolBio{]}. Some researchers argue that occurrence data
+can also capture real-time interactions (see Roy et al. 2016; Ryan et
+al. 2018), and, because of that, it would not be necessary to include
+ecological interaction dynamics in macroecological models. On the other
+hand, many mechanistic simulation models in ecology have considered the
+effect of competition and facilitation in range shifts. For example,
+Gotelli \emph{et al.} -(Gotelli, Graves, and Rahbek 2010) demonstrate
+how conspecific attraction might be the main factor driving the
+distribution of migratory birds; Afkhami \emph{et al.} -(Afkhami,
+McIntyre, and Strauss 2014) explores how mutualistic fungal endophytes
+are responsible or expanding the range of native grass; many other
+examples are discussed in Wisz \emph{et al.} -(Wisz et al. 2013).
+Although interactions across trophic levels are demonstrated to
+determine species range (Wisz et al. 2013), the use of these
+interactions in mechanistic simulation models in macroecology remains
+insufficient (as discussed in Cabral, Valente, and Hartig 2017).
 
 A significant challenge in this debate is the quality and quantity of
 species distribution and ecological data (Boakes et al. 2010; Ronquillo
@@ -279,19 +296,21 @@ Amongst the geographical data available are the range maps provided by
 the International Union for the Conservation of Nature (IUCN). Such maps
 consist of simplified polygons, often created as alpha or convex hulls
 around known species locations, refined by expert knowledge about the
-species (2021). These maps can be used in macroecological inferences in
-the lack of more precise information (Fourcade 2016; Alhajeri and
-Fourcade 2019), but it has been recommended that they are used with
-caution since they tend to underestimate the distribution of species
-that are not well-known (Herkt, Skidmore, and Fahr 2017), do not
-represent spatial variation in species occurrence and abundance (Dallas,
-Pironon, and Santini 2020), and can include inadequate areas within the
-estimated range. Another source of species distribution information is
-the Global Biodiversity Information Facility (GBIF), which is an online
-repository of georeferenced observational records that come from various
-sources, including community science programs, museum collections, and
-long-term monitoring schemes. A great source of bias in these datasets
-is the irregular sampling effort, with more occurrences originating from
+species (IUCN Red List Technical Working Group 2019). These maps can be
+used in macroecological inferences in the lack of more precise
+information (Fourcade 2016; Alhajeri and Fourcade 2019), but it has been
+recommended that they are used with caution since they tend to
+underestimate the distribution of species that are not well-known
+(Herkt, Skidmore, and Fahr 2017) (especially at fine scale resolutions;
+(Hurlbert and Jetz 2007; Hurlbert and White 2005)), do not represent
+spatial variation in species occurrence and abundance (Dallas, Pironon,
+and Santini 2020), and can include inadequate areas within the estimated
+range. Another source of species distribution information is the Global
+Biodiversity Information Facility (GBIF), which is an online repository
+of georeferenced observational records that come from various sources,
+including community science programs, museum collections, and long-term
+monitoring schemes. A great source of bias in these datasets is the
+irregular sampling effort, with more occurrences originating from
 attractive and accessible areas and observation of charismatic species
 (Alhajeri and Fourcade 2019). As for ecological data, a complete
 assessment is difficult and is aggravated by biased sampling methods and
@@ -304,16 +323,21 @@ opportunity to merge species distribution and ecological interaction
 data to improve our predictions of where a species may be found across
 large spatial scales (e.g., continental and global).
 
-In this context, we elaborate a method that allows us to refine
-distribution data (more precisely range maps) based on interaction data,
-considering the basic assumption that predators can only be present in
-regions where they are connected to at least one herbivore - and thus
-indirectly connected to primary producers. We used a Serengeti food web
-dataset (Baskerville et al. 2011) (which comprises carnivores,
-herbivores, and plants from Tanzania) to demonstrate how a mismatch
-between occurrence and interaction data can highlight significant
-uncertainty areas in IUCN range maps. Finally, we add the GBIF
-occurrence points for the Serengeti species to the investigation,
+It has been demonstrated that the agreement between range maps and point
+data varies geographically (Hurlbert and Jetz 2007; Hurlbert and White
+2005; Ficetola et al. 2014). Adding ecological interaction data to this
+comparison might help to elucidate where these (dis)agreements are more
+likely to be true and which dataset better represent the actual
+distribution of species. In this context, we elaborate a method that
+allows us to refine distribution data (more precisely range maps) based
+on interaction data, considering the basic assumption that predators can
+only be present in regions where they are connected to at least one
+herbivore - and thus indirectly connected to primary producers. We used
+a Serengeti food web dataset (Baskerville et al. 2011) (which comprises
+carnivores, herbivores, and plants from Tanzania) to demonstrate how a
+mismatch between occurrence and interaction data can highlight
+significant uncertainty areas in IUCN range maps. Finally, we add the
+GBIF occurrence points for the Serengeti species to the investigation,
 discuss the mechanisms that can lead to the lack of agreement between
 data, and build from that a vision for the next steps, reinforcing the
 importance of geographically explicit interaction data.
@@ -328,19 +352,22 @@ depends on the overlapping ranges of its preys. If sections of a
 predator's range does not overlap with at least one of its prey it will
 become disconnected from primary producers, and therefore we would not
 expect the predator to occur in this area. This mismatch can be the
-result of different mechanisms, like the overestimation of the
-predator's range, taxonomic errors, or the lack of information about
-trophic links. Thus, given that herbivores are the main connection
-between plant resources (directly limited by environmental conditions)
-and predators (Dobson 2009; Scott et al. 2018), here we adjusted the
-ranges of predators based on a simple rule: we removed any part of a
-predator's range that did not intersect with the range of at least one
-prey herbivore species. So, unless the range of the predator overlapped
-with at least one prey item, which in turn is directly connected to a
-primary producer (plants), we removed that section of the predator's
-range. Finally, we calculated the difference in range size between the
-original IUCN ranges and those adjusted based on species interaction
-data.
+result of different mechanisms, like the misestimation of both the
+predator's and the preys' ranges {[}Ladle and Hortal (2013);
+Rondinini2006TraDif{]}, taxonomic errors (Isaac, Mallet, and Mace 2004;
+Ladle and Hortal 2013), or the lack of information about trophic links
+(i.e., the lack of connection between the ranges of a predator and a
+primary producer may be due a third species we don't know is connected
+to both). Thus, given that herbivores are the main connection between
+plant resources (directly limited by environmental conditions) and
+predators (Dobson 2009; Scott et al. 2018), here we adjusted the ranges
+of predators based on a simple rule: we removed any part of a predator's
+range that did not intersect with the range of at least one prey
+herbivore species. So, unless the range of the predator overlapped with
+at least one prey item, which in turn is directly connected to a primary
+producer (plants), we removed that section of the predator's range.
+Finally, we calculated the difference in range size between the original
+IUCN ranges and those adjusted based on species interaction data.
 
 \hypertarget{data}{%
 \subsection{Data}\label{data}}
@@ -506,7 +533,7 @@ make the interpretation of the data more difficult.}\label{fig:geo_diss}
 }
 \end{figure}
 
-There was high variation in the overlap of predator and prey ranges
+There was a high variation in the overlap of predator and prey ranges
 (fig.~\ref{fig:geo_diss}). The high density of points on the left-hand
 side of fig.~\ref{fig:geo_diss} indicates that most preys have small
 ranges in comparison to those of the set of carnivores in the networks,
@@ -526,7 +553,7 @@ relationship between the two metrics, or for any predator species.
 
 \hypertarget{tbl:everyone}{}
 \begin{longtable}[]{@{}lrrrrr@{}}
-\caption{\label{tbl:everyone}List of species analyzed, their out and in
+\caption{\label{tbl:everyone}List of species analysed, their out and in
 degrees, total original range size (in pixels), and proportion of their
 ranges occupied by their preys and predators (values between 0 and 1).
 Species are sorted according to the groups identified by Baskerville et
@@ -1215,10 +1242,7 @@ there are significant reductions in the IUCN range size of predatory
 organisms. Despite showing the potential importance of accounting for
 species interactions when estimating the range of a species, it remains
 unclear the extent to which the patterns observed represent ecological
-processes or a lack of data. In the following sections, we discuss the
-implications of our findings, in terms of species range maps,
-interaction data, and the next steps required to enhance understanding
-of species distributions using information on ecological networks.
+processes or a lack of data.
 
 \hypertarget{connectivity-diversity-and-range-preservation}{%
 \subsection{Connectivity, diversity and range
@@ -1327,12 +1351,12 @@ questionable occurrence data are can be crucial in ecological modelling
 can improve model outputs by diminishing the error propagation (Draper
 1995). For instance, we believe this is a way to account for ecological
 interactions in habitat suitability models without making the models
-more complex, but making sure (not assuming) that the input data - the
-species occurrence - actually accounts for ecological interactions. It
-is important to notice, however, that the quality and usefulness of this
-method are highly correlated with the amount and quality of data
+more complex, but by making sure (not assuming) that the input data -
+the species occurrence - actually accounts for ecological interactions.
+It is important to notice, however, that the quality and usefulness of
+this method are highly correlated with the amount and quality of data
 available about species' occurrences \textbf{and} interactions. With
-this paper we hope to add to the collective effort to decode the
+this paper, we hope to add to the collective effort to decode the
 encrypted message that is the occurrence of a species in space and time.
 A promising avenue that adds to our method is the prediction of networks
 and interactions in large scales (Strydom et al. 2021), for they can add
@@ -1363,12 +1387,13 @@ CHL\textbackslash R1\textbackslash180156).
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
-\leavevmode\hypertarget{ref-AbregoAccSpe}{}%
+\leavevmode\hypertarget{ref-Abrego2021AccSpe}{}%
 Abrego, Nerea, Tomas Roslin, Tea Huotari, Yinqiu Ji, Niels Martin
-Schmidt, Jiaxin Wang, Douglas W. Yu, and Otso Ovaskainen. n.d.
+Schmidt, Jiaxin Wang, Douglas W. Yu, and Otso Ovaskainen. 2021.
 {``Accounting for Species Interactions Is Necessary for Predicting How
 Arctic Arthropod Communities Respond to Climate Change.''}
-\emph{Ecography} n/a (n/a). \url{https://doi.org/10.1111/ecog.05547}.
+\emph{Ecography} 44 (6): 885--96.
+\url{https://doi.org/10.1111/ecog.05547}.
 
 \leavevmode\hypertarget{ref-Afkhami2014MutEff}{}%
 Afkhami, Michelle E., Patrick J. McIntyre, and Sharon Y. Strauss. 2014.
@@ -1486,6 +1511,13 @@ Draper, D. 1995. {``Assessment and Propagation of Model Uncertainty.''}
 Methodology} 57 (1): 45--97.
 \url{https://doi.org/10.1111/j.2517-6161.1995.tb02015.x}.
 
+\leavevmode\hypertarget{ref-Ficetola2014EvaRob}{}%
+Ficetola, Gentile Francesco, Carlo Rondinini, Anna Bonardi, Vineet
+Katariya, Emilio Padoa-Schioppa, and Ariadne Angulo. 2014. {``An
+Evaluation of the Robustness of Global Amphibian Range Maps.''}
+\emph{Journal of Biogeography} 41 (2): 211--21.
+\url{https://doi.org/10.1111/jbi.12206}.
+
 \leavevmode\hypertarget{ref-Fourcade2016ComSpe}{}%
 Fourcade, Yoan. 2016. {``Comparing Species Distributions Modelled from
 Occurrence Data and from Expert-Based Range Maps. Implication for
@@ -1509,6 +1541,12 @@ Godsoe, William, Jill Jankowski, Robert D. Holt, and Dominique Gravel.
 2017. {``Integrating Biogeography with Contemporary Niche Theory.''}
 \emph{Trends in Ecology and Evolution} 32 (7): 488--99.
 \url{https://doi.org/10.1016/j.tree.2017.03.008}.
+
+\leavevmode\hypertarget{ref-Gotelli2010MacSig}{}%
+Gotelli, Nicholas J., Gary R. Graves, and Carsten Rahbek. 2010.
+{``Macroecological Signals of Species Interactions in the Danish
+Avifauna.''} \emph{Proceedings of the National Academy of Sciences} 107
+(11): 5030--35. \url{https://doi.org/10.1073/pnas.0914089107}.
 
 \leavevmode\hypertarget{ref-Herkt2017MacCon}{}%
 Herkt, K. Matthias B., Andrew K. Skidmore, and Jakob Fahr. 2017.
@@ -1535,9 +1573,28 @@ Affects the Observed Environmental Niche of the Species.''} \emph{Oikos}
 117 (6): 847--58.
 \url{https://doi.org/10.1111/j.0030-1299.2008.16434.x}.
 
-\leavevmode\hypertarget{ref-IUCNSSCRedListTechnicalWorkingGroup2021MapSta}{}%
-IUCN SSC Red List Technical Working Group. 2021. \emph{Mapping Standards
-and Data Quality for IUCN Red List Spatial Data}.
+\leavevmode\hypertarget{ref-Hurlbert2007SpeRic}{}%
+Hurlbert, Allen H., and Walter Jetz. 2007. {``Species Richness,
+Hotspots, and the Scale Dependence of Range Maps in Ecology and
+Conservation.''} \emph{Proceedings of the National Academy of Sciences}
+104 (33): 13384--89. \url{https://doi.org/10.1073/pnas.0704469104}.
+
+\leavevmode\hypertarget{ref-Hurlbert2005DisRan}{}%
+Hurlbert, Allen H., and Ethan P. White. 2005. {``Disparity Between Range
+Map- and Survey-Based Analyses of Species Richness: Patterns, Processes
+and Implications.''} \emph{Ecology Letters} 8 (3): 319--27.
+\url{https://doi.org/10.1111/j.1461-0248.2005.00726.x}.
+
+\leavevmode\hypertarget{ref-Isaac2004TaxInf}{}%
+Isaac, Nick J. B., James Mallet, and Georgina M. Mace. 2004.
+{``Taxonomic Inflation: Its Influence on Macroecology and
+Conservation.''} \emph{Trends in Ecology \& Evolution} 19 (9): 464--69.
+\url{https://doi.org/10.1016/j.tree.2004.06.004}.
+
+\leavevmode\hypertarget{ref-IUCN2019MapSta}{}%
+IUCN Red List Technical Working Group. 2019. {``Mapping Standards and
+Data Quality for IUCN Red List Spatial Data.''} Prepared by the
+Standards and Petitions Working Group of the IUCN SSC Red \ldots.
 
 \leavevmode\hypertarget{ref-Krofel2021ResTax}{}%
 Krofel, M., J. Hatlauf, W. Bogdanowicz, L. a. D. Campbell, R. Godinho,
@@ -1663,6 +1720,15 @@ Arroyo, Andrea Cocucci, Mauro Galetti, María B. García, et al. 2015.
 {``Beyond Species Loss: The Extinction of Ecological Interactions in a
 Changing World.''} Edited by Marc Johnson. \emph{Functional Ecology} 29
 (3): 299--307. \url{https://doi.org/10.1111/1365-2435.12356}.
+
+\leavevmode\hypertarget{ref-Wisz2013RolBio}{}%
+Wisz, Mary Susanne, Julien Pottier, W Daniel Kissling, Loïc Pellissier,
+Jonathan Lenoir, Christian F Damgaard, Carsten F Dormann, et al. 2013.
+{``The Role of Biotic Interactions in Shaping Distributions and Realised
+Assemblages of Species: Implications for Species Distribution
+Modelling.''} \emph{Biological Reviews of the Cambridge Philosophical
+Society} 88 (1): 15--30.
+\url{https://doi.org/10.1111/j.1469-185X.2012.00235.x}.
 
 \leavevmode\hypertarget{ref-Young2013EffMam}{}%
 Young, Hillary S., Douglas J. McCauley, Kristofer M. Helgen, Jacob R.

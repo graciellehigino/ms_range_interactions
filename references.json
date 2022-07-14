@@ -36,11 +36,19 @@
             }
         ],
         "container-title": "Ecography",
-        "id": "AbregoAccSpe",
-        "issue": "n/a",
+        "id": "Abrego2021AccSpe",
+        "issue": "6",
+        "issued": {
+            "date-parts": [
+                [
+                    2021
+                ]
+            ]
+        },
+        "page": "885-896",
         "title": "Accounting for species interactions is necessary for predicting how arctic arthropod communities respond to climate change",
         "type": "article-journal",
-        "volume": "n/a"
+        "volume": "44"
     },
     {
         "DOI": "10.1111/1365-2656.13273",
@@ -813,6 +821,49 @@
         "type": "article-journal"
     },
     {
+        "DOI": "10.1111/jbi.12206",
+        "author": [
+            {
+                "family": "Ficetola",
+                "given": "Gentile Francesco"
+            },
+            {
+                "family": "Rondinini",
+                "given": "Carlo"
+            },
+            {
+                "family": "Bonardi",
+                "given": "Anna"
+            },
+            {
+                "family": "Katariya",
+                "given": "Vineet"
+            },
+            {
+                "family": "Padoa-Schioppa",
+                "given": "Emilio"
+            },
+            {
+                "family": "Angulo",
+                "given": "Ariadne"
+            }
+        ],
+        "container-title": "Journal of Biogeography",
+        "id": "Ficetola2014EvaRob",
+        "issue": "2",
+        "issued": {
+            "date-parts": [
+                [
+                    2014
+                ]
+            ]
+        },
+        "page": "211-221",
+        "title": "An evaluation of the robustness of global amphibian range maps",
+        "type": "article-journal",
+        "volume": "41"
+    },
+    {
         "DOI": "10.1073/pnas.1423042112",
         "author": [
             {
@@ -1123,6 +1174,37 @@
         "volume": "32"
     },
     {
+        "DOI": "10.1073/pnas.0914089107",
+        "author": [
+            {
+                "family": "Gotelli",
+                "given": "Nicholas J."
+            },
+            {
+                "family": "Graves",
+                "given": "Gary R."
+            },
+            {
+                "family": "Rahbek",
+                "given": "Carsten"
+            }
+        ],
+        "container-title": "Proceedings of the National Academy of Sciences",
+        "id": "Gotelli2010MacSig",
+        "issue": "11",
+        "issued": {
+            "date-parts": [
+                [
+                    2010
+                ]
+            ]
+        },
+        "page": "5030-5035",
+        "title": "Macroecological signals of species interactions in the Danish avifauna",
+        "type": "article-journal",
+        "volume": "107"
+    },
+    {
         "DOI": "10.1111/j.1461-0248.2010.01548.x",
         "author": [
             {
@@ -1331,21 +1413,107 @@
         "volume": "46"
     },
     {
+        "DOI": "10.1111/j.1461-0248.2005.00726.x",
         "author": [
             {
-                "given": "IUCN SSC Red List Technical Working Group"
+                "family": "Hurlbert",
+                "given": "Allen H."
+            },
+            {
+                "family": "White",
+                "given": "Ethan P."
             }
         ],
-        "id": "IUCNSSCRedListTechnicalWorkingGroup2021MapSta",
+        "container-title": "Ecology Letters",
+        "id": "Hurlbert2005DisRan",
+        "issue": "3",
         "issued": {
             "date-parts": [
                 [
-                    2021
+                    2005
                 ]
             ]
         },
-        "title": "Mapping Standards and Data Quality for IUCN Red List Spatial Data",
-        "type": "book"
+        "page": "319-327",
+        "title": "Disparity between range map- and survey-based analyses of species richness: Patterns, processes and implications",
+        "type": "article-journal",
+        "volume": "8"
+    },
+    {
+        "DOI": "10.1073/pnas.0704469104",
+        "author": [
+            {
+                "family": "Hurlbert",
+                "given": "Allen H."
+            },
+            {
+                "family": "Jetz",
+                "given": "Walter"
+            }
+        ],
+        "container-title": "Proceedings of the National Academy of Sciences",
+        "id": "Hurlbert2007SpeRic",
+        "issue": "33",
+        "issued": {
+            "date-parts": [
+                [
+                    2007
+                ]
+            ]
+        },
+        "page": "13384-13389",
+        "title": "Species richness, hotspots, and the scale dependence of range maps in ecology and conservation",
+        "type": "article-journal",
+        "volume": "104"
+    },
+    {
+        "DOI": "10.1016/j.tree.2004.06.004",
+        "author": [
+            {
+                "family": "Isaac",
+                "given": "Nick J. B."
+            },
+            {
+                "family": "Mallet",
+                "given": "James"
+            },
+            {
+                "family": "Mace",
+                "given": "Georgina M."
+            }
+        ],
+        "container-title": "Trends in Ecology & Evolution",
+        "id": "Isaac2004TaxInf",
+        "issue": "9",
+        "issued": {
+            "date-parts": [
+                [
+                    2004
+                ]
+            ]
+        },
+        "page": "464-469",
+        "title": "Taxonomic inflation: Its influence on macroecology and conservation",
+        "type": "article-journal",
+        "volume": "19"
+    },
+    {
+        "author": [
+            {
+                "literal": "IUCN Red List Technical Working Group"
+            }
+        ],
+        "id": "IUCN2019MapSta",
+        "issued": {
+            "date-parts": [
+                [
+                    2019
+                ]
+            ]
+        },
+        "publisher": "Prepared by the Standards and Petitions Working Group of the IUCN SSC Red \u2026",
+        "title": "Mapping standards and data quality for IUCN Red List spatial data",
+        "type": ""
     },
     {
         "DOI": "10.1111/1365-2435.12763",
@@ -2118,6 +2286,45 @@
         "title": "Topological plasticity increases robustness of mutualistic networks",
         "type": "article-journal",
         "volume": "81"
+    },
+    {
+        "DOI": "10.1111/j.1461-0248.2006.00970.x",
+        "author": [
+            {
+                "family": "Rondinini",
+                "given": "Carlo"
+            },
+            {
+                "family": "Wilson",
+                "given": "Kerrie A."
+            },
+            {
+                "family": "Boitani",
+                "given": "Luigi"
+            },
+            {
+                "family": "Grantham",
+                "given": "Hedley"
+            },
+            {
+                "family": "Possingham",
+                "given": "Hugh P."
+            }
+        ],
+        "container-title": "Ecology Letters",
+        "id": "Rondinini2006TraDif",
+        "issue": "10",
+        "issued": {
+            "date-parts": [
+                [
+                    2006
+                ]
+            ]
+        },
+        "page": "1136-1145",
+        "title": "Tradeoffs of different types of species occurrence data for use in systematic conservation planning",
+        "type": "article-journal",
+        "volume": "9"
     },
     {
         "DOI": "10.3897/BDJ.8.e53474",
@@ -2994,6 +3201,122 @@
         "title": "Unlocking biodiversity data: Prioritization and filling the gaps in biodiversity observation data in Europe",
         "type": "article-journal",
         "volume": "221"
+    },
+    {
+        "DOI": "10.1111/j.1469-185X.2012.00235.x",
+        "PMCID": "PMC3561684",
+        "author": [
+            {
+                "family": "Wisz",
+                "given": "Mary Susanne"
+            },
+            {
+                "family": "Pottier",
+                "given": "Julien"
+            },
+            {
+                "family": "Kissling",
+                "given": "W Daniel"
+            },
+            {
+                "family": "Pellissier",
+                "given": "Lo\u00efc"
+            },
+            {
+                "family": "Lenoir",
+                "given": "Jonathan"
+            },
+            {
+                "family": "Damgaard",
+                "given": "Christian F"
+            },
+            {
+                "family": "Dormann",
+                "given": "Carsten F"
+            },
+            {
+                "family": "Forchhammer",
+                "given": "Mads C"
+            },
+            {
+                "family": "Grytnes",
+                "given": "John-Arvid"
+            },
+            {
+                "family": "Guisan",
+                "given": "Antoine"
+            },
+            {
+                "family": "Heikkinen",
+                "given": "Risto K"
+            },
+            {
+                "family": "H\u00f8ye",
+                "given": "Toke T"
+            },
+            {
+                "family": "K\u00fchn",
+                "given": "Ingolf"
+            },
+            {
+                "family": "Luoto",
+                "given": "Miska"
+            },
+            {
+                "family": "Maiorano",
+                "given": "Luigi"
+            },
+            {
+                "family": "Nilsson",
+                "given": "Marie-Charlotte"
+            },
+            {
+                "family": "Normand",
+                "given": "Signe"
+            },
+            {
+                "family": "\u00d6ckinger",
+                "given": "Erik"
+            },
+            {
+                "family": "Schmidt",
+                "given": "Niels M"
+            },
+            {
+                "family": "Termansen",
+                "given": "Mette"
+            },
+            {
+                "family": "Timmermann",
+                "given": "Allan"
+            },
+            {
+                "family": "Wardle",
+                "given": "David A"
+            },
+            {
+                "family": "Aastrup",
+                "given": "Peter"
+            },
+            {
+                "family": "Svenning",
+                "given": "Jens-Christian"
+            }
+        ],
+        "container-title": "Biological Reviews of the Cambridge Philosophical Society",
+        "id": "Wisz2013RolBio",
+        "issue": "1",
+        "issued": {
+            "date-parts": [
+                [
+                    2013
+                ]
+            ]
+        },
+        "page": "15-30",
+        "title": "The role of biotic interactions in shaping distributions and realised assemblages of species: Implications for species distribution modelling",
+        "type": "article-journal",
+        "volume": "88"
     },
     {
         "DOI": "10.1111/1365-2745.12096",
