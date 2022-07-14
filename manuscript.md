@@ -284,20 +284,15 @@ its preys. {#tbl:everyone}
 ## Validation with GBIF occurrences
 
 The proportion of GBIF pixels (pixels with at least one GBIF occurrence) falling
-in the IUCN ranges varied from low to high depending on the species
+within the IUCN ranges varied from low to high depending on the species
 ([@fig:gbif], left). The lowest proportions occurred for species with small
-ranges (such as *Lycaon pictus*), although some species with small ranges showed
-high overlap. Species with median and large ranges had high proportions of
-occurrences falling into their IUCN range. Predators and preys displayed similar
-overlap variations. While no species had all of its GBIF occurrences within its
-IUCN range, one species had this proportion equal to zero, _Canis aureus_, which
-is also the only species whose range is not covered by any of its preys. This
-result reinforces the concern raised in the literature on the use of IUCN range
-maps for species that are not well known [@Herkt2017MacCon], demonstrating how
-small range species are likely to have their distribution underestimated in the
-IUCN database. Additionally, the fact that _Canis aureus_ had none of its GBIF
-pixels overlapping with IUCN maps suggests a taxonomic mismatch between both
-databases, which we explore in the Discussion section. 
+ranges. Amongst herbivores, *Rhabdomys pumilio* has a proportion of 22.6% of its
+presence pixels within its IUCN range, while predators have this proportion
+above 55% (such as *Lycaon pictus*, with 55.1%, and *Canis aureus*, with 56.2%).
+Nevertheless, some species with smaller ranges showed high data overlap (such as
+*Canis mesomelas*, with 94.9%, and many herbivores). Overall, predators and
+preys displayed similar overlap variations, and species with median and large
+ranges had higher proportions of occurrences falling into their IUCN range. 
 
 The proportion of GBIF pixels in updated ranges can only be equal to or lower
 than that of the original ranges, as our analysis removes pixels from the
@@ -305,18 +300,28 @@ original range and does not add new ones. Rather, the absence of a difference
 between the two types of ranges indicates that no pixels with GBIF observations,
 hence likely true habitats, were removed by our analysis. Here this proportion
 was mostly similar to that of the original IUCN ranges for most predator species
-([@fig:gbif, right]). Four species showed no difference in proportion while
-three species showed only small differences (proportions of 0.01 to 0.05). On
-the other hand, two species, _Canis mesomelas_, and _Leptailurus serval_ showed
-very high differences, with overlaps lower by 0.548 and 0.871 respectively. For
-_Leptailurus serval_, none of the GBIF observations occurred in the updated
-range. These two species are also the only predators with a single prey in our
-metaweb. Our results delineate how a mismatch between GBIF and IUCN databases
-differ greatly with small changes in herbivore species ranges, and it is
-somewhat positively related to range size for predator species. Moreover, we
-show that accounting for interactions does not necessarily aggravates this
-dissimilarity, but it is relevant for species with little ecological information
-or specialists.
+([@fig:gbif, right]). Two species showed no difference in proportion while four
+species showed only small differences (*Crocuta crocuta* lost 1.3% of the
+original data overlap; *Acinonyx jubatus* lost 1.9%; *Panthera pardus* lost
+8.8%; and *Caracal caracal* lost 12.3%).
+<!--->Note to self: here I calculated how much the difference represents as a proportion of the total proportion, which means the decreased rate. E.g., when the range_prop_diff is equal to the original proportion (range_prop), this means that this species lost 100% of the original proportion. Therefore I can't use range_prop_diff numbers if I'm talking about % lost.<--->
+On the other hand, three species, *Canis aureus*, *Canis mesomelas*, and
+*Leptailurus serval* showed very high differences, with overlaps lowered by
+100%, 57.4%, and 100% respectively. These last two species are also the only
+predators with a single prey in our metaweb. *Canis aureus* has four preys, but
+it has one of the smallest ranges in IUCN, which is not covered by any of its
+preys. This result reinforces the concern raised in the literature on the use of
+IUCN range maps for species that are not well known [@Herkt2017MacCon],
+demonstrating how small range species are likely to have their distribution
+underestimated in the IUCN database. Additionally, the fact that _Canis aureus_
+had such a conspicuous mismatch between both the original and updated IUCN range
+maps, and between GBIF and IUCN data, may indicate a taxonomic incongruency
+between the three databases used here, which we explore in the Discussion section. Our results
+delineate how a mismatch between GBIF and IUCN databases differ greatly with
+small changes in herbivore species ranges, and it is somewhat positively related
+to range size for predator species. Moreover, we show that accounting for
+interactions does not necessarily aggravates this dissimilarity, but it is
+relevant for species with little ecological information or specialists.
 
 ![Left panel: Distribution of the proportion of GBIF pixels (pixels with at
 least one occurrence in GBIF) falling into the IUCN range for different range
@@ -339,10 +344,7 @@ _Canis_ species in our dataset would be the ones losing the least amount of
 range, with a higher value of the proportion of GBIF pixels within their IUCN range
 maps. However, the taxonomy of this group is a matter of intense discussion, as
 molecular and morphological data seem to disagree in the clustering of species
-and subspecies [@Krofel2021ResTax; @Stoyanov2020CraVar]. This debate is indeed
-reflected in our analysis: the GBIF identification of the golden jackal is
-incompatible with the one used by IUCN, each of them mapping its distribution in
-completely different places. This led to a complete exclusion of *Canis aureus*
+and subspecies [@Krofel2021ResTax; @Stoyanov2020CraVar]. This debate probably influenced our results: with originally only 56.2% of the GBIF pixels of the golden jackal (*Canis aureus*) overlapping with the IUCN data, we suspect that many of the GBIF occurrences refer to other *Canis* species, and that its taxonomic identification in the network database is probably outdated. This led to a complete exclusion of *Canis aureus*
 from its original range in our analysis, despite the fact that this species has
 four documented preys in our metaweb. This example illustrates how the
 taxonomic, geographical and ecological data can be used to validate one another. 
@@ -357,17 +359,16 @@ represent ecological processes or a lack of data.
 ## Connectivity, diversity and range preservation
 
 In the Serengeti food web there is a positive relationship between the out
-degrees of predators and the size of their ranges. In
-addition, our results show that there is a negative relationship between the
-relative loss of predators' ranges and their number of preys,
-reinforcing the idea that generalist species can preserve their distributions
-longer while losing interactions. The factors limiting the geographical range of
-a species in a community can vary with connectivity and richness
-[@Svenning2014InfInt]. Younger communities may be more affected by environmental
-limitations because they are dominated by generalist species, while older
-metacommunities are probably affected in different ways in the center of the
-distribution, at the edge of ranges, and in sink and source communities
-[@Svenning2014InfInt; @Godsoe2017IntBio; @Cazelles2016IntBio;
+degrees of predators and the size of their ranges. Here, we showed that there is
+a negative relationship between the relative loss of predators' ranges and their
+number of preys, reinforcing the idea that generalist species can preserve their
+distributions longer while losing interactions. The factors limiting the
+geographical range of a species in a community can vary with connectivity and
+richness [@Svenning2014InfInt]. Younger communities may be more affected by
+environmental limitations because they are dominated by generalist species,
+while older metacommunities are probably affected in different ways in the
+center of the distribution, at the edge of ranges, and in sink and source
+communities [@Svenning2014InfInt; @Godsoe2017IntBio; @Cazelles2016IntBio;
 @Bullock2000GeoSep]. Additionally, it is likely that species with larger ranges
 of distribution and those that are more generalists would co-occur with a
 greater number of other species [@Dattilo2020SpeDri], while dispersal capacity
@@ -391,15 +392,15 @@ occurrences, which helped us clarify what is the shortfall for each species.
 
 The lack of superposition between IUCN range maps and GBIF occurrences suggests
 that we certainly do miss geographical information about the distribution of a
-certain species, but it is not an indicator of the completeness of the
+certain species, but this is not an indicator of the completeness of the
 information about ecological interactions. However, if both GBIF and IUCN
 occurrences tend to superpose and still the species is locally removed, this
 indicates we don't have information about all its interactions. The combination
 of this rationale with our method of updating range maps based on ecological
 interactions allows us to have a clearer idea of which information we are
-missing. For example, the lion (*Panthera leo*) was one of the species with the
-smallest difference between the original and the updated ranges,
-but 59.5% of the GBIF occurrences for this species fell outside the IUCN range
+missing. For example, the lion (*Panthera leo*) was one of the species with no
+difference between the original and the updated ranges, but 40.7% of the GBIF
+occurrences for this species fell outside its IUCN range
 (@fig:gbif). In this particular case, the IUCN maps seem to agree with species
 interaction data. However, the disagreement between the IUCN and the GBIF
 databases is concerning and suggests that the IUCN maps might underestimate the
