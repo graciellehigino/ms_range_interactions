@@ -1,8 +1,10 @@
 # Load required scripts and packages
-include("01-load_rasters.jl") # range maps of Serengeti mammals 
+include("01-load_rasters.jl") # range maps of Serengeti mammals
 include("shapefile.jl") # mapping functions
 
+using CSV
 using GBIF
+using DataFramesMeta
 
 # Getting taxa codes
 sp_codes = taxon.(mammals, rank = :SPECIES)
@@ -17,7 +19,6 @@ occ = occurrences.(
     "hasCoordinate" => "true",
     "decimalLatitude" => lat,
     "decimalLongitude" => lon,
-    "continent" => "AFRICA"
 )
 ## Loop to get all occurrences
 Threads.@threads for o in occ
@@ -40,6 +41,9 @@ occ_df = DataFrame.(occ)
 occ_df = reduce(vcat, occ_df)
 select!(occ_df, :species, :longitude, :latitude)
 occ_df.species = replace.(occ_df.species, " " => "_")
+
+# Remove observations with coordinates around (0.0, 0.0) which are outside mainland
+filter!(x -> !(x.latitude > -2.0 && x.latitude < 2.0 && x.longitude > -2.0 && x.longitude < 2.0), occ_df)
 
 # Make sure the species names match
 isequal(unique(occ_df.species), mammals) # not the same
