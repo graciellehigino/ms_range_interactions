@@ -59,6 +59,21 @@ isequal(unique(occ_df.species), mammals) # true
 # Save as CSV
 CSV.write(joinpath("data", "clean", "gbif_occurrences.csv"), occ_df)
 
+## Investigate difference with original query with Africa as continent
+# Load datasets
+old = CSV.read(joinpath("data", "clean", "gbif_occurrences_old.csv"), DataFrame) # get from previous commit
+new = CSV.read(joinpath("data", "clean", "gbif_occurrences.csv"), DataFrame)
+
+# Compare number of observations per species
+_nold = combine(groupby(old, :species), nrow => :nrow_old)
+_nnew = combine(groupby(new, :species), nrow => :nrow_new)
+diff = @chain begin
+    leftjoin(_nold, _nnew, on = :species)
+    @transform(diff = :nrow_new .- :nrow_old)
+    sort(:diff, rev=true)
+end
+diff
+
 ## Create layers
 
 # Make sure GBIF records order is the same as in mammals CSV file
