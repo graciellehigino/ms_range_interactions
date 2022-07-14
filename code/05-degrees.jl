@@ -1,4 +1,4 @@
-include("02-get_networks.jl")
+include("04-ranges_diff.jl")
 
 ## Calculate the out degree of the organisms in the metaweb
 mammal_degree = degree(MM, dims = 1)
@@ -15,7 +15,7 @@ sp_outdegree_df = DataFrame(species = collect(keys(sp_outdegree)), n_preys = col
 sp_indegree = degree(M, dims=2);
 sp_indegree_df = DataFrame(species = collect(keys(sp_indegree)), n_predators = collect(values(sp_indegree)))
 
-# Total preys and predators 
+# Total preys and predators
 sp_degrees = leftjoin(sp_outdegree_df, sp_indegree_df, on=:species)
 
 ranges_degrees_df = copy(cooccurrence_beta)
