@@ -11,31 +11,45 @@ other species (some of which we may not even know exist). Ecologists have been
 trying to decode this message with progressively more powerful tools, from their
 field notes to highly complex computational algorithms. However, to succeed
 in this challenge it is important to have the right clues in hand. There are
-many ways we can be misled by data - or the lack of it: taxonomic errors,
-geographic inaccuracy, or sampling biases [@Ladle2013MapSpe; @Hortal2015SevSho;
-@Poisot2021GloKno]. One way to identify - and potentially fix - these errors is
+many ways we can be misled by data - or the lack of it: taxonomic errors (e.g.,
+due to updates in the taxonomy of a species), geographic inaccuracy (e.g.,
+approximate coordinates or lack of documentation about their accuracy), or
+sampling biases (e.g. data clustered near roads or research centers)
+[@Ladle2013MapSpe; @Hortal2015SevSho; @Poisot2021GloKno]. One way to identify -
+and potentially fix - these errors is
 to combine many different pieces of information about the occurrence of a
-species, so agreements and mismatches can emerge. Here we suggest jointly
-analyzing species occurrence (range maps and point occurrences) and ecological
-interactions to identify mismatches between datasets.  
+species, so agreements and mismatches can emerge. Although previous studies have
+combined different types of occurrence data to measure the accuracy of datasets
+[@Hurlbert2007SpeRic; @Hurlbert2005DisRan; @Ficetola2014EvaRob], none have used
+different types of information so far (i.e., ecological characteristics other
+than geographical distribution). Here we suggest jointly analysing species
+occurrence (range maps and point occurrences) and ecological interactions to
+identify mismatches between datasets.  
 
 Interactions form complex networks that shape ecological structures and maintain
 the essential functions of ecosystems, such as seed dispersal, pollination, and
 biological control [@Albrecht2018PlaAni; @Fricke2022EffDef] that ultimately
 affect the composition, richness, and successional patterns of communities
 across biomes. Yet, the connection between occurrence and interaction data is a
-frequent debate in ecology [@Blanchet2020CooNot]. For instance, macroecological
-models are often used with point or range occurrence data in order to
-investigate the dynamics of a species with its environment. However, these
-models do not account for ecological interactions, which might largely affect
-species distribution [@AbregoAccSpe; @Afkhami2014MutEff; @Araujo2014ImpBio;
-@Godsoe2017IntBio; @Godsoe2012HowSpe]. Some researchers argue that occurrence
-data can also capture real-time interactions [@Roy2016FocPla; @Ryan2018RolCit],
-and, because of that, it would not be necessary to include ecological
-interaction dynamics in macroecological models. On the other hand, many
-mechanistic simulation models in ecology have considered the effect of
-competition and facilitation in range shifts, whilst the use of trophic
-interactions in this context remains insufficient [@Cabral2017MecSim]. 
+frequent debate in ecology [@Blanchet2020CooNot; Wisz2013RolBio]. For instance,
+macroecological models are often used with point or range occurrence data in
+order to investigate the dynamics of a species with its environment. However,
+these models do not account for ecological interactions, although it has been demonstrated that they might largely
+affect species distribution [@Abrego2021AccSpe; @Afkhami2014MutEff;
+@Araujo2014ImpBio; @Godsoe2017IntBio; @Godsoe2012HowSpe; @Gotelli2010MacSig;
+Wisz2013RolBio]. Some researchers argue that occurrence data can also capture
+real-time interactions [see @Roy2016FocPla; @Ryan2018RolCit], and, because of that,
+it would not be necessary to include ecological interaction dynamics in
+macroecological models. On the other hand, many mechanistic simulation models in
+ecology have considered the effect of competition and facilitation in range
+shifts. For example, Gotelli _et al._ -[@Gotelli2010MacSig] demonstrate how
+conspecific attraction might be the main factor driving the distribution of
+migratory birds; Afkhami _et al._ -[@Afkhami2014MutEff] explores how mutualistic
+fungal endophytes are responsible or expanding the range of native grass; many
+other examples are discussed in Wisz _et al._ -[@Wisz2013RolBio]. Although
+interactions across trophic levels are demonstrated to determine species range
+[@Wisz2013RolBio], the use of these interactions in mechanistic simulation
+models in macroecology remains insufficient [as discussed in @Cabral2017MecSim]. 
 
 A significant challenge in this debate is the quality and quantity of species
 distribution and ecological data [@Boakes2010DisVie; @Ronquillo2020AssSpa;
@@ -44,11 +58,12 @@ macroecological research [@Hortal2008HisBia]. Amongst the geographical data
 available are the range maps provided by the International Union for the
 Conservation of Nature (IUCN). Such maps consist of simplified polygons, often
 created as alpha or convex hulls around known species locations, refined by
-expert knowledge about the species [@IUCNSSCRedListTechnicalWorkingGroup2021MapSta].
+expert knowledge about the species [@IUCN2019MapSta].
 These maps can be used in macroecological inferences in the lack of more precise
 information [@Fourcade2016ComSpe; @Alhajeri2019HigCor], but it has been
 recommended that they are used with caution since they tend to underestimate the
-distribution of species that are not well-known [@Herkt2017MacCon], do not
+distribution of species that are not well-known [@Herkt2017MacCon] (especially
+at fine scale resolutions; [@Hurlbert2007SpeRic; @Hurlbert2005DisRan]), do not
 represent spatial variation in species occurrence and abundance
 [@Dallas2020AbuNot], and can include inadequate areas within the estimated
 range. Another source of species distribution information is the Global
@@ -68,7 +83,12 @@ merge species distribution and ecological interaction data to improve our
 predictions of where a species may be found across large spatial scales (e.g.,
 continental and global). 
 
-In this context, we elaborate a method that allows us to refine distribution
+It has been demonstrated that the agreement between range maps and point data
+varies geographically [@Hurlbert2007SpeRic; @Hurlbert2005DisRan;
+@Ficetola2014EvaRob]. Adding ecological interaction data to this comparison
+might help to elucidate where these (dis)agreements are more likely to be true
+and which dataset better represent the actual distribution of species. In this
+context, we elaborate a method that allows us to refine distribution
 data (more precisely range maps) based on interaction data, considering the
 basic assumption that predators can only be present in regions where they are
 connected to at least one herbivore - and thus indirectly connected to primary
@@ -79,7 +99,7 @@ uncertainty areas in IUCN range maps. Finally, we add the GBIF occurrence points
 for the Serengeti species to the investigation, discuss the mechanisms that can
 lead to the lack of agreement between data, and build from that a vision for the
 next steps, reinforcing the importance of geographically explicit interaction
-data. 
+data.  
 
 
 # Methods
@@ -88,19 +108,21 @@ Organisms cannot persist unless they are directly or indirectly connected to a
 primary producer within their associated food web [@Power1992TopBot]. Therefore,
 the range of a predator (omnivore or carnivore) depends on the overlapping
 ranges of its preys. If sections of a predator's range does not overlap with at
-least one of its prey it will become disconnected from primary producers, and 
-therefore we would not expect the predator to occur in this area. This mismatch can
-be the result of different mechanisms, like the overestimation of the predator's
-range, taxonomic errors, or the lack of information about trophic links. Thus,
-given that herbivores are the main connection between plant resources (directly
-limited by environmental conditions) and predators [@Dobson2009FooStr;
-@Scott2018RolHer], here we adjusted the ranges of predators based on a simple 
+least one of its prey it will become disconnected from primary producers, and
+therefore we would not expect the predator to occur in this area. This mismatch
+can be the result of different mechanisms, like the misestimation of both the predator's and the preys' ranges [@Ladle2013MapSpe; Rondinini2006TraDif], taxonomic errors
+[@Isaac2004TaxInf; @Ladle2013MapSpe], or the lack of information about trophic
+links (i.e., the lack of connection between the ranges of a predator and a
+primary producer may be due a third species we don't know is connected to both).
+Thus, given that herbivores are the main connection between plant resources
+(directly limited by environmental conditions) and predators [@Dobson2009FooStr;
+@Scott2018RolHer], here we adjusted the ranges of predators based on a simple
 rule: we removed any part of a predator’s range that did not intersect with the
-range of at least one prey herbivore species. So, unless the range of the predator
-overlapped with at least one prey item, which in turn is directly connected to a
-primary producer (plants), we removed that section of the predator’s range. Finally,
-we calculated the difference in range size between the original IUCN ranges and 
-those adjusted based on species interaction data.
+range of at least one prey herbivore species. So, unless the range of the
+predator overlapped with at least one prey item, which in turn is directly
+connected to a primary producer (plants), we removed that section of the
+predator’s range. Finally, we calculated the difference in range size between
+the original IUCN ranges and those adjusted based on species interaction data.
 
 ## Data 
 
@@ -233,7 +255,7 @@ extreme case (where all its range is suppressed by the absence of preys) and it
 would make the interpretation of the data more
 difficult.](figures/beta-div_pred-species.png){#fig:geo_diss} 
 
-There was high variation in the overlap of predator and prey ranges
+There was a high variation in the overlap of predator and prey ranges
 (@fig:geo_diss). The high density of points on the left-hand side of @fig:geo_diss
 indicates that most preys have small ranges in comparison to those of the set of
 carnivores in the networks, resulting in either low overlap between both ranges
@@ -250,7 +272,7 @@ points along the x-axis, yet more restricted variation on the y-axis
 (@fig:geo_diss). There was also no overall relationship between the two metrics,
 or for any predator species.
 
-: List of species analyzed, their out and in degrees, total original range size
+: List of species analysed, their out and in degrees, total original range size
 (in pixels), and proportion of their ranges occupied by their preys and predators
 (values between 0 and 1). Species are sorted according to the groups identified
 by @Baskerville2011SpaGui. Notice how some species are isolated in the network
@@ -330,10 +352,7 @@ within food webs) are used to refine species range maps, there are significant
 reductions in the IUCN range size of predatory organisms. Despite showing the
 potential importance of accounting for species interactions when estimating the
 range of a species, it remains unclear the extent to which the patterns observed
-represent ecological processes or a lack of data. In the following sections, we
-discuss the implications of our findings, in terms of species range maps,
-interaction data, and the next steps required to enhance understanding of species
-distributions using information on ecological networks.
+represent ecological processes or a lack of data.
 
 ## Connectivity, diversity and range preservation
 
@@ -421,11 +440,11 @@ be crucial in ecological modelling [@Hortal2008UncMea; @Ladle2013MapSpe], and
 accounting for these errors can improve model outputs by diminishing the error
 propagation [@Draper1995AssPro]. For instance, we believe this is a way to
 account for ecological interactions in habitat suitability models without making
-the models more complex, but making sure (not assuming) that the input data -
+the models more complex, but by making sure (not assuming) that the input data -
 the species occurrence - actually accounts for ecological interactions. It is
 important to notice, however, that the quality and usefulness of this method are
 highly correlated with the amount and quality of data available about species'
-occurrences **and** interactions. With this paper we hope to add to the
+occurrences **and** interactions. With this paper, we hope to add to the
 collective effort to decode the encrypted message that is the occurrence of a
 species in space and time. A promising avenue that adds to our method is the
 prediction of networks and interactions in large scales [@Strydom2021RoaPre],
