@@ -55,7 +55,6 @@ prey_mismatch = similar(serval_loss)
 prey_mismatch[_prey_sites] = fill(1.0, length(_prey_sites))
 
 # Map the mismatch
-include("A2_shapefile.jl")
 begin
     plot(;
         frame=:box,

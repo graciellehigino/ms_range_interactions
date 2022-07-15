@@ -1,3 +1,5 @@
+include("A1_required.jl")
+
 include("02-get_networks.jl")
 
 # Mammals in the Serengeti ecosystem

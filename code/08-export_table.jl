@@ -1,3 +1,5 @@
+include("A1_required.jl")
+
 ## Export as markdown table
 
 # Load ranges results & species groups

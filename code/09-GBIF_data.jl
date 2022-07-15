@@ -1,3 +1,5 @@
+include("A1_required.jl")
+
 # Load required scripts and packages
 include("01-load_rasters.jl") # range maps of Serengeti mammals
 

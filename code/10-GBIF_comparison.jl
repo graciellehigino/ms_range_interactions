@@ -1,3 +1,5 @@
+include("A1_required.jl")
+
 ## Load required data
 
 # This is the bounding box we care about
