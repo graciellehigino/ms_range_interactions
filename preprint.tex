@@ -308,12 +308,12 @@ to identify - and potentially fix - these errors is to combine many
 different pieces of information about the occurrence of a species, so
 agreements and mismatches can emerge. Although previous studies have
 combined different types of occurrence data to measure the accuracy of
-datasets (Hurlbert and Jetz 2007; Hurlbert and White 2005; Ficetola et
-al. 2014), none have used different types of information so far (i.e.,
-ecological characteristics other than geographical distribution). Here
-we suggest jointly analysing species occurrence (range maps and point
-occurrences) and ecological interactions to identify mismatches between
-datasets.
+datasets (Hurlbert and Jetz 2007; Hurlbert and White 2005;
+\textbf{Ficetola2014EvaRob?}), none have used different types of
+information so far (i.e., ecological characteristics other than
+geographical distribution). Here we suggest jointly analysing species
+occurrence (range maps and point occurrences) and ecological
+interactions to identify mismatches between datasets.
 
 Interactions form complex networks that shape ecological structures and
 maintain the essential functions of ecosystems, such as seed dispersal,
@@ -382,9 +382,9 @@ large spatial scales (e.g., continental and global).
 
 It has been demonstrated that the agreement between range maps and point
 data varies geographically (Hurlbert and Jetz 2007; Hurlbert and White
-2005; Ficetola et al. 2014). Adding ecological interaction data to this
-comparison might help to elucidate where these (dis)agreements are more
-likely to be true and which dataset better represent the actual
+2005; \textbf{Ficetola2014EvaRob?}). Adding ecological interaction data
+to this comparison might help to elucidate where these (dis)agreements
+are more likely to be true and which dataset better represent the actual
 distribution of species. In this context, we elaborate a method that
 allows us to refine distribution data (more precisely range maps) based
 on interaction data, considering the basic assumption that predators can
@@ -470,13 +470,15 @@ savannah ecosystems such as the Serengeti.
 We compiled IUCN range maps for the 32 species included in the metaweb
 from the Spatial Data Download portal
 (www.iucnredlist.org/resources/spatial-data-download), which we
-rasterized at 10 arc-minute resolution (\textasciitilde19 km² at the
-equator). We then combined interaction data from the metaweb and
-cooccurrence data generated from species ranges to create networks for
-each raster pixel. This generated a total of 84,244 pixel-level
-networks. These networks describe potential predation, not actual
-interactions: the former is derived information from the metaweb, and
-the latter is contingent on the presence of herbivores.
+rasterized at 10 arc-minute resolution (\textasciitilde18 km at the
+equator). We restricted the rasters a spatial extent comprised between
+latitudes 35°S and 40°N and longitudes 20°W and 55°E. We then combined
+interaction data from the metaweb and cooccurrence data generated from
+species ranges to create networks for each raster pixel. This generated
+a total of 84,244 pixel-level networks. These networks describe
+potential predation, not actual interactions: the former is derived
+information from the metaweb, and the latter is contingent on the
+presence of herbivores.
 
 \hypertarget{range-overlap-measurement}{%
 \subsection{Range overlap measurement}\label{range-overlap-measurement}}
@@ -502,14 +504,37 @@ most of their range.
 \subsection{Validation}\label{validation}}
 
 For each species in the dataset we collated point observation data from
-GBIF (www.gbif.org), and condensed these data into pixels representing
-presence or absence of the focal taxon. These data were used to validate
-the range adjustments made based on species interactions (see the
-previous section). To do so, we calculated the proportion of GBIF
-presence pixels occurring within both the original and adjusted species
-ranges. We then compared these proportions for the predators to verify
-if the range adjustments removed locations with GBIF observations, hence
-likely true habitats.
+GBIF (www.gbif.org). We restricted our queries to the data with spatial
+coordinates and which were inside the spatial extent of our rasters. We
+did not use continental or date filters to retrieve as much data as
+possible. However, a few observations were localized in the ocean near
+latitude 0° and longitude 0°. We assumed these were errors and removed
+all observations falling in the extent between latitudes 2°S and 2°N and
+longitudes 2°W and 2°E to keep only mainland sites.
+
+We then converted the occurrence data into raster format by determining
+which pixels had a least one GBIF occurrence. This allowed us to remove
+the effect of repeated sampling in some locations. These data were used
+to validate the range adjustments made based on species interactions
+(see beginning of Methods section). To do so, we calculated the
+proportion of GBIF presence pixels occurring within both the original
+IUCN species range and the adjusted one. We then compared these
+proportions for the predators to verify if the range adjustments removed
+locations with GBIF observations, hence likely true habitats.
+
+\hypertarget{software}{%
+\subsection{Software}\label{software}}
+
+We performed all analyses using \emph{Julia} v1.7.2 (Bezanson et al.
+2017). We used the packages \texttt{SimpleSDMLayers.jl} (Dansereau and
+Poisot 2021) to manipulate the raster layers,
+\texttt{EcologicalNetworks.jl} (Poisot et al. 2019) to construct and
+manipulate the interaction networks, and \texttt{GBIF.jl} (Dansereau and
+Poisot 2021) to retrieve the species occurrences from GBIF. We also used
+\emph{GDAL} (GDAL/OGR contributors 2021) to rasterize the IUCN range
+maps (initially available as shapefiles from the Spatial Data Download
+portal). All the scripts required to reproduce the analyses are
+available at {[}\textbf{link to Zenodo archive}{]}.
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -1436,7 +1461,7 @@ robust modelling framework towards actual species distribution models we
 should invest in efforts to collect and combine open data on species
 occurrence and interactions (Windsor et al. 2022), especially because we
 may be losing ecological interactions at least as fast as we are losing
-species (Valiente-Banuet et al. 2015).
+species (\textbf{Valiente-Banuet2015SpeLos?}).
 
 \hypertarget{acknowledgements}{%
 \section{Acknowledgements}\label{acknowledgements}}
@@ -1510,6 +1535,11 @@ Guilds in the Serengeti Food Web Revealed by a Bayesian Group Model.''}
 \emph{PLOS Computational Biology} 7 (12): e1002321.
 \url{https://doi.org/10.1371/journal.pcbi.1002321}.
 
+\leavevmode\hypertarget{ref-Bezanson2017JulFre}{}%
+Bezanson, Jeff, Alan Edelman, Stefan Karpinski, and Viral B. Shah. 2017.
+{``Julia: A Fresh Approach to Numerical Computing.''} \emph{SIAM Review}
+59 (1): 65--98. \url{https://doi.org/10.1137/141000671}.
+
 \leavevmode\hypertarget{ref-Blanchet2020CooNot}{}%
 Blanchet, F. Guillaume, Kevin Cazelles, and Dominique Gravel. 2020.
 {``Co-Occurrence Is Not Evidence of Ecological Interactions.''}
@@ -1550,13 +1580,24 @@ Constraints at the Biogeographical Scale.''} \emph{Ecography} 39 (10):
 \leavevmode\hypertarget{ref-Dallas2020AbuNot}{}%
 Dallas, Tad, Samuel Pironon, and Luca Santini. 2020. {``The
 Abundant-Centre Is Not All That Abundant: A Comment to Osorio-Olvera Et
-Al. 2020,''} 2020.02.27.968586.
+Al. 2020,''} May, 2020.02.27.968586.
 \url{https://doi.org/10.1101/2020.02.27.968586}.
+
+\leavevmode\hypertarget{ref-Dansereau2021SimJl}{}%
+Dansereau, Gabriel, and Timothée Poisot. 2021. {``SimpleSDMLayers.jl and
+GBIF.jl: A Framework for Species Distribution Modeling in Julia.''}
+\emph{Journal of Open Source Software} 6 (57): 2872.
+\url{https://doi.org/10.21105/joss.02872}.
+
+\leavevmode\hypertarget{ref-Dansereau2021SimJl}{}%
+---------. 2021. {``SimpleSDMLayers.jl and GBIF.jl: A Framework for
+Species Distribution Modeling in Julia.''} \emph{Journal of Open Source
+Software} 6 (57): 2872. \url{https://doi.org/10.21105/joss.02872}.
 
 \leavevmode\hypertarget{ref-Daru2020GreToo}{}%
 Daru, Barnabas H. 2020. {``GreenMaps: A Tool for Addressing the
 Wallacean Shortfall in the Global Distribution of Plants.''}
-\emph{bioRxiv}, 2020.02.21.960161.
+\emph{bioRxiv}, February, 2020.02.21.960161.
 \url{https://doi.org/10.1101/2020.02.21.960161}.
 
 \leavevmode\hypertarget{ref-Dattilo2020SpeDri}{}%
@@ -1586,25 +1627,22 @@ Draper, D. 1995. {``Assessment and Propagation of Model Uncertainty.''}
 Methodology} 57 (1): 45--97.
 \url{https://doi.org/10.1111/j.2517-6161.1995.tb02015.x}.
 
-\leavevmode\hypertarget{ref-Ficetola2014EvaRob}{}%
-Ficetola, Gentile Francesco, Carlo Rondinini, Anna Bonardi, Vineet
-Katariya, Emilio Padoa-Schioppa, and Ariadne Angulo. 2014. {``An
-Evaluation of the Robustness of Global Amphibian Range Maps.''}
-\emph{Journal of Biogeography} 41 (2): 211--21.
-\url{https://doi.org/10.1111/jbi.12206}.
-
 \leavevmode\hypertarget{ref-Fourcade2016ComSpe}{}%
 Fourcade, Yoan. 2016. {``Comparing Species Distributions Modelled from
 Occurrence Data and from Expert-Based Range Maps. Implication for
 Predicting Range Shifts with Climate Change.''} \emph{Ecological
-Informatics} 36: 8--14.
+Informatics} 36 (November): 8--14.
 \url{https://doi.org/10.1016/j.ecoinf.2016.09.002}.
 
 \leavevmode\hypertarget{ref-Fricke2022EffDef}{}%
 Fricke, Evan C., Alejandro Ordonez, Haldre S. Rogers, and Jens-Christian
 Svenning. 2022. {``The Effects of Defaunation on Plants' Capacity to
-Track Climate Change.''} \emph{Science}.
+Track Climate Change.''} \emph{Science}, January.
 \url{https://doi.org/10.1126/science.abk3510}.
+
+\leavevmode\hypertarget{ref-GDALux2fOGRcontributors2021GdaOgr}{}%
+GDAL/OGR contributors. 2021. \emph{GDAL/OGR Geospatial Data Abstraction
+Software Library}. Manual. Open Source Geospatial Foundation.
 
 \leavevmode\hypertarget{ref-Godsoe2012HowSpe}{}%
 Godsoe, William, and Luke J. Harmon. 2012. {``How Do Species
@@ -1717,8 +1755,14 @@ Interaction Networks Data.''} \emph{Journal of Biogeography} 48 (7):
 Poisot, Timothée, Gabriel Bergeron, Kevin Cazelles, Tad Dallas,
 Dominique Gravel, Andrew Macdonald, Benjamin Mercier, Clément Violet,
 and Steve Vissault. 2020. {``Environmental Biases in the Study of
-Ecological Networks at the Planetary Scale.''} \emph{bioRxiv},
+Ecological Networks at the Planetary Scale.''} \emph{bioRxiv}, January,
 2020.01.27.921429. \url{https://doi.org/10.1101/2020.01.27.921429}.
+
+\leavevmode\hypertarget{ref-Poisot2019EcoJl}{}%
+Poisot, Timothée, Zachary Bélisle, Laura Hoebeke, Michiel Stock, and
+Piotr Szefer. 2019. {``EcologicalNetworks.jl: Analysing Ecological
+Networks of Species Interactions.''} \emph{Ecography} 42 (11): 1850--61.
+\url{https://doi.org/10.1111/ecog.04310}.
 
 \leavevmode\hypertarget{ref-Power1992TopBot}{}%
 Power, Mary E. 1992. {``Top-Down and Bottom-Up Forces in Food Webs: Do
@@ -1744,7 +1788,7 @@ Ronquillo, Cristina, Fernanda Alves-Martins, Vicente Mazimpaka, Thadeu
 Sobral-Souza, Bruno Vilela-Silva, Nagore G. Medina, and Joaquín Hortal.
 2020. {``Assessing Spatial and Temporal Biases and Gaps in the Publicly
 Available Distributional Information of Iberian Mosses.''}
-\emph{Biodiversity Data Journal} 8: e53474.
+\emph{Biodiversity Data Journal} 8 (September): e53474.
 \url{https://doi.org/10.3897/BDJ.8.e53474}.
 
 \leavevmode\hypertarget{ref-Roy2016FocPla}{}%
@@ -1766,7 +1810,7 @@ Scott, Abigail L., Paul H. York, Clare Duncan, Peter I. Macreadie, Rod
 M. Connolly, Megan T. Ellis, Jessie C. Jarvis, Kristin I. Jinks, Helene
 Marsh, and Michael A. Rasheed. 2018. {``The Role of Herbivory in
 Structuring Tropical Seagrass Ecosystem Service Delivery.''}
-\emph{Frontiers in Plant Science} 9: 127.
+\emph{Frontiers in Plant Science} 9 (February): 127.
 \url{https://doi.org/10.3389/fpls.2018.00127}.
 
 \leavevmode\hypertarget{ref-Stoyanov2020CraVar}{}%
@@ -1796,18 +1840,16 @@ Continent Associated with Biogeographic and Anthropogenic Factors.''}
 \emph{Journal of Vertebrate Biology} 69 (4): 20056.1.
 \url{https://doi.org/10.25225/jvb.20056}.
 
-\leavevmode\hypertarget{ref-Valiente-Banuet2015SpeLos}{}%
-Valiente-Banuet, Alfonso, Marcelo A. Aizen, Julio M. Alcántara, Juan
-Arroyo, Andrea Cocucci, Mauro Galetti, María B. García, et al. 2015.
-{``Beyond Species Loss: The Extinction of Ecological Interactions in a
-Changing World.''} Edited by Marc Johnson. \emph{Functional Ecology} 29
-(3): 299--307. \url{https://doi.org/10.1111/1365-2435.12356}.
-
 \leavevmode\hypertarget{ref-Windsor2022UsiEco}{}%
 Windsor, Fredric M., Johan van den Hoogen, Thomas W. Crowther, and
 Darren M. Evans. 2022. {``Using Ecological Networks to Answer Questions
 in Global Biogeography and Ecology.''} \emph{Journal of Biogeography}
 n/a (n/a). \url{https://doi.org/10.1111/jbi.14447}.
+
+\leavevmode\hypertarget{ref-Windsor2022UsiEco}{}%
+---------. 2022. {``Using Ecological Networks to Answer Questions in
+Global Biogeography and Ecology.''} \emph{Journal of Biogeography} n/a
+(n/a). \url{https://doi.org/10.1111/jbi.14447}.
 
 \leavevmode\hypertarget{ref-Wisz2013RolBio}{}%
 Wisz, Mary Susanne, Julien Pottier, W Daniel Kissling, Loïc Pellissier,

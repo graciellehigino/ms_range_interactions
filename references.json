@@ -78,7 +78,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2020
+                    2020,
+                    9
                 ]
             ]
         },
@@ -89,6 +90,7 @@
     },
     {
         "DOI": "10.1111/ele.12332",
+        "PMID": "25052023",
         "author": [
             {
                 "family": "Afkhami",
@@ -109,7 +111,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2014
+                    2014,
+                    10
                 ]
             ]
         },
@@ -205,7 +208,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2016
+                    2016,
+                    9
                 ]
             ]
         },
@@ -280,7 +284,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2011
+                    2011,
+                    12
                 ]
             ]
         },
@@ -315,7 +320,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2014
+                    2014,
+                    1
                 ]
             ]
         },
@@ -323,6 +329,42 @@
         "title": "Spatial bias in the GBIF database and its effect on modeling species\u2019 geographic distributions",
         "type": "article-journal",
         "volume": "19"
+    },
+    {
+        "DOI": "10.1137/141000671",
+        "author": [
+            {
+                "family": "Bezanson",
+                "given": "Jeff"
+            },
+            {
+                "family": "Edelman",
+                "given": "Alan"
+            },
+            {
+                "family": "Karpinski",
+                "given": "Stefan"
+            },
+            {
+                "family": "Shah",
+                "given": "Viral B."
+            }
+        ],
+        "container-title": "SIAM Review",
+        "id": "Bezanson2017JulFre",
+        "issue": "1",
+        "issued": {
+            "date-parts": [
+                [
+                    2017,
+                    1
+                ]
+            ]
+        },
+        "page": "65-98",
+        "title": "Julia: A fresh approach to numerical computing",
+        "type": "article-journal",
+        "volume": "59"
     },
     {
         "DOI": "10.1111/ele.13525",
@@ -393,7 +435,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2010
+                    2010,
+                    6
                 ]
             ]
         },
@@ -499,7 +542,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2019
+                    2019,
+                    6
                 ]
             ]
         },
@@ -563,7 +607,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2008
+                    2008,
+                    11
                 ]
             ]
         },
@@ -594,13 +639,42 @@
         "issued": {
             "date-parts": [
                 [
-                    2020
+                    2020,
+                    5
                 ]
             ]
         },
         "page": "2020.02.27.968586",
         "title": "The abundant-centre is not all that abundant: A comment to Osorio-Olvera et al. 2020",
         "type": "article-journal"
+    },
+    {
+        "DOI": "10.21105/joss.02872",
+        "author": [
+            {
+                "family": "Dansereau",
+                "given": "Gabriel"
+            },
+            {
+                "family": "Poisot",
+                "given": "Timoth\u00e9e"
+            }
+        ],
+        "container-title": "Journal of Open Source Software",
+        "id": "Dansereau2021SimJl",
+        "issue": "57",
+        "issued": {
+            "date-parts": [
+                [
+                    2021,
+                    1
+                ]
+            ]
+        },
+        "page": "2872",
+        "title": "SimpleSDMLayers.jl and GBIF.jl: A framework for species distribution modeling in Julia",
+        "type": "article-journal",
+        "volume": "6"
     },
     {
         "DOI": "10.21105/joss.02872",
@@ -643,7 +717,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2020
+                    2020,
+                    2
                 ]
             ]
         },
@@ -747,7 +822,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2009
+                    2009,
+                    6
                 ]
             ]
         },
@@ -783,6 +859,7 @@
     },
     {
         "DOI": "10.1046/j.1461-0248.2002.00354.x",
+        "PMID": "176644900015",
         "author": [
             {
                 "family": "Dunne",
@@ -876,7 +953,7 @@
             }
         ],
         "container-title": "Journal of Biogeography",
-        "id": "Ficetola2014EvaRob",
+        "id": "Ficetola2014EvaRoba",
         "issue": "2",
         "issued": {
             "date-parts": [
@@ -1052,7 +1129,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2015
+                    2015,
+                    1
                 ]
             ]
         },
@@ -1074,7 +1152,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2016
+                    2016,
+                    11
                 ]
             ]
         },
@@ -1108,7 +1187,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2022
+                    2022,
+                    1
                 ]
             ]
         },
@@ -1172,7 +1252,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2012
+                    2012,
+                    9
                 ]
             ]
         },
@@ -1184,6 +1265,7 @@
     },
     {
         "DOI": "10.1016/j.tree.2017.03.008",
+        "PMID": "28477957",
         "author": [
             {
                 "family": "Godsoe",
@@ -1241,7 +1323,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2010
+                    2010,
+                    3
                 ]
             ]
         },
@@ -1280,7 +1363,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2011
+                    2011,
+                    1
                 ]
             ]
         },
@@ -1339,7 +1423,7 @@
                 "given": "Sebastian T"
             }
         ],
-        "id": "Hertzog2017PlaDiv",
+        "id": "Hertzog2017PlaDiva",
         "issued": {
             "date-parts": [
                 [
@@ -1503,7 +1587,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2007
+                    2007,
+                    8
                 ]
             ]
         },
@@ -1534,7 +1619,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2004
+                    2004,
+                    9
                 ]
             ]
         },
@@ -1650,7 +1736,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2021
+                    2021,
+                    12
                 ]
             ]
         },
@@ -1729,7 +1816,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2020
+                    2020,
+                    8
                 ]
             ]
         },
@@ -1763,6 +1851,7 @@
     },
     {
         "DOI": "10.1098/rspb.2004.2909",
+        "PMID": "15615687",
         "author": [
             {
                 "family": "Memmott",
@@ -1857,7 +1946,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2010
+                    2010,
+                    4
                 ]
             ]
         },
@@ -1894,7 +1984,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2015
+                    2015,
+                    4
                 ]
             ]
         },
@@ -1943,7 +2034,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2003
+                    2003,
+                    9
                 ]
             ]
         },
@@ -1978,7 +2070,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2021
+                    2021,
+                    1
                 ]
             ]
         },
@@ -2057,7 +2150,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2015
+                    2015,
+                    7
                 ]
             ]
         },
@@ -2210,7 +2304,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2020
+                    2020,
+                    1
                 ]
             ]
         },
@@ -2328,7 +2423,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2016
+                    2016,
+                    10
                 ]
             ]
         },
@@ -2339,6 +2435,7 @@
     },
     {
         "DOI": "10.1111/j.1365-2656.2012.01960.x",
+        "PMID": "22313043",
         "author": [
             {
                 "family": "Ramos-Jiliberto",
@@ -2448,7 +2545,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2020
+                    2020,
+                    9
                 ]
             ]
         },
@@ -2484,7 +2582,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2016
+                    2016,
+                    3
                 ]
             ]
         },
@@ -2528,6 +2627,7 @@
     {
         "DOI": "10.1098/rspb.2018.1977",
         "PMCID": "PMC6253361",
+        "PMID": "30464064",
         "author": [
             {
                 "family": "Ryan",
@@ -2704,7 +2804,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2018
+                    2018,
+                    11
                 ]
             ]
         },
@@ -2773,7 +2874,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2018
+                    2018,
+                    2
                 ]
             ]
         },
@@ -2816,7 +2918,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2014
+                    2014,
+                    7
                 ]
             ]
         },
@@ -2827,6 +2930,7 @@
     },
     {
         "DOI": "10.1073/pnas.0901637106",
+        "PMID": "19805041",
         "author": [
             {
                 "family": "Sober\u00f3n",
@@ -2844,7 +2948,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2009
+                    2009,
+                    11
                 ]
             ]
         },
@@ -2936,7 +3041,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2021
+                    2021,
+                    11
                 ]
             ]
         },
@@ -2948,6 +3054,7 @@
     },
     {
         "DOI": "10.1111/j.1600-0587.2013.00574.x",
+        "PMID": "25722537",
         "author": [
             {
                 "family": "Svenning",
@@ -3035,12 +3142,13 @@
             }
         ],
         "container-title": "Scientific Reports",
-        "id": "Thakur2015PlaCom",
+        "id": "Thakur2015PlaComa",
         "issue": "1",
         "issued": {
             "date-parts": [
                 [
-                    2015
+                    2015,
+                    8
                 ]
             ]
         },
@@ -3067,7 +3175,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2020
+                    2020,
+                    10
                 ]
             ]
         },
@@ -3164,12 +3273,13 @@
                 "given": "Marc"
             }
         ],
-        "id": "Valiente-Banuet2015SpeLos",
+        "id": "Valiente-Banuet2015SpeLosa",
         "issue": "3",
         "issued": {
             "date-parts": [
                 [
-                    2015
+                    2015,
+                    3
                 ]
             ]
         },
@@ -3204,7 +3314,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2019
+                    2019,
+                    12
                 ]
             ]
         },
@@ -3278,7 +3389,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2018
+                    2018,
+                    5
                 ]
             ]
         },
@@ -3323,8 +3435,44 @@
         "volume": "n/a"
     },
     {
+        "DOI": "10.1111/jbi.14447",
+        "author": [
+            {
+                "family": "Windsor",
+                "given": "Fredric M."
+            },
+            {
+                "family": "Hoogen",
+                "given": "Johan",
+                "non-dropping-particle": "van den"
+            },
+            {
+                "family": "Crowther",
+                "given": "Thomas W."
+            },
+            {
+                "family": "Evans",
+                "given": "Darren M."
+            }
+        ],
+        "container-title": "Journal of Biogeography",
+        "id": "Windsor2022UsiEco",
+        "issue": "n/a",
+        "issued": {
+            "date-parts": [
+                [
+                    2022
+                ]
+            ]
+        },
+        "title": "Using ecological networks to answer questions in global biogeography and ecology",
+        "type": "article-journal",
+        "volume": "n/a"
+    },
+    {
         "DOI": "10.1111/j.1469-185X.2012.00235.x",
         "PMCID": "PMC3561684",
+        "PMID": "22686347",
         "author": [
             {
                 "family": "Wisz",
@@ -3429,7 +3577,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2013
+                    2013,
+                    2
                 ]
             ]
         },
@@ -3490,7 +3639,8 @@
         "issued": {
             "date-parts": [
                 [
-                    2013
+                    2013,
+                    7
                 ]
             ]
         },
