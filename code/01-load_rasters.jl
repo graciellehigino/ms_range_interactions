@@ -23,8 +23,8 @@ geotiff(joinpath("data", "clean", "richness.tif"), richness)
 richness = geotiff(SimpleSDMPredictor, joinpath("data", "clean", "richness.tif"))
 
 # Map the richness
-include("shapefile.jl")
-plot(; 
+include("A1_shapefile.jl")
+plot(;
     frame=:box,
     xlim=extrema(longitudes(richness)),
     ylim=extrema(latitudes(richness)),

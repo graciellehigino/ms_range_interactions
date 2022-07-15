@@ -1,6 +1,6 @@
 # Load required scripts and packages
 include("01-load_rasters.jl") # range maps of Serengeti mammals
-include("shapefile.jl") # mapping functions
+include("A1_shapefile.jl") # mapping functions
 
 import CSV
 using DataFrames
@@ -58,7 +58,7 @@ M_plants_herb = M[vcat(plants, herbivores)]
 kout_plants_herb = collect(values(degree(M_plants_herb, dims = 1))) # out-degree of herbivores and plants
 kout_herb = kout_plants_herb[kout_plants_herb .!= 0] # out-degree of herbivores
 kout_herb_avg = mean(kout_herb) # mean out-degree of herbivores
-kout_herb_sd = std(kout_herb) 
+kout_herb_sd = std(kout_herb)
 kout_herb_ext = extrema(kout_herb)
 
 #### Build spatially-explicit networks of mammals and remove carnivores with no paths to an herbivore
@@ -208,7 +208,7 @@ plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(delta_Sxy_layer, c=cgrad(:turku, rev=true))
 savefig(joinpath("figures", "species_removal.png"))
 
-## Map of species richness before correction 
+## Map of species richness before correction
 map_richness = plot(;
     frame=:box,
     xlim=extrema(longitudes(Sxy_layer)),
@@ -220,7 +220,7 @@ map_richness = plot(;
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(Sxy_layer, c=cgrad(:turku, rev=true))
 
-## Map of proportion of species remaining after correction 
+## Map of proportion of species remaining after correction
 map_prop = plot(;
     frame=:box,
     xlim=extrema(longitudes(prop_Sxy_layer)),
@@ -232,7 +232,7 @@ map_prop = plot(;
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(prop_Sxy_layer, c=cgrad(:viridis, rev=true))
 
-## Proportion of remaining species as a function of species richeness 
+## Proportion of remaining species as a function of species richeness
 index = Sxy_df.Sxy .!= nothing
 
 prop_richness = scatter(Sxy_df.Sxy[index],

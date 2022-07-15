@@ -13,7 +13,7 @@ using Statistics
 using StatsPlots
 using SimpleSDMLayers
 
-include("shapefile.jl") # mapping functions
+include("A1_shapefile.jl") # mapping functions
 
 ## Load required data
 
@@ -231,3 +231,27 @@ plot(
     bottommargin=50px
 )
 savefig(joinpath("figures", "gbif_panels.png"))
+
+## Plot all species distributions with GBIF observations on top
+for i in eachindex(mammals)
+    plot(;
+        frame=:box,
+        xlim=extrema(longitudes(ranges[i])),
+        ylim=extrema(latitudes(ranges[i])),
+        dpi=500,
+        xaxis="Longitude",
+        yaxis="Latitude",
+    )
+    plot!(worldshape(50); c=:lightgrey, lc=:lightgrey, alpha=0.6)
+    plot!(ranges[i]; c=:turku, colorbar=:none)
+    scatter!(
+        occ_df[occ_df.species .== mammals[i], :longitude],
+        occ_df[occ_df.species .== mammals[i], :latitude];
+        markerstrokewidth=0,
+        markeralpha=0.5,
+        markersize=2,
+        title=replace(mammals[i], "_" => " "),
+        legend=:none,
+    )
+    savefig(joinpath("figures", "ranges", "iucn_gbif" * mammals[i] * ".png"))
+end
