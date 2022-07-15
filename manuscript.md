@@ -175,7 +175,6 @@ is contingent on the presence of herbivores.
 
 We calculated the geographical overlap, i.e. the extent to which interacting predator
 and prey species co-occurred across their ranges, as 
-<!---, by using a method presented by Ruggiero, Lawton, and Blackburn [-@Ruggiero1998GeoRan]--->
 $a/(a + c)$, where $a$ is the number of pixels where predator and prey cooccur and $c$ 
 is the number of pixels where only the focal species occur. This index of geographical
 overlap can be
