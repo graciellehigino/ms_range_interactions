@@ -424,13 +424,13 @@ on its prey. On the right panel, we added GBIF data on both serval and its prey,
 with a buffer for the prey to account for species mobility.](figures/serval_mismatch_combined.png){#fig:serval}
 
 Finally, the extreme case of *Canis aureus* illustrates a lack of both
-geographical and ecological information: none of its GBIF occurrences and none
+geographical and ecological information: only half of its GBIF presence pixels and none
 of its preys occur inside its IUCN range. We believe, therefore, that the
 validation of species distribution based on ecological interaction is a relevant
 method that can further fill in information gaps. Nevertheless, it is imperative
 that more geographically explicit data about ecological networks and
 interactions become available. This would help clarify when cooccurrences can be
-translated into interactions and help the development of more advanced
+translated into interactions [@Windsor2022UsiEco] and help the development of more advanced
 validation methods for occurrence data.  
 
 ## Next steps
@@ -448,11 +448,11 @@ highly correlated with the amount and quality of data available about species'
 occurrences **and** interactions. With this paper, we hope to add to the
 collective effort to decode the encrypted message that is the occurrence of a
 species in space and time. A promising avenue that adds to our method is the
-prediction of networks and interactions in large scales [@Strydom2021RoaPre],
+prediction of networks and interactions in large scales [@Strydom2021RoaPre; @Windsor2022UsiEco],
 for they can add valuable information about ecological interactions where they
 are missing. Additionally, in order to achieve a robust modelling framework
 towards actual species distribution models we should invest in efforts to
-collect and combine open data on species occurrence and interactions, especially
+collect and combine open data on species occurrence and interactions [@Windsor2022UsiEco], especially
 because we may be losing ecological interactions at least as fast as we are
 losing species [@Valiente-Banuet2015SpeLos].
 
