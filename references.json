@@ -603,6 +603,33 @@
         "type": "article-journal"
     },
     {
+        "DOI": "10.21105/joss.02872",
+        "author": [
+            {
+                "family": "Dansereau",
+                "given": "Gabriel"
+            },
+            {
+                "family": "Poisot",
+                "given": "Timoth\u00e9e"
+            }
+        ],
+        "container-title": "Journal of Open Source Software",
+        "id": "Dansereau2021SimJl",
+        "issue": "57",
+        "issued": {
+            "date-parts": [
+                [
+                    2021
+                ]
+            ]
+        },
+        "page": "2872",
+        "title": "SimpleSDMLayers.jl and GBIF.jl: A framework for species distribution modeling in Julia",
+        "type": "article-journal",
+        "volume": "6"
+    },
+    {
         "DOI": "10.1101/2020.02.21.960161",
         "author": [
             {
@@ -1107,6 +1134,25 @@
         "publisher": "https://www.gbif.org/what-is-gbif",
         "title": "What is GBIF?",
         "type": ""
+    },
+    {
+        "author": [
+            {
+                "literal": "GDAL/OGR contributors"
+            }
+        ],
+        "genre": "Manual",
+        "id": "GDAL/OGRcontributors2021GdaOgr",
+        "issued": {
+            "date-parts": [
+                [
+                    2021
+                ]
+            ]
+        },
+        "publisher": "Open Source Geospatial Foundation",
+        "title": "GDAL/OGR geospatial data abstraction software library",
+        "type": "book"
     },
     {
         "DOI": "10.1111/j.1600-0587.2011.07103.x",
@@ -2078,6 +2124,45 @@
         "title": "Mangal - making ecological network analysis simple",
         "type": "article-journal",
         "volume": "39"
+    },
+    {
+        "DOI": "10.1111/ecog.04310",
+        "author": [
+            {
+                "family": "Poisot",
+                "given": "Timoth\u00e9e"
+            },
+            {
+                "family": "B\u00e9lisle",
+                "given": "Zachary"
+            },
+            {
+                "family": "Hoebeke",
+                "given": "Laura"
+            },
+            {
+                "family": "Stock",
+                "given": "Michiel"
+            },
+            {
+                "family": "Szefer",
+                "given": "Piotr"
+            }
+        ],
+        "container-title": "Ecography",
+        "id": "Poisot2019EcoJl",
+        "issue": "11",
+        "issued": {
+            "date-parts": [
+                [
+                    2019
+                ]
+            ]
+        },
+        "page": "1850-1861",
+        "title": "EcologicalNetworks.jl: Analysing ecological networks of species interactions",
+        "type": "article-journal",
+        "volume": "42"
     },
     {
         "DOI": "10.1101/2020.01.27.921429",
@@ -3201,6 +3286,41 @@
         "title": "Unlocking biodiversity data: Prioritization and filling the gaps in biodiversity observation data in Europe",
         "type": "article-journal",
         "volume": "221"
+    },
+    {
+        "DOI": "10.1111/jbi.14447",
+        "author": [
+            {
+                "family": "Windsor",
+                "given": "Fredric M."
+            },
+            {
+                "family": "Hoogen",
+                "given": "Johan",
+                "non-dropping-particle": "van den"
+            },
+            {
+                "family": "Crowther",
+                "given": "Thomas W."
+            },
+            {
+                "family": "Evans",
+                "given": "Darren M."
+            }
+        ],
+        "container-title": "Journal of Biogeography",
+        "id": "Windsor2022UsiEco",
+        "issue": "n/a",
+        "issued": {
+            "date-parts": [
+                [
+                    2022
+                ]
+            ]
+        },
+        "title": "Using ecological networks to answer questions in global biogeography and ecology",
+        "type": "article-journal",
+        "volume": "n/a"
     },
     {
         "DOI": "10.1111/j.1469-185X.2012.00235.x",
