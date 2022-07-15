@@ -417,11 +417,11 @@ species with the higher proportion of GBIF occurrences inside IUCN range maps
 species is related to either the occurrence of an interaction or the presence of
 interacting species. To illustrate that, we mapped the GBIF data for the prey of
 *Leptailurus serval*, with a mobility buffer around each point ([@fig:serval]).
-When considering GBIF data, approximately 53% of the prey's occurrences are
+When considering GBIF data, approximately 42% of the prey's occurrences are
 within the portion of the serval's range that was lost. With the buffer area,
-this corresponds to 13% of the lost range. This means that by adding GBIF
+this corresponds to 15% of the lost range. This means that by adding GBIF
 information, we would reduce the loss of range (or information) for the predator
-by 13% since its distribution is conditional on the occurrence of its preys.  
+by 15% since its distribution is conditional on the occurrence of its preys.  
 
 ![Mismatch between serval's range loss and GBIF occurrence of its prey. The
 left panel shows the reduction of serval's range when we consider the IUCN data
