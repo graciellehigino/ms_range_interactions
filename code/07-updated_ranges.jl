@@ -1,15 +1,13 @@
 include("A1_required.jl")
 
-include("02-get_networks.jl")
-
 ## Load required data
 
 # Get ranges
 ranges = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.tif"), i) for i in eachindex(mammals)]
+ranges_updated = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "ranges_updated.tif"), i) for i in eachindex(mammals)]
 
-# List interactions in DataFrame
-interactions_df = DataFrame(interactions(MM))
-rename!(interactions_df, :from => :pred, :to => :prey)
+# Get list interactions in DataFrame
+interactions_df = CSV.read(joinpath("data", "clean", "metaweb.csv"), DataFrame)
 
 # Separate predators & preys
 predators = unique(interactions_df.pred)
@@ -112,9 +110,10 @@ missing_species_df = DataFrame(
 append!(results, missing_species_df; cols=:union)
 
 # Sort by trophic level
-results = leftjoin(results, DataFrame(species = species(M), trophic_levels = floor.(values(trophic_level(M)))), on = :species)
-sort!(results, :trophic_levels, rev=true)
-results = results[!, Not(:trophic_levels)]
+trophic_df = CSV.read(joinpath("data", "clean", "trophic_levels.csv"), DataFrame)
+results = leftjoin(results, trophic_df, on = :species)
+sort!(results, :level, rev=true)
+results = results[!, Not(:level)]
 
 # Export to CSV
 CSV.write(joinpath("data", "clean", "range_proportions.csv"), results)
@@ -133,8 +132,6 @@ plot(richness_updated, c=:turku)
 richness_diff = richness_original - replace(richness_updated, nothing => 0.0)
 
 plot(replace(richness_diff, 0.0 => nothing), c=:turku)
-plot(delta_Sxy_layer, c=:turku)
-replace(richness_diff, 0.0 => nothing) == delta_Sxy_layer # true if intermediate predators filtered earlier
 
 # Export nicer plot
 plot(;

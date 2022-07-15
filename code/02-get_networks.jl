@@ -33,6 +33,10 @@ vals = ones(Bool, L)
 M = sparse(rows, cols, vals, S, S)
 M = UnipartiteNetwork(Matrix(M), sp.species)
 
+# Export trophic levels for later use
+trophic_df = DataFrame(species = collect(keys(trophic_level(M))), level = collect(values(trophic_level(M))))
+CSV.write(joinpath("data", "clean", "trophic_levels.csv"), trophic_df)
+
 # Get list of plants and mammals (carnivores and herbivores)
 plants = sp.species[sp.type .== "plant"]
 mammals = sp.species[sp.type .!== "plant"]
@@ -46,6 +50,11 @@ end
 
 # Build metaweb of mammals (subnetwork of metaweb of mammals and plants)
 MM = M[mammals]
+
+# Export metaweb as DataFrame
+interactions_df = DataFrame(interactions(MM))
+rename!(interactions_df, :from => :pred, :to => :prey)
+CSV.write(joinpath("data", "clean", "metaweb.csv"), interactions_df)
 
 # Count the number of plants that are eaten by each herbivores
 M_plants_herb = M[vcat(plants, herbivores)]
@@ -189,6 +198,8 @@ Sxy_layer = SimpleSDMPredictor(Sxy_df, :Sxy, ranges[1])
 delta_Sxy_layer = SimpleSDMPredictor(Sxy_df, :delta_Sxy, ranges[1])
 prop_Sxy_layer = SimpleSDMPredictor(Sxy_df, :prop_Sxy, ranges[1])
 
+# Export as tif
+geotiff(joinpath("data", "clean", "richness_diff.tif"), delta_Sxy_layer)
 
 # Map differences in species richness
 plot(;

@@ -1,8 +1,5 @@
 include("A1_required.jl")
 
-# Load required scripts and packages
-include("01-load_rasters.jl") # range maps of Serengeti mammals
-
 # Getting taxa codes
 sp_codes = taxon.(mammals, rank = :SPECIES)
 
@@ -26,7 +23,6 @@ Threads.@threads for o in occ
 end
 # Export to JLD2 for faster reload
 #=
-using JLD2
 @save joinpath("data", "clean", "gbif-occurrences.jld2") occ
 @load joinpath("data", "clean", "gbif-occurrences.jld2") occ
 =#
@@ -78,8 +74,6 @@ diff
 
 # Create background layer
 bglayer = SimpleSDMPredictor(WorldClim, BioClim, 1; bounding_box...)
-boundingbox(bglayer) == boundingbox(ranges[1]) || @error "background layer bounding box is different from range layer bounding box"
-size(bglayer) == size(ranges[1]) || @error "background layer size is different from range layer size"
 
 # Create an abundance layer (number of GBIF occurrences per pixel)
 gbif_occ_layers = [mask(bglayer, o, Float64) for o in occ]

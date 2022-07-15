@@ -18,3 +18,11 @@ using Statistics
 using StatsPlots
 
 include("A2_shapefile.jl") # mapping functions
+
+## Objects needed in most scripts
+
+# This is the bounding box we care about
+bounding_box = (left=-20.0, right=55.0, bottom=-35.0, top=40.0);
+
+# Get the list of mammals
+mammals = readlines(joinpath("data", "clean", "mammals.csv"));
