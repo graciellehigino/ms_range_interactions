@@ -17,16 +17,31 @@ clarifying and appealing to the readers.
 Regarding the GBIF data cleaning, retrieval and the validation steps, we added a
 more detailed description of our process (lines XX-XX, XX-XX and XX-XX). Data
 retrieving is detailed in the source code provided on our GitHub repository
-(code/06-GBIF_data.jl). We used the list of species from the network dataset and
+(code/09-GBIF_data.jl). We used the list of species from the network dataset and
 retrieved any occurrence within our bounding box (between longitudes -20.0 and
-55.0 degrees; and latitudes -35.0 and 40.0 degrees). Some taxonomic
-investigation needed to be done due to inconsistencies between GBIF and IUCN
-nomenclatures (in the case of _Taurotragus oryx_). We didn't perform any further
-data cleaning procedures because this could hinder the goals of the paper, which
-was to investigate the characteristics of the data available for research. As we
-needed to compare two sets of raw data, and data cleaning protocols are
-dependent on the use objectives, we chose to avoid data manipulation both for
-GBIF and IUCN datasets.
+55.0 degrees; and latitudes -35.0 and 40.0 degrees). We changed a two things
+regarding geographical information during data retrieval:
+1. We had originally added an argument to capture only the data that had
+   information about the continent location equals to "AFRICA". However, this
+   constrained our search by thousands of occurrences, and added a filtering
+   layer that could be interpreted as "data cleaning". We removed that because
+   we don't perform any kind of data cleaning with the IUCN dataset.  
+
+2. We added, however, a constraint to exclude occurrences falling within a 4°x4°
+   degrees square around the "Null Island" (see code/09-GBIF_data.jl#L42 on our
+   repository). Rather than a data cleaning step, we see this as a geographic
+   filter complementing the bounding box we used to retrieve data from GBIF and
+   to limit IUCN range maps. This is important because the existence of
+   coordinates is a fundamental part of our analysis, and a (00,00) coordinate
+   can be interpreted as a null coordinate.  
+
+Some taxonomic investigation needed to be done due to inconsistencies between
+GBIF and IUCN nomenclatures which would block our analysis completely (in the case of _Taurotragus oryx_). However, in the case of *Canis aureus*, as discussed in the paper, we could not track wich occurrences or which maps corresponded to which species, which we think is a great illustration of our point. We didn't
+perform any further data cleaning procedures because this could hinder the goals
+of the paper, which was to investigate the characteristics of the data available
+for research. As we needed to compare two sets of raw data, and data cleaning
+protocols are dependent on the use objectives, we chose to avoid data
+manipulation both for GBIF and IUCN datasets.
 
 For the validation step, we understand our phrasing was confusing, and we have
 rewritten this section to clarify our method. Rather than using
@@ -38,7 +53,7 @@ species.
 
 Finally, we have addressed all the other minor comments throughout the text as
 described below:
-- We've added citations on the Methods section to support our argument that a
+- We've added citations in the Methods section to support our argument that a
   mismatch between ranges can be originated from different sources (L. 68-70)
 - We have suppressed lines 214-217.
 - The abstract is now restructured according to PeerJ guidelines.
