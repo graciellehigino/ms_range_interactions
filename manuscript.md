@@ -344,10 +344,15 @@ _Canis_ species in our dataset would be the ones losing the least amount of
 range, with a higher value of the proportion of GBIF pixels within their IUCN range
 maps. However, the taxonomy of this group is a matter of intense discussion, as
 molecular and morphological data seem to disagree in the clustering of species
-and subspecies [@Krofel2021ResTax; @Stoyanov2020CraVar]. This debate probably influenced our results: with originally only 56.2% of the GBIF pixels of the golden jackal (*Canis aureus*) overlapping with the IUCN data, we suspect that many of the GBIF occurrences refer to other *Canis* species, and that its taxonomic identification in the network database is probably outdated. This led to a complete exclusion of *Canis aureus*
-from its original range in our analysis, despite the fact that this species has
-four documented preys in our metaweb. This example illustrates how the
-taxonomic, geographical and ecological data can be used to validate one another. 
+and subspecies [@Krofel2021ResTax; @Stoyanov2020CraVar]. This debate probably
+influenced our results: with originally only 56.2% of the GBIF pixels of the
+golden jackal (*Canis aureus*) overlapping with the IUCN data, we suspect that
+many of the GBIF occurrences refer to other *Canis* species, and that its
+taxonomic identification in the network database is probably outdated. This led
+to a complete exclusion of *Canis aureus* from its original range in our
+analysis, despite the fact that this species has four documented preys in our
+metaweb. This example illustrates how the taxonomic, geographical and ecological
+data can be used to validate one another. 
 
 Here we show that when ecological interaction data (predator-prey interactions
 within food webs) are used to refine species range maps, there are significant
@@ -452,9 +457,10 @@ prediction of networks and interactions in large scales [@Strydom2021RoaPre; @Wi
 for they can add valuable information about ecological interactions where they
 are missing. Additionally, in order to achieve a robust modelling framework
 towards actual species distribution models we should invest in efforts to
-collect and combine open data on species occurrence and interactions [@Windsor2022UsiEco], especially
-because we may be losing ecological interactions at least as fast as we are
-losing species [@Valiente-Banuet2015SpeLos].
+collect and combine open data on species occurrence and interactions
+[@Windsor2022UsiEco], especially because we may be losing ecological
+interactions at least as fast as we are losing species
+[@Valiente-Banuet2015SpeLos].
 
 
 # Acknowledgements
@@ -466,6 +472,8 @@ NSERC Computational Biodiversity Science and Services (BIOS$^2$) CREATE program;
 FB, NF, and TP are funded by the Institute for Data Valorization (IVADO); 
 NF and TP are funded by a donation from the Courtois Foundation; GD is funded by the FRQNT
 doctoral scholarship; TP is funded by the Canadian Institute of Ecology &
-Evolution; FW is funded by the Royal Society (Grant number: CHL\\R1\\180156). 
+Evolution; FW is funded by the Royal Society (Grant number: CHL\\R1\\180156). We
+thank the editor and reviewer for their thoughtful comments, which considerably
+improved this manuscript.
 
 # References
