@@ -1,6 +1,3 @@
-using Base: get_preferences
-using Plots.PlotMeasures
-
 include("05-degrees.jl")
 
 # Remove underscores

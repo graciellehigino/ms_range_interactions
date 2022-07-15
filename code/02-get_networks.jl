@@ -1,12 +1,5 @@
 # Load required scripts and packages
 include("01-load_rasters.jl") # range maps of Serengeti mammals
-include("A1_shapefile.jl") # mapping functions
-
-import CSV
-using DataFrames
-using EcologicalNetworks
-using SparseArrays
-using Statistics
 
 #### Build metawebs
 

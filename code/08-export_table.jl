@@ -1,9 +1,5 @@
 ## Export as markdown table
 
-using CSV
-using DataFrames
-using Latexify
-
 # Load ranges results & species groups
 results = CSV.read(joinpath("data", "clean", "range_proportions.csv"), DataFrame)
 sp_groups = CSV.read(joinpath("data", "species_groups.csv"), DataFrame)

@@ -1,20 +1,3 @@
-## Load required scripts and packages
-import Pkg; Pkg.activate("."); Pkg.instantiate()
-
-using CSV
-using DataFrames
-using DataFramesMeta
-using GBIF
-using Latexify
-using Plots
-using Plots.PlotMeasures
-using Shapefile
-using Statistics
-using StatsPlots
-using SimpleSDMLayers
-
-include("A1_shapefile.jl") # mapping functions
-
 ## Load required data
 
 # This is the bounding box we care about
