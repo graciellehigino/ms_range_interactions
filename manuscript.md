@@ -164,41 +164,62 @@ ecosystems such as the Serengeti.
 We compiled IUCN range maps for the 32 species included in the metaweb from the
 Spatial Data Download portal
 (www.iucnredlist.org/resources/spatial-data-download), which we rasterized at 10
-arc-minute resolution (~19 km² at the equator). We then combined interaction
-data from the metaweb and cooccurrence data generated from species ranges to
-create networks for each raster pixel. This generated a total of 84,244
-pixel-level networks. These networks describe potential predation, not actual
-interactions: the former is derived information from the metaweb, and the latter
-is contingent on the presence of herbivores. 
+arc-minute resolution (~18 km at the equator). We restricted the rasters a
+spatial extent comprised between latitudes 35°S and 40°N and longitudes 20°W and
+55°E. We then combined interaction data from the metaweb and cooccurrence data
+generated from species ranges to create networks for each raster pixel. This
+generated a total of 84,244 pixel-level networks. These networks describe
+potential predation, not actual interactions: the former is derived information
+from the metaweb, and the latter is contingent on the presence of herbivores. 
 
 ## Range overlap measurement 
 
-We calculated the geographical overlap, i.e. the extent to which interacting predator
-and prey species co-occurred across their ranges, as 
-$a/(a + c)$, where $a$ is the number of pixels where predator and prey cooccur and $c$ 
-is the number of pixels where only the focal species occur. This index of geographical
-overlap can be
-calculated with prey or predators as the focal species. Values vary between 0
-and 1, with values closer to 1 indicating that there is a large overlap in the
-ranges of the two species and values closer to 0 indicating low cooccurrence
-across their ranges. For each predator species, we calculated its generality to
-understand whether the level of trophic specialization (i.e., number of prey
-items per predator) affects the extent to which the ranges of the species were
-altered. One would assume that predators with a greater number of prey taxa
-(i.e., a higher generality) are less likely to have significant changes in their range
-as it is more likely that at least one prey species is present across most of their
-range.   
+We calculated the geographical overlap, i.e. the extent to which interacting
+predator and prey species co-occurred across their ranges, as 
+$a/(a + c)$, where $a$ is the number of pixels where predator and prey cooccur
+and $c$ is the number of pixels where only the focal species occur. This index
+of geographical overlap can be calculated with prey or predators as the focal
+species. Values vary between 0 and 1, with values closer to 1 indicating that
+there is a large overlap in the ranges of the two species and values closer to 0
+indicating low cooccurrence across their ranges. For each predator species, we
+calculated its generality to understand whether the level of trophic
+specialization (i.e., number of prey items per predator) affects the extent to
+which the ranges of the species were altered. One would assume that predators
+with a greater number of prey taxa (i.e., a higher generality) are less likely
+to have significant changes in their range as it is more likely that at least
+one prey species is present across most of their range.   
 
 ## Validation
 
-For each species in the dataset we collated point observation data from GBIF 
-(www.gbif.org), and condensed these data into pixels representing presence or
-absence of the focal taxon. These data were used to validate the range 
-adjustments made based on species interactions (see the previous section). To do
-so, we calculated the proportion of GBIF presence pixels occurring within both
-the original and adjusted species ranges. We then compared these proportions
-for the predators to verify if the range adjustments removed locations with GBIF
-observations, hence likely true habitats.
+For each species in the dataset we collated point observation data from GBIF
+(www.gbif.org). We restricted our queries to the data with spatial coordinates
+and which were inside the spatial extent of our rasters. We did not use
+continental or date filters to retrieve as much data as possible. However, a few
+observations were localized in the ocean near latitude 0° and longitude 0°. We
+assumed these were errors and removed all observations falling in the extent
+between latitudes 2°S and 2°N and longitudes 2°W and 2°E to keep only mainland
+sites. 
+
+We then converted the occurrence data into raster format by determining which
+pixels had a least one GBIF occurrence. This allowed us to remove the effect of
+repeated sampling in some locations. These data were used to validate the range
+adjustments made based on species interactions (see beginning of Methods
+section). To do so, we calculated the proportion of GBIF presence pixels
+occurring within both the original IUCN species range and the adjusted one. We
+then compared these proportions for the predators to verify if the range
+adjustments removed locations with GBIF observations, hence likely true
+habitats.
+
+## Software
+
+We performed all analyses using _Julia_ v1.7.2 [@Bezanson2017JulFre]. We used
+the packages `SimpleSDMLayers.jl`  [@Dansereau2021SimJl] to manipulate the
+raster layers, `EcologicalNetworks.jl` [@Poisot2019EcoJl] to construct and
+manipulate the interaction networks, and `GBIF.jl` [@Dansereau2021SimJl] to
+retrieve the species occurrences from GBIF. We also used _GDAL_
+[@GDAL/OGRcontributors2021GdaOgr] to rasterize the IUCN range maps (initially
+available as shapefiles from the Spatial Data Download portal). All the scripts
+required to reproduce the analyses are available at [**link to Zenodo archive**].
 
 # Results
 
