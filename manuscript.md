@@ -219,7 +219,7 @@ manipulate the interaction networks, and `GBIF.jl` [@Dansereau2021SimJl] to
 retrieve the species occurrences from GBIF. We also used _GDAL_
 [@GDAL/OGRcontributors2021GdaOgr] to rasterize the IUCN range maps (initially
 available as shapefiles from the Spatial Data Download portal). All the scripts
-required to reproduce the analyses are available at [**link to Zenodo archive**].
+required to reproduce the analyses are available at https://doi.org/10.5281/zenodo.6842861.
 
 # Results
 
