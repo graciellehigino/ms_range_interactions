@@ -20,7 +20,7 @@ and potentially fix - these errors is
 to combine many different pieces of information about the occurrence of a
 species, so agreements and mismatches can emerge. Although previous studies have
 combined different types of occurrence data to measure the accuracy of datasets
-[@Hurlbert2007SpeRic; @Hurlbert2005DisRan; @Ficetola2014EvaRoba], none have used
+[@Hurlbert2007SpeRic; @Hurlbert2005DisRan; @Ficetola2014EvaRob], none have used
 different types of information so far (i.e., ecological characteristics other
 than geographical distribution). Here we suggest jointly analysing species
 occurrence (range maps and point occurrences) and ecological interactions to
@@ -85,7 +85,7 @@ continental and global).
 
 It has been demonstrated that the agreement between range maps and point data
 varies geographically [@Hurlbert2007SpeRic; @Hurlbert2005DisRan;
-@Ficetola2014EvaRoba]. Adding ecological interaction data to this comparison
+@Ficetola2014EvaRob]. Adding ecological interaction data to this comparison
 might help to elucidate where these (dis)agreements are more likely to be true
 and which dataset better represent the actual distribution of species. In this
 context, we elaborate a method that allows us to refine distribution
@@ -480,21 +480,14 @@ towards actual species distribution models we should invest in efforts to
 collect and combine open data on species occurrence and interactions
 [@Windsor2022UsiEco], especially because we may be losing ecological
 interactions at least as fast as we are losing species
-[@Valiente-Banuet2015SpeLosa].  
+[@Valiente-Banuet2015SpeLos].  
 
 
 # Acknowledgements
 
 We acknowledge that this study was conducted on land within the traditional
 unceded territory of the Saint Lawrence Iroquoian, Anishinabewaki, Mohawk,
-Huron-Wendat, and Omàmiwininiwak nations. GH, FB, GD, and NF are funded by the
-NSERC Computational Biodiversity Science and Services (BIOS$^2$) CREATE program;
-FB, NF, and TP are funded by the Institute for Data Valorization (IVADO); NF and
-TP are funded by a donation from the Courtois Foundation; GD is funded by the
-Natural Sciences and Engineering Research Council (NSERC) and the Fond de
-recherche du Québec - Nature et technologie (FRQNT) doctoral scholarships; TP is
-funded by the Canadian Institute of Ecology & Evolution; FW is funded by the
-Royal Society (Grant number: CHL\\R1\\180156). We thank the editor and reviewer
-for their thoughtful comments, which considerably improved this manuscript.
+Huron-Wendat, and Omàmiwininiwak nations. We thank the editor and reviewer for
+their thoughtful comments, which considerably improved this manuscript.
 
 # References
