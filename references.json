@@ -704,33 +704,6 @@
         "volume": "6"
     },
     {
-        "DOI": "10.21105/joss.02872",
-        "author": [
-            {
-                "family": "Dansereau",
-                "given": "Gabriel"
-            },
-            {
-                "family": "Poisot",
-                "given": "Timoth\u00e9e"
-            }
-        ],
-        "container-title": "Journal of Open Source Software",
-        "id": "Dansereau2021SimJl",
-        "issue": "57",
-        "issued": {
-            "date-parts": [
-                [
-                    2021
-                ]
-            ]
-        },
-        "page": "2872",
-        "title": "SimpleSDMLayers.jl and GBIF.jl: A framework for species distribution modeling in Julia",
-        "type": "article-journal",
-        "volume": "6"
-    },
-    {
         "DOI": "10.1101/2020.02.21.960161",
         "author": [
             {
@@ -980,7 +953,7 @@
             }
         ],
         "container-title": "Journal of Biogeography",
-        "id": "Ficetola2014EvaRob",
+        "id": "Ficetola2014EvaRoba",
         "issue": "2",
         "issued": {
             "date-parts": [
@@ -1352,37 +1325,6 @@
                 [
                     2010,
                     3
-                ]
-            ]
-        },
-        "page": "5030-5035",
-        "title": "Macroecological signals of species interactions in the Danish avifauna",
-        "type": "article-journal",
-        "volume": "107"
-    },
-    {
-        "DOI": "10.1073/pnas.0914089107",
-        "author": [
-            {
-                "family": "Gotelli",
-                "given": "Nicholas J."
-            },
-            {
-                "family": "Graves",
-                "given": "Gary R."
-            },
-            {
-                "family": "Rahbek",
-                "given": "Carsten"
-            }
-        ],
-        "container-title": "Proceedings of the National Academy of Sciences",
-        "id": "Gotelli2010MacSig",
-        "issue": "11",
-        "issued": {
-            "date-parts": [
-                [
-                    2010
                 ]
             ]
         },
@@ -2567,45 +2509,6 @@
         "volume": "9"
     },
     {
-        "DOI": "10.1111/j.1461-0248.2006.00970.x",
-        "author": [
-            {
-                "family": "Rondinini",
-                "given": "Carlo"
-            },
-            {
-                "family": "Wilson",
-                "given": "Kerrie A."
-            },
-            {
-                "family": "Boitani",
-                "given": "Luigi"
-            },
-            {
-                "family": "Grantham",
-                "given": "Hedley"
-            },
-            {
-                "family": "Possingham",
-                "given": "Hugh P."
-            }
-        ],
-        "container-title": "Ecology Letters",
-        "id": "Rondinini2006TraDif",
-        "issue": "10",
-        "issued": {
-            "date-parts": [
-                [
-                    2006
-                ]
-            ]
-        },
-        "page": "1136-1145",
-        "title": "Tradeoffs of different types of species occurrence data for use in systematic conservation planning",
-        "type": "article-journal",
-        "volume": "9"
-    },
-    {
         "DOI": "10.3897/BDJ.8.e53474",
         "author": [
             {
@@ -3495,41 +3398,6 @@
         "title": "Unlocking biodiversity data: Prioritization and filling the gaps in biodiversity observation data in Europe",
         "type": "article-journal",
         "volume": "221"
-    },
-    {
-        "DOI": "10.1111/jbi.14447",
-        "author": [
-            {
-                "family": "Windsor",
-                "given": "Fredric M."
-            },
-            {
-                "family": "Hoogen",
-                "given": "Johan",
-                "non-dropping-particle": "van den"
-            },
-            {
-                "family": "Crowther",
-                "given": "Thomas W."
-            },
-            {
-                "family": "Evans",
-                "given": "Darren M."
-            }
-        ],
-        "container-title": "Journal of Biogeography",
-        "id": "Windsor2022UsiEco",
-        "issue": "n/a",
-        "issued": {
-            "date-parts": [
-                [
-                    2022
-                ]
-            ]
-        },
-        "title": "Using ecological networks to answer questions in global biogeography and ecology",
-        "type": "article-journal",
-        "volume": "n/a"
     },
     {
         "DOI": "10.1111/jbi.14447",
