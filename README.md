@@ -1,4 +1,5 @@
 ## What happens if we account for ecological interactions to correct species distribution data?  
+[![DOI](https://zenodo.org/badge/351236186.svg)](https://zenodo.org/badge/latestdoi/351236186)
 
 Another awesome paper by the Poisot Lab!  
 Decent README coming soon.  
