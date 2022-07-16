@@ -37,12 +37,13 @@ appealing to the readers.
 >*[...] I would add the need to provide more details on how you cleaned GBIF data before actually using it. You also need to provide many more details on data retrieval, which date range?*  
 
 Regarding the GBIF data cleaning, retrieval and the validation steps, we added a
-more detailed description of our process (lines XX-XX, XX-XX and XX-XX). Data
-retrieving is detailed in the source code provided on our GitHub repository
+more detailed description of our process (L. 144-165). Data
+retrieving is detailed in the source code provided on our repository
 (code/09-GBIF_data.jl). We used the list of species from the network dataset and
 retrieved any occurrence within our bounding box (between longitudes -20.0 and
-55.0 degrees; and latitudes -35.0 and 40.0 degrees). We changed a two things
-regarding geographical information during data retrieval:
+55.0 degrees; and latitudes -35.0 and 40.0 degrees). We changed two things
+regarding geographical information during data retrieval:  
+
 1. We had originally added an argument to capture only the data that had
    information about the continent location equals to "AFRICA". However, this
    constrained our search by thousands of occurrences, and added a filtering
@@ -81,26 +82,39 @@ species.
 
 Finally, we have addressed all the other minor comments throughout the text as
 detailed below:  
+
 - *Lines 68-70: This mismatch cannot just be a result of the overestimation of the predator’s range but it could be the result of misestimating both the predator's and prey's range. Please rephrase the sentence.*  
+
   We've added citations in the Methods section to support our argument that a
   mismatch between ranges can be originated from different sources (L. 68-70).  
+
 - *L. 214-217 can be suppressed.*  
+
   Agreed. We have suppressed lines 214-217.  
+
 - *PeerJ uses a structured abstract. I highly recommend authors to adhere to it when resubmitting the revised version.*
+
   The abstract is now restructured according to PeerJ guidelines.  
+
 - *Avoid citing tables and figures in the Discussion.*
+
   References to tables and figures in the Discussion section were suppressed,
   with the exception of Figure 05 (L. 305), which is an example of our results
   to clarify an important point of the discussion.  
+
 - *Lines 21-23: Are the cited literature examples of models that do not take ecological interactions into account? Use e.g. before.*
+
   The cited literature are not examples of models that do not take ecological
   interactions into account, but studies that have demonstrated how ecological
   interactions might be responsible for shaping a species' distribution. We've
   rewritten the sentence to clarify that.  
+
 - *Lines 68-70: This mismatch cannot just be a result of the overestimation of the predator’s range but it could be the result of misestimating both the predator's and prey's range. Please rephrase the sentence.*
+
   Lines 84-89: we have rewritten the sentence to include the consideration
   misestimation of both species in a trophic interaction. We have also added
   citations and examples.  
+
 - We have addressed the grammatical suggestions throughout the text, except for
   the legend of Figure 1. We thought that the suggested phrasing adds a little
   bit of confusion to the comprehension of the figure.
@@ -109,5 +123,5 @@ We hope our revised manuscript is now more appropriate for publishing at PeerJ.
 Reiterating our appreciation for yours and the reviewer's thoughtful comments,
 we are available to answer any further questions.
 
-Best regards,
+Best regards,  
 The Authors
