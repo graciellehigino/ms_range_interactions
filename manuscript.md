@@ -324,7 +324,6 @@ was mostly similar to that of the original IUCN ranges for most predator species
 species showed only small differences (*Crocuta crocuta* lost 1.3% of the
 original data overlap; *Acinonyx jubatus* lost 1.9%; *Panthera pardus* lost
 8.8%; and *Caracal caracal* lost 12.3%).
-<!--->Note to self: here I calculated how much the difference represents as a proportion of the total proportion, which means the decreased rate. E.g., when the range_prop_diff is equal to the original proportion (range_prop), this means that this species lost 100% of the original proportion. Therefore I can't use range_prop_diff numbers if I'm talking about % lost.<--->
 On the other hand, three species, *Canis aureus*, *Canis mesomelas*, and
 *Leptailurus serval* showed very high differences, with overlaps lowered by
 100%, 57.4%, and 100% respectively. These last two species are also the only
