@@ -1,8 +1,10 @@
 # Load required scripts and packages
-include("01-load_rasters.jl") # range maps of Serengeti mammals 
+include("01-load_rasters.jl") # range maps of Serengeti mammals
 include("shapefile.jl") # mapping functions
 
+using CSV
 using GBIF
+using DataFramesMeta
 
 # Getting taxa codes
 sp_codes = taxon.(mammals, rank = :SPECIES)
@@ -17,7 +19,6 @@ occ = occurrences.(
     "hasCoordinate" => "true",
     "decimalLatitude" => lat,
     "decimalLongitude" => lon,
-    "continent" => "AFRICA"
 )
 ## Loop to get all occurrences
 Threads.@threads for o in occ
@@ -41,6 +42,9 @@ occ_df = reduce(vcat, occ_df)
 select!(occ_df, :species, :longitude, :latitude)
 occ_df.species = replace.(occ_df.species, " " => "_")
 
+# Remove observations with coordinates around (0.0, 0.0) which are outside mainland
+filter!(x -> !(x.latitude > -2.0 && x.latitude < 2.0 && x.longitude > -2.0 && x.longitude < 2.0), occ_df)
+
 # Make sure the species names match
 isequal(unique(occ_df.species), mammals) # not the same
 setdiff(unique(occ_df.species), mammals) # Taurotragus oryx is the difference
@@ -54,6 +58,21 @@ isequal(unique(occ_df.species), mammals) # true
 
 # Save as CSV
 CSV.write(joinpath("data", "clean", "gbif_occurrences.csv"), occ_df)
+
+## Investigate difference with original query with Africa as continent
+# Load datasets
+old = CSV.read(joinpath("data", "clean", "gbif_occurrences_old.csv"), DataFrame) # get from previous commit
+new = CSV.read(joinpath("data", "clean", "gbif_occurrences.csv"), DataFrame)
+
+# Compare number of observations per species
+_nold = combine(groupby(old, :species), nrow => :nrow_old)
+_nnew = combine(groupby(new, :species), nrow => :nrow_new)
+diff = @chain begin
+    leftjoin(_nold, _nnew, on = :species)
+    @transform(diff = :nrow_new .- :nrow_old)
+    sort(:diff, rev=true)
+end
+diff
 
 ## Create layers
 

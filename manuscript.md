@@ -11,31 +11,45 @@ other species (some of which we may not even know exist). Ecologists have been
 trying to decode this message with progressively more powerful tools, from their
 field notes to highly complex computational algorithms. However, to succeed
 in this challenge it is important to have the right clues in hand. There are
-many ways we can be misled by data - or the lack of it: taxonomic errors,
-geographic inaccuracy, or sampling biases [@Ladle2013MapSpe; @Hortal2015SevSho;
-@Poisot2021GloKno]. One way to identify - and potentially fix - these errors is
+many ways we can be misled by data - or the lack of it: taxonomic errors (e.g.,
+due to updates in the taxonomy of a species), geographic inaccuracy (e.g.,
+approximate coordinates or lack of documentation about their accuracy), or
+sampling biases (e.g. data clustered near roads or research centers)
+[@Ladle2013MapSpe; @Hortal2015SevSho; @Poisot2021GloKno]. One way to identify -
+and potentially fix - these errors is
 to combine many different pieces of information about the occurrence of a
-species, so agreements and mismatches can emerge. Here we suggest jointly
-analyzing species occurrence (range maps and point occurrences) and ecological
-interactions to identify mismatches between datasets.  
+species, so agreements and mismatches can emerge. Although previous studies have
+combined different types of occurrence data to measure the accuracy of datasets
+[@Hurlbert2007SpeRic; @Hurlbert2005DisRan; @Ficetola2014EvaRoba], none have used
+different types of information so far (i.e., ecological characteristics other
+than geographical distribution). Here we suggest jointly analysing species
+occurrence (range maps and point occurrences) and ecological interactions to
+identify mismatches between datasets.  
 
 Interactions form complex networks that shape ecological structures and maintain
 the essential functions of ecosystems, such as seed dispersal, pollination, and
 biological control [@Albrecht2018PlaAni; @Fricke2022EffDef] that ultimately
 affect the composition, richness, and successional patterns of communities
 across biomes. Yet, the connection between occurrence and interaction data is a
-frequent debate in ecology [@Blanchet2020CooNot]. For instance, macroecological
-models are often used with point or range occurrence data in order to
-investigate the dynamics of a species with its environment. However, these
-models do not account for ecological interactions, which might largely affect
-species distribution [@AbregoAccSpe; @Afkhami2014MutEff; @Araujo2014ImpBio;
-@Godsoe2017IntBio; @Godsoe2012HowSpe]. Some researchers argue that occurrence
-data can also capture real-time interactions [@Roy2016FocPla; @Ryan2018RolCit],
-and, because of that, it would not be necessary to include ecological
-interaction dynamics in macroecological models. On the other hand, many
-mechanistic simulation models in ecology have considered the effect of
-competition and facilitation in range shifts, whilst the use of trophic
-interactions in this context remains insufficient [@Cabral2017MecSim]. 
+frequent debate in ecology [@Blanchet2020CooNot; @Wisz2013RolBio]. For instance,
+macroecological models are often used with point or range occurrence data in
+order to investigate the dynamics of a species with its environment. However,
+these models do not account for ecological interactions, although it has been demonstrated that they might largely
+affect species distribution [@Abrego2021AccSpe; @Afkhami2014MutEff;
+@Araujo2014ImpBio; @Godsoe2017IntBio; @Godsoe2012HowSpe; @Gotelli2010MacSig;
+@Wisz2013RolBio]. Some researchers argue that occurrence data can also capture
+real-time interactions [see @Roy2016FocPla; @Ryan2018RolCit], and, because of that,
+it would not be necessary to include ecological interaction dynamics in
+macroecological models. On the other hand, many mechanistic simulation models in
+ecology have considered the effect of competition and facilitation in range
+shifts. For example, Gotelli _et al._ [-@Gotelli2010MacSig] demonstrate how
+conspecific attraction might be the main factor driving the distribution of
+migratory birds; Afkhami _et al._ [-@Afkhami2014MutEff] explores how mutualistic
+fungal endophytes are responsible or expanding the range of native grass; many
+other examples are discussed in Wisz _et al._ [-@Wisz2013RolBio]. Although
+interactions across trophic levels are demonstrated to determine species range
+[@Wisz2013RolBio], the use of these interactions in mechanistic simulation
+models in macroecology remains insufficient [as discussed in @Cabral2017MecSim].  
 
 A significant challenge in this debate is the quality and quantity of species
 distribution and ecological data [@Boakes2010DisVie; @Ronquillo2020AssSpa;
@@ -44,11 +58,12 @@ macroecological research [@Hortal2008HisBia]. Amongst the geographical data
 available are the range maps provided by the International Union for the
 Conservation of Nature (IUCN). Such maps consist of simplified polygons, often
 created as alpha or convex hulls around known species locations, refined by
-expert knowledge about the species [@IUCNSSCRedListTechnicalWorkingGroup2021MapSta].
+expert knowledge about the species [@IUCN2019MapSta].
 These maps can be used in macroecological inferences in the lack of more precise
 information [@Fourcade2016ComSpe; @Alhajeri2019HigCor], but it has been
 recommended that they are used with caution since they tend to underestimate the
-distribution of species that are not well-known [@Herkt2017MacCon], do not
+distribution of species that are not well-known [@Herkt2017MacCon] (especially
+at fine scale resolutions; @Hurlbert2007SpeRic; @Hurlbert2005DisRan), do not
 represent spatial variation in species occurrence and abundance
 [@Dallas2020AbuNot], and can include inadequate areas within the estimated
 range. Another source of species distribution information is the Global
@@ -66,9 +81,14 @@ projects [@Callaghan2019ImpBig; @Pocock2015BioRec] and dedicated
 databases, such as Mangal [@Poisot2016ManMak]. This provides an opportunity to
 merge species distribution and ecological interaction data to improve our
 predictions of where a species may be found across large spatial scales (e.g.,
-continental and global). 
+continental and global).  
 
-In this context, we elaborate a method that allows us to refine distribution
+It has been demonstrated that the agreement between range maps and point data
+varies geographically [@Hurlbert2007SpeRic; @Hurlbert2005DisRan;
+@Ficetola2014EvaRoba]. Adding ecological interaction data to this comparison
+might help to elucidate where these (dis)agreements are more likely to be true
+and which dataset better represent the actual distribution of species. In this
+context, we elaborate a method that allows us to refine distribution
 data (more precisely range maps) based on interaction data, considering the
 basic assumption that predators can only be present in regions where they are
 connected to at least one herbivore - and thus indirectly connected to primary
@@ -79,7 +99,7 @@ uncertainty areas in IUCN range maps. Finally, we add the GBIF occurrence points
 for the Serengeti species to the investigation, discuss the mechanisms that can
 lead to the lack of agreement between data, and build from that a vision for the
 next steps, reinforcing the importance of geographically explicit interaction
-data. 
+data.  
 
 
 # Methods
@@ -88,19 +108,21 @@ Organisms cannot persist unless they are directly or indirectly connected to a
 primary producer within their associated food web [@Power1992TopBot]. Therefore,
 the range of a predator (omnivore or carnivore) depends on the overlapping
 ranges of its preys. If sections of a predator's range does not overlap with at
-least one of its prey it will become disconnected from primary producers, and 
-therefore we would not expect the predator to occur in this area. This mismatch can
-be the result of different mechanisms, like the overestimation of the predator's
-range, taxonomic errors, or the lack of information about trophic links. Thus,
-given that herbivores are the main connection between plant resources (directly
-limited by environmental conditions) and predators [@Dobson2009FooStr;
-@Scott2018RolHer], here we adjusted the ranges of predators based on a simple 
+least one of its prey it will become disconnected from primary producers, and
+therefore we would not expect the predator to occur in this area. This mismatch
+can be the result of different mechanisms, like the misestimation of both the predator's and the preys' ranges [@Ladle2013MapSpe; @Rondinini2006TraDif], taxonomic errors
+[@Isaac2004TaxInf; @Ladle2013MapSpe], or the lack of information about trophic
+links (i.e., the lack of connection between the ranges of a predator and a
+primary producer may be due a third species we don't know is connected to both).
+Thus, given that herbivores are the main connection between plant resources
+(directly limited by environmental conditions) and predators [@Dobson2009FooStr;
+@Scott2018RolHer], here we adjusted the ranges of predators based on a simple
 rule: we removed any part of a predator’s range that did not intersect with the
-range of at least one prey herbivore species. So, unless the range of the predator
-overlapped with at least one prey item, which in turn is directly connected to a
-primary producer (plants), we removed that section of the predator’s range. Finally,
-we calculated the difference in range size between the original IUCN ranges and 
-those adjusted based on species interaction data.
+range of at least one prey herbivore species. So, unless the range of the
+predator overlapped with at least one prey item, which in turn is directly
+connected to a primary producer (plants), we removed that section of the
+predator’s range. Finally, we calculated the difference in range size between
+the original IUCN ranges and those adjusted based on species interaction data.
 
 ## Data 
 
@@ -142,42 +164,62 @@ ecosystems such as the Serengeti.
 We compiled IUCN range maps for the 32 species included in the metaweb from the
 Spatial Data Download portal
 (www.iucnredlist.org/resources/spatial-data-download), which we rasterized at 10
-arc-minute resolution (~19 km² at the equator). We then combined interaction
-data from the metaweb and cooccurrence data generated from species ranges to
-create networks for each raster pixel. This generated a total of 84,244
-pixel-level networks. These networks describe potential predation, not actual
-interactions: the former is derived information from the metaweb, and the latter
-is contingent on the presence of herbivores. 
+arc-minute resolution (~18 km at the equator). We restricted the rasters a
+spatial extent comprised between latitudes 35°S and 40°N and longitudes 20°W and
+55°E. We then combined interaction data from the metaweb and cooccurrence data
+generated from species ranges to create networks for each raster pixel. This
+generated a total of 84,244 pixel-level networks. These networks describe
+potential predation, not actual interactions: the former is derived information
+from the metaweb, and the latter is contingent on the presence of herbivores. 
 
 ## Range overlap measurement 
 
-We calculated the geographical overlap, i.e. the extent to which interacting predator
-and prey species co-occurred across their ranges, as 
-<!---, by using a method presented by Ruggiero, Lawton, and Blackburn [-@Ruggiero1998GeoRan]--->
-$a/(a + c)$, where $a$ is the number of pixels where predator and prey cooccur and $c$ 
-is the number of pixels where only the focal species occur. This index of geographical
-overlap can be
-calculated with prey or predators as the focal species. Values vary between 0
-and 1, with values closer to 1 indicating that there is a large overlap in the
-ranges of the two species and values closer to 0 indicating low cooccurrence
-across their ranges. For each predator species, we calculated its generality to
-understand whether the level of trophic specialization (i.e., number of prey
-items per predator) affects the extent to which the ranges of the species were
-altered. One would assume that predators with a greater number of prey taxa
-(i.e., a higher generality) are less likely to have significant changes in their range
-as it is more likely that at least one prey species is present across most of their
-range.   
+We calculated the geographical overlap, i.e. the extent to which interacting
+predator and prey species co-occurred across their ranges, as 
+$a/(a + c)$, where $a$ is the number of pixels where predator and prey cooccur
+and $c$ is the number of pixels where only the focal species occur. This index
+of geographical overlap can be calculated with prey or predators as the focal
+species. Values vary between 0 and 1, with values closer to 1 indicating that
+there is a large overlap in the ranges of the two species and values closer to 0
+indicating low cooccurrence across their ranges. For each predator species, we
+calculated its generality to understand whether the level of trophic
+specialization (i.e., number of prey items per predator) affects the extent to
+which the ranges of the species were altered. One would assume that predators
+with a greater number of prey taxa (i.e., a higher generality) are less likely
+to have significant changes in their range as it is more likely that at least
+one prey species is present across most of their range.   
 
 ## Validation
 
-For each species in the dataset we collated point observation data from GBIF 
-(www.gbif.org), and condensed these data into pixels representing presence or
-absence of the focal taxon. These data were used to validate the range 
-adjustments made based on species interactions (see the previous section). To do
-so, we calculated the proportion of GBIF presence pixels occurring within both
-the original and adjusted species ranges. We then compared these proportions
-for the predators to verify if the range adjustments removed locations with GBIF
-observations, hence likely true habitats.
+For each species in the dataset we collated point observation data from GBIF
+(www.gbif.org). We restricted our queries to the data with spatial coordinates
+and which were inside the spatial extent of our rasters. We did not use
+continental or date filters to retrieve as much data as possible. However, a few
+observations were localized in the ocean near latitude 0° and longitude 0°. We
+assumed these were errors and removed all observations falling in the extent
+between latitudes 2°S and 2°N and longitudes 2°W and 2°E to keep only mainland
+sites. 
+
+We then converted the occurrence data into raster format by determining which
+pixels had a least one GBIF occurrence. This allowed us to remove the effect of
+repeated sampling in some locations. These data were used to validate the range
+adjustments made based on species interactions (see beginning of Methods
+section). To do so, we calculated the proportion of GBIF presence pixels
+occurring within both the original IUCN species range and the adjusted one. We
+then compared these proportions for the predators to verify if the range
+adjustments removed locations with GBIF observations, hence likely true
+habitats.
+
+## Software
+
+We performed all analyses using _Julia_ v1.7.2 [@Bezanson2017JulFre]. We used
+the packages `SimpleSDMLayers.jl`  [@Dansereau2021SimJl] to manipulate the
+raster layers, `EcologicalNetworks.jl` [@Poisot2019EcoJl] to construct and
+manipulate the interaction networks, and `GBIF.jl` [@Dansereau2021SimJl] to
+retrieve the species occurrences from GBIF. We also used _GDAL_
+[@GDAL/OGRcontributors2021GdaOgr] to rasterize the IUCN range maps (initially
+available as shapefiles from the Spatial Data Download portal). All the scripts
+required to reproduce the analyses are available at [**link to Zenodo archive**].
 
 # Results
 
@@ -191,7 +233,7 @@ addition, many networks (16.6%) only had disconnected mammals; these networks
 however all had a very low number of mammal species, specifically between 1 and
 4 (from a total of 32). As expected, the proportion of carnivores with a path to a
 primary producer was conditional on the total number of mammal species in each local
-network (third panel of @fig:richness).
+network (third panel of @fig:richness).  
 
 ![(a) Spatial distribution of species richness according to the original IUCN
 range maps of all 32 mammal species of the Serengeti food web. (b) Proportion of
@@ -233,7 +275,7 @@ extreme case (where all its range is suppressed by the absence of preys) and it
 would make the interpretation of the data more
 difficult.](figures/beta-div_pred-species.png){#fig:geo_diss} 
 
-There was high variation in the overlap of predator and prey ranges
+There was a high variation in the overlap of predator and prey ranges
 (@fig:geo_diss). The high density of points on the left-hand side of @fig:geo_diss
 indicates that most preys have small ranges in comparison to those of the set of
 carnivores in the networks, resulting in either low overlap between both ranges
@@ -250,7 +292,7 @@ points along the x-axis, yet more restricted variation on the y-axis
 (@fig:geo_diss). There was also no overall relationship between the two metrics,
 or for any predator species.
 
-: List of species analyzed, their out and in degrees, total original range size
+: List of species analysed, their out and in degrees, total original range size
 (in pixels), and proportion of their ranges occupied by their preys and predators
 (values between 0 and 1). Species are sorted according to the groups identified
 by @Baskerville2011SpaGui. Notice how some species are isolated in the network
@@ -262,20 +304,15 @@ its preys. {#tbl:everyone}
 ## Validation with GBIF occurrences
 
 The proportion of GBIF pixels (pixels with at least one GBIF occurrence) falling
-in the IUCN ranges varied from low to high depending on the species
+within the IUCN ranges varied from low to high depending on the species
 ([@fig:gbif], left). The lowest proportions occurred for species with small
-ranges (such as *Lycaon pictus*), although some species with small ranges showed
-high overlap. Species with median and large ranges had high proportions of
-occurrences falling into their IUCN range. Predators and preys displayed similar
-overlap variations. While no species had all of its GBIF occurrences within its
-IUCN range, one species had this proportion equal to zero, _Canis aureus_, which
-is also the only species whose range is not covered by any of its preys. This
-result reinforces the concern raised in the literature on the use of IUCN range
-maps for species that are not well known [@Herkt2017MacCon], demonstrating how
-small range species are likely to have their distribution underestimated in the
-IUCN database. Additionally, the fact that _Canis aureus_ had none of its GBIF
-pixels overlapping with IUCN maps suggests a taxonomic mismatch between both
-databases, which we explore in the Discussion section. 
+ranges. Amongst herbivores, *Rhabdomys pumilio* has a proportion of 22.6% of its
+presence pixels within its IUCN range, while predators have this proportion
+above 55% (such as *Lycaon pictus*, with 55.1%, and *Canis aureus*, with 56.2%).
+Nevertheless, some species with smaller ranges showed high data overlap (such as
+*Canis mesomelas*, with 94.9%, and many herbivores). Overall, predators and
+preys displayed similar overlap variations, and species with median and large
+ranges had higher proportions of occurrences falling into their IUCN range.  
 
 The proportion of GBIF pixels in updated ranges can only be equal to or lower
 than that of the original ranges, as our analysis removes pixels from the
@@ -283,18 +320,28 @@ original range and does not add new ones. Rather, the absence of a difference
 between the two types of ranges indicates that no pixels with GBIF observations,
 hence likely true habitats, were removed by our analysis. Here this proportion
 was mostly similar to that of the original IUCN ranges for most predator species
-([@fig:gbif, right]). Four species showed no difference in proportion while
-three species showed only small differences (proportions of 0.01 to 0.05). On
-the other hand, two species, _Canis mesomelas_, and _Leptailurus serval_ showed
-very high differences, with overlaps lower by 0.548 and 0.871 respectively. For
-_Leptailurus serval_, none of the GBIF observations occurred in the updated
-range. These two species are also the only predators with a single prey in our
-metaweb. Our results delineate how a mismatch between GBIF and IUCN databases
-differ greatly with small changes in herbivore species ranges, and it is
-somewhat positively related to range size for predator species. Moreover, we
-show that accounting for interactions does not necessarily aggravates this
-dissimilarity, but it is relevant for species with little ecological information
-or specialists.
+([@fig:gbif, right]). Two species showed no difference in proportion while four
+species showed only small differences (*Crocuta crocuta* lost 1.3% of the
+original data overlap; *Acinonyx jubatus* lost 1.9%; *Panthera pardus* lost
+8.8%; and *Caracal caracal* lost 12.3%).
+<!--->Note to self: here I calculated how much the difference represents as a proportion of the total proportion, which means the decreased rate. E.g., when the range_prop_diff is equal to the original proportion (range_prop), this means that this species lost 100% of the original proportion. Therefore I can't use range_prop_diff numbers if I'm talking about % lost.<--->
+On the other hand, three species, *Canis aureus*, *Canis mesomelas*, and
+*Leptailurus serval* showed very high differences, with overlaps lowered by
+100%, 57.4%, and 100% respectively. These last two species are also the only
+predators with a single prey in our metaweb. *Canis aureus* has four preys, but
+it has one of the smallest ranges in IUCN, which is not covered by any of its
+preys. This result reinforces the concern raised in the literature on the use of
+IUCN range maps for species that are not well known [@Herkt2017MacCon],
+demonstrating how small range species are likely to have their distribution
+underestimated in the IUCN database. Additionally, the fact that _Canis aureus_
+had such a conspicuous mismatch between both the original and updated IUCN range
+maps, and between GBIF and IUCN data, may indicate a taxonomic incongruency
+between the three databases used here, which we explore in the Discussion section. Our results
+delineate how a mismatch between GBIF and IUCN databases differ greatly with
+small changes in herbivore species ranges, and it is somewhat positively related
+to range size for predator species. Moreover, we show that accounting for
+interactions does not necessarily aggravates this dissimilarity, but it is
+relevant for species with little ecological information or specialists.  
 
 ![Left panel: Distribution of the proportion of GBIF pixels (pixels with at
 least one occurrence in GBIF) falling into the IUCN range for different range
@@ -317,43 +364,41 @@ _Canis_ species in our dataset would be the ones losing the least amount of
 range, with a higher value of the proportion of GBIF pixels within their IUCN range
 maps. However, the taxonomy of this group is a matter of intense discussion, as
 molecular and morphological data seem to disagree in the clustering of species
-and subspecies [@Krofel2021ResTax; @Stoyanov2020CraVar]. This debate is indeed
-reflected in our analysis: the GBIF identification of the golden jackal is
-incompatible with the one used by IUCN, each of them mapping its distribution in
-completely different places. This led to a complete exclusion of *Canis aureus*
-from its original range in our analysis, despite the fact that this species has
-four documented preys in our metaweb. This example illustrates how the
-taxonomic, geographical and ecological data can be used to validate one another. 
+and subspecies [@Krofel2021ResTax; @Stoyanov2020CraVar]. This debate probably
+influenced our results: with originally only 56.2% of the GBIF pixels of the
+golden jackal (*Canis aureus*) overlapping with the IUCN data, we suspect that
+many of the GBIF occurrences refer to other *Canis* species, and that its
+taxonomic identification in the network database is probably outdated. This led
+to a complete exclusion of *Canis aureus* from its original range in our
+analysis, despite the fact that this species has four documented preys in our
+metaweb. This example illustrates how the taxonomic, geographical and ecological
+data can be used to validate one another.  
 
 Here we show that when ecological interaction data (predator-prey interactions
 within food webs) are used to refine species range maps, there are significant
 reductions in the IUCN range size of predatory organisms. Despite showing the
 potential importance of accounting for species interactions when estimating the
 range of a species, it remains unclear the extent to which the patterns observed
-represent ecological processes or a lack of data. In the following sections, we
-discuss the implications of our findings, in terms of species range maps,
-interaction data, and the next steps required to enhance understanding of species
-distributions using information on ecological networks.
+represent ecological processes or a lack of data.  
 
 ## Connectivity, diversity and range preservation
 
 In the Serengeti food web there is a positive relationship between the out
-degrees of predators and the size of their ranges ([@tbl:everyone]). In
-addition, our results show that there is a negative relationship between the
-relative loss of predators' ranges and their number of preys ([@fig:degree]),
-reinforcing the idea that generalist species can preserve their distributions
-longer while losing interactions. The factors limiting the geographical range of
-a species in a community can vary with connectivity and richness
-[@Svenning2014InfInt]. Younger communities may be more affected by environmental
-limitations because they are dominated by generalist species, while older
-metacommunities are probably affected in different ways in the center of the
-distribution, at the edge of ranges, and in sink and source communities
-[@Svenning2014InfInt; @Godsoe2017IntBio; @Cazelles2016IntBio;
+degrees of predators and the size of their ranges. Here, we showed that there is
+a negative relationship between the relative loss of predators' ranges and their
+number of preys, reinforcing the idea that generalist species can preserve their
+distributions longer while losing interactions. The factors limiting the
+geographical range of a species in a community can vary with connectivity and
+richness [@Svenning2014InfInt]. Younger communities may be more affected by
+environmental limitations because they are dominated by generalist species,
+while older metacommunities are probably affected in different ways in the
+center of the distribution, at the edge of ranges, and in sink and source
+communities [@Svenning2014InfInt; @Godsoe2017IntBio; @Cazelles2016IntBio;
 @Bullock2000GeoSep]. Additionally, it is likely that species with larger ranges
 of distribution and those that are more generalists would co-occur with a
 greater number of other species [@Dattilo2020SpeDri], while dispersal capacity
 of competitive species modulate their aggregation in space and the effect of
-interactions on their range limits [@Godsoe2017IntBio].
+interactions on their range limits [@Godsoe2017IntBio].  
 
 ## Geographical mismatch and data availability
 
@@ -368,35 +413,35 @@ superpose, it can mean we lack information about the distribution of either
 species or about their interactions (e.g., predators may be feeding on different
 species than the ones in our dataset outside the Serengeti ecosystem). Here we
 addressed part of this problem by comparing the IUCN range maps with GBIF
-occurrences, which helped us clarify what is the shortfall for each species. 
+occurrences, which helped us clarify what is the shortfall for each species.  
 
 The lack of superposition between IUCN range maps and GBIF occurrences suggests
 that we certainly do miss geographical information about the distribution of a
-certain species, but it is not an indicator of the completeness of the
+certain species, but this is not an indicator of the completeness of the
 information about ecological interactions. However, if both GBIF and IUCN
 occurrences tend to superpose and still the species is locally removed, this
 indicates we don't have information about all its interactions. The combination
 of this rationale with our method of updating range maps based on ecological
 interactions allows us to have a clearer idea of which information we are
-missing. For example, the lion (*Panthera leo*) was one of the species with the
-smallest difference between the original and the updated ranges (@fig:degree),
-but 59.5% of the GBIF occurrences for this species fell outside the IUCN range
+missing. For example, the lion (*Panthera leo*) was one of the species with no
+difference between the original and the updated ranges, but 40.7% of the GBIF
+occurrences for this species fell outside its IUCN range
 (@fig:gbif). In this particular case, the IUCN maps seem to agree with species
 interaction data. However, the disagreement between the IUCN and the GBIF
 databases is concerning and suggests that the IUCN maps might underestimate the
 lion's distribution. On the other hand, *Leptailurus serval* and *Canis
 mesomelas* are two of the three species that lose the higher proportion of range
-due to the lack of paths to a herbivore (@fig:degree), but are also some of the
+due to the lack of paths to a herbivore, but are also some of the
 species with the higher proportion of GBIF occurrences inside IUCN range maps
 (@fig:gbif). This indicates that the information we are missing for these two
 species is related to either the occurrence of an interaction or the presence of
 interacting species. To illustrate that, we mapped the GBIF data for the prey of
 *Leptailurus serval*, with a mobility buffer around each point ([@fig:serval]).
-When considering GBIF data, approximately 53% of the prey's occurrences are
+When considering GBIF data, approximately 42% of the prey's occurrences are
 within the portion of the serval's range that was lost. With the buffer area,
-this corresponds to 13% of the lost range. This means that by adding GBIF
+this corresponds to 15% of the lost range. This means that by adding GBIF
 information, we would reduce the loss of range (or information) for the predator
-by 13% since its distribution is conditional on the occurrence of its preys.
+by 15% since its distribution is conditional on the occurrence of its preys.  
 
 ![Mismatch between serval's range loss and GBIF occurrence of its prey. The
 left panel shows the reduction of serval's range when we consider the IUCN data
@@ -404,13 +449,13 @@ on its prey. On the right panel, we added GBIF data on both serval and its prey,
 with a buffer for the prey to account for species mobility.](figures/serval_mismatch_combined.png){#fig:serval}
 
 Finally, the extreme case of *Canis aureus* illustrates a lack of both
-geographical and ecological information: none of its GBIF occurrences and none
+geographical and ecological information: only half of its GBIF presence pixels and none
 of its preys occur inside its IUCN range. We believe, therefore, that the
 validation of species distribution based on ecological interaction is a relevant
 method that can further fill in information gaps. Nevertheless, it is imperative
 that more geographically explicit data about ecological networks and
 interactions become available. This would help clarify when cooccurrences can be
-translated into interactions and help the development of more advanced
+translated into interactions [@Windsor2022UsiEco] and help the development of more advanced
 validation methods for occurrence data.  
 
 ## Next steps
@@ -421,20 +466,21 @@ be crucial in ecological modelling [@Hortal2008UncMea; @Ladle2013MapSpe], and
 accounting for these errors can improve model outputs by diminishing the error
 propagation [@Draper1995AssPro]. For instance, we believe this is a way to
 account for ecological interactions in habitat suitability models without making
-the models more complex, but making sure (not assuming) that the input data -
+the models more complex, but by making sure (not assuming) that the input data -
 the species occurrence - actually accounts for ecological interactions. It is
 important to notice, however, that the quality and usefulness of this method are
 highly correlated with the amount and quality of data available about species'
-occurrences **and** interactions. With this paper we hope to add to the
+occurrences **and** interactions. With this paper, we hope to add to the
 collective effort to decode the encrypted message that is the occurrence of a
 species in space and time. A promising avenue that adds to our method is the
-prediction of networks and interactions in large scales [@Strydom2021RoaPre],
+prediction of networks and interactions in large scales [@Strydom2021RoaPre; @Windsor2022UsiEco],
 for they can add valuable information about ecological interactions where they
 are missing. Additionally, in order to achieve a robust modelling framework
 towards actual species distribution models we should invest in efforts to
-collect and combine open data on species occurrence and interactions, especially
-because we may be losing ecological interactions at least as fast as we are
-losing species [@Valiente-Banuet2015SpeLos].
+collect and combine open data on species occurrence and interactions
+[@Windsor2022UsiEco], especially because we may be losing ecological
+interactions at least as fast as we are losing species
+[@Valiente-Banuet2015SpeLosa].  
 
 
 # Acknowledgements
@@ -442,9 +488,13 @@ losing species [@Valiente-Banuet2015SpeLos].
 We acknowledge that this study was conducted on land within the traditional
 unceded territory of the Saint Lawrence Iroquoian, Anishinabewaki, Mohawk,
 Huron-Wendat, and Omàmiwininiwak nations. GH, FB, GD, and NF are funded by the
-NSERC BIOS$^2$ CREATE program; FB, NF, and TP are funded by IVADO; NF and TP are
-funded by a donation from the Courtois Foundation; GD is funded by the FRQNT
-doctoral scholarship; TP is funded by the Canadian Institute of Ecology &
-Evolution; FW is funded by the Royal Society (Grant number: CHL\\R1\\180156). 
+NSERC Computational Biodiversity Science and Services (BIOS$^2$) CREATE program;
+FB, NF, and TP are funded by the Institute for Data Valorization (IVADO); NF and
+TP are funded by a donation from the Courtois Foundation; GD is funded by the
+Natural Sciences and Engineering Research Council (NSERC) and the Fond de
+recherche du Québec - Nature et technologie (FRQNT) doctoral scholarships; TP is
+funded by the Canadian Institute of Ecology & Evolution; FW is funded by the
+Royal Society (Grant number: CHL\\R1\\180156). We thank the editor and reviewer
+for their thoughtful comments, which considerably improved this manuscript.
 
 # References

@@ -110,10 +110,10 @@ end
 savefig(joinpath("figures", "serval_prey_mismatch_buffered.png"))
 
 # What percentage of the range loss does the buffered range represent?
-sum(buffered)/length(buffered) # ~ 13%
+sum(buffered)/length(buffered) # ~ 15%
 
 # What percentage of the prey's GBIF observations are within the range loss?
-length(_prey_sites)/length(prey_gbif_range) # ~ 53%
+length(_prey_sites)/length(prey_gbif_range) # ~ 42%
 
 ## GBIF figure with the serval and it's prey only
 
