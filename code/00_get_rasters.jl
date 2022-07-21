@@ -1,8 +1,4 @@
-import Pkg; Pkg.activate(".")
-
-using SimpleSDMLayers
-using CSV
-using DataFrames
+include("A1_required.jl")
 
 # I store my IUCN data in the same location, so adapt this to where your files are
 const IUCNPATH = expanduser(joinpath("~", ".data", "iucn"))

@@ -1,12 +1,7 @@
+include("A1_required.jl")
+
 # Load required scripts and packages
 include("01-load_rasters.jl") # range maps of Serengeti mammals
-include("shapefile.jl") # mapping functions
-
-import CSV
-using DataFrames
-using EcologicalNetworks
-using SparseArrays
-using Statistics
 
 #### Build metawebs
 
@@ -38,6 +33,10 @@ vals = ones(Bool, L)
 M = sparse(rows, cols, vals, S, S)
 M = UnipartiteNetwork(Matrix(M), sp.species)
 
+# Export trophic levels for later use
+trophic_df = DataFrame(species = collect(keys(trophic_level(M))), level = collect(values(trophic_level(M))))
+CSV.write(joinpath("data", "clean", "trophic_levels.csv"), trophic_df)
+
 # Get list of plants and mammals (carnivores and herbivores)
 plants = sp.species[sp.type .== "plant"]
 mammals = sp.species[sp.type .!== "plant"]
@@ -52,13 +51,18 @@ end
 # Build metaweb of mammals (subnetwork of metaweb of mammals and plants)
 MM = M[mammals]
 
+# Export metaweb as DataFrame
+interactions_df = DataFrame(interactions(MM))
+rename!(interactions_df, :from => :pred, :to => :prey)
+CSV.write(joinpath("data", "clean", "metaweb.csv"), interactions_df)
+
 # Count the number of plants that are eaten by each herbivores
 M_plants_herb = M[vcat(plants, herbivores)]
 
 kout_plants_herb = collect(values(degree(M_plants_herb, dims = 1))) # out-degree of herbivores and plants
 kout_herb = kout_plants_herb[kout_plants_herb .!= 0] # out-degree of herbivores
 kout_herb_avg = mean(kout_herb) # mean out-degree of herbivores
-kout_herb_sd = std(kout_herb) 
+kout_herb_sd = std(kout_herb)
 kout_herb_ext = extrema(kout_herb)
 
 #### Build spatially-explicit networks of mammals and remove carnivores with no paths to an herbivore
@@ -194,6 +198,8 @@ Sxy_layer = SimpleSDMPredictor(Sxy_df, :Sxy, ranges[1])
 delta_Sxy_layer = SimpleSDMPredictor(Sxy_df, :delta_Sxy, ranges[1])
 prop_Sxy_layer = SimpleSDMPredictor(Sxy_df, :prop_Sxy, ranges[1])
 
+# Export as tif
+geotiff(joinpath("data", "clean", "richness_diff.tif"), delta_Sxy_layer)
 
 # Map differences in species richness
 plot(;
@@ -208,7 +214,7 @@ plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(delta_Sxy_layer, c=cgrad(:turku, rev=true))
 savefig(joinpath("figures", "species_removal.png"))
 
-## Map of species richness before correction 
+## Map of species richness before correction
 map_richness = plot(;
     frame=:box,
     xlim=extrema(longitudes(Sxy_layer)),
@@ -220,7 +226,7 @@ map_richness = plot(;
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(Sxy_layer, c=cgrad(:turku, rev=true))
 
-## Map of proportion of species remaining after correction 
+## Map of proportion of species remaining after correction
 map_prop = plot(;
     frame=:box,
     xlim=extrema(longitudes(prop_Sxy_layer)),
@@ -232,7 +238,7 @@ map_prop = plot(;
 plot!(worldshape(50), c=:lightgrey, lc=:lightgrey, alpha=0.6)
 plot!(prop_Sxy_layer, c=cgrad(:viridis, rev=true))
 
-## Proportion of remaining species as a function of species richeness 
+## Proportion of remaining species as a function of species richeness
 index = Sxy_df.Sxy .!= nothing
 
 prop_richness = scatter(Sxy_df.Sxy[index],
