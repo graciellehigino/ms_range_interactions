@@ -1,9 +1,4 @@
-import Pkg; Pkg.activate("."); Pkg.instantiate()
-
-using SimpleSDMLayers
-using Plots
-using Shapefile
-using DataFrames
+include("A1_required.jl")
 
 # This is the bounding box we care about
 bounding_box = (left=-20.0, right=55.0, bottom=-35.0, top=40.0)
@@ -23,8 +18,7 @@ geotiff(joinpath("data", "clean", "richness.tif"), richness)
 richness = geotiff(SimpleSDMPredictor, joinpath("data", "clean", "richness.tif"))
 
 # Map the richness
-include("shapefile.jl")
-plot(; 
+plot(;
     frame=:box,
     xlim=extrema(longitudes(richness)),
     ylim=extrema(latitudes(richness)),

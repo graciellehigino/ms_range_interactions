@@ -1,8 +1,6 @@
-## Export as markdown table
+include("A1_required.jl")
 
-using CSV
-using DataFrames
-using Latexify
+## Export as markdown table
 
 # Load ranges results & species groups
 results = CSV.read(joinpath("data", "clean", "range_proportions.csv"), DataFrame)

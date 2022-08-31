@@ -1,12 +1,4 @@
-using SimpleSDMLayers
-using Plots
-using Plots.PlotMeasures
-using Shapefile
-using DataFramesMeta
-using GBIF
-using CSV
-using Statistics
-using StatsPlots
+include("A1_required.jl")
 
 # Load IUCN ranges
 mammals = readlines(joinpath("data", "clean", "mammals.csv"))
@@ -63,7 +55,6 @@ prey_mismatch = similar(serval_loss)
 prey_mismatch[_prey_sites] = fill(1.0, length(_prey_sites))
 
 # Map the mismatch
-include("shapefile.jl")
 begin
     plot(;
         frame=:box,

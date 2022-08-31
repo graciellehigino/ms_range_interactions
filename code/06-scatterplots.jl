@@ -1,8 +1,6 @@
-using Base: get_preferences
-using Plots.PlotMeasures
+include("A1_required.jl")
 
 include("05-degrees.jl")
-include("07-GBIF_comparison.jl")
 
 # Remove underscores
 ranges_degrees_df.species = replace.(ranges_degrees_df.species, "_" => " ")
@@ -235,49 +233,3 @@ scatter(
     annotate = (128,10,text("Original range size (km²)", 12,  rotation = 270))
 )
 savefig(joinpath("figures", "rel_lost-in_degree-species-and-range.png"))
-
-# Exploring occurrences
-i_ex = indexin(["Canis_aureus"], mammals)[1]
-plot(;
-    frame=:box,
-    xlim=extrema(longitudes(delta_Sxy_layer)),
-    ylim=extrema(latitudes(delta_Sxy_layer)),
-    dpi=500,
-    xaxis="Longitude",
-    yaxis="Latitude",
-)
-plot!(worldshape(50); c=:lightgrey, lc=:lightgrey, alpha=0.6)
-plot!(ranges[i_ex]; c=:turku, colorbar=:none)
-scatter!(
-    occ_df[occ_df.species .== mammals[i_ex], :longitude],
-    occ_df[occ_df.species .== mammals[i_ex], :latitude];
-    markerstrokewidth=0,
-    markeralpha=0.5,
-    markersize=2,
-    title=replace(mammals[i_ex], "_" => " "),
-    legend=:none,
-)
-savefig(joinpath("figures", "ranges", "iucn_gbif_ex.png"))
-
-for i in eachindex(mammals)
-    plot(;
-        frame=:box,
-        xlim=extrema(longitudes(delta_Sxy_layer)),
-        ylim=extrema(latitudes(delta_Sxy_layer)),
-        dpi=500,
-        xaxis="Longitude",
-        yaxis="Latitude",
-    )
-    plot!(worldshape(50); c=:lightgrey, lc=:lightgrey, alpha=0.6)
-    plot!(ranges[i]; c=:turku, colorbar=:none)
-    scatter!(
-        occ_df[occ_df.species .== mammals[i], :longitude],
-        occ_df[occ_df.species .== mammals[i], :latitude];
-        markerstrokewidth=0,
-        markeralpha=0.5,
-        markersize=2,
-        title=replace(mammals[i], "_" => " "),
-        legend=:none,
-    )
-    savefig(joinpath("figures", "ranges", "iucn_gbif" * mammals[i] * ".png"))
-end
