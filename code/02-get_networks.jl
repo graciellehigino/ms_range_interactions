@@ -39,7 +39,7 @@ CSV.write(joinpath("data", "clean", "trophic_levels.csv"), trophic_df)
 
 # Get list of plants and mammals (carnivores and herbivores)
 plants = sp.species[sp.type .== "plant"]
-mammals = sp.species[sp.type .!== "plant"]
+mammals = sp.species[sp.type .!= "plant"]
 herbivores = sp.species[sp.type .== "herbivore"]
 carnivores = sp.species[sp.type .== "carnivore"]
 
