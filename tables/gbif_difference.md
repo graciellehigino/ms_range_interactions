@@ -1,11 +1,11 @@
-|            species |      type | total_occ |     range | occ_prop | occ_prop_diff | range_prop | range_prop_diff |
-| ------------------:| ---------:| ---------:| ---------:| --------:| -------------:| ----------:| ---------------:|
-|   Acinonyx jubatus | carnivore |  5914 | 15540 |    0.741 |        -0.002 |      0.723 |          -0.014 |
-|       Canis aureus | carnivore | 11237 |  7358 |    0.786 |        -0.786 |      0.562 |          -0.562 |
-|    Canis mesomelas | carnivore |  1375 | 19872 |    0.937 |        -0.439 |      0.949 |          -0.545 |
-|    Caracal caracal | carnivore |  1024 | 47243 |    0.866 |        -0.164 |      0.856 |          -0.105 |
-|    Crocuta crocuta | carnivore |  3624 | 43307 |    0.952 |        -0.002 |      0.924 |          -0.012 |
-| Leptailurus serval | carnivore |   957 | 38856 |    0.963 |        -0.963 |      0.914 |          -0.914 |
-|      Lycaon pictus | carnivore |   775 |  3873 |    0.681 |         0.000 |      0.551 |           0.000 |
-|       Panthera leo | carnivore |  5765 | 11384 |    0.752 |         0.000 |      0.593 |           0.000 |
-|    Panthera pardus | carnivore |  3271 | 68137 |    0.949 |        -0.297 |      0.976 |          -0.086 |
+|            species |      type | total_occ |    range | occ_prop | occ_prop_diff | range_prop | range_prop_diff |
+| ------------------:| ---------:| ---------:| --------:| --------:| -------------:| ----------:| ---------------:|
+|   Acinonyx jubatus | carnivore |  5977 | 9250 |    0.998 |        -0.005 |      0.965 |          -0.070 |
+|       Canis aureus | carnivore | 11256 |  816 |    0.768 |        -0.768 |      0.385 |          -0.385 |
+|    Canis mesomelas | carnivore |  1371 | 2201 |    0.928 |        -0.443 |      0.915 |          -0.567 |
+|    Caracal caracal | carnivore |  1040 | 5239 |    0.736 |        -0.156 |      0.835 |          -0.031 |
+|    Crocuta crocuta | carnivore |  3708 | 4822 |    0.953 |        -0.002 |      0.877 |          -0.017 |
+| Leptailurus serval | carnivore |   963 | 4319 |    0.956 |        -0.956 |      0.876 |          -0.876 |
+|      Lycaon pictus | carnivore |   813 |  427 |    0.643 |         0.000 |      0.372 |           0.000 |
+|       Panthera leo | carnivore |  5956 | 1274 |    0.699 |         0.000 |      0.423 |           0.000 |
+|    Panthera pardus | carnivore |  3334 | 7563 |    0.961 |        -0.309 |      0.955 |          -0.100 |
