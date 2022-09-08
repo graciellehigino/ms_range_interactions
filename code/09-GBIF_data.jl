@@ -73,7 +73,8 @@ diff
 [replace(o.occurrences[1].taxon.name, " " => "_") for o in occ] == mammals
 
 # Create background layer
-bglayer = SimpleSDMPredictor(WorldClim, BioClim, 1; bounding_box...)
+bglayer = SimpleSDMPredictor(WorldClim, BioClim, 1; resolution=10.0, bounding_box...)
+bglayer = coarsen(bglayer, mean, (3, 3))
 
 # Create an abundance layer (number of GBIF occurrences per pixel)
 gbif_occ_layers = [mask(bglayer, o, Float64) for o in occ]
