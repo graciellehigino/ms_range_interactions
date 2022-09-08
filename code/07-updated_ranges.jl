@@ -75,7 +75,7 @@ preds_updated = [ranges_updated_dict[sp] for sp in predators]
 
 # Get prey ranges
 preys_original = [ranges_dict[sp] for sp in preys]
-preys_updated = [update_range(ranges_dict, interactions_df, sp, :prey) for sp in preys]
+preys_updated = [update_range(ranges_dict, interactions_df, sp, :prey) for sp in string.(preys)]
 
 ## Produce table
 
