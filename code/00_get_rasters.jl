@@ -11,15 +11,9 @@ ispath("rasters") || mkpath("rasters")
 bounding_box = (left=-20.0, right=55.0, bottom=-35.0, top=40.0)
 
 # Get the list of hosts
-# speciespool = readlines(joinpath("data", "species.csv"))
-# filter!(!endswith(" spp."), speciespool) # Species with spp. at the end are plants, so we can remove them
-
-# I like this code below better, even though it's longer! It does the same thing
-# and gives the same results, but it only deals with explicit information on the
-# DF, and we won't need to explain how do we know that species names with spp.
-# are plants, and why we decided to exclude some plants and not others.
+# We remove plant species to focus only on mammals
 speciespool = DataFrame(CSV.File(joinpath("data", "species_code.csv")))
-filter!(x -> x.type != "plant", speciespool)
+filter!(:type => !=("plant"), speciespool)
 speciespool = speciespool[:,:species]
 
 # Rename species following IUCN taxonomy
