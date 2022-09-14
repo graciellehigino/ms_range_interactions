@@ -7,6 +7,7 @@ sp_codes = taxon.(mammals, rank = :SPECIES)
 lat, lon = (bounding_box.bottom, bounding_box.top), (bounding_box.left, bounding_box.right)
 
 # Getting observations
+#=
 ## Start query
 occ = occurrences.(
     sp_codes,
@@ -22,10 +23,11 @@ Threads.@threads for o in occ
     @info "$(o.occurrences[1].taxon.name) occurrences returned ($(length(o))/$(size(o)))"
 end
 # Export to JLD2 for faster reload
-#=
+
 @save joinpath("data", "clean", "gbif-occurrences.jld2") occ
-@load joinpath("data", "clean", "gbif-occurrences.jld2") occ
 =#
+@load joinpath("data", "clean", "gbif-occurrences.jld2") occ
+
 
 ## Create DataFrame
 
@@ -88,3 +90,12 @@ gbif_ranges = [convert(Float64, r) for r in gbif_ranges]
 # Export to tif files
 geotiff(joinpath("data", "clean", "gbif_occurrences.tif"), gbif_occ_layers)
 geotiff(joinpath("data", "clean", "gbif_ranges.tif"), gbif_ranges)
+
+
+# Explore year distribution
+
+using Dates
+
+occ_year = year.(collect(skipmissing(occ_df.date)))
+
+histogram(occ_year)
