@@ -96,6 +96,12 @@ geotiff(joinpath("data", "clean", "gbif_ranges.tif"), gbif_ranges)
 
 using Dates
 
-occ_year = year.(collect(skipmissing(occ_df.date)))
+occ_with_dates = dropmissing(occ_df, :date)
+occ_with_dates.year = year.(occ_with_dates.date)
 
-histogram(occ_year)
+Pkg.add("StatsBase")
+using StatsBase
+group_species = groupby(occ_with_dates, :species)
+mode_species = combine(group_species, :year => StatsBase.mode)
+
+Pkg.rm("StatsBase")
