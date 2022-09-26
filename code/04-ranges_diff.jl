@@ -1,5 +1,3 @@
-include("A1_required.jl")
-
 include("03-analyse_cooccurrence.jl")
 
 short_list = filter(!isnothing, species_lists_corr)

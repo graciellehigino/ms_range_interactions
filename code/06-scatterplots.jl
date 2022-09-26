@@ -1,5 +1,3 @@
-include("A1_required.jl")
-
 include("05-degrees.jl")
 
 # Remove underscores
