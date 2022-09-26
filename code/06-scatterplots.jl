@@ -190,9 +190,9 @@ savefig(joinpath("figures", "outdegree-orig_range.png"))
 # Number of preys vs. original range - only predators
 scatter(
     ranges_degrees_df.degree,
-    ranges_degrees_df.old_range ./ 10^4;
+    ranges_degrees_df.old_range ./ 10^3;
     xlabel="Out degree of predators",
-    ylabel="Original range (x 10^4)",
+    ylabel="Original range (x 10³)",
     group=ranges_degrees_df.species,
     markershape=[:circle :rect :star5 :diamond :star4 :pentagon :star7 :utriangle :ltriangle],
     markersize=4,
