@@ -149,7 +149,7 @@ herbivores = filter(:type => ==("herbivore"), comparison_df)
 options = (
     group=carnivores.species,
     ylim=(-0.03, 1.0),
-    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+    markershape=[:circle :rect :star5 :diamond :star4 :pentagon :star7 :utriangle :ltriangle],
     markersize=6,
     palette=:seaborn_colorblind,
     markerstrokewidth=0,
@@ -197,7 +197,7 @@ diff_fig = @df comparison_stack plot(
     legend=false,
     ylim=(-0.03, 1.0),
     ylabel="Proportion of GBIF pixels inside ranges",
-    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+    markershape=[:circle :rect :star5 :diamond :star4 :pentagon :star7 :utriangle :ltriangle],
     markersize=8,
     palette=:seaborn_colorblind,
     markerstrokewidth=0,

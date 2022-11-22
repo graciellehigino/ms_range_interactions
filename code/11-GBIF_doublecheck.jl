@@ -74,6 +74,7 @@ savefig(joinpath("figures", "serval_prey_mismatch.png"))
 # Get the sites where the prey has GBIF observations _on land_
 _prey_sites2 = keys(prey_gbif_range)
 reference_layer = SimpleSDMPredictor(WorldClim, BioClim, 1; boundingbox(serval)...)
+reference_layer = coarsen(reference_layer, mean, (3, 3))
 prey_mismatch2 = similar(reference_layer)
 prey_mismatch2[_prey_sites2] = fill(1.0, length(_prey_sites2))
 
@@ -125,7 +126,7 @@ options = (
     ylim=(-0.03, 1.0),
     xlim=(-0.2, 7),
     xticks=0:1:7,
-    markershape=[:cross :circle],
+    markershape=[:pentagon :circle],
     markersize=6,
     color=[cgrad(:seaborn_colorblind)[6] :lightgrey],
     markerstrokewidth=0,

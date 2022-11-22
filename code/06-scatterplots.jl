@@ -1,5 +1,3 @@
-include("A1_required.jl")
-
 include("05-degrees.jl")
 
 # Remove underscores
@@ -88,7 +86,7 @@ scatter(
     xlabel="predator to prey geographic similarity",
     ylabel="prey to predator geographic similarity",
     group=ranges_degrees_df[0.0 .< ranges_degrees_df.Rbb .< 1.0, :species],
-    markershape=[:circle :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+    markershape=[:circle :star5 :diamond :star4 :pentagon :star7 :utriangle :ltriangle],
     markersize=6,
     palette = cgrad(:seaborn_colorblind)[[1, 3:9...]],
     markerstrokewidth=0,
@@ -143,7 +141,7 @@ scatter(
     ylabel="Relative loss of range",
     ylimits=(0,1.05),
     group=ranges_degrees_df.species,
-    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+    markershape=[:circle :rect :star5 :diamond :star4 :pentagon :star7 :utriangle :ltriangle],
     markersize=8,
     palette=:seaborn_colorblind,
     markerstrokewidth=0,
@@ -190,11 +188,11 @@ savefig(joinpath("figures", "outdegree-orig_range.png"))
 # Number of preys vs. original range - only predators
 scatter(
     ranges_degrees_df.degree,
-    ranges_degrees_df.old_range ./ 10^4;
+    ranges_degrees_df.old_range ./ 10^3;
     xlabel="Out degree of predators",
-    ylabel="Original range (x 10^4)",
+    ylabel="Original range (x 10³)",
     group=ranges_degrees_df.species,
-    markershape=[:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle :ltriangle],
+    markershape=[:circle :rect :star5 :diamond :star4 :pentagon :star7 :utriangle :ltriangle],
     markersize=4,
     palette=:seaborn_colorblind,
     markerstrokewidth=0,
@@ -218,7 +216,7 @@ scatter(
     marker_z=log.(ranges_degrees_df.old_range),
     markercolor=:sun,
     group=ranges_degrees_df.species,
-    markershape = [:circle :rect :star5 :diamond :star4 :cross :xcross :utriangle],
+    markershape = [:circle :rect :star5 :diamond :star4 :pentagon :star7 :utriangle],
     markersize= 6,
     palette = :Dark2_8,
     markerstrokewidth=0,

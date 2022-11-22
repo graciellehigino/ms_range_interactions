@@ -1,5 +1,3 @@
-include("A1_required.jl")
-
 include("04-ranges_diff.jl")
 
 ## Calculate the out degree of the organisms in the metaweb

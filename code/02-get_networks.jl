@@ -1,5 +1,3 @@
-include("A1_required.jl")
-
 # Load required scripts and packages
 include("01-load_rasters.jl") # range maps of Serengeti mammals
 
@@ -39,7 +37,7 @@ CSV.write(joinpath("data", "clean", "trophic_levels.csv"), trophic_df)
 
 # Get list of plants and mammals (carnivores and herbivores)
 plants = sp.species[sp.type .== "plant"]
-mammals = sp.species[sp.type .!== "plant"]
+mammals = sp.species[sp.type .!= "plant"]
 herbivores = sp.species[sp.type .== "herbivore"]
 carnivores = sp.species[sp.type .== "carnivore"]
 
