@@ -384,15 +384,16 @@ data varies geographically (Hurlbert and Jetz 2007; Hurlbert and White
 comparison might help to elucidate where these (dis)agreements are more
 likely to be true and which dataset better represent the actual
 distribution of species. In this context, we elaborate a method that
-allows us to refine distribution data (more precisely range maps) based
-on interaction data, considering the basic assumption that predators can
-only be present in regions where they are connected to at least one
-herbivore - and thus indirectly connected to primary producers. We used
-a Serengeti food web dataset (Baskerville et al. 2011) (which comprises
-carnivores, herbivores, and plants from Tanzania) to demonstrate how a
-mismatch between occurrence and interaction data can highlight
-significant uncertainty areas in IUCN range maps. Finally, we add the
-GBIF occurrence points for the Serengeti species to the investigation,
+allows us to detect areas of potential misestimation of species'
+distribution data (more precisely range maps) based on interaction data,
+considering the basic assumption that predators can only be present in
+regions where they are connected to at least one herbivore - and thus
+indirectly connected to primary producers. We used a Serengeti food web
+dataset (Baskerville et al. 2011) (which comprises carnivores,
+herbivores, and plants from Tanzania) to demonstrate how a mismatch
+between occurrence and interaction data can highlight significant
+uncertainty areas in IUCN range maps. Finally, we add the GBIF
+occurrence points for the Serengeti species to the investigation,
 discuss the mechanisms that can lead to the lack of agreement between
 data, and build from that a vision for the next steps, reinforcing the
 importance of geographically explicit interaction data.
@@ -1304,106 +1305,78 @@ resolution of 10 arc-minutes.}\label{fig:gbif}
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
 
-The jackal is a widespread taxon in northern Africa, Europe, and
-Australasia, generally well adapted to local conditions due to its
-largely varied diet (Tsunoda and Saito 2020; Krofel et al. 2021).
-Because of that, we expected that the \emph{Canis} species in our
-dataset would be the ones losing the least amount of range, with a
-higher value of the proportion of GBIF pixels within their IUCN range
-maps. However, the taxonomy of this group is a matter of intense
-discussion, as molecular and morphological data seem to disagree in the
-clustering of species and subspecies (Krofel et al. 2021; Stoyanov
-2020). This debate probably influenced our results: with originally only
-56.2\% of the GBIF pixels of the golden jackal (\emph{Canis aureus})
-overlapping with the IUCN data, we suspect that many of the GBIF
-occurrences refer to other \emph{Canis} species, and that its taxonomic
+Here we identify areas of data mismatch between species range maps by
+using ecological interaction data (predator-prey interactions within
+food webs). Our results did show a significant mismatch in the IUCN
+range areas of specialized and generalist predatory organisms and their
+prey, which highlights the importance of accounting for species
+interactions when estimating the range of a species. Although this type
+of data mismatch can result of actual ecological processes, outdated
+occurrence data, taxonomic errors and more, we argue that, here, they
+rather indicate a lack of interaction sampling data.
+
+The case of the golden jackal (\emph{Canis aureus}) is a good
+illustration of how the taxonomic, geographical and ecological data can
+be used to validate one another. The jackal is a widespread taxon in
+northern Africa, Europe, and Australasia, generally well adapted to
+local conditions due to its largely varied diet (Tsunoda and Saito 2020;
+Krofel et al. 2021). Because of that, we expected that
+the~\emph{Canis}~species in our dataset would be the ones losing the
+least amount of range, with a higher value of the proportion of GBIF
+pixels within their IUCN range maps. However, the taxonomy of this group
+is a matter of intense discussion, as molecular and morphological data
+seem to disagree in the clustering of species and subspecies (Krofel et
+al. 2021; Stoyanov 2020). This debate probably influenced our results:
+with originally only 56.2\% of the GBIF pixels of the golden jackal
+overlapping with its IUCN data, we suspect that many of the GBIF
+occurrences refer to other~\emph{Canis}~species, and that its taxonomic
 identification in the network database is probably outdated. This led to
-a complete exclusion of \emph{Canis aureus} from its original range in
+a complete exclusion of~\emph{Canis aureus}~from its original range in
 our analysis, despite the fact that this species has four documented
-preys in our metaweb. This example illustrates how the taxonomic,
-geographical and ecological data can be used to validate one another.
-
-Here we show that when ecological interaction data (predator-prey
-interactions within food webs) are used to refine species range maps,
-there are significant reductions in the IUCN range size of predatory
-organisms. Despite showing the potential importance of accounting for
-species interactions when estimating the range of a species, it remains
-unclear the extent to which the patterns observed represent ecological
-processes or a lack of data.
-
-\hypertarget{connectivity-diversity-and-range-preservation}{%
-\subsection{Connectivity, diversity and range
-preservation}\label{connectivity-diversity-and-range-preservation}}
-
-In the Serengeti food web there is a positive relationship between the
-out degrees of predators and the size of their ranges. Here, we showed
-that there is a negative relationship between the relative loss of
-predators' ranges and their number of preys, reinforcing the idea that
-generalist species can preserve their distributions longer while losing
-interactions. The factors limiting the geographical range of a species
-in a community can vary with connectivity and richness (Svenning et al.
-2014). Younger communities may be more affected by environmental
-limitations because they are dominated by generalist species, while
-older metacommunities are probably affected in different ways in the
-center of the distribution, at the edge of ranges, and in sink and
-source communities (Svenning et al. 2014; Godsoe et al. 2017; Cazelles
-et al. 2016; Bullock et al. 2000). Additionally, it is likely that
-species with larger ranges of distribution and those that are more
-generalists would co-occur with a greater number of other species
-(Dáttilo et al. 2020), while dispersal capacity of competitive species
-modulate their aggregation in space and the effect of interactions on
-their range limits (Godsoe et al. 2017).
+preys in our metaweb.
 
 \hypertarget{geographical-mismatch-and-data-availability}{%
 \subsection{Geographical mismatch and data
 availability}\label{geographical-mismatch-and-data-availability}}
 
-The geographical mismatch between predators and preys has ecological
-consequences such as loss of ecosystem functioning and extinction of
-populations (Anderson et al. 2016; Dáttilo and Rico-Gray 2018; Pringle
-et al. 2016; Young et al. 2013). Climate change is one of the causes of
-this, leading, for instance, to the decrease of plant populations due to
-the lack of pollination (Bullock et al. 2000; Afkhami, McIntyre, and
-Strauss 2014; Godsoe et al. 2017). However, this mismatch can also be
-purely informational. When the distribution of predators and preys does
-not superpose, it can mean we lack information about the distribution of
-either species or about their interactions (e.g., predators may be
-feeding on different species than the ones in our dataset outside the
-Serengeti ecosystem). Here we addressed part of this problem by
-comparing the IUCN range maps with GBIF occurrences, which helped us
-clarify what is the shortfall for each species.
-
 The lack of superposition between IUCN range maps and GBIF occurrences
-suggests that we certainly do miss geographical information about the
-distribution of a certain species, but this is not an indicator of the
-completeness of the information about ecological interactions. However,
-if both GBIF and IUCN occurrences tend to superpose and still the
-species is locally removed, this indicates we don't have information
-about all its interactions. The combination of this rationale with our
-method of updating range maps based on ecological interactions allows us
-to have a clearer idea of which information we are missing. For example,
-the lion (\emph{Panthera leo}) was one of the species with no difference
-between the original and the updated ranges, but 40.7\% of the GBIF
+in our results suggests that we certainly miss geographical information
+about the distribution of either the prey or the predator. On the other
+hand, if both GBIF and IUCN occurrences tended to superpose and the
+species was still locally removed, this indicates that we don't have
+information about all its interactions (e.g., predators may be feeding
+on different species than the ones in our dataset outside the Serengeti
+ecosystem). This rationale can be illustrated with three types of
+mismatches identified in our results.
+
+First, \emph{Panthera leo} was one of the species with no difference
+between ranges before and after our analysis, but 40.7\% of the GBIF
 occurrences for this species fell outside its IUCN range
 (fig.~\ref{fig:gbif}). In this particular case, the IUCN maps seem to
 agree with species interaction data. However, the disagreement between
 the IUCN and the GBIF databases is concerning and suggests that the IUCN
-maps might underestimate the lion's distribution. On the other hand,
-\emph{Leptailurus serval} and \emph{Canis mesomelas} are two of the
-three species that lose the higher proportion of range due to the lack
-of paths to a herbivore, but are also some of the species with the
-higher proportion of GBIF occurrences inside IUCN range maps
-(fig.~\ref{fig:gbif}). This indicates that the information we are
-missing for these two species is related to either the occurrence of an
-interaction or the presence of interacting species. To illustrate that,
-we mapped the GBIF data for the prey of \emph{Leptailurus serval}, with
-a mobility buffer around each point (fig.~\ref{fig:serval}). When
-considering GBIF data, approximately 42\% of the prey's occurrences are
-within the portion of the serval's range that was lost. With the buffer
-area, this corresponds to 15\% of the lost range. This means that by
-adding GBIF information, we would reduce the loss of range (or
-information) for the predator by 15\% since its distribution is
-conditional on the occurrence of its preys.
+maps might underestimate the lion's distribution.
+
+On the other hand,~\emph{Leptailurus serval}~and~\emph{Canis
+mesomelas}~are two of the three species that have the higher proportion
+of mismatched range due to the lack of paths to a herbivore, but are
+also some of the species with the higher proportion of GBIF occurrences
+inside IUCN range maps (fig.~\ref{fig:gbif}). This indicates that the
+information we are missing for these two species is related to either an
+additional interaction or to the presence of interacting species. To
+illustrate that, we mapped the GBIF data for the prey
+of~\emph{Leptailurus serval}, with a mobility buffer around each point
+(fig.~\ref{fig:serval}). When considering GBIF data, approximately 42\%
+of the prey's occurrences are within the portion of the predator's range
+that was divergent from its original IUCN data. With the buffer area,
+this corresponds to 15\% of the mismatched area. By adding GBIF
+information for the prey, we could therefore reduce the discrepancy of
+the range (or information) for the predator by 15\% since its
+distribution is conditional on the occurrence of its preys. In other
+words, the range mismatch was exagerated because we were missing
+information on the presence of an interacting species (i.e., this also
+indicates that there is a mismatch - or complementarity - between the
+IUCN and GBIF data for their prey).
 
 \begin{figure}
 \hypertarget{fig:serval}{%
@@ -1417,7 +1390,7 @@ for species mobility.}\label{fig:serval}
 }
 \end{figure}
 
-Finally, the extreme case of \emph{Canis aureus} illustrates a lack of
+Finally, the extreme case of~\emph{Canis aureus}~illustrates a lack of
 both geographical and ecological information: only half of its GBIF
 presence pixels and none of its preys occur inside its IUCN range. We
 believe, therefore, that the validation of species distribution based on
@@ -1495,15 +1468,6 @@ Species-Level Environmental Data Estimates Extracted from IUCN Expert
 Range Maps and from GBIF Occurrence Data.''} \emph{Journal of
 Biogeography}, 13. \url{https://doi.org/10.1111/jbi.13619}.
 
-\leavevmode\hypertarget{ref-Anderson2016SpaDis}{}%
-Anderson, T. Michael, Staci White, Bryant Davis, Rob Erhardt, Meredith
-Palmer, Alexandra Swanson, Margaret Kosmala, and Craig Packer. 2016.
-{``The Spatial Distribution of African Savannah Herbivores: Species
-Associations and Habitat Occupancy in a Landscape Context.''}
-\emph{Philosophical Transactions of the Royal Society B: Biological
-Sciences} 371 (1703): 20150314.
-\url{https://doi.org/10.1098/rstb.2015.0314}.
-
 \leavevmode\hypertarget{ref-Araujo2014ImpBio}{}%
 Araújo, Carlos B. de, Luiz Octavio Marcondes-Machado, and Gabriel C.
 Costa. 2014. {``The Importance of Biotic Interactions in Species
@@ -1536,12 +1500,6 @@ Chang-qing, Natalie E. Clark, Kim O'Connor, and Georgina M. Mace. 2010.
 Occurrence Data.''} \emph{PLOS Biology} 8 (6): e1000385.
 \url{https://doi.org/10.1371/journal.pbio.1000385}.
 
-\leavevmode\hypertarget{ref-Bullock2000GeoSep}{}%
-Bullock, James M., Rebecca J. Edwards, Peter D. Carey, and Rob J. Rose.
-2000. {``Geographical Separation of Two Ulex Species at Three Spatial
-Scales: Does Competition Limit Species' Ranges?''} \emph{Ecography} 23
-(2): 257--71. \url{https://doi.org/10.1111/j.1600-0587.2000.tb00281.x}.
-
 \leavevmode\hypertarget{ref-Cabral2017MecSim}{}%
 Cabral, Juliano Sarmento, Luis Valente, and Florian Hartig. 2017.
 {``Mechanistic Simulation Models in Macroecology and Biogeography:
@@ -1553,12 +1511,6 @@ Callaghan, Corey T., Jodi J. L. Rowley, William K. Cornwell, Alistair G.
 B. Poore, and Richard E. Major. 2019. {``Improving Big Citizen Science
 Data: Moving Beyond Haphazard Sampling.''} \emph{PLOS Biology} 17 (6):
 e3000357. \url{https://doi.org/10.1371/journal.pbio.3000357}.
-
-\leavevmode\hypertarget{ref-Cazelles2016IntBio}{}%
-Cazelles, Kévin, Nicolas Mouquet, David Mouillot, and Dominique Gravel.
-2016. {``On the Integration of Biotic Interaction and Environmental
-Constraints at the Biogeographical Scale.''} \emph{Ecography} 39 (10):
-921--31. \url{https://doi.org/10.1111/ecog.01714}.
 
 \leavevmode\hypertarget{ref-Dallas2020AbuNot}{}%
 Dallas, Tad, Samuel Pironon, and Luca Santini. 2020. {``The
@@ -1577,21 +1529,6 @@ Daru, Barnabas H. 2020. {``GreenMaps: A Tool for Addressing the
 Wallacean Shortfall in the Global Distribution of Plants.''}
 \emph{bioRxiv}, 2020.02.21.960161.
 \url{https://doi.org/10.1101/2020.02.21.960161}.
-
-\leavevmode\hypertarget{ref-Dattilo2020SpeDri}{}%
-Dáttilo, Wesley, Nathalia Barrozo-Chávez, Andrés Lira-Noriega, Roger
-Guevara, Fabricio Villalobos, Diego Santiago-Alarcon, Frederico Siqueira
-Neves, Thiago Izzo, and Sérvio Pontes Ribeiro. 2020. {``Species-Level
-Drivers of Mammalian Ectoparasite Faunas.''} \emph{Journal of Animal
-Ecology} 89 (8): 1754--65.
-\url{https://doi.org/10.1111/1365-2656.13216}.
-
-\leavevmode\hypertarget{ref-Dattilo2018EcoNet}{}%
-Dáttilo, Wesley, and Victor Rico-Gray, eds. 2018. \emph{Ecological
-Networks in the Tropics: An Integrative Overview of Species Interactions
-from Some of the Most Species-Rich Habitats on Earth}. 1st ed. 2018.
-Cham: Springer International Publishing : Imprint: Springer.
-\url{https://doi.org/10.1007/978-3-319-68228-0}.
 
 \leavevmode\hypertarget{ref-Dobson2009FooStr}{}%
 Dobson, Andy. 2009. {``Food-Web Structure and Ecosystem Services:
@@ -1754,13 +1691,6 @@ Power, Mary E. 1992. {``Top-Down and Bottom-Up Forces in Food Webs: Do
 Plants Have Primacy.''} \emph{Ecology} 73 (3): 733--46.
 \url{https://doi.org/10.2307/1940153}.
 
-\leavevmode\hypertarget{ref-Pringle2016LarHer}{}%
-Pringle, Robert M., Kirsten M. Prior, Todd M. Palmer, Truman P. Young,
-and Jacob R. Goheen. 2016. {``Large Herbivores Promote Habitat
-Specialization and Beta Diversity of African Savanna Trees.''}
-\emph{Ecology} 97 (10): 2640--57.
-\url{https://doi.org/10.1002/ecy.1522}.
-
 \leavevmode\hypertarget{ref-Rondinini2006TraDif}{}%
 Rondinini, Carlo, Kerrie A. Wilson, Luigi Boitani, Hedley Grantham, and
 Hugh P. Possingham. 2006. {``Tradeoffs of Different Types of Species
@@ -1811,13 +1741,6 @@ al. 2021. {``A Roadmap Towards Predicting Species Interaction Networks
 Royal Society B: Biological Sciences} 376 (1837): 20210063.
 \url{https://doi.org/10.1098/rstb.2021.0063}.
 
-\leavevmode\hypertarget{ref-Svenning2014InfInt}{}%
-Svenning, Jens Christian, Dominique Gravel, Robert D. Holt, Frank M.
-Schurr, Wilfried Thuiller, Tamara Münkemüller, Katja H. Schiffers, et
-al. 2014. {``The Influence of Interspecific Interactions on Species
-Range Expansion Rates.''} \emph{Ecography} 37 (12): 1198--1209.
-\url{https://doi.org/10.1111/j.1600-0587.2013.00574.x}.
-
 \leavevmode\hypertarget{ref-Tsunoda2020VarTro}{}%
 Tsunoda, Hiroshi, and Masayuki U. Saito. 2020. {``Variations in the
 Trophic Niches of the Golden Jackal Canis Aureus Across the Eurasian
@@ -1846,15 +1769,6 @@ Assemblages of Species: Implications for Species Distribution
 Modelling.''} \emph{Biological Reviews of the Cambridge Philosophical
 Society} 88 (1): 15--30.
 \url{https://doi.org/10.1111/j.1469-185X.2012.00235.x}.
-
-\leavevmode\hypertarget{ref-Young2013EffMam}{}%
-Young, Hillary S., Douglas J. McCauley, Kristofer M. Helgen, Jacob R.
-Goheen, Erik Otárola-Castillo, Todd M. Palmer, Robert M. Pringle, Truman
-P. Young, and Rodolfo Dirzo. 2013. {``Effects of Mammalian Herbivore
-Declines on Plant Communities: Observations and Experiments in an
-\textsc{A} Frican Savanna.''} Edited by Luis Santamaria. \emph{Journal
-of Ecology} 101 (4): 1030--41.
-\url{https://doi.org/10.1111/1365-2745.12096}.
 
 \end{CSLReferences}
 
