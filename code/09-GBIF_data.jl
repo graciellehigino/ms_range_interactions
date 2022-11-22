@@ -7,6 +7,7 @@ sp_codes = taxon.(mammals, rank = :SPECIES)
 lat, lon = (bounding_box.bottom, bounding_box.top), (bounding_box.left, bounding_box.right)
 
 # Getting observations
+#=
 ## Start query
 occ = occurrences.(
     sp_codes,
@@ -22,10 +23,11 @@ Threads.@threads for o in occ
     @info "$(o.occurrences[1].taxon.name) occurrences returned ($(length(o))/$(size(o)))"
 end
 # Export to JLD2 for faster reload
-#=
+
 @save joinpath("data", "clean", "gbif-occurrences.jld2") occ
-@load joinpath("data", "clean", "gbif-occurrences.jld2") occ
 =#
+@load joinpath("data", "clean", "gbif-occurrences.jld2") occ
+
 
 ## Create DataFrame
 
@@ -88,3 +90,61 @@ gbif_ranges = [convert(Float64, r) for r in gbif_ranges]
 # Export to tif files
 geotiff(joinpath("data", "clean", "gbif_occurrences.tif"), gbif_occ_layers)
 geotiff(joinpath("data", "clean", "gbif_ranges.tif"), gbif_ranges)
+
+
+# Explore year distribution
+
+#Get years
+using Dates
+
+occ_with_dates = dropmissing(occ_df, :date)
+occ_with_dates.year = year.(occ_with_dates.date)
+
+#Calculate mode per species
+Pkg.add("StatsBase")
+using StatsBase
+group_species = groupby(occ_with_dates, :species)
+mode_species = combine(group_species, :year => StatsBase.mode)
+Pkg.rm("StatsBase")
+
+
+# Plot the distribution of the occurrences' year of record per species
+p = plot(layout = 32, size = (1200, 800), dpi= 600)
+
+for i in 1:32
+    plot!(group_species[i].year, subplot = i, title = replace(levels(occ_df.species)[i], "_" => " "), titlefontsize = 7,
+    seriestype=:histogram, legends = :none, fillcolor = "black", bins = :scott, xlims = extrema(occ_with_dates.year))
+    vline!([transpose(mode_species.year_mode)], linecolor = :red)
+    
+end
+p
+
+savefig(joinpath("figures", "GBIF_years_total.png"))
+
+# Distribution of the occurrences' year > 1900 per species
+
+p = plot(layout = 32, size = (1200, 800), dpi= 600)
+subset(group_species[1], :year => ByRow(>(1900)))
+for i in 1:32
+    group_species_subset = subset(group_species[i], :year => ByRow(>(1900)))
+    plot!(group_species_subset.year, subplot = i, title = replace(levels(occ_df.species)[i], "_" => " "), titlefontsize = 7,
+    seriestype=:histogram, legends = :none, fillcolor = "black", nbins = maximum(occ_with_dates.year) - 1900, xlims = (1900, maximum(occ_with_dates.year)), xr = 45, tickfontsize = 6)
+    vline!([transpose(mode_species.year_mode)], linecolor = :red)
+end
+p
+
+savefig(joinpath("figures", "GBIF_years_1900.png"))
+
+# Distribution of the occurrences' year > 1970 per species
+
+p = plot(layout = 32, size = (1200, 800), dpi= 600)
+subset(group_species[1], :year => ByRow(>(1900)))
+for i in 1:32
+    group_species_subset = subset(group_species[i], :year => ByRow(>(1970)))
+    plot!(group_species_subset.year, subplot = i, title = replace(levels(occ_df.species)[i], "_" => " "), titlefontsize = 7,
+    seriestype=:histogram, legends = :none, fillcolor = "black", nbins = 50, xlims = (maximum(occ_with_dates.year)-50, maximum(occ_with_dates.year)), xr = 45, tickfontsize = 6)
+    vline!([transpose(mode_species.year_mode)], linecolor = :red)
+end
+p
+
+savefig(joinpath("figures", "GBIF_years_1972.png"))
