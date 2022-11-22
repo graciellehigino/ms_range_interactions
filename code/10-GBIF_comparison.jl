@@ -21,10 +21,19 @@ ranges_updated = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "ranges_
 occ_df = CSV.read(joinpath("data", "clean", "gbif_occurrences.csv"), DataFrame)
 gbif_ranges = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "gbif_ranges.tif"), i) for i in eachindex(mammals)]
 
+# Keep recent GBIF occurrences only 
+year_recent = 2000
+
+occ_with_dates = dropmissing(occ_df, :date)
+occ_with_dates.year = year.(occ_with_dates.date)
+
+occ_df_recent = subset(occ_with_dates, :year => ByRow(>(year_recent)))
+
+
 ## Get IUCN range values at GBIF occurrences
 
 # Separate occurrences per species
-spp_df = [filter(:species => ==(m), occ_df) for m in mammals];
+spp_df = [filter(:species => ==(m), occ_df_recent) for m in mammals];
 
 # Get values from IUCN layers at corresponding GBIF coordinates
 for (i, df) in enumerate(spp_df)
@@ -33,16 +42,16 @@ for (i, df) in enumerate(spp_df)
 end
 
 # Reassemble in single DataFrame
-occ_df = reduce(vcat, spp_df)
+occ_df_recent = reduce(vcat, spp_df)
 
 # Replace nothings by zeros before performing sum
-replace!(occ_df.IUCN, nothing => 0.0)
-replace!(occ_df.IUCN_updated, nothing => 0.0)
+replace!(occ_df_recent.IUCN, nothing => 0.0)
+replace!(occ_df_recent.IUCN_updated, nothing => 0.0)
 
 ## Compare GBIF occurrences with IUCN ranges
 
 # Get number of occurrences in IUCN ranges
-comparison_occ = @chain occ_df begin
+comparison_occ = @chain occ_df_recent begin
     groupby(:species)
     @combine(
         total_occ = length(:species),
@@ -230,8 +239,8 @@ for i in eachindex(mammals)
     plot!(worldshape(50); c=:lightgrey, lc=:lightgrey, alpha=0.6)
     plot!(ranges[i]; c=:turku, colorbar=:none)
     scatter!(
-        occ_df[occ_df.species .== mammals[i], :longitude],
-        occ_df[occ_df.species .== mammals[i], :latitude];
+        occ_df_recent[occ_df_recent.species .== mammals[i], :longitude],
+        occ_df_recent[occ_df_recent.species .== mammals[i], :latitude];
         markerstrokewidth=0,
         markeralpha=0.5,
         markersize=2,
