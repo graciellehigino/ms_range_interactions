@@ -75,6 +75,57 @@ species.
 To emphasize and clarify these points, we have changed lines XX, XX and XX on
 the manuscript.
 
+>*"4. The gbif records for large mammals are especially problematic. Did the
+>authors include observations as well? iNaturalist for instance now feeds data
+>directly to GBIF. Having museum specimens of lions and other large/medium
+>mammals are especially problematic and difficult to achieve nowadays. Many
+>countries such as Malawi and Mozambique conduct very little research and many
+>areas are not documented, not even on GBIF. Therefore the occurrences we see on
+>GBIF are biased towards countries that have available data. How did the authors
+>account for this? See https://doi.org/10.1093/sysbio/syaa090"*
+
+Similar to the questions above, this one is also about incompleteness of data.
+As we stated on our previous review letter, "we didn't perform any [...] data
+cleaning procedures because this could hinder the goals of the paper, which was
+to investigate the characteristics of the data available for research. As we
+needed to compare two sets of raw data, and data cleaning protocols are
+dependent on the use objectives, we chose to avoid data manipulation both for
+GBIF and IUCN datasets". For that reason, our query for the GBIF data did not
+include any filters other than the ones described on the paper for the reasons
+described above.  
+
+Additionally, we could add a plethora of other datasets both on
+interactions and occurrences, but we decided to use only the IUCN, the GBIF and
+the Baskerville's data to keep the analysis simple (although not simplistic),
+straightforward, and reflective of the volume of data generally used by
+ecologists.  
+
+Finally, the fact that many data are still to be made open is precisely the
+major motivation of this paper. As computational ecologists and open data
+creators/managers/advocates, we are very aware of the biases produced by
+undocumented data. We expect to call attention about this issue with our proof
+of concept, as it demonstrates that we gain a lot of uncertainty when we miss a
+link because of an information that is not accessible. The implications of this
+complex issue for conservation are multifold, and we believe that more open data
+is one of the possible solutions.
+
+
+
+>*"2.    The resolution: it is well studied that IUCN range maps should not be
+>converted to grids smaller than 50km due to commission errors. This becomes a
+>major problem when dealing with widespread species such as the ones used in
+>this study: African large and medium mammals. See
+>https://doi.org/10.1111/1365-2664.12771 and
+>https://doi.org/10.1073/pnas.070446910"*
+
+We agree and we have updated our rasters to be now at 50km of resolution. Our
+overall results did not change with that (see lines XX, XX and XX).
+
+>*"3. Gbif records: using records from any period in time from gbif will include
+>historical relics from extinct populations. Many large and medium mammals,
+>especially large carnivores have suffered major declines in the last decades in
+>Africa. How did the authors deal with the fact that records from a species
+>recorded 50 years ago may represent extinct populations?"*
 
 
 
