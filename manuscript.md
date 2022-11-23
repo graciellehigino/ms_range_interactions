@@ -164,8 +164,8 @@ ecosystems such as the Serengeti.
 
 We compiled IUCN range maps for the 32 species included in the metaweb from the
 Spatial Data Download portal
-(www.iucnredlist.org/resources/spatial-data-download), which we rasterized at 10
-arc-minute resolution (~18 km at the equator). We restricted the rasters a
+(www.iucnredlist.org/resources/spatial-data-download), which we rasterized at a
+0.5 degrees resolution (~50 km at the equator). We restricted the rasters to a
 spatial extent comprised between latitudes 35°S and 40°N and longitudes 20°W and
 55°E. We then combined interaction data from the metaweb and cooccurrence data
 generated from species ranges to create networks for each raster pixel. This
