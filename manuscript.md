@@ -193,13 +193,14 @@ one prey species is present across most of their range.
 ## Validation
 
 For each species in the dataset we collated point observation data from GBIF
-(www.gbif.org). We restricted our queries to the data with spatial coordinates
-and which were inside the spatial extent of our rasters. We did not use
-continental or date filters to retrieve as much data as possible. However, a few
-observations were localized in the ocean near latitude 0° and longitude 0°. We
-assumed these were errors and removed all observations falling in the extent
-between latitudes 2°S and 2°N and longitudes 2°W and 2°E to keep only mainland
-sites. 
+(www.gbif.org). We used the GBIF download API to retrieve all species
+occurrences on November 22nd 2022 [@GBIF.org2022GbiOcc]. We restricted our query
+to the data with spatial coordinates and which were inside the spatial extent of
+our rasters. We did not use continental or date filters to retrieve as much data
+as possible. However, a few observations were localized in the ocean near
+latitude 0° and longitude 0°. We assumed these were errors and removed all
+observations falling in the extent between latitudes 2°S and 2°N and longitudes
+2°W and 2°E to keep only mainland sites.
 
 We then converted the occurrence data into raster format by determining which
 pixels had a least one GBIF occurrence. This allowed us to remove the effect of
@@ -217,10 +218,12 @@ We performed all analyses using _Julia_ v1.7.2 [@Bezanson2017JulFre]. We used
 the packages `SimpleSDMLayers.jl`  [@Dansereau2021SimJl] to manipulate the
 raster layers, `EcologicalNetworks.jl` [@Poisot2019EcoJl] to construct and
 manipulate the interaction networks, and `GBIF.jl` [@Dansereau2021SimJl] to
-retrieve the species occurrences from GBIF. We also used _GDAL_
+reconcile species names with the GBIF backbone taxonomy
+[@GBIFSecretariat2021GbiBac]. We also used _GDAL_
 [@GDAL/OGRcontributors2021GdaOgr] to rasterize the IUCN range maps (initially
 available as shapefiles from the Spatial Data Download portal). All the scripts
-required to reproduce the analyses are available at https://doi.org/10.5281/zenodo.6842861.
+required to reproduce the analyses are available at
+https://doi.org/10.5281/zenodo.6842861.
 
 # Results
 
