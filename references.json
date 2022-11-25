@@ -1171,6 +1171,43 @@
         "type": ""
     },
     {
+        "DOI": "10.15468/DL.PF4586",
+        "author": [
+            {
+                "literal": "GBIF.org"
+            }
+        ],
+        "id": "GBIF.org2022GbiOcc",
+        "issued": {
+            "date-parts": [
+                [
+                    2022
+                ]
+            ]
+        },
+        "publisher": "The Global Biodiversity Information Facility",
+        "title": "GBIF occurrence download",
+        "type": ""
+    },
+    {
+        "DOI": "10.15468/39omei",
+        "author": [
+            {
+                "literal": "GBIF Secretariat"
+            }
+        ],
+        "id": "GBIFSecretariat2021GbiBac",
+        "issued": {
+            "date-parts": [
+                [
+                    2021
+                ]
+            ]
+        },
+        "title": "GBIF Backbone Taxonomy",
+        "type": "article-journal"
+    },
+    {
         "author": [
             {
                 "literal": "GDAL/OGR contributors"

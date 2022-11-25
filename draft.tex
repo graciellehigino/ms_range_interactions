@@ -444,13 +444,15 @@ most of their range.
 \subsection{Validation}\label{validation}}
 
 For each species in the dataset we collated point observation data from
-GBIF (www.gbif.org). We restricted our queries to the data with spatial
-coordinates and which were inside the spatial extent of our rasters. We
-did not use continental or date filters to retrieve as much data as
-possible. However, a few observations were localized in the ocean near
-latitude 0° and longitude 0°. We assumed these were errors and removed
-all observations falling in the extent between latitudes 2°S and 2°N and
-longitudes 2°W and 2°E to keep only mainland sites.
+GBIF (www.gbif.org). We used the GBIF download API to retrieve all
+species occurrences on November 22nd 2022 (GBIF.org 2022). We restricted
+our query to the data with spatial coordinates and which were inside the
+spatial extent of our rasters. We did not use continental or date
+filters to retrieve as much data as possible. However, a few
+observations were localized in the ocean near latitude 0° and longitude
+0°. We assumed these were errors and removed all observations falling in
+the extent between latitudes 2°S and 2°N and longitudes 2°W and 2°E to
+keep only mainland sites.
 
 We then converted the occurrence data into raster format by determining
 which pixels had a least one GBIF occurrence. This allowed us to remove
@@ -470,11 +472,12 @@ We performed all analyses using \emph{Julia} v1.7.2 (Bezanson et al.
 Poisot 2021) to manipulate the raster layers,
 \texttt{EcologicalNetworks.jl} (Poisot et al. 2019) to construct and
 manipulate the interaction networks, and \texttt{GBIF.jl} (Dansereau and
-Poisot 2021) to retrieve the species occurrences from GBIF. We also used
-\emph{GDAL} (GDAL/OGR contributors 2021) to rasterize the IUCN range
-maps (initially available as shapefiles from the Spatial Data Download
-portal). All the scripts required to reproduce the analyses are
-available at https://doi.org/10.5281/zenodo.6842861.
+Poisot 2021) to reconcile species names with the GBIF backbone taxonomy
+(GBIF Secretariat 2021). We also used \emph{GDAL} (GDAL/OGR contributors
+2021) to rasterize the IUCN range maps (initially available as
+shapefiles from the Spatial Data Download portal). All the scripts
+required to reproduce the analyses are available at
+https://doi.org/10.5281/zenodo.6842861.
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -1502,6 +1505,14 @@ Fricke, Evan C., Alejandro Ordonez, Haldre S. Rogers, and Jens-Christian
 Svenning. 2022. {``The Effects of Defaunation on Plants' Capacity to
 Track Climate Change.''} \emph{Science}.
 \url{https://doi.org/10.1126/science.abk3510}.
+
+\leavevmode\hypertarget{ref-GBIF.org2022GbiOcc}{}%
+GBIF.org. 2022. {``GBIF Occurrence Download.''} The Global Biodiversity
+Information Facility. \url{https://doi.org/10.15468/DL.PF4586}.
+
+\leavevmode\hypertarget{ref-GBIFSecretariat2021GbiBac}{}%
+GBIF Secretariat. 2021. {``GBIF Backbone Taxonomy.''}
+\url{https://doi.org/10.15468/39omei}.
 
 \leavevmode\hypertarget{ref-GDALux2fOGRcontributors2021GdaOgr}{}%
 GDAL/OGR contributors. 2021. \emph{GDAL/OGR Geospatial Data Abstraction
