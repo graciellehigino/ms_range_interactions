@@ -10,12 +10,8 @@ mammals = readlines(joinpath("data", "clean", "mammals.csv"))
 ranges = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.tif"), i) for i in eachindex(mammals)]
 
 # Get species richness
-#= # Write to tif file
 richness = mosaic(sum, ranges)
 geotiff(joinpath("data", "clean", "richness.tif"), richness)
-=#
-# Read from tif file
-richness = geotiff(SimpleSDMPredictor, joinpath("data", "clean", "richness.tif"))
 
 # Map the richness
 plot(;
