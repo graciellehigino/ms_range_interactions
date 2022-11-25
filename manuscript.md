@@ -89,42 +89,40 @@ varies geographically [@Hurlbert2007SpeRic; @Hurlbert2005DisRan;
 might help to elucidate where these (dis)agreements are more likely to be true
 and which dataset better represent the actual distribution of species. In this
 context, we elaborate a method that allows us to detect areas of potential
-misestimation of species' distribution
-data (more precisely range maps) based on interaction data, considering the
-basic assumption that predators can only be present in regions where they are
-connected to at least one herbivore - and thus indirectly connected to primary
-producers. We used a Serengeti food web dataset [@Baskerville2011SpaGui] (which
-comprises carnivores, herbivores, and plants from Tanzania) to demonstrate how a
-mismatch between occurrence and interaction data can highlight significant
-uncertainty areas in IUCN range maps. Finally, we add the GBIF occurrence points
-for the Serengeti species to the investigation, discuss the mechanisms that can
+misestimation of species' distribution data (more precisely range maps) based on
+interaction data. This method is based on the assumption that organisms cannot
+persist in an area unless they are directly or indirectly connected to a primary
+producer within their associated food web [@Power1992TopBot]. Thus, given that
+herbivores are the main connection between plant resources (directly limited by
+environmental conditions) and predators [@Dobson2009FooStr; @Scott2018RolHer],
+the range of a predator (omnivore or carnivore) depends on the overlapping
+ranges of its herbivore preys. If sections of a predator's range does not
+overlap with at least one of its prey it will become disconnected from primary
+producers, and therefore we would not expect the predator to occur in this area.  
+
+This mismatch can be the result of different mechanisms, like the misestimation
+of both the predator's and the preys' ranges [@Ladle2013MapSpe;
+@Rondinini2006TraDif], taxonomic errors [@Isaac2004TaxInf; @Ladle2013MapSpe], or
+the lack of information about trophic links (i.e., the lack of connection
+between the ranges of a predator and a primary producer may be due a third
+species we don't know is connected to both). Here we discuss the mechanisms that can
 lead to the lack of agreement between data, and build from that a vision for the
 next steps, reinforcing the importance of geographically explicit interaction
-data.  
-
+data. 
 
 # Methods
 
-Organisms cannot persist unless they are directly or indirectly connected to a
-primary producer within their associated food web [@Power1992TopBot]. Therefore,
-the range of a predator (omnivore or carnivore) depends on the overlapping
-ranges of its preys. If sections of a predator's range does not overlap with at
-least one of its prey it will become disconnected from primary producers, and
-therefore we would not expect the predator to occur in this area. This mismatch
-can be the result of different mechanisms, like the misestimation of both the predator's and the preys' ranges [@Ladle2013MapSpe; @Rondinini2006TraDif], taxonomic errors
-[@Isaac2004TaxInf; @Ladle2013MapSpe], or the lack of information about trophic
-links (i.e., the lack of connection between the ranges of a predator and a
-primary producer may be due a third species we don't know is connected to both).
-Thus, given that herbivores are the main connection between plant resources
-(directly limited by environmental conditions) and predators [@Dobson2009FooStr;
-@Scott2018RolHer], here we adjusted the ranges of predators based on a simple
+We indentified areas of uncertainty on the ranges of predators based on a simple
 rule: we removed any part of a predator’s range that did not intersect with the
-range of at least one prey herbivore species. So, unless the range of the
-predator overlapped with at least one prey item, which in turn is directly
-connected to a primary producer (plants), we removed that section of the
-predator’s range. Finally, we calculated the difference in range size between
-the original IUCN ranges and those adjusted based on species interaction data.
-
+range of at least one prey herbivore species, which in turn is directly
+connected to a primary producer (plants). To do that, we used a Serengeti food
+web dataset [@Baskerville2011SpaGui] (which comprises carnivores, herbivores,
+and plants from Tanzania) and its species ranges from IUCN. Then, we calculated
+the difference in range sizes between the original IUCN ranges of predators and
+those without the areas where they would be alone, based on species interaction
+data. Finally, we added the GBIF occurrence points for the Serengeti species to
+investigate whether the results would be different if we used another source of
+distribution data. 
 ## Data 
 
 We investigated the mismatch between savannah species ranges and interactions in
@@ -164,12 +162,12 @@ ecosystems such as the Serengeti.
 
 We compiled IUCN range maps for the 32 species included in the metaweb from the
 Spatial Data Download portal
-(www.iucnredlist.org/resources/spatial-data-download), which we rasterized at 10
-arc-minute resolution (~18 km at the equator). We restricted the rasters a
+(www.iucnredlist.org/resources/spatial-data-download), which we rasterized at a
+0.5 degrees resolution (~50 km at the equator). We restricted the rasters to a
 spatial extent comprised between latitudes 35°S and 40°N and longitudes 20°W and
 55°E. We then combined interaction data from the metaweb and cooccurrence data
 generated from species ranges to create networks for each raster pixel. This
-generated a total of 84,244 pixel-level networks. These networks describe
+generated a total of 11,308 pixel-level networks. These networks describe
 potential predation, not actual interactions: the former is derived information
 from the metaweb, and the latter is contingent on the presence of herbivores. 
 
