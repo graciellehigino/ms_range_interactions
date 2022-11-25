@@ -4,6 +4,7 @@ import Pkg; Pkg.activate("."); Pkg.instantiate()
 using Combinatorics
 using CSV
 using DataFramesMeta
+using Dates
 using EcologicalNetworks
 using GBIF
 using GLM
@@ -15,6 +16,7 @@ using Shapefile
 using SimpleSDMLayers
 using SparseArrays
 using Statistics
+using StatsBase
 using StatsPlots
 
 include("A2_shapefile.jl") # mapping functions

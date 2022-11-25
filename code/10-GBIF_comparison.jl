@@ -2,12 +2,6 @@ include("A1_required.jl")
 
 ## Load required data
 
-# This is the bounding box we care about
-bounding_box = (left=-20.0, right=55.0, bottom=-35.0, top=40.0)
-
-# Get the list of mammals
-mammals = readlines(joinpath("data", "clean", "mammals.csv"))
-
 # Species list with types
 sp = DataFrame(CSV.File(joinpath("data", "species_code.csv")))
 sp.species = replace.(sp.species, " " => "_")
@@ -109,7 +103,7 @@ end
 # Remove some columns for display
 comparison_short = select(comparison_df, [:species, :type, :total_occ, :range, :occ_prop, :range_prop])
 show(comparison_short, allrows = true)
-cor(comparison_short.occ_prop, comparison_short.range_prop) # 0.955
+cor(comparison_short.occ_prop, comparison_short.range_prop) # 0.795
 
 # Compare original & updated ranges
 comparison_diff = @chain comparison_df begin

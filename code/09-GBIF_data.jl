@@ -1,104 +1,43 @@
 include("A1_required.jl")
 
-# Getting taxa codes
-sp_codes = taxon.(mammals, rank = :SPECIES)
-
-# Bounding box
-lat, lon = (bounding_box.bottom, bounding_box.top), (bounding_box.left, bounding_box.right)
-
-# Getting observations
-#=
-## Start query
-occ = occurrences.(
-    sp_codes,
-    "hasCoordinate" => "true",
-    "decimalLatitude" => lat,
-    "decimalLongitude" => lon,
-)
-## Loop to get all occurrences
-Threads.@threads for o in occ
-    while length(o) < size(o)
-        occurrences!(o)
-    end
-    @info "$(o.occurrences[1].taxon.name) occurrences returned ($(length(o))/$(size(o)))"
-end
-# Export to JLD2 for faster reload
-
-@save joinpath("data", "clean", "gbif-occurrences.jld2") occ
-=#
-@load joinpath("data", "clean", "gbif-occurrences.jld2") occ
+# Load data
+occ_df = CSV.read(joinpath("data", "clean", "gbif_occurrences.csv"), DataFrame)
 
 
-## Create DataFrame
+## Keep recent GBIF occurrences only 
+year_recent = 2000 # all observations before this year will be discarded 
 
-# Make DataFrame
-occ_df = DataFrame.(occ)
-occ_df = reduce(vcat, occ_df)
-select!(occ_df, :species, :longitude, :latitude, :date)
-occ_df.species = replace.(occ_df.species, " " => "_")
+# Get years
+occ_with_dates = dropmissing(occ_df, :date)
+occ_with_dates.year = year.(occ_with_dates.date)
 
-# Remove observations with coordinates around (0.0, 0.0) which are outside mainland
-filter!(x -> !(x.latitude > -2.0 && x.latitude < 2.0 && x.longitude > -2.0 && x.longitude < 2.0), occ_df)
-
-# Make sure the species names match
-isequal(unique(occ_df.species), mammals) # not the same
-setdiff(unique(occ_df.species), mammals) # Taurotragus oryx is the difference
-
-id_mismatch = filter(x -> !(x.species in mammals), occ_df)
-unique(id_mismatch.species) # Yep it's only Taurotragus oryx
-# The GBIF website agrees it's a synonym of Tragelaphus oryx, citing IUCN as source, so we're good
-
-replace!(occ_df.species, "Taurotragus_oryx" => "Tragelaphus_oryx")
-isequal(unique(occ_df.species), mammals) # true
-
-# Save as CSV
-CSV.write(joinpath("data", "clean", "gbif_occurrences.csv"), occ_df)
-
-
-## Investigate difference with original query with Africa as continent
-# Load datasets
-old = CSV.read(joinpath("data", "clean", "gbif_occurrences_old.csv"), DataFrame) # get from previous commit
-new = CSV.read(joinpath("data", "clean", "gbif_occurrences.csv"), DataFrame)
-
-# Compare number of observations per species
-_nold = combine(groupby(old, :species), nrow => :nrow_old)
-_nnew = combine(groupby(new, :species), nrow => :nrow_new)
-diff = @chain begin
-    leftjoin(_nold, _nnew, on = :species)
-    @transform(diff = :nrow_new .- :nrow_old)
-    sort(:diff, rev=true)
-end
-diff
+# Keep recent observations 
+occ_df_recent = subset(occ_with_dates, :year => ByRow(>(year_recent)))
 
 
 ## Create layers
-
-# Make sure GBIF records order is the same as in mammals CSV file
-[replace(o.occurrences[1].taxon.name, " " => "_") for o in occ] == mammals
 
 # Create background layer
 bglayer = SimpleSDMPredictor(WorldClim, BioClim, 1; resolution=10.0, bounding_box...)
 bglayer = coarsen(bglayer, mean, (3, 3))
 
-# Create an abundance layer (number of GBIF occurrences per pixel)
-gbif_occ_layers = [mask(bglayer, o, Float64) for o in occ]
-replace!.(gbif_occ_layers, 0.0 => nothing)
+# Create presence-absence layers
+gbif_ranges = fill(similar(bglayer), length(mammals))
+for i in eachindex(mammals)
+    spdf = filter(:species => ==(mammals[i]), occ_df_recent)
+    splayer = mask(bglayer, spdf, Bool)
+    replace!(splayer, false => nothing)
+    gbif_ranges[i] = convert(Float32, splayer)
+end
+gbif_ranges
 
-# Convert as presence absence layers
-gbif_ranges = [mask(bglayer, o, Bool) for o in occ]
-replace!.(gbif_ranges, false => nothing)
-gbif_ranges = [convert(Float64, r) for r in gbif_ranges]
-
-# Export to tif files
-geotiff(joinpath("data", "clean", "gbif_occurrences.tif"), gbif_occ_layers)
+# Export to tif file
 geotiff(joinpath("data", "clean", "gbif_ranges.tif"), gbif_ranges)
 
 
 ## Explore year distribution
 
-# Calculate median date for each species
-using StatsBase
-
+# Calculate median per species
 group_species = groupby(occ_with_dates, :species)
 median_species = combine(group_species, :year => StatsBase.median)
 
@@ -114,6 +53,7 @@ end
 p
 
 savefig(joinpath("figures", "GBIF_years_total.png"))
+
 
 # Distribution of the occurrences' year > 1900 for each species
 occ_with_dates_1900 = subset(occ_with_dates, :year => ByRow(>(1900)))
@@ -152,10 +92,8 @@ savefig(joinpath("figures", "GBIF_years_1970.png"))
 
 
 # Proportion of recent occurrences for each species 
-year_recent = 2000
 
-occ_with_dates_recent = subset(occ_with_dates, :year => ByRow(>(year_recent)))
-group_species_recent = groupby(occ_with_dates_recent, :species)
+group_species_recent = groupby(occ_df_recent, :species)
 
 prop_recent = [nrow(group_species_recent[i]) / nrow(group_species[i]) for i in 1:32] 
 
