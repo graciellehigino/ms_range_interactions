@@ -24,7 +24,7 @@ combined different types of occurrence data to measure the accuracy of datasets
 different types of information so far (i.e., ecological characteristics other
 than geographical distribution). Here we suggest jointly analysing species
 occurrence (range maps and point occurrences) and ecological interactions to
-identify mismatches between datasets.  
+identify mismatches between datasets and areas of uncertainty.  
 
 Interactions form complex networks that shape ecological structures and maintain
 the essential functions of ecosystems, such as seed dispersal, pollination, and
@@ -74,20 +74,20 @@ schemes. A great source of bias in these datasets is the irregular sampling
 effort, with more occurrences originating from attractive and accessible areas
 and observation of charismatic species [@Alhajeri2019HigCor]. As for ecological
 data, a complete assessment is difficult and is aggravated by biased sampling
-methods and data aggregation [@Poisot2020EnvBia; @Hortal2015SevSho].
+methods, data aggregation [@Poisot2020EnvBia; @Hortal2015SevSho] and by the fact
+that interactions are very often events that occur in a narrow window of time.
 Nevertheless, we have witnessed an increase in the availability of biodiversity
 data in the last decades, including those collected through community science
 projects [@Callaghan2019ImpBig; @Pocock2015BioRec] and dedicated
 databases, such as Mangal [@Poisot2016ManMak]. This provides an opportunity to
 merge species distribution and ecological interaction data to improve our
-predictions of where a species may be found across large spatial scales (e.g.,
-continental and global).  
+predictions of where a species may be found across large spatial scales.  
 
 It has been demonstrated that the agreement between range maps and point data
 varies geographically [@Hurlbert2007SpeRic; @Hurlbert2005DisRan;
 @Ficetola2014EvaRob]. Adding ecological interaction data to this comparison
 might help to elucidate where these (dis)agreements are more likely to be true
-and which dataset better represent the actual distribution of species. In this
+and which dataset better represent the actual distribution of a species. In this
 context, we elaborate a method that allows us to detect areas of potential
 misestimation of species' distribution data (more precisely range maps) based on
 interaction data. This method is based on the assumption that organisms cannot
@@ -105,10 +105,12 @@ of both the predator's and the preys' ranges [@Ladle2013MapSpe;
 @Rondinini2006TraDif], taxonomic errors [@Isaac2004TaxInf; @Ladle2013MapSpe], or
 the lack of information about trophic links (i.e., the lack of connection
 between the ranges of a predator and a primary producer may be due a third
-species we don't know is connected to both). Here we discuss the mechanisms that can
-lead to the lack of agreement between data, and build from that a vision for the
-next steps, reinforcing the importance of geographically explicit interaction
-data. 
+species we don't know is connected to both). Here in this proof of concept, we
+investigate the disagreements between available data for species that compose a
+well-known foodweb in the African continent, discuss the mechanisms that can
+lead to this, and reinforce the importance of open geographically explicit
+interaction data, and highlight the importance of accounting for uncertainty
+when dealing with species distribution data.
 
 # Methods
 
@@ -316,7 +318,7 @@ Nevertheless, some species with smaller ranges showed high data overlap (such as
 preys displayed similar overlap variations, and species with median and large
 ranges had higher proportions of occurrences falling into their IUCN range.  
 
-The proportion of GBIF pixels in updated ranges can only be equal to or lower
+The proportion of GBIF pixels in revised ranges can only be equal to or lower
 than that of the original ranges, as our analysis removes pixels from the
 original range and does not add new ones. Rather, the absence of a difference
 between the two types of ranges indicates that no pixels with GBIF observations,
@@ -335,26 +337,24 @@ preys. This result reinforces the concern raised in the literature on the use of
 IUCN range maps for species that are not well known [@Herkt2017MacCon],
 demonstrating how small range species are likely to have their distribution
 underestimated in the IUCN database. Additionally, the fact that _Canis aureus_
-had such a conspicuous mismatch between both the original and updated IUCN range
+had such a conspicuous discrepancy between the original and fitted IUCN range
 maps, and between GBIF and IUCN data, may indicate a taxonomic incongruency
 between the three databases used here, which we explore in the Discussion section. Our results
 delineate how a mismatch between GBIF and IUCN databases differ greatly with
 small changes in herbivore species ranges, and it is somewhat positively related
 to range size for predator species. Moreover, we show that accounting for
 interactions does not necessarily aggravates this dissimilarity, but it is
-relevant for species with little ecological information or specialists.  
+relevant for species about which we have little ecological information or for specialists groups.  
 
 ![Left panel: Distribution of the proportion of GBIF pixels (pixels with at
 least one occurrence in GBIF) falling into the IUCN range for different range
 sizes. Right panel: Differences between the proportion of GBIF pixels falling
-into the IUCN and the updated ranges for every predator species. Arrows go from
-the proportion inside the original range to the proportion inside the updated
+into the IUCN and the fitted ranges for every predator species. Arrows go from
+the proportion inside the original range to the proportion inside the revised
 range, which can only be equal or lower. Overlapping markers indicate no
 difference between the types of layers. Species markers are the same on both
 figures, with predators presented in distinct colored markers and all herbivores
-grouped in a single grey marker. Pixels represent a resolution of 10
-arc-minutes. ](figures/gbif_panels.png){#fig:gbif}
-
+grouped in a single grey marker. Pixels represent a resolution of 0.5 degrees.](figures/gbif_panels.png){#fig:gbif}
 
 # Discussion
 
@@ -400,7 +400,13 @@ First, _Panthera leo_ was one of the species with no difference between ranges b
 species fell outside its IUCN range (@fig:gbif). In this particular case, the
 IUCN maps seem to agree with species interaction data. However, the disagreement
 between the IUCN and the GBIF databases is concerning and suggests that the IUCN
-maps might underestimate the lion's distribution. 
+maps might underestimate the lion's distribution. Notwithstanding, as historical
+datasets are common on GBIF, some of the records might correspond to locally
+extinct populations. In our case, most of the data were from the last 20 years,
+but _Nanger granti_, a herbivore linked to 6 predators, had most of its records
+dated from the 1970's. Although this species is connected to many predators, its
+impact is very low, as its original IUCN range corresponds to only 2% of all
+occupied pixels.  
 
 On the other hand, _Leptailurus serval_ and _Canis mesomelas_ are two of the
 three species that have the higher proportion of mismatched range due to the
@@ -441,7 +447,7 @@ Here we demonstrated how we can detect uncertainty in species distribution data
 using ecological interactions. Knowing where questionable occurrence data are can
 be crucial in ecological modelling [@Hortal2008UncMea; @Ladle2013MapSpe], and
 accounting for these errors can improve model outputs by diminishing the error
-propagation [@Draper1995AssPro]. For instance, we believe this is a way to
+propagation [@Draper1995AssPro]. For instance, we believe our method is a way to
 account for ecological interactions in habitat suitability models without making
 the models more complex, but by making sure (not assuming) that the input data -
 the species occurrence - actually accounts for ecological interactions. It is
@@ -464,7 +470,7 @@ interactions at least as fast as we are losing species
 
 We acknowledge that this study was conducted on land within the traditional
 unceded territory of the Saint Lawrence Iroquoian, Anishinabewaki, Mohawk,
-Huron-Wendat, and Omàmiwininiwak nations. We thank the editor and reviewer for
+Huron-Wendat, and Omàmiwininiwak nations. We thank the editor and reviewers for
 their thoughtful comments, which considerably improved this manuscript.
 
 # References
