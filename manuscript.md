@@ -231,14 +231,17 @@ https://doi.org/10.5281/zenodo.6842861.
 # Results
 
 Mammal species found in the Serengeti food web are widespread in Africa,
-especially in grasslands and savannahs (first panel of @fig:richness). However,
-most local networks (83.2%) built using the original IUCN range maps had at
-least one mammal species without a path to a primary producer (second panel of
-@fig:richness). On average, local food webs had almost the third of their mammal
-species (mean = 30.5%, median = 14.3%) disconnected from basal species. In
-addition, 16.6% of the networks only had disconnected mammals, and many had a
-very low number of mammal species, specifically between 1 and 4 (from a total of
-32). As expected, the proportion of carnivores with a path to a
+especially in grasslands and savannahs (panel _(a)_ of @fig:richness). From our analysis,
+most local networks (69.07%) built using the original IUCN range maps had at
+least one mammal species with a path to a primary producer (panel _(b)_ of
+@fig:richness), which reinforces that the interactions we observe in the
+Serengeti foodweb is representative of the interactions for these mammals in the
+whole African continent. On average, local food webs had almost half of
+their mammal
+species disconnected from basal species (mean = 46.2%, median = 33.3%). In
+addition, 16.6% of the networks only had disconnected mammals, and the number of
+mammal species varied from 1 to 28, with a mean of 6.7. As expected, the
+proportion of carnivores with a path to a
 primary producer was conditional on the total number of mammal species in each local
 network (third panel of @fig:richness).  
 
