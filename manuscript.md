@@ -24,7 +24,7 @@ combined different types of occurrence data to measure the accuracy of datasets
 different types of information so far (i.e., ecological characteristics other
 than geographical distribution). Here we suggest jointly analysing species
 occurrence (range maps and point occurrences) and ecological interactions to
-identify mismatches between datasets and areas of uncertainty.  
+identify mismatches between datasets and areas of data deficit.  
 
 Interactions form complex networks that shape ecological structures and maintain
 the essential functions of ecosystems, such as seed dispersal, pollination, and
@@ -109,12 +109,11 @@ species we don't know is connected to both). Here in this proof of concept, we
 investigate the disagreements between available data for species that compose a
 well-known foodweb in the African continent, discuss the mechanisms that can
 lead to this, and reinforce the importance of open geographically explicit
-interaction data, and highlight the importance of accounting for uncertainty
-when dealing with species distribution data.
+interaction data.
 
 # Methods
 
-We indentified areas of uncertainty on the ranges of predators based on a simple
+We indentified areas of data deficits on the ranges of predators based on a simple
 rule: we removed any part of a predator’s range that did not intersect with the
 range of at least one prey herbivore species, which in turn is directly
 connected to a primary producer (plants). To do that, we used a Serengeti food
@@ -196,11 +195,15 @@ For each species in the dataset we collated point observation data from GBIF
 (www.gbif.org). We used the GBIF download API to retrieve all species
 occurrences on November 22nd 2022 [@GBIF.org2022GbiOcc]. We restricted our query
 to the data with spatial coordinates and which were inside the spatial extent of
-our rasters. We did not use continental or date filters to retrieve as much data
-as possible. However, a few observations were localized in the ocean near
+our rasters. A few observations were localized in the ocean near
 latitude 0° and longitude 0°. We assumed these were errors and removed all
 observations falling in the extent between latitudes 2°S and 2°N and longitudes
-2°W and 2°E to keep only mainland sites.
+2°W and 2°E to keep only mainland sites. We did not use any additional
+geographical filters to retrieve as much data as possible. Being mindful of the
+recent and remarkable anthropogenic impact on African megafauna, we decided to
+restrict the occurrences used on the validation step to those recorded after the
+year 2000 (and, therefore, only records with date information). This decision
+was made after evaluating the overall temporal distribution of the GBIF records.  
 
 We then converted the occurrence data into raster format by determining which
 pixels had a least one GBIF occurrence. This allowed us to remove the effect of
@@ -233,9 +236,9 @@ most local networks (83.2%) built using the original IUCN range maps had at
 least one mammal species without a path to a primary producer (second panel of
 @fig:richness). On average, local food webs had almost the third of their mammal
 species (mean = 30.5%, median = 14.3%) disconnected from basal species. In
-addition, many networks (16.6%) only had disconnected mammals; these networks
-however all had a very low number of mammal species, specifically between 1 and
-4 (from a total of 32). As expected, the proportion of carnivores with a path to a
+addition, 16.6% of the networks only had disconnected mammals, and many had a
+very low number of mammal species, specifically between 1 and 4 (from a total of
+32). As expected, the proportion of carnivores with a path to a
 primary producer was conditional on the total number of mammal species in each local
 network (third panel of @fig:richness).  
 
@@ -247,14 +250,14 @@ species remaining in each local network as a function of the number of species
 given by the original IUCN range
 maps.](figures/richness_prop_removed.png){#fig:richness}
 
-## Specialized predators lose more range
+## Specialized predators have higher rates of range mismatch
 
 ![Negative relationship between the out degree of predator species and their
-relative range loss. More specialized predators lose a higher proportion of
+relative range mismatch. More specialized predators "lose" a higher proportion of
 their ranges due to mismatches with the ranges of their
 preys.](figures/rel_loss-outdegree-species.png){#fig:degree}
 
-Predators with fewer prey lose more range with our method ([@fig:degree]). For
+If we consider that we can not use areas where there are no superposition between predators and prey on ecological analyses, we lose more range area for predators with fewer prey ([@fig:degree]). For
 instance, both *Leptailurus serval* and *Canis mesomelas* have only one prey in
 the Serengeti food web ([@tbl:everyone]), each of them with a very small range
 compared to those of their predator. This discrepancy between range sizes
@@ -337,7 +340,7 @@ preys. This result reinforces the concern raised in the literature on the use of
 IUCN range maps for species that are not well known [@Herkt2017MacCon],
 demonstrating how small range species are likely to have their distribution
 underestimated in the IUCN database. Additionally, the fact that _Canis aureus_
-had such a conspicuous discrepancy between the original and fitted IUCN range
+had such a conspicuous discrepancy between the original IUCN and remaining range
 maps, and between GBIF and IUCN data, may indicate a taxonomic incongruency
 between the three databases used here, which we explore in the Discussion section. Our results
 delineate how a mismatch between GBIF and IUCN databases differ greatly with
@@ -349,7 +352,7 @@ relevant for species about which we have little ecological information or for sp
 ![Left panel: Distribution of the proportion of GBIF pixels (pixels with at
 least one occurrence in GBIF) falling into the IUCN range for different range
 sizes. Right panel: Differences between the proportion of GBIF pixels falling
-into the IUCN and the fitted ranges for every predator species. Arrows go from
+into the IUCN and the matched ranges for every predator species. Arrows go from
 the proportion inside the original range to the proportion inside the revised
 range, which can only be equal or lower. Overlapping markers indicate no
 difference between the types of layers. Species markers are the same on both
@@ -443,7 +446,7 @@ validation methods for occurrence data.
 
 ## Next steps
 
-Here we demonstrated how we can detect uncertainty in species distribution data
+Here we demonstrated how we can detect areas of data deficit in species distribution data
 using ecological interactions. Knowing where questionable occurrence data are can
 be crucial in ecological modelling [@Hortal2008UncMea; @Ladle2013MapSpe], and
 accounting for these errors can improve model outputs by diminishing the error
