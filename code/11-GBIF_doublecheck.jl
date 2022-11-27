@@ -1,7 +1,6 @@
 include("A1_required.jl")
 
 # Load IUCN ranges
-mammals = readlines(joinpath("data", "clean", "mammals.csv"))
 ranges = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.tif"), i) for i in eachindex(mammals)]
 ranges_updated = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "ranges_updated.tif"), i) for i in eachindex(mammals)]
 
@@ -102,10 +101,10 @@ end
 savefig(joinpath("figures", "serval_prey_mismatch_buffered.png"))
 
 # What percentage of the range loss does the buffered range represent?
-sum(buffered)/length(buffered) # ~ 15%
+sum(buffered)/length(buffered) # ~ 6%
 
 # What percentage of the prey's GBIF observations are within the range loss?
-length(_prey_sites)/length(prey_gbif_range) # ~ 42%
+length(_prey_sites)/length(prey_gbif_range) # ~ 36%
 
 ## GBIF figure with the serval and it's prey only
 

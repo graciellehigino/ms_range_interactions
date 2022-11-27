@@ -16,6 +16,7 @@ using Shapefile
 using SimpleSDMLayers
 using SparseArrays
 using Statistics
+using StatsBase
 using StatsPlots
 
 include("A2_shapefile.jl") # mapping functions
