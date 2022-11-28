@@ -14,9 +14,12 @@ indicate distribution uncertainty areas.
 
 We have also addressed reviewer's concerns about the GBIF data (see below): our
 investigations show that most of the data we were using are recent (from the
-last 20 years). We describe the time distribution of GBIF records to explicit
-that. Finally, we have improved the methods and the discussion sections to
-include more detailed descriptions of the data being used and to give more
+last 20 years). We decided to add a threshold on the year 2000 and restrict the
+time extension of our query the same way we do for the geographical extension -
+not as a filtering step in terms of Ecology, but of likelyhood of getting the
+most accurate data. Any refined filtering other than that would hinder the goals
+of our paper. Finally, we have improved the methods and the discussion sections
+to include more detailed descriptions of the data being used and to give more
 context to the results. We detail specific changes below (line numbers refer to
 the clean, revised PDF file).
 
@@ -72,7 +75,7 @@ apparent taxonomic disagreement - which is indeed connected to its interaction
 data, but this would not change with a more complete list of preys for this
 species.
 
-To emphasize and clarify these points, we have changed lines XX, XX and XX on
+To emphasize and clarify these points, we have changed lines 83-86 and 171-175 on
 the manuscript.
 
 >*"4. The gbif records for large mammals are especially problematic. Did the
@@ -92,7 +95,7 @@ needed to compare two sets of raw data, and data cleaning protocols are
 dependent on the use objectives, we chose to avoid data manipulation both for
 GBIF and IUCN datasets". For that reason, our query for the GBIF data did not
 include any filters other than the ones described on the paper for the reasons
-described above.  
+listed above.  
 
 Additionally, we could add a plethora of other datasets both on
 interactions and occurrences, but we decided to use only the IUCN, the GBIF and
@@ -119,7 +122,8 @@ is one of the possible solutions.
 >https://doi.org/10.1073/pnas.070446910"*
 
 We agree and we have updated our rasters to be now at 50km of resolution. Our
-overall results did not change with that (see lines XX, XX and XX).
+overall results did not change with that (see line 125 and Results section,
+especially Table 1).
 
 >*"3. Gbif records: using records from any period in time from gbif will include
 >historical relics from extinct populations. Many large and medium mammals,
@@ -127,7 +131,18 @@ overall results did not change with that (see lines XX, XX and XX).
 >Africa. How did the authors deal with the fact that records from a species
 >recorded 50 years ago may represent extinct populations?"*
 
+This is a very interesting comment and we have explored the temporal
+distribution of the GBIF records we have retrieved. As you can see below, most
+of the data is recent, from after the year 2000. This means that our previous
+results are very likely to represent our current state of biodiversity
+(considering a temporal autocorrelation effect). However, we agree that extinct
+populations could be a real problem for the validation step of our method, and
+therefore we decided to add a temporal restriction to our query. We have then
+re-run our analyses with only GBIF occurrences registered after the year 2000.
+Still, our results are overall the same. We have updated the absolute values on
+lines 212-215, 225-228, 259, 274-275, and 285-289.
 
+![](figures/GBIF_years_prop_nb_2000.png)
 
 We hope our revised manuscript is now more appropriate for publishing at PeerJ.
 Reiterating our appreciation for yours and the reviewer's thoughtful comments,
