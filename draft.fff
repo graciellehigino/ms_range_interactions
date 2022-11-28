@@ -18,9 +18,9 @@ original IUCN range maps.}\label{fig:richness}
 \centering
 \includegraphics{figures/rel_loss-outdegree-species.png}
 \caption{Negative relationship between the out degree of predator
-species and their relative range loss. More specialized predators lose a
-higher proportion of their ranges due to mismatches with the ranges of
-their preys.}\label{fig:degree}
+species and their relative range mismatch. More specialized predators
+``lose'' a higher proportion of their ranges due to mismatches with the
+ranges of their preys.}\label{fig:degree}
 }
 \end{figure}
 \efloatseparator
@@ -50,16 +50,16 @@ make the interpretation of the data more difficult.}\label{fig:geo_diss}
 \centering
 \includegraphics{figures/gbif_panels.png}
 \caption{Left panel: Distribution of the proportion of GBIF pixels
-(pixels with at least one occurrence in GBIF) falling into the IUCN
-range for different range sizes. Right panel: Differences between the
-proportion of GBIF pixels falling into the IUCN and the updated ranges
-for every predator species. Arrows go from the proportion inside the
-original range to the proportion inside the updated range, which can
-only be equal or lower. Overlapping markers indicate no difference
-between the types of layers. Species markers are the same on both
-figures, with predators presented in distinct colored markers and all
-herbivores grouped in a single grey marker. Pixels represent a
-resolution of 10 arc-minutes.}\label{fig:gbif}
+(pixels with at least one occurrence in GBIF) supperposed by the IUCN
+range data for different range sizes. Right panel: Differences between
+the proportion of GBIF pixels matching the original and cropped IUCN
+range maps for every predator species. Arrows go from the proportion
+inside the original range to the proportion inside the revised range,
+which can only be equal or lower. Overlapping markers indicate no
+difference between the types of layers. Species markers are the same on
+both figures, with predators presented in distinct colored markers and
+all herbivores grouped in a single grey marker. Pixels represent a
+resolution of 0.5 degrees.}\label{fig:gbif}
 }
 \end{figure}
 \efloatseparator
