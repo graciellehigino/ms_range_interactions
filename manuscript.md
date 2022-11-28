@@ -448,7 +448,14 @@ accounting for these errors can improve model outputs by diminishing the error
 propagation [@Draper1995AssPro]. For instance, we believe our method is a way to
 account for ecological interactions in habitat suitability models without making
 the models more complex, but by making sure (not assuming) that the input data -
-the species occurrence - actually accounts for ecological interactions. It is
+the species occurrence - actually accounts for ecological interactions. Another
+application of this method is mapping areas where data are deficient and
+helping to indicate priority sampling locations for interaction data, which can, in
+turn, reduce uncertainty in network prediction. For example, if a certain pixel
+confirms the presence of a species both with IUCN and GBIF data, but lacks
+connection between species, this pixel has a high potential to hide an
+unobserved interaction and should therefore be a priority sample location.    
+It is
 important to notice, however, that the quality and usefulness of this method are
 highly correlated with the amount and quality of data available about species'
 occurrences **and** interactions. With this paper, we hope to add to the
