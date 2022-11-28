@@ -68,9 +68,9 @@ resolution of 0.5 degrees.}\label{fig:gbif}
 \hypertarget{fig:serval}{%
 \centering
 \includegraphics{figures/serval_mismatch_combined.png}
-\caption{Mismatch between serval's range loss and GBIF occurrence of its
-prey. The left panel shows the reduction of serval's range when we
-consider the IUCN data on its prey. On the right panel, we added GBIF
+\caption{Mismatch between servals' range loss and GBIF occurrence of its
+prey. The left panel shows the reduction of servals' range when we
+consider the IUCN data of its prey. On the right panel, we added GBIF
 data on both serval and its prey, with a buffer for the prey to account
 for species mobility.}\label{fig:serval}
 }
