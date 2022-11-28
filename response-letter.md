@@ -148,5 +148,5 @@ We hope our revised manuscript is now more appropriate for publishing at PeerJ.
 Reiterating our appreciation for yours and the reviewer's thoughtful comments,
 we are available to answer any further questions.
 
-Best regards,
+Best regards,  
 The Authors

@@ -1,15 +1,6 @@
-using SimpleSDMLayers
-using Plots
-using Plots.PlotMeasures
-using Shapefile
-using DataFramesMeta
-using GBIF
-using CSV
-using Statistics
-using StatsPlots
+include("A1_required.jl")
 
 # Load IUCN ranges
-mammals = readlines(joinpath("data", "clean", "mammals.csv"))
 ranges = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "stack.tif"), i) for i in eachindex(mammals)]
 ranges_updated = [geotiff(SimpleSDMPredictor, joinpath("data", "clean", "ranges_updated.tif"), i) for i in eachindex(mammals)]
 
@@ -63,7 +54,6 @@ prey_mismatch = similar(serval_loss)
 prey_mismatch[_prey_sites] = fill(1.0, length(_prey_sites))
 
 # Map the mismatch
-include("shapefile.jl")
 begin
     plot(;
         frame=:box,
@@ -83,6 +73,7 @@ savefig(joinpath("figures", "serval_prey_mismatch.png"))
 # Get the sites where the prey has GBIF observations _on land_
 _prey_sites2 = keys(prey_gbif_range)
 reference_layer = SimpleSDMPredictor(WorldClim, BioClim, 1; boundingbox(serval)...)
+reference_layer = coarsen(reference_layer, mean, (3, 3))
 prey_mismatch2 = similar(reference_layer)
 prey_mismatch2[_prey_sites2] = fill(1.0, length(_prey_sites2))
 
@@ -110,10 +101,10 @@ end
 savefig(joinpath("figures", "serval_prey_mismatch_buffered.png"))
 
 # What percentage of the range loss does the buffered range represent?
-sum(buffered)/length(buffered) # ~ 15%
+sum(buffered)/length(buffered) # ~ 6%
 
 # What percentage of the prey's GBIF observations are within the range loss?
-length(_prey_sites)/length(prey_gbif_range) # ~ 42%
+length(_prey_sites)/length(prey_gbif_range) # ~ 36%
 
 ## GBIF figure with the serval and it's prey only
 
@@ -134,7 +125,7 @@ options = (
     ylim=(-0.03, 1.0),
     xlim=(-0.2, 7),
     xticks=0:1:7,
-    markershape=[:cross :circle],
+    markershape=[:pentagon :circle],
     markersize=6,
     color=[cgrad(:seaborn_colorblind)[6] :lightgrey],
     markerstrokewidth=0,

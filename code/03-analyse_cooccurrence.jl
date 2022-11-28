@@ -1,10 +1,5 @@
 include("02-get_networks.jl")
 
-using Combinatorics
-
-# Mammals in the Serengeti ecosystem
-mammals = readlines(joinpath("data", "clean", "mammals.csv"))
-
 # Subset subnetwork using this list of mammals
 MM = MM[mammals]
 

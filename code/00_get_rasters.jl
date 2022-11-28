@@ -1,8 +1,4 @@
-import Pkg; Pkg.activate(".")
-
-using SimpleSDMLayers
-using CSV
-using DataFrames
+include("A1_required.jl")
 
 # I store my IUCN data in the same location, so adapt this to where your files are
 const IUCNPATH = expanduser(joinpath("~", ".data", "iucn"))
@@ -15,8 +11,10 @@ ispath("rasters") || mkpath("rasters")
 bounding_box = (left=-20.0, right=55.0, bottom=-35.0, top=40.0)
 
 # Get the list of hosts
-speciespool = readlines(joinpath("data", "species.csv"))
-filter!(!endswith(" spp."), speciespool) # Species with spp. at the end are plants, so we can remove them
+# We remove plant species to focus only on mammals
+speciespool = DataFrame(CSV.File(joinpath("data", "species_code.csv")))
+filter!(:type => !=("plant"), speciespool)
+speciespool = speciespool[:,:species]
 
 # Rename species following IUCN taxonomy
 replace!(speciespool, "Damaliscus korrigum" => "Damaliscus lunatus", "Taurotragus oryx" => "Tragelaphus oryx")
@@ -29,7 +27,7 @@ Threads.@threads for i in 1:length(speciespool)
     @info "Extracting $(sp) on thread $(Threads.threadid())"
     fname = joinpath("rasters", replace(sp, " " => "_")*".tif")
     try
-        query = `gdal_rasterize -l "$(IUCNDB)" -a presence $(IUCNPATH)/$(IUCNDB)/$(IUCNDB).shp $(fname) -where "binomial LIKE '$(sp)'" -tr 0.1666666666666666574 0.1666666666666666574 -te -180.0 -90.0 180.0 90.0`
+        query = `gdal_rasterize -l "$(IUCNDB)" -a presence $(IUCNPATH)/$(IUCNDB)/$(IUCNDB).shp $(fname) -where "binomial LIKE '$(sp)'" -tr 0.5 0.5 -te -180.0 -90.0 180.0 90.0`
         run(query)
         mp = convert(Float64, geotiff(SimpleSDMResponse, fname; bounding_box...))
         replace!(mp, zero(eltype(mp)) => nothing)

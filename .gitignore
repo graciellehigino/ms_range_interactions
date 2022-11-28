@@ -11,3 +11,4 @@ assets/
 data/clean/gbif-occurrences*.jld2
 *.code-workspace
 .DS_Store
+data/gbif_occurrences_query.*

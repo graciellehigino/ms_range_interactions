@@ -5,24 +5,13 @@
   "creators": [
     { 
       "affiliations": [
-        "The University of British Columbia",
-        "Computational Biodiversity Science and Services"
+        "Biodiversity Research Centre, University of British Columbia"
       ],
       "familyname": "T. Higino",
       "givennames": "Gracielle",
       "email": "graciellehigino@gmail.com",
       "orcid": "0000-0003-2791-8383",
-      "status": ["corresponding", "equal"]
-    },
-    {
-      "affiliations": [
-        "School of Natural and Environmental Sciences, Newcastle University"
-      ],
-      "familyname": "M. Windsor",
-      "givennames": "Fredric",
-      "email": "fredric.windsor@newcastle.ac.uk",
-      "orcid": "0000-0001-5030-3470",
-      "status": ["equal"]
+      "status": ["corresponding"]
     },
     {
       "affiliations": [
@@ -33,8 +22,7 @@
       "familyname": "Banville",
       "givennames": "Francis",
       "email": "francis.banville@umontreal.ca",
-      "orcid": "0000-0001-9051-0597",
-      "status": ["equal"]
+      "orcid": "0000-0001-9051-0597"
     },
         {
       "affiliations": [
@@ -44,8 +32,7 @@
       "familyname": "Dansereau",
       "givennames": "Gabriel",
       "email": "gabriel.dansereau@umontreal.ca",
-      "orcid": "0000-0002-2212-3584",
-      "status": ["equal"]
+      "orcid": "0000-0002-2212-3584"
     },
      {
       "affiliations": [
@@ -55,8 +42,16 @@
       "familyname": "Forero-Muñoz",
       "givennames": "Norma R.",
       "email": "norma.rocio.forero.munoz@umontreal.ca",
-      "orcid": "0000-0001-9019-0108",
-      "status": ["equal"]
+      "orcid": "0000-0001-9019-0108"
+    },
+    {
+      "affiliations": [
+        "School of Natural and Environmental Sciences, Newcastle University"
+      ],
+      "familyname": "M. Windsor",
+      "givennames": "Fredric",
+      "email": "fredric.windsor@newcastle.ac.uk",
+      "orcid": "0000-0001-5030-3470"
     },
     {
       "affiliations": [
@@ -67,7 +62,7 @@
       "givennames": "Timothée",
       "email": "timothee.poisot@umontreal.ca",
       "orcid": "0000-0002-0735-5184",
-      "status": ["corresponding", "equal"]
+      "status": ["corresponding"]
     }
   ],
   "description": "**Background.** Range maps are a useful tool to describe the spatial distribution of species. However, they need to be used with caution, as they essentially represent a rough approximation of a species' suitable habitats. When stacked together, the resulting communities in each grid cell may not always be realistic, especially when species interactions are taken into account. Here we show the extent of the mismatch between range maps, provided by the International Union for Conservation of Nature (IUCN), and species interactions data. More precisely, we show that local networks built from those stacked range maps often yield unrealistic communities, where species of higher trophic levels are completely disconnected from primary producers. **Methodology.** We used the well-described Serengeti food web of mammals and plants as our case study, and provide updated range maps for all predators by taking into account food-web structure. We then used occurrence data from the Global Biodiversity Information Facility (GBIF) to investigate where data is most lacking. **Results.** We found that most predator ranges comprised large areas without any overlapping distribution of their preys. However, many of these areas contained GBIF occurrences of the predator. **Conclusions.** Our results suggest that the mismatch between both data sources could be due either to the lack of information about ecological interactions or the geographical occurrence of preys. We finally discuss general guidelines to help identify defective data among distributions and interactions data, and we recommend this method as a valuable way to assess whether the occurrence data that are being used, even if incomplete, are ecologically accurate.",
