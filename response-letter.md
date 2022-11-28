@@ -65,8 +65,7 @@ with species distribution data, and to call to attention the need to make more
 interaction data open. Moreover, many of the prey items on Baskerville's dataset
 were also found outside the Serengeti park area, and our method only needed one
 link connecting a predator to a herbivore to "keep" a pixel from a predator's
-range. Therefore, the impact of missing interactions on the food web should be of
-great magnitude to invalidate our method.
+range. 
 
 Finally, some of the results we highlight would not change with the addition of
 new prey items. For example, the *Canis aureus* results are due mainly to an
