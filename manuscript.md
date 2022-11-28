@@ -14,7 +14,7 @@ in this challenge it is important to have the right clues in hand. There are
 many ways we can be misled by data - or the lack of it: taxonomic errors (e.g.,
 due to updates in the taxonomy of a species), geographic inaccuracy (e.g.,
 approximate coordinates or lack of documentation about their accuracy), or
-sampling biases (e.g. data clustered near roads or research centers)
+sampling biases (e.g., data clustered near roads or research centers)
 [@Ladle2013MapSpe; @Hortal2015SevSho; @Poisot2021GloKno]. One way to identify -
 and potentially fix - these errors is
 to combine many different pieces of information about the occurrence of a
@@ -96,7 +96,7 @@ producer within their associated food web [@Power1992TopBot]. Thus, given that
 herbivores are the main connection between plant resources (directly limited by
 environmental conditions) and predators [@Dobson2009FooStr; @Scott2018RolHer],
 the range of a predator (omnivore or carnivore) depends on the overlapping
-ranges of its herbivore preys. If sections of a predator's range does not
+ranges of its herbivore preys. If sections of a predator's range do not
 overlap with at least one of its prey it will become disconnected from primary
 producers, and therefore we would not expect the predator to occur in this area.  
 
@@ -107,20 +107,20 @@ the lack of information about trophic links (i.e., the lack of connection
 between the ranges of a predator and a primary producer may be due a third
 species we don't know is connected to both). Here in this proof of concept, we
 investigate the disagreements between available data for species that compose a
-well-known foodweb in the African continent, discuss the mechanisms that can
+well-known food web in the African continent, discuss the mechanisms that can
 lead to this, and reinforce the importance of open geographically explicit
 interaction data.
 
 # Methods
 
-We indentified areas of data deficits on the ranges of predators based on a simple
-rule: we removed any part of a predator’s range that did not intersect with the
+We identified areas of data deficits within the ranges of predators based on a simple
+rule: any part of a predator’s range that did not intersect with the
 range of at least one prey herbivore species, which in turn is directly
-connected to a primary producer (plants). To do that, we used a Serengeti food
+connected to a primary producer (plants), was considered data deficient. To do that, we used a Serengeti food
 web dataset [@Baskerville2011SpaGui] (which comprises carnivores, herbivores,
 and plants from Tanzania) and its species ranges from IUCN. Then, we calculated
 the difference in range sizes between the original IUCN ranges of predators and
-those without the areas where they would be alone, based on species interaction
+those without the areas where they would be disconnected from their food webs, based on species interaction
 data. Finally, we added the GBIF occurrence points for the Serengeti species to
 investigate whether the results would be different if we used another source of
 distribution data.  
@@ -186,9 +186,9 @@ there is a large overlap in the ranges of the two species and values closer to 0
 indicating low cooccurrence across their ranges. For each predator species, we
 calculated its generality to understand whether the level of trophic
 specialization (i.e., number of prey items per predator) affects the extent to
-which the ranges of the species were altered. One would assume that predators
+which the ranges of the species comprised areas of data deficits. One would assume that predators
 with a greater number of prey taxa (i.e., a higher generality) are less likely
-to have significant changes in their range as it is more likely that at least
+to have large areas of data mismatch within their range as it is more likely that at least
 one prey species is present across most of their range.   
 
 ## Validation
@@ -208,13 +208,11 @@ year 2000 (and, therefore, only records with date information). This decision
 was made after evaluating the overall temporal distribution of the GBIF records.  
 
 We then converted the occurrence data into raster format by determining which
-pixels had a least one GBIF occurrence. This allowed us to remove the effect of
-repeated sampling in some locations. These data were used to validate the range
-adjustments made based on species interactions (see beginning of Methods
+pixels had at least one GBIF occurrence. This allowed us to remove the effect of
+repeated sampling in some locations. These data were used to validate the areas identified as being ecologically unrealistic based on species interactions and occurrence data (see beginning of Methods
 section). To do so, we calculated the proportion of GBIF presence pixels
-occurring within both the original IUCN species range and the adjusted one. We
-then compared these proportions for the predators to verify if the range
-adjustments removed locations with GBIF observations, hence likely true
+occurring within both the original IUCN species range and the adjusted one (i.e., the one without unrealistic food webs). We
+then compared these proportions for all predators to verify if the areas of data mismatch contained locations with GBIF observations, hence likely true
 habitats.
 
 ## Software
@@ -237,7 +235,7 @@ especially in grasslands and savannahs (panel _(a)_ of @fig:richness). From our 
 most local networks (69.07%) built using the original IUCN range maps had at
 least one mammal species with a path to a primary producer (panel _(b)_ of
 @fig:richness), which reinforces that the interactions we observe in the
-Serengeti foodweb is representative of the interactions for these mammals in the
+Serengeti food web is representative of the interactions for these mammals in the
 whole African continent. On average, local food webs had almost half of
 their mammal
 species disconnected from basal species (mean = 46.2%, median = 33.3%). In
@@ -369,7 +367,7 @@ results did show a significant mismatch in the IUCN range
 areas of specialized and generalist predatory organisms and their prey, which
 highlights the importance of accounting for species
 interactions when estimating the range of a species. Although this type of data
-mismatch can result of actual ecological processes, outdated occurrence data,
+mismatch can be result of actual ecological processes, outdated occurrence data,
 taxonomic errors and more, we argue that, here, they rather indicate a lack of
 interaction sampling data.
 
@@ -427,9 +425,9 @@ conditional on the occurrence of its preys. In other words, the range mismatch
 was exagerated because we were missing information on the presence of an
 interacting species (i.e., this also indicates that there is a mismatch - or complementarity - between the IUCN and GBIF data for their prey).  
 
-![Mismatch between serval's range loss and GBIF occurrence of its prey. The
-left panel shows the reduction of serval's range when we consider the IUCN data
-on its prey. On the right panel, we added GBIF data on both serval and its prey,
+![Mismatch between servals' range loss and GBIF occurrence of its prey. The
+left panel shows the reduction of servals' range when we consider the IUCN data
+of its prey. On the right panel, we added GBIF data on both serval and its prey,
 with a buffer for the prey to account for species mobility.](figures/serval_mismatch_combined.png){#fig:serval}
 
 Finally, the extreme case of _Canis aureus_ illustrates a lack of both
@@ -453,19 +451,19 @@ propagation [@Draper1995AssPro]. For instance, we believe our method is a way to
 account for ecological interactions in habitat suitability models without making
 the models more complex, but by making sure (not assuming) that the input data -
 the species occurrence - actually accounts for ecological interactions. Another
-application of this method is mapping areas where data are deficient and
-helping to indicate priority sampling locations for interaction data, which can, in
+application of this method is mapping areas where data are deficient, thus
+helping to identify priority sampling locations for interaction data, which can, in
 turn, reduce uncertainty in network prediction. For example, if a certain pixel
 confirms the presence of a species both with IUCN and GBIF data, but lacks
 connection between species, this pixel has a high potential to hide an
-unobserved interaction and should therefore be a priority sample location.    
+unobserved interaction and should therefore be a priority sampling location.    
 It is
 important to notice, however, that the quality and usefulness of this method are
 highly correlated with the amount and quality of data available about species'
 occurrences **and** interactions. With this paper, we hope to add to the
 collective effort to decode the encrypted message that is the occurrence of a
 species in space and time. A promising avenue that adds to our method is the
-prediction of networks and interactions in large scales [@Strydom2021RoaPre; @Windsor2022UsiEco],
+prediction of networks and interactions at large scales [@Strydom2021RoaPre; @Windsor2022UsiEco],
 for they can add valuable information about ecological interactions where they
 are missing. Additionally, in order to achieve a robust modelling framework
 towards actual species distribution models we should invest in efforts to
