@@ -123,7 +123,8 @@ the difference in range sizes between the original IUCN ranges of predators and
 those without the areas where they would be alone, based on species interaction
 data. Finally, we added the GBIF occurrence points for the Serengeti species to
 investigate whether the results would be different if we used another source of
-distribution data. 
+distribution data.  
+
 ## Data 
 
 We investigated the mismatch between savannah species ranges and interactions in
