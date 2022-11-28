@@ -400,12 +400,11 @@ predators may be feeding on different species than the ones in our dataset
 outside the Serengeti ecosystem). This rationale can be illustrated with three types of mismatches identified in our results. 
 
 First, _Panthera leo_ was one of the species with no difference between ranges
-before and after our analysis, but 50.7% of its IUCN range map is not covered by
-the GBIF occurrences for this species, and 26.4% of the GBIF point data does not
-overlap with its IUCN range map (@fig:gbif). In this particular case, the IUCN
-maps seem to agree with species interaction data. However, the disagreement
-between the IUCN and the GBIF databases is concerning and suggests that the IUCN
-maps might overestimate the lion's distribution.  
+before and after our analysis, but 50.7% of its GBIF pixels did not superpose
+with the IUCN range (@fig:gbif). In this particular case, the IUCN maps seem to
+agree with species interaction data. However, the disagreement between the IUCN
+and the GBIF databases is concerning and suggests that the IUCN maps might
+underestimate the lion's distribution.  
 
 
 On the other hand, _Leptailurus serval_ and _Canis mesomelas_ are two of the
